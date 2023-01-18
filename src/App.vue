@@ -61,3 +61,5 @@ import { RouterLink, RouterView } from 'vue-router'
   background-color: rgb(68, 65, 65);
   border-radius: 3px;
 }
+
+</style>

@@ -1,8 +1,9 @@
+<script setup>
+    import TeamMember from './TeamMember.vue'
+</script>
+
 <template>
     <img alt="Lamborghini Aventador LP-700" class="aboutimg" src="../assets/Aventador.SRS-3.jpg"/>
-    <!-- <div class="aboutimg">
-        IMAGE
-    </div> -->
     <section class="aboutsection">
         <h1 class="title">
             GTO Luxembourg<font size="5">&#169</font>
@@ -20,8 +21,26 @@
     </section>
     <section class="teamsection">
         <h1 class="title">
-            Team
+            Our Team
         </h1>
+        <section id="team" class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <TeamMember name="Julien Imhoff" frontmsg="President" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Max Mannes" frontmsg="Vice President" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Dylan Pereira" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Gilles Declerq" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Ben Thillen" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Mika Wilmes" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Tom Lekl" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Jona Leuck" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Noah Leuck" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Ben Steimens" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Jeff Nosbusch" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                    <TeamMember name="Dave Feiereisen" frontmsg="bla" backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                </div>
+            </div>
+        </section>
     </section>
 </template>
   
@@ -29,7 +48,6 @@
     .aboutimg {
         height: 600px;
         width: 100%;
-        background-color: grey;
     }
 
     h1, h3, p {
@@ -68,6 +86,6 @@
 
     .teamsection {
         background: rgba(61, 130, 134, 0.7);
-        height: 1250px;
+        height: 100%;
     }
 </style>

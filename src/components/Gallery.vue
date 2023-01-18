@@ -3,5 +3,13 @@
 </script>
 
 <template>
-This is a gallery page.
+    <div class="test">
+        INSERT CAROUSEL
+    </div>
 </template>
+
+<style>
+    .test{
+        margin-top: 100px;
+    }
+</style>
