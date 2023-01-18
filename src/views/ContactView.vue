@@ -5,9 +5,3 @@ import Contact from '../components/Contact.vue'
 <template>
     <Contact />
   </template>
-  
-  <style>
-  body {
-  background-color: red;
-}
-  </style>

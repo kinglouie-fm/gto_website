@@ -4,37 +4,51 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
   <header>
-      <nav>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fs-5">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <div class="images">
+          <img alt="GTO logo" class="logo" src="@/assets/GTO_round.png"/>
+        </div>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <RouterLink class="nav-link" to="/">Home</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/about">About</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/contact">Contact</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/events">Events</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/gallery">Gallery</RouterLink>
+          </li>
+        </ul>
+      </div>
+    </nav>
+      <!-- <nav>
         <div class="images">
           <img alt="GTO logo" class="logo" src="@/assets/GTO_round.png"/>
         </div>
         <div class="routerlinks">
-          <RouterLink to="/home">Home</RouterLink>
+          <RouterLink to="/">Home</RouterLink>
           <RouterLink to="/about">About</RouterLink>
           <RouterLink to="/contact">Contact</RouterLink>
           <RouterLink to="/events">Events</RouterLink>
           <RouterLink to="/gallery">Gallery</RouterLink>
         </div>
-      </nav>
+      </nav> -->
   </header>
-
-  <RouterView/>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header> -->
-  <!-- <RouterView /> -->
+  <RouterView />
 </template>
 
-<style scoped>
+<style>
+
 .logo {
   height: 80px;
 }
@@ -43,90 +57,7 @@ import { RouterLink, RouterView } from 'vue-router'
   width: 100%;
 }
 
-.routerlinks {
-  padding-right: 15px;
+.nav-item:hover {
+  background-color: rgb(68, 65, 65);
+  border-radius: 3px;
 }
-
-nav {
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-nav a {
-  color: white;
-  padding: 10px 10px;
-  font-size: 20px;
-  text-decoration: none;
-}
-
-nav a:hover {
-background-color: black;
-}
-</style>
-
-
-<!-- <style scoped>
-header {
-  line-height: 1;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
-</style> -->

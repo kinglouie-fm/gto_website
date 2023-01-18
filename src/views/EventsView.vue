@@ -5,7 +5,3 @@ import Events from '../components/Events.vue'
 <template>
     <Events />
   </template>
-  
-  <style>
-  
-  </style>

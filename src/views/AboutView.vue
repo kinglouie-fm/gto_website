@@ -5,7 +5,3 @@ import About from '../components/About.vue'
 <template>
   <About />
 </template>
-
-<style>
-
-</style>

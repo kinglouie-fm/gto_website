@@ -1,8 +1,15 @@
 <template>
+  <img alt="Ferrari" class="homeimg" src="../assets/IMG_Ben992.jpeg"/>
+  <!-- <div class="homeimg">
+    IMAGE
+    </div> -->
 </template>
 
 <style scoped>
-
+  .homeimg {
+      height: 100%;
+      width: 100%;
+  }
 </style>
 
 

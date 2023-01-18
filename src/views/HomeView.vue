@@ -7,9 +7,3 @@ import Home from '../components/Home.vue'
     <Home />
   </main>
 </template>
-
-<style>
-body {
-  background-color: cyan;
-}
-</style>
