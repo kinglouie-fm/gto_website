@@ -1,5 +1,8 @@
 <script setup>
     defineProps({
+    image: {
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -21,10 +24,9 @@
                 <div class="frontside">
                     <div class="card">
                         <div class="card-body text-center">
-                            <p><img class=" img-fluid" src="" alt="card image"></p>
-                            <h4 class="card-title">{{ name }}</h4>
+                            <div v-html="image"/>
+                            <h3 class="card-title">{{ name }}</h3>
                             <p class="card-text">{{ frontmsg }}</p>
-                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                         </div>
                     </div>
                 </div>
@@ -33,28 +35,6 @@
                         <div class="card-body text-center mt-4">
                             <h4 class="card-title">{{ name }}</h4>
                             <p class="card-text">{{ backmsg }}</p>
-                            <ul class="list-inline">
-                                <li class="list-inline-item">
-                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                        <i class="fa fa-skype"></i>
-                                    </a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                        <i class="fa fa-google"></i>
-                                    </a>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -168,7 +148,7 @@
 
     .frontside .card,
     .backside .card {
-        min-height: 312px;
+        min-height: 500px;
     }
 
     .backside .card a {
