@@ -5,12 +5,12 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fs-5">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <div class="collapse navbar-collapse" id="navbarToggler">
         <div class="images">
-          <img alt="GTO logo" class="logo" src="@/assets/GTO_round.png"/>
+          <img alt="GTO logo" class="logo" src="@/assets/GTO_round.png"/>q
         </div>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
@@ -31,24 +31,11 @@ import { RouterLink, RouterView } from 'vue-router'
         </ul>
       </div>
     </nav>
-      <!-- <nav>
-        <div class="images">
-          <img alt="GTO logo" class="logo" src="@/assets/GTO_round.png"/>
-        </div>
-        <div class="routerlinks">
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
-          <RouterLink to="/contact">Contact</RouterLink>
-          <RouterLink to="/events">Events</RouterLink>
-          <RouterLink to="/gallery">Gallery</RouterLink>
-        </div>
-      </nav> -->
   </header>
   <RouterView />
 </template>
 
 <style>
-
 .logo {
   height: 80px;
 }
@@ -61,5 +48,4 @@ import { RouterLink, RouterView } from 'vue-router'
   background-color: rgb(68, 65, 65);
   border-radius: 3px;
 }
-
 </style>

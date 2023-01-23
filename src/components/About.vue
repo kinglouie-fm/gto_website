@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <img alt="Lamborghini Aventador LP-700" class="aboutimg" src="../assets/Aventador.SRS-3.jpg"/>
+    <div class="bg"></div>
     <section class="aboutsection">
         <h1 class="title">
             GTO Luxembourg<font size="5">&#169</font>
@@ -69,47 +69,55 @@
 </template>
   
 <style scoped>
-    .aboutimg {
-        height: 600px;
-        width: 100%;
-    }
+.aboutimg {
+    height: 600px;
+    width: 100%;
+}
 
-    h1, h3, p {
-        text-align: center;
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-    }
+.bg {
+    background-image: url('src/assets/aventador.SRS-3.jpg');
+    height: 50vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-    section {
-        padding-top: 40px;
-    }
+h1, h3, p {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
 
-    .aboutsection {
-        margin-top: 50px;
-        margin-bottom: 500px;
-    }
+section {
+    padding-top: 40px;
+}
 
-    .title {
-        font-size: 114px;
-        margin-bottom: 0px;
-        margin-top: 0px;
-        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    }
+.aboutsection {
+    margin-top: 50px;
+    margin-bottom: 500px;
+}
 
-    .subtitle {
-        margin-top: 100px;
-        font-size: 50px;
-    }
+.title {
+    font-size: 114px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
 
-    .description {
-        font-family: serif;
-        font-size: 30px;
-        margin-left: 200px;
-        margin-right: 200px;
-    }
+.subtitle {
+    margin-top: 100px;
+    font-size: 50px;
+}
 
-    .teamsection {
-        background: rgba(61, 130, 134, 0.7);
-        height: 100%;
-    }
+.description {
+    font-family: serif;
+    font-size: 30px;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
+.teamsection {
+    background: rgba(61, 130, 134, 0.7);
+    height: 100%;
+}
 </style>

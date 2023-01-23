@@ -1,15 +1,15 @@
 <template>
-  <img alt="Ferrari" class="homeimg" src="../assets/IMG_Ben992.jpeg"/>
-  <!-- <div class="homeimg">
-    IMAGE
-    </div> -->
+  <div class="bg"></div>
 </template>
 
 <style scoped>
-  .homeimg {
-      height: 100%;
-      width: 100%;
-  }
+.bg {
+  background-image: url('src/assets/image-gto-ben911.jpg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
 
 

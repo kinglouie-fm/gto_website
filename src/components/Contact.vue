@@ -7,8 +7,10 @@
           <div class="row g-0 align-items-center">
             <div class="col-sm-6 p-4">
               <div class="text-center">
-                <div class="h3 fw-light">Contact Us!</div>
-                <p class="mb-4 text-muted">What can we help you with?</p>
+                <div class="h3 fw-light">
+                  What can we help you with?
+                </div>
+                <p class="mb-3 text-muted">Contact Us!</p>
               </div>
 
               <form id="contactForm" data-sb-form-api-token="API_TOKEN">
@@ -39,8 +41,6 @@
                 <div class="d-none" id="submitSuccessMessage">
                   <div class="text-center mb-3">
                     <div class="fw-bolder">Form submission successful!</div>
-                    <p>To activate this form, sign up at</p>
-                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                   </div>
                 </div>
 
@@ -51,7 +51,7 @@
 
                 <!-- Submit button -->
                 <div class="d-grid">
-                  <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+                  <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
                 </div>
               </form>
               <!-- End of contact form -->
@@ -67,7 +67,6 @@
                     <a style="color: #3b5998;" href="https://www.facebook.com/GTOLuxembourg" target=”_blank” role="button">
                         <fa :icon="['fab', 'facebook']" />
                     </a>
-            
                 </div>
             </div>
           </div>

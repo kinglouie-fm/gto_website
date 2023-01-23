@@ -33,7 +33,7 @@
                 <div class="backside">
                     <div class="card">
                         <div class="card-body text-center mt-4">
-                            <h4 class="card-title">{{ name }}</h4>
+                            <h3 class="card-title">{{ name }}</h3>
                             <p class="card-text">{{ backmsg }}</p>
                         </div>
                     </div>
@@ -154,6 +154,10 @@
     .backside .card a {
         font-size: 18px;
         color: #007b5e !important;
+    }
+
+    .card-text {
+        font-size: 20px;
     }
 
     .frontside .card .card-title,
