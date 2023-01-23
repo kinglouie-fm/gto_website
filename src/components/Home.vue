@@ -1,9 +1,9 @@
 <template>
-  <div class="bg"></div>
+  <div class="bgimg"></div>
 </template>
 
 <style scoped>
-.bg {
+.bgimg {
   background-image: url('src/assets/image-gto-ben911.jpg');
   height: 100vh;
   background-position: center;

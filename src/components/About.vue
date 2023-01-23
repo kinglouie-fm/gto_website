@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <div class="bg"></div>
+    <div class="bgimg"></div>
     <section class="aboutsection">
         <h1 class="title">
             GTO Luxembourg<font size="5">&#169</font>
@@ -74,7 +74,7 @@
     width: 100%;
 }
 
-.bg {
+.bgimg {
     background-image: url('src/assets/aventador.SRS-3.jpg');
     height: 50vh;
     background-position: center;
