@@ -33,34 +33,34 @@
                         name="Max Mannes" frontmsg="Vice President" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Dylan Pereira" frontmsg="bla" 
+                        name="Jeff Nosbusch" frontmsg="Secretary" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Gilles Declerq" frontmsg="bla" 
+                        name="Ben Steimens" frontmsg="Always part of the team" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Ben Thillen" frontmsg="bla" 
+                        name="Gilles Declerq" frontmsg="Law Futzi" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Mika Wilmes" frontmsg="bla" 
+                        name="Ben Thillen" frontmsg="Webmaster & Social Media Manager" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Tom Lekl" frontmsg="bla" 
+                        name="Mika Wilmes" frontmsg="Treasurer" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Jona Leuck" frontmsg="bla" 
+                        name="Jona Leuck" frontmsg="Organization" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Noah Leuck" frontmsg="bla" 
+                        name="Noah Leuck" frontmsg="Organization" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Ben Steimens" frontmsg="bla" 
+                        name="Tom Lekl" frontmsg="Organization" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Jeff Nosbusch" frontmsg="bla" 
+                        name="Dylan Pereira" frontmsg="Sponsor" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
-                        name="Dave Feiereisen" frontmsg="bla" 
+                        name="Dave Feiereisen" frontmsg="Nichtsnutz" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                 </div>
             </div>

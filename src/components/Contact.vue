@@ -1,130 +1,89 @@
 <template>
-    <div> 
-        <h3 class="title">
-            Contact
-        </h3>
-        <hr />
-    </div>
-    <section>
-        <h3 class="subtitle">
-            Get in touch
-        </h3>
-        <p class="instruction">
-            Enter your name, email and message.
-        </p>
-        <form id="contactform" method="post" action="">
-            <div class="name">
-                <input type="text" class="form-control" id="firstname" placeholder="First Name" required>
-                <input type="text" class="form-control" id="lastname" placeholder="Last Name" required>
+<div class="container-fluid px-5 my-5">
+  <div class="row justify-content-center">
+    <div class="col-xl-10">
+      <div class="card border-0 rounded-3 shadow-lg overflow-hidden">
+        <div class="card-body p-0">
+          <div class="row g-0 align-items-center">
+            <div class="col-sm-6 p-4">
+              <div class="text-center">
+                <div class="h3 fw-light">Contact Us!</div>
+                <p class="mb-4 text-muted">What can we help you with?</p>
+              </div>
+
+              <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+
+                <!-- Name Input -->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="name" type="text" placeholder="Name" data-sb-validations="required" />
+                  <label for="name">Name</label>
+                  <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
+                </div>
+
+                <!-- Email Input -->
+                <div class="form-floating mb-3">
+                  <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
+                  <label for="emailAddress">Email Address</label>
+                  <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
+                  <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+                </div>
+
+                <!-- Message Input -->
+                <div class="form-floating mb-3">
+                  <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" data-sb-validations="required"></textarea>
+                  <label for="message">Message</label>
+                  <div class="invalid-feedback" data-sb-feedback="message:required">Message is required.</div>
+                </div>
+
+                <!-- Submit success message -->
+                <div class="d-none" id="submitSuccessMessage">
+                  <div class="text-center mb-3">
+                    <div class="fw-bolder">Form submission successful!</div>
+                    <p>To activate this form, sign up at</p>
+                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                  </div>
+                </div>
+
+                <!-- Submit error message -->
+                <div class="d-none" id="submitErrorMessage">
+                  <div class="text-center text-danger mb-3">Error sending message!</div>
+                </div>
+
+                <!-- Submit button -->
+                <div class="d-grid">
+                  <button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button>
+                </div>
+              </form>
+              <!-- End of contact form -->
             </div>
-            <div class="email">
-                <input type="email" class="form-control" id="email" placeholder="Email-address" required>
+            <div class="col-sm-6 p-4 d-none d-sm-block aside-text">
+                <div class="text-center">
+                    <div class="h3 fw-light">More of us</div>
+                    <!-- Instagram -->
+                    <a style="color: #ac2bac;" href="https://www.instagram.com/gto.lu/" target=”_blank” role="button">
+                        <fa :icon="['fab', 'instagram']" />
+                    </a>
+                    <!-- Facebook -->
+                    <a style="color: #3b5998;" href="https://www.facebook.com/GTOLuxembourg" target=”_blank” role="button">
+                        <fa :icon="['fab', 'facebook']" />
+                    </a>
+            
+                </div>
             </div>
-            <div class="message">
-                <textarea id="message" class="form-control" rows="8" maxlength="3000" placeholder="Your message..." required></textarea>
-            </div>
-            <div class="submit">
-                <button type="submit" class="btn btn-secondary" id="submit">Send Message</button>
-            </div>
-        </form>
-    </section>
-    <aside>
-        <div class="aside">
-            <div class="asidebox">
-                <span class="asideicon">
-                    <img alt="GTO logo" class="logo" src="../assets/GTO_round.png"/>
-                </span>
-                <p class="asidetext">
-                    We are eager to receive your message!
-                </p>
-            </div>
+          </div>
         </div>
-    </aside>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <style scoped>
-    h3, p{
-        font-family: "Inter", sans-serif;
-        font-weight: 400;
-    }
-
-    hr {
-        margin-top: 0px;
-        margin-left: 10%;
-        width: 75%;
-    }
-
-    section {
-        position: absolute; 
-        margin-left: 14%;
-    }
-
-    .title {
-        margin-top: 110px;
-        margin-bottom: 0px;
-        margin-left: 14%;
-        font-size: 40px;
-    }
-
-    .subtitle{
-        margin-top: 50px;
-        margin-bottom: 0px;
-        /* margin-left: 14%; */
-        font-size: 30px;
-    }
-
-    .instruction {
-        font-size: 20px;
-        /* margin-left: 14%; */
-    }
-
-    #contactform {
-        /* margin-left: 14%; */
-        margin-top: 25px;
-    }
-
-    .name, #email, #message, #submit {
-        margin: 20px 20px 20px 0px ;
-    }
-
-    .name {
-        width: 100%;
-        display: flex;
-        justify-content: space-around;   
-    }
-
-    .email, .message {
-        width: 100%;
-    }
-
-    aside {
-        float: right;
-    }
-
-    .aside {
-        border-color: black;
-        margin-top: 80px;
-        margin-right: 350px;
-    }
-
-    /* .asidebox {
-        border-left: 2px solid black;
-        padding-top: 50px;
-        padding-left: 20px;
-        padding-bottom: 350px;
-    } */
-
-    .asidebox {
-        border-left: 2px solid black;
-        padding-top: 40px;
-        padding-left: 20px;
-        padding-bottom: 275px;
-    }
-
-    .asidetext {
-        float: right;
-        width: 120px;
-        margin-left: 25px;
-        margin-top: 2px;
-    }
+.my-5 {
+    margin-top: 150px !important;
+}
+a {
+    padding: 5px;
+    font-size: 50px;
+}
 </style>
