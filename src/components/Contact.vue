@@ -58,7 +58,7 @@
             </div>
             <div class="col-sm-6 p-4 d-none d-sm-block aside-text">
                 <div class="text-center">
-                    <div class="h3 fw-light">More of us</div>
+                    <div class="h3 fw-light">Check out our social media</div>
                     <!-- Instagram -->
                     <a style="color: #ac2bac;" href="https://www.instagram.com/gto.lu/" target=”_blank” role="button">
                         <fa :icon="['fab', 'instagram']" />
@@ -84,5 +84,8 @@
 a {
     padding: 5px;
     font-size: 50px;
+}
+.btn-primary{
+  background-color: #ac2bac !important;
 }
 </style>
