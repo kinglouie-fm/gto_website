@@ -1,1 +1,0 @@
-import{_ as c}from"./_plugin-vue_export-helper-c27b6911.js";import{o as e,c as r,f as s}from"./index-5bbd34ff.js";const n={},o={class:"test"};function a(_,t){return e(),r("div",o," INSERT CAROUSEL ")}const l=c(n,[["render",a]]),m={__name:"GalleryView",setup(_){return(t,f)=>(e(),s(l))}};export{m as default};
