@@ -75,7 +75,7 @@
 }
 
 .bgimg {
-    background-image: url('src/assets/aventador.SRS-3.jpg');
+    background-image: url('@/assets/aventador.SRS-3.jpg');
     height: 50vh;
     background-position: center;
     background-repeat: no-repeat;
