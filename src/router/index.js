@@ -14,31 +14,31 @@ const router = createRouter({
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import('../views/HomeView.vue')
+      component: () => import('@/views/HomeView.vue')
       // component: HomeView
     },
     {
       path: '/about',
       name: 'about',
-      component: () => import('../views/AboutView.vue')
+      component: () => import('@/views/AboutView.vue')
       // component: AboutView
     },
     {
       path: '/contact',
       name: 'contact',
-      component: () => import('../views/ContactView.vue')
+      component: () => import('@/views/ContactView.vue')
       // component: ContactView
     },
     {
       path: '/events',
       name: 'events',
-      component: () => import('../views/EventsView.vue')
+      component: () => import('@/views/EventsView.vue')
       // component: EventsView
     },
     {
       path: '/gallery',
       name: 'gallery',
-      component: () => import('../views/GalleryView.vue')
+      component: () => import('@/views/GalleryView.vue')
       // component: GalleryView
     }
   ]
