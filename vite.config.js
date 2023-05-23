@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  publicPath: '/gto_website/',
+  base: '/gto_website/',
   plugins: [vue()],
   resolve: {
     alias: {
