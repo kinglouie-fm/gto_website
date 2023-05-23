@@ -1,0 +1,1 @@
+import{_ as n}from"./_plugin-vue_export-helper-c27b6911.js";import{o as r,f as s}from"./index-ce59a407.js";const c={};function _(e,t){return" This is an events page. "}const o=n(c,[["render",_]]),i={__name:"EventsView",setup(e){return(t,a)=>(r(),s(o))}};export{i as default};
