@@ -4,7 +4,7 @@
 
 <style scoped>
 .bgimg {
-  background-image: url('@/assets/image-gto-ben911.jpg');
+  background-image: url('@/assets/image-gto-ben911.JPG');
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
