@@ -1,1 +1,0 @@
-import{_ as t}from"./_plugin-vue_export-helper-c27b6911.js";import{o as e,c as _,a as s}from"./index-5f4aff67.js";const n={},a={class:"bgimg"};function r(c,o){return e(),_("div",a)}const d=t(n,[["render",r],["__scopeId","data-v-cd117e4d"]]),l={__name:"HomeView",setup(c){return(o,m)=>(e(),_("main",null,[s(d)]))}};export{l as default};
