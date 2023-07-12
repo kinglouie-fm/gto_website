@@ -13,14 +13,15 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    assetsDir: 'assets',
+    assetsDir: '',
     rollupOptions: {
-      output: {
-        manualChunks: undefined
+      input: {
+        main: resolve(__dirname, './index.html')
       }
     }
   }
 })
+
 
 
 
