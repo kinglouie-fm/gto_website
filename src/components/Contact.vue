@@ -13,49 +13,34 @@
                 <p class="mb-3 text-muted">Contact Us!</p>
               </div>
 
-              <form id="contactForm" data-sb-form-api-token="API_TOKEN">
+              <form id="contactForm" @submit.prevent="sendEmail">
 
                 <!-- Name Input -->
                 <div class="form-floating mb-3">
-                  <input class="form-control" id="name" type="text" placeholder="Name" data-sb-validations="required" />
-                  <label for="name">Name</label>
-                  <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
+                  <input class="form-control" type="text" v-model="name" name="name" placeholder="Name" required/>
+                  <label>Name</label>
                 </div>
 
                 <!-- Email Input -->
                 <div class="form-floating mb-3">
-                  <input class="form-control" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                  <label for="emailAddress">Email Address</label>
-                  <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                  <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+                  <input class="form-control" type="email" v-model="email" name="email" placeholder="Email Address" required/>
+                  <label>Email Address</label>
                 </div>
 
                 <!-- Message Input -->
                 <div class="form-floating mb-3">
-                  <textarea class="form-control" id="message" type="text" placeholder="Message" style="height: 10rem;" data-sb-validations="required"></textarea>
-                  <label for="message">Message</label>
-                  <div class="invalid-feedback" data-sb-feedback="message:required">Message is required.</div>
-                </div>
-
-                <!-- Submit success message -->
-                <div class="d-none" id="submitSuccessMessage">
-                  <div class="text-center mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                  </div>
-                </div>
-
-                <!-- Submit error message -->
-                <div class="d-none" id="submitErrorMessage">
-                  <div class="text-center text-danger mb-3">Error sending message!</div>
+                  <textarea class="form-control" type="text" v-model="message" name="message" placeholder="Message" required style="height: 10rem;"></textarea>
+                  <label>Message</label>
                 </div>
 
                 <!-- Submit button -->
                 <div class="d-grid">
-                  <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
+                  <input class="btn btn-primary btn-lg" type="submit" value="Send">
                 </div>
               </form>
               <!-- End of contact form -->
             </div>
+
             <div class="col-sm-6 p-4 d-none d-sm-block aside-text">
                 <div class="text-center">
                     <div class="h3 fw-light">Check out our social media</div>
@@ -75,7 +60,41 @@
     </div>
   </div>
 </div>
-</template>
+</template> 
+
+<script>
+import emailjs from 'emailjs-com';
+
+export default {
+  name: 'ContactUs',
+  data() {
+    return {
+      name: '',
+      email: '',
+      message: ''
+    }
+  },
+  methods: {
+    sendEmail(e) {
+      try {
+        emailjs.sendForm('service_3r4szlp', 'template_zueu4vi', e.target,
+        'xJiG2oA5pZeWfkFFQ', {
+          name: this.name,
+          email: this.email,
+          message: this.message
+        })
+
+      } catch(error) {
+          console.log({error})
+      }
+      // Reset form field
+      this.name = ''
+      this.email = ''
+      this.message = ''
+    },
+  }
+}
+</script>
 
 <style scoped>
 .my-5 {
