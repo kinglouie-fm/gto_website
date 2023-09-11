@@ -1,29 +1,31 @@
-# gto_website
+# GTO Luxembourg Website
 
-This template should help get you started developing with Vue 3 in Vite.
+Welcome to the GTO Luxembourg website, where you can find information about our team members and contact us via a form.
 
-## Recommended IDE Setup
+## Description
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+This website serves as a platform to learn more about GTO Luxembourg and the dedicated team behind it. Each team member is introduced with a brief description, allowing you to get to know us better. Additionally, you can reach out to us through a convenient contact form.
 
-## Customize configuration
+## Usage
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Feel free to explore our website to discover more about GTO Luxembourg and the individuals who contribute to its success. It's a great way to stay informed about our team and our mission.
 
-## Project Setup
+## Contributing
 
-```sh
-npm install
-```
+If you have any ideas, suggestions, or questions, we welcome your input. You can reach out to us on Instagram or Facebook, both of which are linked on our webpage under the "Contact" section.
 
-### Compile and Hot-Reload for Development
+## Author
 
-```sh
-npm run dev
-```
+- **Ben Thillen** from GTO Luxembourg
 
-### Compile and Minify for Production
+## Contact
 
-```sh
-npm run build
-```
+- Instagram: [Link](https://www.instagram.com/gtoluxembourg)
+- Facebook: [Link](https://www.facebook.com/gtoluxembourg)
+
+## Acknowledgments
+
+We'd like to express our gratitude to the following:
+
+- [Font Awesome](https://fontawesome.com/) for providing great icons.
+- [Vue.js](https://vuejs.org/) for the framework used in building this website.
