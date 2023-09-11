@@ -1,9 +1,13 @@
 <script setup>
+/**
+ * Import router components
+*/
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
   <header>
+    <!-- Navigation bar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fs-5">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -36,6 +40,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </template>
 
 <style>
+/* Styles the navigation bar */
 .logo {
   height: 80px;
 }

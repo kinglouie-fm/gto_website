@@ -1,12 +1,19 @@
 <script setup>
+    /**
+     * Import TeamMember component
+     */
     import TeamMember from './TeamMember.vue'
 </script>
 
 <template>
+    <!-- 
+        This is the About component for describing GTO Luxembourg.
+        The imported TeamMember component is used to describe each Team Member.
+    -->
     <div class="bgimg"></div>
     <section class="aboutsection">
         <h1 class="title">
-            <!-- TODO: warning in chrome console with font-->
+            <!-- Used to modify font size and font itself -->
             GTO Luxembourg<font size="5">&#169</font>
         </h1>
         <h3 class="subtitle">
@@ -70,6 +77,7 @@
 </template>
   
 <style scoped>
+/* Styles the About component */
 .aboutimg {
     height: 600px;
     width: 100%;

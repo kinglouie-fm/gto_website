@@ -1,43 +1,18 @@
-import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/gto_website/',
-  plugins: [vue()],
+  base: '/gto_website/', // Specifies the base URL path for your application.
+  plugins: [vue()], // Configures Vue.js plugin for Vite.
   build: {
     rollupOptions: {
+      /* 
+      Specifies external dependencies that should not be bundled by Rollup.
+      Rollup is a js module bundler that takes multiple JavaScript files, along with their dependencies 
+      and combines them into a single, more manageable file (or multiple files) 
+      for deployment in a web application.
+      */ 
       external: ['./src/assets/GTO_round.png', './src/assets/Aventador.SRS-3.jpg', './src/assets/image-gto-ben911.JPG'],
     },
   },
 })
-
-// FILE STRUCTURE
-// - src/
-//   - assets/
-//     - Aventador.SRS-3.jpg
-//     - GTO_round.jpg
-//     - image-gto-ben911.JPG
-//   - components/
-//     - About.vue
-//     - Contact.vue
-//     - Home.vue
-//     - TeamMember.vue
-//   - router/
-//     - index.js
-//   - views/
-//     - AboutView.vue
-//     - ContactView.vue
-//     - HomeView.vue
-//   - App.vue
-//   - main.js
-// - public/
-//   - Aventador.SRS-3.jpg
-//   - GTO_round.jpg
-//   - image-gto-ben911.JPG
-// - index.html
-// - vite.config.js
-// - package.json
-// - package-lock.json

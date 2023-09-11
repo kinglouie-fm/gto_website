@@ -1,8 +1,10 @@
 <template>
+  <!-- This is the Home component which creates the background image. -->
   <div class="bgimg"></div>
 </template>
 
 <style scoped>
+/* Styles the Home component */
 .bgimg {
   background-image: url('/image-gto-ben911.JPG');
   height: 100vh;

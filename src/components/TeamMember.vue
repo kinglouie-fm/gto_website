@@ -1,4 +1,7 @@
 <script setup>
+/** 
+ * defines properties which are required to create each Team Member card in the About component.
+ */
     defineProps({
     image: {
         required: true
@@ -18,12 +21,17 @@
     })
 </script>
 <template>
+    <!-- This is the TeamMember component which creates the card for each team member. -->
     <div class="col-xs-12 col-sm-6 col-md-4">
         <div class="image-flip" >
             <div class="mainflip flip-0">
                 <div class="frontside">
                     <div class="card">
                         <div class="card-body text-center">
+                            <!-- Data binding is used to insert information about the specific team member.
+                                The div is necessary to be able to show the image.
+                                The v-html directive is used to render raw HTML content inside an element.
+                            -->
                             <div v-html="image"/>
                             <h3 class="card-title">{{ name }}</h3>
                             <p class="card-text">{{ frontmsg }}</p>
@@ -44,6 +52,7 @@
 </template>
 
 <style scoped>
+/* Styles the TeamMember component */
     .btn-primary:hover,
     .btn-primary:focus {
         background-color: #108d6f;

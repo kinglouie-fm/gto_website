@@ -1,4 +1,10 @@
 <template>
+<!-- 
+      This is the Contact component for contacting GTO Luxembourg
+      using emailjs and standard html form. 
+      Also, v-model and name is necessary to create two-way data binding 
+      to correctly send the form via email.
+  -->
 <div class="container-fluid px-5 my-5">
   <div class="row justify-content-center">
     <div class="col-xl-10">
@@ -41,6 +47,10 @@
               <!-- End of contact form -->
             </div>
 
+            <!-- 
+              Two social media buttons with the corresponding color and link.
+              Here, fortawesome is used to get the icons
+            -->
             <div class="col-sm-6 p-4 d-none d-sm-block aside-text">
                 <div class="text-center">
                     <div class="h3 fw-light">Check out our social media</div>
@@ -75,6 +85,11 @@ export default {
     }
   },
   methods: {
+    /**
+     * Function called when form gets submitted.
+     * sendForm is a function by email.js which gets the following param.:
+     * serviceID, templateID, userID (all are retrievable from the user profile on their website)
+     */
     sendEmail(e) {
       try {
         emailjs.sendForm('service_3r4szlp', 'template_zueu4vi', e.target,
@@ -97,6 +112,7 @@ export default {
 </script>
 
 <style scoped>
+/* Styles the Contact component */
 .my-5 {
     margin-top: 150px !important;
 }
