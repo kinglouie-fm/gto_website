@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     rollupOptions: {
-      external: ['src/assets/GTO_round.png', 'src/assets/Aventador.SRS-3.jpg', 'src/assets/image-gto-ben911.JPG'],
+      external: ['./src/assets/GTO_round.png', './src/assets/Aventador.SRS-3.jpg', './src/assets/image-gto-ben911.JPG'],
     },
   },
 })
