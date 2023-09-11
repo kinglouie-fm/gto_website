@@ -1,6 +1,6 @@
 # GTO Luxembourg Website
 
-Welcome to the GTO Luxembourg website, where you can find information about our team members and contact us via a form.
+Welcome to the GTO Luxembourg website.
 
 ## Description
 
@@ -20,12 +20,12 @@ If you have any ideas, suggestions, or questions, we welcome your input. You can
 
 ## Contact
 
-- Instagram: [Link](https://www.instagram.com/gtoluxembourg)
+- Instagram: [Link](https://www.instagram.com/gto.lu)
 - Facebook: [Link](https://www.facebook.com/gtoluxembourg)
 
 ## Acknowledgments
 
 We'd like to express our gratitude to the following:
 
-- [Font Awesome](https://fontawesome.com/) for providing great icons.
 - [Vue.js](https://vuejs.org/) for the framework used in building this website.
+- [Font Awesome](https://fontawesome.com/) for providing great icons.
