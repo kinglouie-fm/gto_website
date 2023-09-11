@@ -10,7 +10,7 @@ import { RouterLink, RouterView } from 'vue-router'
       </button>
       <div class="collapse navbar-collapse" id="navbarToggler">
         <div class="images">
-          <img alt="GTO logo" class="logo" src="@/assets/GTO_round.png"/>q
+          <img alt="GTO logo" class="logo" src="src/assets/GTO_round.png"/>
         </div>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">

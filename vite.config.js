@@ -7,14 +7,14 @@ import vue from '@vitejs/plugin-vue'
 export default defineConfig({
   base: '/gto_website/',
   plugins: [vue()],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  }
+  build: {
+    rollupOptions: {
+      external: ['src/assets/GTO_round.png', 'src/assets/Aventador.SRS-3.jpg', 'src/assets/image-gto-ben911.JPG'],
+    },
+  },
 })
 
-// CHAT GPT FILE STRUCTURE
+// FILE STRUCTURE
 // - src/
 //   - assets/
 //     - Aventador.SRS-3.jpg
