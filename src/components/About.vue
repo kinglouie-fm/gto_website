@@ -27,7 +27,7 @@
         <section id="team" class="pb-5">
             <div class="container">
                 <div class="row">
-                    <TeamMember image='<img class=" img-fluid" src="/src/assets/GTO_round.png" alt="card image" />'
+                    <TeamMember image='<img class=" img-fluid" src="/GTO_round.png" alt="card image" />'
                         name="Julien Imhoff" frontmsg="President" 
                         backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
                     <TeamMember 
@@ -76,7 +76,7 @@
 }
 
 .bgimg {
-    background-image: url('/src/assets/Aventador.SRS-3.jpg');
+    background-image: url('/Aventador.SRS-3.jpg');
     height: 50vh;
     background-position: center;
     background-repeat: no-repeat;
