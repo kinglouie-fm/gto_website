@@ -12,7 +12,7 @@ export default defineConfig({
       and combines them into a single, more manageable file (or multiple files) 
       for deployment in a web application.
       */ 
-      external: ['./src/assets/GTO_round.png', './src/assets/Aventador.SRS-3.jpg', './src/assets/image-gto-ben911.JPG'],
+      external: ['./src/assets/GTO_round.png', './src/assets/Aventador.SRS-3.jpg', './src/assets/image-gto-ben911.jpeg'],
     },
   },
 })
