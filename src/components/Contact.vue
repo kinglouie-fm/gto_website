@@ -121,6 +121,7 @@ a {
     font-size: 50px;
 }
 .btn-primary{
-  background-color: #ac2bac !important;
+  background-color: rgba(61, 130, 134, 0.7) !important; 
+  border: none !important;
 }
 </style>

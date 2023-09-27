@@ -2,7 +2,23 @@
 /**
  * Import router components
 */
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRouter } from 'vue-router'
+
+const router = useRouter()
+
+/**
+ * Function: Gets called when a link in the navbar gets clicked.
+ * In this case, the dropdown menu which appears on smaller screens gets closed.
+ */
+const closeNavbar = () => {
+  const navbarToggler = document.querySelector('.navbar-toggler')
+  const navbarCollapse = document.querySelector('.navbar-collapse')
+  
+  if (navbarToggler && navbarCollapse) {
+    navbarToggler.classList.add('collapsed')
+    navbarCollapse.classList.remove('show')
+  }
+}
 </script>
 
 <template>
@@ -18,20 +34,14 @@ import { RouterLink, RouterView } from 'vue-router'
         </div>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
           <li class="nav-item active">
-            <RouterLink class="nav-link" to="/">Home</RouterLink>
+            <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/about">About</RouterLink>
+            <RouterLink class="nav-link" to="/about" @click="closeNavbar">About</RouterLink>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/contact">Contact</RouterLink>
+            <RouterLink class="nav-link" to="/contact" @click="closeNavbar">Contact</RouterLink>
           </li>
-          <!-- <li class="nav-item">
-            <RouterLink class="nav-link" to="/events">Events</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" to="/gallery">Gallery</RouterLink>
-          </li> -->
         </ul>
       </div>
     </nav>
