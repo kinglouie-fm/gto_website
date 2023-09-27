@@ -13,8 +13,8 @@
     <div class="bgimg"></div>
     <section class="aboutsection">
         <h1 class="title">
-            <!-- Used to modify font size and font itself -->
-            GTO Luxembourg<font size="5">&#169</font>
+            <!-- Copyright icon <font>&#169</font> -->
+            GTO Luxembourg
         </h1>
         <h3 class="subtitle">
             We share passion!
@@ -85,6 +85,7 @@
 
 .bgimg {
     background-image: url('/Aventador.SRS-3.jpg');
+    width: 100%;
     height: 50vh;
     background-position: center;
     background-repeat: no-repeat;
