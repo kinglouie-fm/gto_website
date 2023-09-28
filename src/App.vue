@@ -25,26 +25,28 @@ const closeNavbar = () => {
   <header>
     <!-- Navigation bar -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fs-5">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="logo-button-container">
-        <div class="images">
-          <img alt="GTO logo" class="logo" src="/gto_round.png"/>
+      <div class="button-logo-container">
+        <div class="logo-container">
+          <div class="images">
+            <img alt="GTO logo" class="logo" src="/gto_logo.png"/>
+          </div>
         </div>
-        <div class="collapse navbar-collapse" id="navbarToggler">
-          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
-              <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/about" @click="closeNavbar">About</RouterLink>
-            </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/contact" @click="closeNavbar">Contact</RouterLink>
-            </li>
-          </ul>
-        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/about" @click="closeNavbar">About</RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/contact" @click="closeNavbar">Contact</RouterLink>
+          </li>
+        </ul>
       </div>
     </nav>
   </header>
@@ -52,26 +54,30 @@ const closeNavbar = () => {
 </template>
 
 <style>
-/* Styles the navigation bar */
 .logo {
   height: 80px;
 }
 
-.images {
+.button-logo-container {
   width: 100%;
-}
-
-.logo-button-container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Spacing between logo and button */
+  justify-content: space-between;
 }
 
 @media only screen and (max-width: 460px) {
-  .images, .navbar-nav {
+  .button-logo-container, .navbar-nav {
     display: flex;
     justify-content: center;
     align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-item {
+    width: 150px;
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
   }
 }
 
