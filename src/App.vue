@@ -28,21 +28,23 @@ const closeNavbar = () => {
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarToggler">
+      <div class="logo-button-container">
         <div class="images">
-          <img alt="GTO logo" class="logo" src="/GTO_round.png"/>
+          <img alt="GTO logo" class="logo" src="/gto_round.png"/>
         </div>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-            <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" to="/about" @click="closeNavbar">About</RouterLink>
-          </li>
-          <li class="nav-item">
-            <RouterLink class="nav-link" to="/contact" @click="closeNavbar">Contact</RouterLink>
-          </li>
-        </ul>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/about" @click="closeNavbar">About</RouterLink>
+            </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" to="/contact" @click="closeNavbar">Contact</RouterLink>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   </header>
@@ -57,6 +59,12 @@ const closeNavbar = () => {
 
 .images {
   width: 100%;
+}
+
+.logo-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Spacing between logo and button */
 }
 
 @media only screen and (max-width: 460px) {

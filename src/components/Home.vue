@@ -6,7 +6,7 @@
 <style scoped>
 /* Styles the Home component */
 .bgimg {
-  background-image: url('/SCSBen-14.jpg');
+  background-image: url('/McLaren765LT-7.jpg');
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
