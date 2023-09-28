@@ -81,6 +81,7 @@
     #team .card {
         border: none;
         background: #ffffff;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
     .image-flip:hover .backside,

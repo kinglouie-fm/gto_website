@@ -92,6 +92,18 @@
     background-size: cover;
 }
 
+
+@media only screen and (max-width: 460px) {
+    .bgimg {
+        background-image: url('/Aventador.SRS-3-mobile.jpg');
+        width: 100%;
+        height: 50vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+}
+
 h1, h3, p {
     text-align: center;
     font-family: "Inter", sans-serif;
@@ -104,7 +116,11 @@ section {
 
 .aboutsection {
     margin-top: 50px;
-    margin-bottom: 500px;
+    margin-bottom: 100px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .title {
@@ -115,8 +131,9 @@ section {
 }
 
 .subtitle {
-    margin-top: 100px;
+    margin-top: 10px;
     font-size: 50px;
+    color: rgba(61, 130, 134, 0.7);
 }
 
 .description {
@@ -124,6 +141,27 @@ section {
     font-size: 30px;
     margin-left: 200px;
     margin-right: 200px;
+}
+
+@media only screen and (max-width: 460px) {    
+    .aboutsection {
+        margin-top: 0px;
+    }
+    
+    .title {
+        font-size: 50px;
+    }
+
+    .subtitle {
+        margin-top: 10px;
+        font-size: 30px;
+    }
+    
+    .description {
+        font-size: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }
 
 .teamsection {

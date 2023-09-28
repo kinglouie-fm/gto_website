@@ -59,6 +59,14 @@ const closeNavbar = () => {
   width: 100%;
 }
 
+@media only screen and (max-width: 460px) {
+  .images, .navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 .nav-item:hover {
   background-color: rgb(68, 65, 65);
   border-radius: 3px;

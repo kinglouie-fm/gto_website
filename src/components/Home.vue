@@ -6,10 +6,21 @@
 <style scoped>
 /* Styles the Home component */
 .bgimg {
-  background-image: url('/image-gto-ben911.jpeg');
+  background-image: url('/SCSBen-14.jpg');
   height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+@media only screen and (min-width: 460px) {
+  .bgimg {
+  background-image: url('/image-gto-ben911.jpeg');
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+}
+
 </style>
