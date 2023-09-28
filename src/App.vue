@@ -24,7 +24,7 @@ const closeNavbar = () => {
 <template>
   <header>
     <!-- Navigation bar -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fs-5">
+    <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark fs-5">
       <div class="button-logo-container">
         <div class="logo-container">
           <div class="images">
@@ -65,7 +65,13 @@ const closeNavbar = () => {
   justify-content: space-between;
 }
 
+.nav-item:hover {
+  background-color: rgb(68, 65, 65);
+  border-radius: 3px;
+}
+
 @media only screen and (max-width: 460px) {
+
   .button-logo-container, .navbar-nav {
     display: flex;
     justify-content: center;
@@ -74,15 +80,15 @@ const closeNavbar = () => {
   }
 
   .nav-item {
-    width: 150px;
+    /* width: 150px; */
     display: flex;
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
   }
-}
 
-.nav-item:hover {
-  background-color: rgb(68, 65, 65);
-  border-radius: 3px;
+  .nav-item:hover {
+    background-color: transparent;
+    border-radius: 0px;
+  }
 }
 </style>
