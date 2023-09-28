@@ -32,7 +32,7 @@ const closeNavbar = () => {
           </div>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <font-awesome-icon icon="bars" bounce style="color: #000000;" />
         </button>
       </div>
       <div class="collapse navbar-collapse" id="navbarToggler">
@@ -70,7 +70,7 @@ const closeNavbar = () => {
   border-radius: 3px;
 }
 
-@media only screen and (max-width: 460px) {
+@media only screen and (max-width: 800px) {
 
   .button-logo-container, .navbar-nav {
     display: flex;

@@ -93,7 +93,7 @@
 }
 
 
-@media only screen and (max-width: 460px) {
+@media only screen and (max-width: 800px) {
     .bgimg {
         background-image: url('/Aventador.SRS-3-mobile.jpg');
         width: 100%;
@@ -143,7 +143,7 @@ section {
     margin-right: 200px;
 }
 
-@media only screen and (max-width: 460px) {    
+@media only screen and (max-width: 800px) {    
     .aboutsection {
         margin-top: 0px;
     }

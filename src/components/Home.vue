@@ -13,7 +13,7 @@
   background-size: cover;
 }
 
-@media only screen and (min-width: 460px) {
+@media only screen and (min-width: 600px) {
   .bgimg {
   background-image: url('/image-gto-ben911.jpeg');
   height: 100vh;

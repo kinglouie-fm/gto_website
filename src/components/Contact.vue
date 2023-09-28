@@ -56,11 +56,11 @@
                     <div class="h3 fw-light">Check out our social media</div>
                     <!-- Instagram -->
                     <a style="color: #ac2bac;" href="https://www.instagram.com/gto.lu/" target=”_blank” role="button">
-                        <fa :icon="['fab', 'instagram']" />
+                        <font-awesome-icon :icon="['fab', 'instagram']" />
                     </a>
                     <!-- Facebook -->
                     <a style="color: #3b5998;" href="https://www.facebook.com/GTOLuxembourg" target=”_blank” role="button">
-                        <fa :icon="['fab', 'facebook']" />
+                        <font-awesome-icon :icon="['fab', 'facebook']" />
                     </a>
                 </div>
             </div>

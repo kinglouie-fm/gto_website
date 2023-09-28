@@ -14,7 +14,7 @@ library.add(faFacebook, faInstagram, faBars) // ADD imported icons to library.
 
 const app = createApp(App) // Create a Vue Application Instance
 app.use(router) // Use Vue Router
+app.component('font-awesome-icon', FontAwesomeIcon) // RENDER icons properlu
 app.mount('#app') // Mount the Vue Application to an HTML Element
-app.component('fa', FontAwesomeIcon) // RENDER icons properlu
 
 import 'bootstrap/dist/js/bootstrap.js' // IMPORT bootstrap
