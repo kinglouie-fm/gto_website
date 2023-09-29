@@ -31,7 +31,7 @@
             <div class="container">
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Julien Imhoff<br/>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Max Mannes<br/>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Jeff Nosbusch<br/>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Ben Thillen<br/>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Gilles Declerq<br/>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Mika Wilmes<br/>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="//public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Noah Leuck<br/>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Jona Leuck<br/>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="//public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Tom Lekl<br/>
@@ -112,7 +112,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Dylan Pereira<br/>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Dave Feiereisen<br/>
