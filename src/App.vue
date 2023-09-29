@@ -32,7 +32,7 @@ const closeNavbar = () => {
           </div>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-          <font-awesome-icon icon="bars" bounce style="color: #000000;" />
+          <font-awesome-icon icon="bars" style="color: #fff;" />
         </button>
       </div>
       <div class="collapse navbar-collapse" id="navbarToggler">
