@@ -9,7 +9,7 @@
     <div class="bgimg"></div>
     <section class="aboutsection">
         <h1 class="title">
-            <!-- Copyright icon <font>&#169</font> -->
+            <!-- <p>&copy;</p> -->
             GTO Luxembourg
         </h1>
         <h3 class="subtitle">

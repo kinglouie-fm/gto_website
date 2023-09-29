@@ -51,6 +51,27 @@ const closeNavbar = () => {
     </nav>
   </header>
   <RouterView />
+
+  <!-- 
+            Two social media buttons with the corresponding color and link.
+            Here, fortawesome is used to get the icons
+          -->
+  <footer v-if="$route.path !== '/'">
+    <div class="footer-center">
+        <h4 class="text-white-50">Follow us on:</h4>
+        <!-- Instagram -->
+        <a style="color: #ac2bac;" href="https://www.instagram.com/gto.lu/" target=”_blank” role="button">
+            <font-awesome-icon :icon="['fab', 'instagram']" />
+        </a>
+        <!-- Facebook -->
+        <a style="color: #3b5998;" href="https://www.facebook.com/GTOLuxembourg" target=”_blank” role="button">
+            <font-awesome-icon :icon="['fab', 'facebook']" />
+        </a>
+    </div>
+    <div class="copyright">
+        <p class="text-white-50">&copy; 2023 GTO Luxembourg. All rights reserved.</p>
+    </div>
+  </footer>
 </template>
 
 <style>
@@ -68,6 +89,21 @@ const closeNavbar = () => {
 .nav-item:hover {
   background-color: rgb(68, 65, 65);
   border-radius: 3px;
+}
+
+.footer-center, p {
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+a {
+    padding: 5px;
+    font-size: 50px;
+}
+
+html, footer {
+    background-color: #212529;
 }
 
 @media only screen and (max-width: 800px) {

@@ -46,24 +46,6 @@
               </form>
               <!-- End of contact form -->
             </div>
-
-            <!-- 
-              Two social media buttons with the corresponding color and link.
-              Here, fortawesome is used to get the icons
-            -->
-            <div class="col-sm-6 p-4 d-none d-sm-block aside-text">
-                <div class="text-center">
-                    <div class="h3 fw-light">Check out our social media</div>
-                    <!-- Instagram -->
-                    <a style="color: #ac2bac;" href="https://www.instagram.com/gto.lu/" target=”_blank” role="button">
-                        <font-awesome-icon :icon="['fab', 'instagram']" />
-                    </a>
-                    <!-- Facebook -->
-                    <a style="color: #3b5998;" href="https://www.facebook.com/GTOLuxembourg" target=”_blank” role="button">
-                        <font-awesome-icon :icon="['fab', 'facebook']" />
-                    </a>
-                </div>
-            </div>
           </div>
         </div>
       </div>
