@@ -85,7 +85,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="//public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Noah Leuck<br/>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="//public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Tom Lekl<br/>
@@ -130,7 +130,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="public/sample_avatar.jpg" alt="">
+                        <img src="/public/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Ben Steimens<br/>
