@@ -144,6 +144,14 @@
   
 <style scoped>
 /* Styles the About component */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .aboutimg {
     height: 600px;
     width: 100%;
@@ -229,15 +237,6 @@ section {
     background: rgba(61, 130, 134, 0.7);
     height: 100%;
     width: 100%;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 .container {
