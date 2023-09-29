@@ -1,8 +1,4 @@
 <script setup>
-    /**
-     * Import TeamMember component
-     */
-    import TeamMember from './TeamMember.vue'
 </script>
 
 <template>
@@ -33,43 +29,113 @@
         </h1>
         <section id="team" class="pb-5">
             <div class="container">
-                <div class="row">
-                    <TeamMember image='<img class=" img-fluid" src="/GTO_round.png" alt="card image" />'
-                        name="Julien Imhoff" frontmsg="President" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Max Mannes" frontmsg="Vice President" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Jeff Nosbusch" frontmsg="Secretary" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Ben Steimens" frontmsg="Always part of the team" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Gilles Declerq" frontmsg="Law Futzi" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Ben Thillen" frontmsg="Webmaster & Social Media Manager" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Mika Wilmes" frontmsg="Treasurer" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Jona Leuck" frontmsg="Organization" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Noah Leuck" frontmsg="Organization" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Tom Lekl" frontmsg="Organization" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Dylan Pereira" frontmsg="Sponsor" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
-                    <TeamMember 
-                        name="Dave Feiereisen" frontmsg="Nichtsnutz" 
-                        backmsg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam aliquam elementum quam, non tincidunt nunc tristique blandit. Praesent sed neque at ante lacinia congue. Praesent vulputate consectetur lorem id vulputate."/>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Julien Imhoff<br/>
+                        <span>Founder & President</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Max Mannes<br/>
+                        <span>Vice President</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Jeff Nosbusch<br/>
+                        <span>Secretary</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Ben Thillen<br/>
+                        <span>Treasurer & Webmaster</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Gilles Declerq<br/>
+                        <span>Member</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Mika Wilmes<br/>
+                        <span>Member</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Noah Leuck<br/>
+                        <span>Member</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Jona Leuck<br/>
+                        <span>Member</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Tom Lekl<br/>
+                        <span>Member</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Dylan Pereira<br/>
+                        <span>Member</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Dave Feiereisen<br/>
+                        <span>Member</span></h2>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="imgBox">
+                        <img src="public/sample_avatar.jpg" alt="">
+                    </div>
+                    <div class="content">
+                        <h2>Ben Steimens<br/>
+                        <span>Always part of us!</span></h2>
+                    </div>
                 </div>
             </div>
         </section>
@@ -96,11 +162,6 @@
 @media only screen and (max-width: 800px) {
     .bgimg {
         background-image: url('/Aventador.SRS-3-mobile.jpg');
-        width: 100%;
-        height: 50vh;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 }
 
@@ -143,7 +204,7 @@ section {
     margin-right: 200px;
 }
 
-@media only screen and (max-width: 800px) {    
+@media only screen and (max-width: 1000px) {    
     .aboutsection {
         margin-top: 0px;
     }
@@ -167,5 +228,97 @@ section {
 .teamsection {
     background: rgba(61, 130, 134, 0.7);
     height: 100%;
+    width: 100%;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.container .box {
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  margin: 3rem;
+}
+
+.container .box:hover .imgBox {
+  transform: translate(-3.5rem, -3.5rem);
+}
+
+.container .box:hover .content {
+  transform: translate(3.5rem, 3.5rem);
+}
+
+.imgBox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: all 0.5s ease-in-out;
+}
+
+.imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  resize: both;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  z-index: 1;
+  align-items: flex-end;
+  text-align: center;
+  transition: 0.5s ease-in-out;
+}
+
+.content h2 {
+  display: block;
+  font-size: 20px;
+  color: #111;
+  font-weight: 500;
+  line-height: 2rem;
+  letter-spacing: 1px;
+}
+
+.content span {
+  color: #555;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 2px;
+}
+
+@media (max-width: 800px) {
+  .container .box:hover .content {
+    transform: translate(0, 3.5rem);
+  }
+  .container .box:hover .imgBox {
+    transform: translate(0, -3.5rem);
+  }
+}
+/*# sourceMappingURL=main.css.map */
 </style>
