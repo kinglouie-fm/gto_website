@@ -104,9 +104,7 @@ export default {
 
           // Display a success alert
           alert('Email sent successfully!');
-        }).catch((error) => {
-          console.log({ error });
-        });
+        })
       } catch (error) {
         console.log({ error });
       }
