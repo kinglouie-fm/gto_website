@@ -90,23 +90,27 @@ export default {
      * sendForm is a function by email.js which gets the following param.:
      * serviceID, templateID, userID (all are retrievable from the user profile on their website)
      */
-    sendEmail(e) {
+     sendEmail(e) {
       try {
-        emailjs.sendForm('service_3r4szlp', 'template_zueu4vi', e.target,
-        'xJiG2oA5pZeWfkFFQ', {
+        emailjs.sendForm('service_3r4szlp', 'template_zueu4vi', e.target, 'xJiG2oA5pZeWfkFFQ', {
           name: this.name,
           email: this.email,
           message: this.message
-        })
+        }).then(() => {
+          // Reset form fields
+          this.name = '';
+          this.email = '';
+          this.message = '';
 
-      } catch(error) {
-          console.log({error})
+          // Display a success alert
+          alert('Email sent successfully!');
+        }).catch((error) => {
+          console.log({ error });
+        });
+      } catch (error) {
+        console.log({ error });
       }
-      // Reset form field
-      this.name = ''
-      this.email = ''
-      this.message = ''
-    },
+    }
   }
 }
 </script>
