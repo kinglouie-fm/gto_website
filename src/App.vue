@@ -97,8 +97,12 @@ const closeNavbar = () => {
     font-weight: 400;
 }
 
+h4 {
+  padding-top: 15px;
+}
+
 a {
-    padding: 5px;
+    padding: 0 10px;
     font-size: 50px;
 }
 
