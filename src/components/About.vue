@@ -67,7 +67,7 @@
                 </div>
                 <div class="box">
                     <div class="imgBox">
-                        <img src="/public/sample_avatar.jpg" alt="">
+                        <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Gilles Declerq<br/>
@@ -175,7 +175,7 @@
 
 h1, h3, p {
     text-align: center;
-    font-family: "Inter", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
 }
 
@@ -206,7 +206,7 @@ section {
 }
 
 .description {
-    font-family: serif;
+    font-family: "Roboto", serif;
     font-size: 30px;
     margin-left: 200px;
     margin-right: 200px;
@@ -252,6 +252,7 @@ section {
   width: 20rem;
   height: 20rem;
   margin: 3rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .container .box:hover .imgBox {

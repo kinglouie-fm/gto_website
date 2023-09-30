@@ -93,12 +93,13 @@ const closeNavbar = () => {
 
 .footer-center, p {
     text-align: center;
-    font-family: "Inter", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 400;
 }
 
 h4 {
   padding-top: 15px;
+  margin-bottom: 0 !important;
 }
 
 a {
@@ -120,7 +121,6 @@ html, footer {
   }
 
   .nav-item {
-    /* width: 150px; */
     display: flex;
     align-items: center; /* Center vertically */
     justify-content: center; /* Center horizontally */
