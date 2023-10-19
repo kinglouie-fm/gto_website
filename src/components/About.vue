@@ -252,7 +252,7 @@ section {
   transition: all 0.5s ease-in-out;
 }
 
-.imgBox :is(img) {
+.imgBox img {
   width: 100%;
   height: 100%;
   object-fit: cover;

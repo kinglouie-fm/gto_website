@@ -157,9 +157,10 @@
   background-clip: padding-box;
   border-radius: 45px;
   padding: 40px;
-  img {
+}
+
+.container-card img {
     margin-bottom: 32px;
-  }
 }
 
 .card-title {
