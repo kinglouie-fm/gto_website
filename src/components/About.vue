@@ -1,4 +1,5 @@
 <script setup>
+import AboutCards from './AboutCards.vue'
 </script>
 
 <template>
@@ -16,11 +17,7 @@
             We share passion!
         </h3>
         <p class="description">
-            Founded in 2018 by our president Julien Imhoff, GTO Luxembourg is a team of 13 members who have a
-            passion for cars. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore 
-            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <AboutCards/>
         </p>
     </section>
     <section class="teamsection">
@@ -29,13 +26,13 @@
         </h1>
         <section id="team" class="pb-5">
             <div class="container">
-                <div class="box">
+                <div class="box" tabindex="0">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
                         <h2>Julien Imhoff<br/>
-                        <span>Founder & President</span></h2>
+                        <span>President</span></h2>
                     </div>
                 </div>
                 <div class="box">
@@ -70,8 +67,8 @@
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Gilles Declerq<br/>
-                        <span>Member</span></h2>
+                        <h2>Gilles Declercq<br/>
+                        <span>Clothing</span></h2>
                     </div>
                 </div>
                 <div class="box">
@@ -79,8 +76,8 @@
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Mika Wilmes<br/>
-                        <span>Member</span></h2>
+                        <h2>Laurent Reding<br/>
+                        <span>TikTok</span></h2>
                     </div>
                 </div>
                 <div class="box">
@@ -89,7 +86,7 @@
                     </div>
                     <div class="content">
                         <h2>Noah Leuck<br/>
-                        <span>Member</span></h2>
+                        <span>Facebook</span></h2>
                     </div>
                 </div>
                 <div class="box">
@@ -98,16 +95,7 @@
                     </div>
                     <div class="content">
                         <h2>Jona Leuck<br/>
-                        <span>Member</span></h2>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>Tom Lekl<br/>
-                        <span>Member</span></h2>
+                        <span>Clothing</span></h2>
                     </div>
                 </div>
                 <div class="box">
@@ -116,15 +104,6 @@
                     </div>
                     <div class="content">
                         <h2>Dylan Pereira<br/>
-                        <span>Member</span></h2>
-                    </div>
-                </div>
-                <div class="box">
-                    <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
-                    </div>
-                    <div class="content">
-                        <h2>Dave Feiereisen<br/>
                         <span>Member</span></h2>
                     </div>
                 </div>
@@ -201,18 +180,18 @@ section {
 
 .subtitle {
     margin-top: 10px;
-    font-size: 50px;
+    font-size: 60px;
     color: rgba(61, 130, 134, 0.7);
 }
 
 .description {
     font-family: "Roboto", serif;
-    font-size: 30px;
+    font-size: 25px;
     margin-left: 200px;
     margin-right: 200px;
 }
 
-@media only screen and (max-width: 1000px) {    
+@media only screen and (max-width: 991px) {    
     .aboutsection {
         margin-top: 0px;
     }
@@ -273,7 +252,7 @@ section {
   transition: all 0.5s ease-in-out;
 }
 
-.imgBox img {
+.imgBox :is(img) {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -320,5 +299,25 @@ section {
     transform: translate(0, -3.5rem);
   }
 }
-/*# sourceMappingURL=main.css.map */
+
+/* Default style for the "Hover or click here" tooltip */
+.container .box:first-of-type::after {
+    content: "Hover or click here";
+    position: absolute;
+    top: -30px;  /* Position it above the box */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3D8286;  /* Sample color, you can adjust */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    pointer-events: none;  /* Ensure the tooltip doesn't interfere with the hover of the box */
+    transition: 0.5s ease-in-out;  /* Add a transition effect */
+}
+
+/* Move the tooltip behind the card when the first box is hovered */
+.container .box:first-of-type:hover::after {
+    top: 100%;  /* Moves it just below the box */
+    opacity: 0;  /* Fade it out */
+}
 </style>

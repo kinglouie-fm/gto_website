@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
-  base: '/gto_website/', // Specifies the base URL path for your application.
   plugins: [vue()], // Configures Vue.js plugin for Vite.
   build: {
     rollupOptions: {

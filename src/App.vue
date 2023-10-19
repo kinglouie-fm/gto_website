@@ -67,6 +67,10 @@ const closeNavbar = () => {
         <a style="color: #3b5998;" href="https://www.facebook.com/GTOLuxembourg" target=”_blank” role="button">
             <font-awesome-icon :icon="['fab', 'facebook']" />
         </a>
+        <!-- TikTok -->
+        <a style="color: #868686ae;" href="https://www.tiktok.com/@gto.lu" target=”_blank” role="button">
+            <font-awesome-icon :icon="['fab', 'tiktok']" />
+        </a>
     </div>
     <div class="copyright">
         <p class="text-white-50">&copy; 2023 GTO Luxembourg. All rights reserved.</p>
