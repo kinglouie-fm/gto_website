@@ -16,7 +16,7 @@ import AboutCards from './AboutCards.vue'
         <h3 class="subtitle">
             We share passion!
         </h3>
-        <p class="description">
+        <p class="description p-about">
             <AboutCards/>
         </p>
     </section>
@@ -152,7 +152,7 @@ import AboutCards from './AboutCards.vue'
     }
 }
 
-h1, h3, p {
+h1, h3, .p-about {
     text-align: center;
     font-family: "Roboto", sans-serif;
     font-weight: 400;

@@ -8,7 +8,7 @@
                         <font-awesome-icon :icon="['fas', 'people-group']" style="color: #3d8286;" /> 
                         Team
                     </p>
-                    <p class="card-description">Established in 2017, GTO Luxembourg is a community of car enthusiasts 
+                    <p class="card-description">Established in 2017, GTO Luxembourg is a group of car enthusiasts 
             which has grown to a cool crew of 10 members. 
             We're just regular individuals who adore all types of cars, but we hold a particular fascination for supercars and hypercars.</p>
                 </div>

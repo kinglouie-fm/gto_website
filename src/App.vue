@@ -73,7 +73,7 @@ const closeNavbar = () => {
         </a>
     </div>
     <div class="copyright">
-        <p class="text-white-50">&copy; 2023 GTO Luxembourg. All rights reserved.</p>
+        <p class="text-white-50 p-app">&copy; 2023 GTO Luxembourg. All rights reserved.</p>
     </div>
   </footer>
 </template>
@@ -95,7 +95,7 @@ const closeNavbar = () => {
   border-radius: 3px;
 }
 
-.footer-center, p {
+.footer-center, .p-app {
     text-align: center;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
