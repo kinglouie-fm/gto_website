@@ -9,7 +9,7 @@ import AboutCards from './AboutCards.vue'
     -->
     <div class="bgimg"></div>
     <section class="aboutsection">
-        <h1 class="title">
+        <h1 class="title about-title">
             <!-- <p>&copy;</p> -->
             GTO Luxembourg
         </h1>
@@ -17,11 +17,11 @@ import AboutCards from './AboutCards.vue'
             We share passion!
         </h3>
         <p class="description p-about">
-            <AboutCards/>
+            <AboutCards />
         </p>
     </section>
     <section class="teamsection">
-        <h1 class="title">
+        <h1 class="title team-title">
             Our Team
         </h1>
         <section id="team" class="pb-5">
@@ -31,8 +31,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Julien Imhoff<br/>
-                        <span>President</span></h2>
+                        <h2>Julien Imhoff<br />
+                            <span>President</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -40,8 +41,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Max Mannes<br/>
-                        <span>Vice President</span></h2>
+                        <h2>Max Mannes<br />
+                            <span>Vice President</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -49,8 +51,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Jeff Nosbusch<br/>
-                        <span>Secretary</span></h2>
+                        <h2>Jeff Nosbusch<br />
+                            <span>Secretary</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -58,8 +61,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Ben Thillen<br/>
-                        <span>Treasurer & Webmaster</span></h2>
+                        <h2>Ben Thillen<br />
+                            <span>Treasurer & Webmaster</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -67,8 +71,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Gilles Declercq<br/>
-                        <span>Clothing</span></h2>
+                        <h2>Gilles Declercq<br />
+                            <span>Clothing</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -76,8 +81,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Laurent Reding<br/>
-                        <span>TikTok</span></h2>
+                        <h2>Laurent Reding<br />
+                            <span>TikTok</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -85,8 +91,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Noah Leuck<br/>
-                        <span>Facebook</span></h2>
+                        <h2>Noah Leuck<br />
+                            <span>Facebook</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -94,8 +101,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Jona Leuck<br/>
-                        <span>Clothing</span></h2>
+                        <h2>Jona Leuck<br />
+                            <span>Clothing</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -103,8 +111,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Dylan Pereira<br/>
-                        <span>Member</span></h2>
+                        <h2>Dylan Pereira<br />
+                            <span>Member</span>
+                        </h2>
                     </div>
                 </div>
                 <div class="box">
@@ -112,8 +121,9 @@ import AboutCards from './AboutCards.vue'
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Ben Steimens<br/>
-                        <span>Always part of us!</span></h2>
+                        <h2>Ben Steimens<br />
+                            <span>Always part of us!</span>
+                        </h2>
                     </div>
                 </div>
             </div>
@@ -124,13 +134,15 @@ import AboutCards from './AboutCards.vue'
 <style scoped>
 /* Styles the About component */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
+
 *,
 *::after,
 *::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 .aboutimg {
     height: 600px;
     width: 100%;
@@ -152,7 +164,9 @@ import AboutCards from './AboutCards.vue'
     }
 }
 
-h1, h3, .p-about {
+h1,
+h3,
+.p-about {
     text-align: center;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
@@ -163,39 +177,49 @@ section {
 }
 
 .aboutsection {
-    margin-top: 50px;
-    margin-bottom: 100px;
+    padding-top: 50px;
+    padding-bottom: 100px;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgb(238, 238, 238);
 }
 
 .title {
     font-size: 114px;
     margin-bottom: 0px;
     margin-top: 0px;
+}
+
+.about-title {
+    color: rgb(48, 56, 65);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.team-title {
+    color: rgb(246, 201, 14);
 }
 
 .subtitle {
     margin-top: 10px;
     font-size: 60px;
-    color: rgba(61, 130, 134, 0.7);
+    color: rgb(246, 201, 14);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 .description {
-    font-family: "Roboto", serif;
+    font-family: "Roboto", sans-serif;
     font-size: 25px;
     margin-left: 200px;
     margin-right: 200px;
 }
 
-@media only screen and (max-width: 991px) {    
+@media only screen and (max-width: 991px) {
     .aboutsection {
         margin-top: 0px;
     }
-    
+
     .title {
         font-size: 50px;
     }
@@ -204,7 +228,7 @@ section {
         margin-top: 10px;
         font-size: 30px;
     }
-    
+
     .description {
         font-size: 20px;
         margin-left: 20px;
@@ -213,111 +237,117 @@ section {
 }
 
 .teamsection {
-    background: rgba(61, 130, 134, 0.7);
+    background: rgb(58, 71, 80);
     height: 100%;
     width: 100%;
 }
 
 .container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .container .box {
-  position: relative;
-  width: 20rem;
-  height: 20rem;
-  margin: 3rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    position: relative;
+    width: 20rem;
+    height: 20rem;
+    margin: 3rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
 .container .box:hover .imgBox {
-  transform: translate(-3.5rem, -3.5rem);
+    transform: translate(-3.5rem, -3.5rem);
 }
 
 .container .box:hover .content {
-  transform: translate(3.5rem, 3.5rem);
+    transform: translate(3.5rem, 3.5rem);
 }
 
 .imgBox {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  transition: all 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transition: all 0.5s ease-in-out;
 }
 
 .imgBox img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  resize: both;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    resize: both;
 }
 
 .content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-  background-color: #fff;
-  z-index: 1;
-  align-items: flex-end;
-  text-align: center;
-  transition: 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    align-items: flex-end;
+    text-align: center;
+    transition: 0.5s ease-in-out;
 }
 
 .content h2 {
-  display: block;
-  font-size: 20px;
-  color: #111;
-  font-weight: 500;
-  line-height: 2rem;
-  letter-spacing: 1px;
+    display: block;
+    font-size: 20px;
+    color: rgb(246, 201, 14);
+    font-weight: 500;
+    line-height: 2rem;
+    letter-spacing: 1px;
 }
 
 .content span {
-  color: #555;
-  font-size: 15px;
-  font-weight: 300;
-  letter-spacing: 2px;
+    color: rgb(246, 201, 14);
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 2px;
 }
 
 @media (max-width: 800px) {
-  .container .box:hover .content {
-    transform: translate(0, 3.5rem);
-  }
-  .container .box:hover .imgBox {
-    transform: translate(0, -3.5rem);
-  }
+    .container .box:hover .content {
+        transform: translate(0, 3.5rem);
+    }
+
+    .container .box:hover .imgBox {
+        transform: translate(0, -3.5rem);
+    }
 }
 
 /* Default style for the "Hover or click here" tooltip */
 .container .box:first-of-type::after {
     content: "Hover or click here";
     position: absolute;
-    top: -30px;  /* Position it above the box */
+    top: -30px;
+    /* Position it above the box */
     left: 50%;
     transform: translateX(-50%);
-    background-color: #3D8286;  /* Sample color, you can adjust */
-    color: white;
+    background-color: rgb(246, 201, 14);
+    /* Sample color, you can adjust */
+    color: rgb(258, 258, 258);
     padding: 5px 10px;
     border-radius: 5px;
-    pointer-events: none;  /* Ensure the tooltip doesn't interfere with the hover of the box */
-    transition: 0.5s ease-in-out;  /* Add a transition effect */
+    pointer-events: none;
+    /* Ensure the tooltip doesn't interfere with the hover of the box */
+    transition: 0.5s ease-in-out;
+    /* Add a transition effect */
 }
 
 /* Move the tooltip behind the card when the first box is hovered */
 .container .box:first-of-type:hover::after {
-    top: 100%;  /* Moves it just below the box */
-    opacity: 0;  /* Fade it out */
+    top: 100%;
+    /* Moves it just below the box */
+    opacity: 0;
+    /* Fade it out */
 }
 </style>
