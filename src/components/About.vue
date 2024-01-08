@@ -25,20 +25,18 @@ import AboutCards from './AboutCards.vue'
             Our Team
         </h1>
         <section id="team" class="pb-5">
-            <div class="container">
-                <div class="box" tabindex="0">
+            <div class="team-container">
+                <div class=" box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/sample_avatar.jpg" alt="Julien Imhoff">
                     </div>
                     <div class="content">
-                        <h2>Julien Imhoff<br />
-                            <span>President</span>
-                        </h2>
+                        <h2>Julien Imhoff<br><span>President</span></h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/sample_avatar.jpg" alt="Max Mannes">
                     </div>
                     <div class="content">
                         <h2>Max Mannes<br />
@@ -46,7 +44,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -56,7 +54,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -66,7 +64,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -76,7 +74,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -86,7 +84,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -96,7 +94,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -106,7 +104,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -116,7 +114,7 @@ import AboutCards from './AboutCards.vue'
                         </h2>
                     </div>
                 </div>
-                <div class="box">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/sample_avatar.jpg" alt="">
                     </div>
@@ -187,7 +185,7 @@ section {
 }
 
 .title {
-    font-size: 114px;
+    font-size: calc(4vw + 4vh);
     margin-bottom: 0px;
     margin-top: 0px;
 }
@@ -203,16 +201,13 @@ section {
 
 .subtitle {
     margin-top: 10px;
-    font-size: 60px;
+    font-size: calc(3vw + 3vh);
     color: rgb(246, 201, 14);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 .description {
     font-family: "Roboto", sans-serif;
-    font-size: 25px;
-    margin-left: 200px;
-    margin-right: 200px;
 }
 
 @media only screen and (max-width: 991px) {
@@ -220,17 +215,11 @@ section {
         margin-top: 0px;
     }
 
-    .title {
-        font-size: 50px;
-    }
-
     .subtitle {
         margin-top: 10px;
-        font-size: 30px;
     }
 
     .description {
-        font-size: 20px;
         margin-left: 20px;
         margin-right: 20px;
     }
@@ -238,11 +227,9 @@ section {
 
 .teamsection {
     background: rgb(58, 71, 80);
-    height: 100%;
-    width: 100%;
 }
 
-.container {
+.team-container {
     position: relative;
     display: flex;
     justify-content: center;
@@ -250,19 +237,18 @@ section {
     flex-wrap: wrap;
 }
 
-.container .box {
+.team-container .box {
     position: relative;
-    width: 20rem;
-    height: 20rem;
-    margin: 3rem;
+    width: calc(15vw + 10vh);
+    height: calc(15vw + 10vh);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.container .box:hover .imgBox {
+.team-container .box:hover .imgBox {
     transform: translate(-3.5rem, -3.5rem);
 }
 
-.container .box:hover .content {
+.team-container .box:hover .content {
     transform: translate(3.5rem, 3.5rem);
 }
 
@@ -300,33 +286,32 @@ section {
 
 .content h2 {
     display: block;
-    font-size: 20px;
+    font-size: calc(1vw + 1.2vh);
     color: rgb(246, 201, 14);
     font-weight: 500;
-    line-height: 2rem;
     letter-spacing: 1px;
 }
 
 .content span {
     color: rgb(246, 201, 14);
-    font-size: 15px;
+    font-size: calc(0.5vw + 1vh);
     font-weight: 300;
     letter-spacing: 2px;
 }
 
 @media (max-width: 800px) {
-    .container .box:hover .content {
+    .team-container .box:hover .content {
         transform: translate(0, 3.5rem);
     }
 
-    .container .box:hover .imgBox {
+    .team-container .box:hover .imgBox {
         transform: translate(0, -3.5rem);
     }
 }
 
 /* Default style for the "Hover or click here" tooltip */
-.container .box:first-of-type::after {
-    content: "Hover or click here";
+.team-container .box:first-of-type::after {
+    content: "Hover/Click";
     position: absolute;
     top: -30px;
     /* Position it above the box */
@@ -344,7 +329,7 @@ section {
 }
 
 /* Move the tooltip behind the card when the first box is hovered */
-.container .box:first-of-type:hover::after {
+.team-container .box:first-of-type:hover::after {
     top: 100%;
     /* Moves it just below the box */
     opacity: 0;

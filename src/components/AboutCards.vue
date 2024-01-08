@@ -82,7 +82,7 @@
     </div>
 </template>
 
-<style>
+<style scoped>
 .outer-container {
     width: 1200px !important;
     padding: 0 !important;

@@ -13,12 +13,12 @@
   <div class="content">
     <div class="container py-5">
       <div class="row justify-content-center">
-        <div class="col-10">
+        <div class="col-12">
           <div class="row align-items-center">
-            <div class="col-lg-4 col-md-6 text-center">
-              <img alt="GTO logo" class="logo img-fluid" src="/GTO_round.png" />
+            <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+              <img alt="GTO logo" class="logo" src="/GTO_round.png" />
             </div>
-            <div class="col-lg-8 col-md-6">
+            <div class="col-lg-6 col-md-6 col-sm-6">
               <h2 class="title content-title">Who are we?</h2>
               <p class="slogan"><em>We share passion!</em></p>
               <p>GTO Luxembourg is a group of car enthusiasts who organize events, photoshootings, and car tours.</p>
@@ -63,7 +63,7 @@ const carousel1Items = ref([
 
 <style scoped>
 .logo {
-  max-width: 100%;
+  max-width: calc(20vw + 10vh);
   object-fit: contain;
 }
 
@@ -73,9 +73,7 @@ const carousel1Items = ref([
 }
 
 .title {
-  font-size: 60px;
-  margin-bottom: 0px;
-  margin-top: 0px;
+  font-size: calc(2.5vw + 2vh);
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -110,7 +108,7 @@ const carousel1Items = ref([
 }
 
 .carousel__item {
-  height: 680px;
+  height: calc(40vw + 25vh);
   width: 100%;
   background-color: var(--vc-clr-primary);
   color: var(--vc-clr-white);
@@ -144,7 +142,7 @@ const carousel1Items = ref([
 p {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-size: 30px;
+  font-size: calc(1.5vw + 1vh);
   color: rgb(58, 71, 80);
 }
 </style>
