@@ -28,7 +28,7 @@ import AboutCards from './AboutCards.vue'
             <div class="team-container">
                 <div class=" box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="Julien Imhoff">
+                        <img src="/images/members/GTO-members-1.jpeg" alt="Julien Imhoff">
                     </div>
                     <div class="content">
                         <h2>Julien Imhoff<br><span>President</span></h2>
@@ -36,7 +36,7 @@ import AboutCards from './AboutCards.vue'
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="Max Mannes">
+                        <img src="/images/members/GTO-members-3.jpeg" alt="Max Mannes">
                     </div>
                     <div class="content">
                         <h2>Max Mannes<br />
@@ -56,37 +56,37 @@ import AboutCards from './AboutCards.vue'
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-7.jpeg" alt="">
                     </div>
-                    <div class="content">
+                    <div class="content mt-2">
                         <h2>Ben Thillen<br />
-                            <span>Treasurer & Webmaster</span>
+                            <span>Treasurer, Webmaster, Instagram Manager</span>
                         </h2>
                     </div>
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-4.jpeg" alt="">
                     </div>
                     <div class="content">
                         <h2>Gilles Declercq<br />
-                            <span>Clothing</span>
+                            <span>Administration</span>
                         </h2>
                     </div>
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-2.jpeg" alt="">
                     </div>
                     <div class="content">
                         <h2>Laurent Reding<br />
-                            <span>TikTok</span>
+                            <span>TikTok Manager</span>
                         </h2>
                     </div>
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-6.jpeg" alt="">
                     </div>
                     <div class="content">
                         <h2>Noah Leuck<br />
@@ -96,11 +96,11 @@ import AboutCards from './AboutCards.vue'
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-5.jpeg" alt="">
                     </div>
                     <div class="content">
                         <h2>Jona Leuck<br />
-                            <span>Clothing</span>
+                            <span>Administration</span>
                         </h2>
                     </div>
                 </div>
@@ -110,13 +110,13 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Dylan Pereira<br />
-                            <span>Member</span>
+                            <span>Administration</span>
                         </h2>
                     </div>
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-8.jpeg" alt="">
                     </div>
                     <div class="content">
                         <h2>Ben Steimens<br />
@@ -128,7 +128,7 @@ import AboutCards from './AboutCards.vue'
         </section>
     </section>
 </template>
-  
+
 <style scoped>
 /* Styles the About component */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap");
@@ -147,7 +147,7 @@ import AboutCards from './AboutCards.vue'
 }
 
 .bgimg {
-    background-image: url('/Aventador.SRS-3.jpg');
+    background-image: url('/images/Aventador.SRS-3.jpeg');
     width: 100%;
     height: 50vh;
     background-position: center;
@@ -158,7 +158,7 @@ import AboutCards from './AboutCards.vue'
 
 @media only screen and (max-width: 800px) {
     .bgimg {
-        background-image: url('/Aventador.SRS-3-mobile.jpg');
+        background-image: url('/images/Aventador.SRS-3-mobile.jpeg');
     }
 }
 

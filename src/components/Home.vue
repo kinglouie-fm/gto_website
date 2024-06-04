@@ -36,11 +36,20 @@
         <div class="col-lg-8 col-md-10">
           <h1 class="title sponsor-title text-center mb-4">Sponsored by</h1>
           <div class="row align-items-center">
-            <div class="col-md-6 text-center mb-3">
-              <img src="/fm-detailing_logo-black.png" alt="Sponsor 1" class="img-fluid logo-fm-detailing">
+            <div class="col-md-4 text-center mb-3">
+              <a href="https://www.wot.lu/">
+                <img src="/WOT_LOGO_FINAL-white.svg" alt="Sponsor 1" class="img-fluid">
+              </a>
             </div>
-            <div class="col-md-6 text-center mb-3">
-              <img src="/reinert_logo.png" alt="Sponsor 2" class="img-fluid">
+            <div class="col-md-4 text-center mb-3">
+              <a href="https://www.fmdetailing.lu/">
+                <img src="/fm-detailing_logo-black.png" alt="Sponsor 2" class="img-fluid logo-fm-detailing">
+              </a>
+            </div>
+            <div class="col-md-4 text-center mb-3">
+              <a href="https://www.reinert.lu/">
+                <img src="/reinert_logo.png" alt="Sponsor 3" class="img-fluid">
+              </a>
             </div>
           </div>
         </div>
@@ -56,8 +65,8 @@ import { Carousel, Navigation, Slide } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css'
 
 const carousel1Items = ref([
-  'image-gto-ben911.jpeg',
-  '488-pista.jpeg',
+  "/images/image-gto-ben911.jpg",
+  "/images/488-pista.jpeg",
 ])
 </script>
 
