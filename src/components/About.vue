@@ -46,7 +46,7 @@ import AboutCards from './AboutCards.vue'
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-10.jpeg" alt="">
                     </div>
                     <div class="content">
                         <h2>Jeff Nosbusch<br />
@@ -106,7 +106,7 @@ import AboutCards from './AboutCards.vue'
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/sample_avatar.jpg" alt="">
+                        <img src="/images/members/GTO-members-9.png" alt="">
                     </div>
                     <div class="content">
                         <h2>Dylan Pereira<br />
