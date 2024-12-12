@@ -1,13 +1,18 @@
-<script setup>
-import AboutCards from './AboutCards.vue'
-</script>
-
 <template>
     <!-- 
         This is the About component for describing GTO Luxembourg.
         The imported TeamMember component is used to describe each Team Member.
     -->
-    <div class="bgimg"></div>
+    <div class="image-box p-0">
+        <Carousel :wrap-around="true" :autoplay="5000">
+            <Slide v-for="(image, index) in carousel1Items" :key="index">
+                <img class="carousel__item" :src="image" alt="Carousel Image">
+            </Slide>
+            <template #addons>
+                <Navigation />
+            </template>
+        </Carousel>
+    </div>
     <section class="aboutsection">
         <h1 class="title about-title">
             <!-- <p>&copy;</p> -->
@@ -26,12 +31,12 @@ import AboutCards from './AboutCards.vue'
         </h1>
         <section id="team" class="pb-5">
             <div class="team-container">
-                <div class=" box col-lg-4 col-md-6 m-5">
+                <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
                         <img src="/images/members/GTO-members-1.jpeg" alt="Julien Imhoff">
                     </div>
                     <div class="content">
-                        <h2>Julien Imhoff<br><span>President</span></h2>
+                        <h2>Julien Imhoff<br><span class="span-title">Founder, President</span></h2>
                     </div>
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
@@ -40,7 +45,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Max Mannes<br />
-                            <span>Vice President</span>
+                            <span class="span-title">Vice President</span>
                         </h2>
                     </div>
                 </div>
@@ -50,7 +55,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Jeff Nosbusch<br />
-                            <span>Secretary</span>
+                            <span class="span-title">Secretary</span>
                         </h2>
                     </div>
                 </div>
@@ -58,9 +63,9 @@ import AboutCards from './AboutCards.vue'
                     <div class="imgBox">
                         <img src="/images/members/GTO-members-7.jpeg" alt="">
                     </div>
-                    <div class="content mt-2">
+                    <div class="content mt-4">
                         <h2>Ben Thillen<br />
-                            <span>Treasurer, Webmaster, Instagram Manager</span>
+                            <span class="span-title">Treasurer, Webmaster, Instagram Manager</span>
                         </h2>
                     </div>
                 </div>
@@ -70,7 +75,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Gilles Declercq<br />
-                            <span>Administration</span>
+                            <span class="span-title">Administration, Legal</span>
                         </h2>
                     </div>
                 </div>
@@ -80,7 +85,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Laurent Reding<br />
-                            <span>TikTok Manager</span>
+                            <span class="span-title">TikTok Manager</span>
                         </h2>
                     </div>
                 </div>
@@ -90,7 +95,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Noah Leuck<br />
-                            <span>Facebook</span>
+                            <span class="span-title">Facebook</span>
                         </h2>
                     </div>
                 </div>
@@ -100,7 +105,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Jona Leuck<br />
-                            <span>Administration</span>
+                            <span class="span-title">Organisation</span>
                         </h2>
                     </div>
                 </div>
@@ -110,7 +115,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Dylan Pereira<br />
-                            <span>Administration</span>
+                            <span class="span-title">Media Relations</span>
                         </h2>
                     </div>
                 </div>
@@ -120,7 +125,7 @@ import AboutCards from './AboutCards.vue'
                     </div>
                     <div class="content">
                         <h2>Ben Steimens<br />
-                            <span>Always part of us!</span>
+                            <span class="span-title">Always part of us!</span>
                         </h2>
                     </div>
                 </div>
@@ -128,6 +133,18 @@ import AboutCards from './AboutCards.vue'
         </section>
     </section>
 </template>
+
+<script setup>
+import AboutCards from './AboutCards.vue'
+import { ref } from 'vue'
+import { Carousel, Navigation, Slide } from 'vue3-carousel';
+import 'vue3-carousel/dist/carousel.css'
+
+const carousel1Items = ref([
+    "/images/Aventador.SRS-3.jpeg",
+    "/images/members/GTO-Luxembourg.jpg",
+])
+</script>
 
 <style scoped>
 /* Styles the About component */
@@ -139,6 +156,21 @@ import AboutCards from './AboutCards.vue'
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+.image-box {
+    box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.5);
+}
+
+.carousel__item {
+    height: calc(30vw + 20vh);
+    width: 100%;
+    background-color: var(--vc-clr-primary);
+    color: var(--vc-clr-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
 }
 
 .aboutimg {
@@ -155,7 +187,6 @@ import AboutCards from './AboutCards.vue'
     background-size: cover;
 }
 
-
 @media only screen and (max-width: 800px) {
     .bgimg {
         background-image: url('/images/Aventador.SRS-3-mobile.jpeg');
@@ -170,10 +201,6 @@ h3,
     font-weight: 400;
 }
 
-section {
-    padding-top: 40px;
-}
-
 .aboutsection {
     padding-top: 50px;
     padding-bottom: 100px;
@@ -182,6 +209,10 @@ section {
     flex-direction: column;
     align-items: center;
     background-color: rgb(238, 238, 238);
+
+    @media screen and (max-width: 576px) {
+        padding-bottom: 10px;
+    }
 }
 
 .title {
@@ -242,6 +273,12 @@ section {
     width: calc(15vw + 10vh);
     height: calc(15vw + 10vh);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    margin: 10px;
+
+    /* @media (max-width: 576px) {
+        width: 100px;
+        height: 100px;
+    } */
 }
 
 .team-container .box:hover .imgBox {
@@ -290,6 +327,10 @@ section {
     color: rgb(246, 201, 14);
     font-weight: 500;
     letter-spacing: 1px;
+
+    @media screen and (max-width: 576px) {
+        font-size: 10px;
+    }
 }
 
 .content span {
@@ -309,30 +350,34 @@ section {
     }
 }
 
+@media (max-width: 576px) {
+    .team-container .box:hover .content {
+        transform: translate(0, 2.5rem);
+    }
+
+    .team-container .box:hover .imgBox {
+        transform: translate(0, -2.5rem);
+    }
+}
+
 /* Default style for the "Hover or click here" tooltip */
 .team-container .box:first-of-type::after {
     content: "Hover/Click";
     position: absolute;
     top: -30px;
-    /* Position it above the box */
     left: 50%;
     transform: translateX(-50%);
     background-color: rgb(246, 201, 14);
-    /* Sample color, you can adjust */
     color: rgb(258, 258, 258);
     padding: 5px 10px;
     border-radius: 5px;
     pointer-events: none;
-    /* Ensure the tooltip doesn't interfere with the hover of the box */
     transition: 0.5s ease-in-out;
-    /* Add a transition effect */
 }
 
 /* Move the tooltip behind the card when the first box is hovered */
 .team-container .box:first-of-type:hover::after {
     top: 100%;
-    /* Moves it just below the box */
     opacity: 0;
-    /* Fade it out */
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="image-box">
-    <Carousel :wrap-around="true" :autoplay="10000">
+    <Carousel :wrap-around="true" :autoplay="5000">
       <Slide v-for="(image, index) in carousel1Items" :key="index">
         <img class="carousel__item" :src="image" alt="Carousel Image">
       </Slide>
