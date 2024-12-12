@@ -41,11 +41,11 @@
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/images/members/GTO-members-3.jpeg" alt="Max Mannes">
+                        <img src="/images/members/GTO-members-7.jpeg" alt="Max Mannes">
                     </div>
                     <div class="content">
-                        <h2>Max Mannes<br />
-                            <span class="span-title">Vice President</span>
+                        <h2>Ben Thillen<br />
+                            <span class="span-title">Vice-President, Webmaster</span>
                         </h2>
                     </div>
                 </div>
@@ -61,11 +61,11 @@
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/images/members/GTO-members-7.jpeg" alt="">
+                        <img src="/images/members/GTO-members-2.jpeg" alt="">
                     </div>
                     <div class="content mt-4">
-                        <h2>Ben Thillen<br />
-                            <span class="span-title">Treasurer, Webmaster, Instagram Manager</span>
+                        <h2>Laurent Reding<br />
+                            <span class="span-title">Treasurer</span>
                         </h2>
                     </div>
                 </div>
@@ -81,11 +81,11 @@
                 </div>
                 <div class="box col-lg-4 col-md-6 m-5">
                     <div class="imgBox">
-                        <img src="/images/members/GTO-members-2.jpeg" alt="">
+                        <img src="/images/members/GTO-members-3.jpeg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Laurent Reding<br />
-                            <span class="span-title">TikTok Manager</span>
+                        <h2>Max Mannes<br />
+                            <span class="span-title">Media Relations</span>
                         </h2>
                     </div>
                 </div>
