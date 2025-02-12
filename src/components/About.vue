@@ -54,7 +54,7 @@
                         <img src="/images/members/GTO-members-10.jpeg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Jeff Nosbusch<br />
+                        <h2>Jeff Nosbusch TEST<br />
                             <span class="span-title">Secretary</span>
                         </h2>
                     </div>
