@@ -1,0 +1,35 @@
+name: Deploy to Lightsail
+on:
+  push:
+    branches:
+      - main  # or your default branch name
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:    
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Vue.js app
+        run: npm run build
+
+      - name: Install SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.LIGHTSAIL_IP }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to Lightsail
+        run: |
+          rsync -avz --delete dist/ ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }}:/var/www/html/
+          ssh ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }} 'sudo systemctl restart nginx'
