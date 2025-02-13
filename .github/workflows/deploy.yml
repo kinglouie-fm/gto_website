@@ -40,7 +40,15 @@ jobs:
 
       - name: Deploy to Lightsail
         run: |
-          rsync -avz --delete dist/ ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }}:/var/www/html/
-          echo "Deployment timestamp:"
-          ssh ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }} 'date && ls -la /var/www/html/'
+          echo "Starting deployment..."
+          echo "Current directory contents:"
+          ls -la
+          echo "Dist directory contents:"
+          ls -la dist/
+          echo "Starting rsync..."
+          rsync -avvz --delete --stats --progress dist/ ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }}:/var/www/html/
+          echo "Rsync completed with status: $?"
+          echo "Verifying deployed files..."
+          ssh ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }} 'ls -la /var/www/html/'
+          echo "Restarting nginx..."
           ssh ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }} 'sudo systemctl restart nginx'
