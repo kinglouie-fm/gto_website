@@ -22,6 +22,15 @@ jobs:
       - name: Build Vue.js app
         run: npm run build
 
+      - name: Debug build output
+        run: |
+          echo "Build timestamp:" 
+          date
+          echo "Dist folder contents:"
+          ls -la dist/
+      - name: Check dist contents
+        run: ls -la dist/
+
       - name: Install SSH key
         run: |
           mkdir -p ~/.ssh
@@ -32,4 +41,6 @@ jobs:
       - name: Deploy to Lightsail
         run: |
           rsync -avz --delete dist/ ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }}:/var/www/html/
+          echo "Deployment timestamp:"
+          ssh ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }} 'date && ls -la /var/www/html/'
           ssh ${{ secrets.LIGHTSAIL_USERNAME }}@${{ secrets.LIGHTSAIL_IP }} 'sudo systemctl restart nginx'
