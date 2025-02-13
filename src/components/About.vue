@@ -54,7 +54,7 @@
                         <img src="/images/members/GTO-members-10.jpeg" alt="">
                     </div>
                     <div class="content">
-                        <h2>Jeff Nosbusch automated deploy check<br />
+                        <h2>Jeff Nosbusch<br />
                             <span class="span-title">Secretary</span>
                         </h2>
                     </div>
