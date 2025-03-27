@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@600&display=swap');
+
+@font-face {
+    font-family: 'Airstrike';
+    src: url('../fonts/airstrike/airstrike.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --navbar-height: 73px;
+}
+
+@media (min-width: 576px) {
+    :root {
+        --navbar-height: 80px;
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --navbar-height: 90px;
+    }
+}
+
+@media (min-width: 992px) {
+    :root {
+        --navbar-height: 100px;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 300;
+    background-color: rgb(48, 56, 65);
+    line-height: 1.3rem;
+}
+
+.h-yellow {
+    color: rgb(246, 201, 14);
+    font-family: 'Airstrike', sans-serif;
+    padding-top: 3rem;
+    font-size: 1.5rem;
+    /* Base font size for h3 */
+}
+
+.h-white {
+    color: white;
+    font-family: 'Airstrike', sans-serif;
+    padding-top: 3rem;
+    font-size: 1.5rem;
+    /* Base font size for h3 */
+}
+
+.h-yellow-small {
+    color: rgb(246, 201, 14);
+    font-family: 'Airstrike', sans-serif;
+    font-size: 1.25rem;
+    /* Base font size for h3 */
+}
+
+.h-white-small {
+    color: white;
+    font-family: 'Airstrike', sans-serif;
+    font-size: 1.25rem;
+    /* Base font size for h3 */
+}
+
+.h-member {
+    color: white;
+    font-family: 'Airstrike', sans-serif;
+    padding-top: 0.5rem;
+    font-size: 1rem;
+}
+
+.content p,
+.events p,
+.team p,
+.friend p {
+    font-size: 1rem;
+}
+
+/* ---------------------- Responsive Adjustments ---------------------- */
+
+/* For screens 576px and wider */
+@media (min-width: 576px) {
+    .content {
+        margin-top: -100px;
+        padding-top: 100px;
+    }
+
+    .h-yellow,
+    .h-white {
+        padding-top: 4rem;
+        font-size: 2rem;
+    }
+
+    .h-yellow-small,
+    .h-white-small {
+        font-size: 1.5rem;
+    }
+
+    .content p,
+    .events p,
+    .team p,
+    .friend p {
+        font-size: 1.125rem;
+        line-height: 1.25rem;
+    }
+}
+
+/* For screens 768px and wider */
+@media (min-width: 768px) {
+    .content {
+        margin-top: -120px;
+        padding-top: 120px;
+    }
+
+    .h-yellow,
+    .h-white {
+        padding-top: 5rem;
+        font-size: 2.25rem;
+    }
+
+    .h-yellow-small,
+    .h-white-small {
+        font-size: 1.75rem;
+    }
+
+    .content p,
+    .events p,
+    .team p,
+    .friend p {
+        font-size: 1.25rem;
+        line-height: 1.5rem;
+    }
+}
+
+/* For screens 992px and wider */
+@media (min-width: 992px) {
+    .content {
+        margin-top: -140px;
+        padding-top: 140px;
+    }
+
+    .h-yellow,
+    .h-white {
+        padding-top: 8rem;
+        font-size: 3rem;
+    }
+
+    .h-yellow-small,
+    .h-white-small {
+        font-size: 2rem;
+    }
+
+    .content p,
+    .events p,
+    .team p,
+    .friend p {
+        font-size: 1.5rem;
+        line-height: 1.75rem;
+    }
+}
