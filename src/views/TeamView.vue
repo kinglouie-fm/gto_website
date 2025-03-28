@@ -37,18 +37,19 @@
             </div>
             <div class="ferrari-container">
                 <img src="/images/other/ferrari_488pista.webp" alt="Ferrari 488 Pista"
-                    class="img-fluid ferrari-488-pista" />
+                    class="img-fluid ferrari-488-pista"
+                    @click="openImageModal('/images/other/ferrari_488pista.webp', 'Ferrari 488 Pista')" />
             </div>
         </div>
     </section>
-
 
     <section class="events text-center container-p">
         <h3 class="text-center h-yellow">Events</h3>
 
         <div class="scs-container">
             <div class="scs-img-container">
-                <img src="/images/other/gto_scs6.webp" alt="GTO Supercar Sunday Event" class="img-fluid gto_scs6" />
+                <img src="/images/other/gto_scs6.webp" alt="Porsche 992 GT3" class="img-fluid gto_scs6"
+                    @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
             </div>
             <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
             <p class="text-center content-text">
@@ -59,7 +60,8 @@
 
         <div class="tour-container">
             <div class="tour-img-container">
-                <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg Tour" class="img-fluid gto_tour" />
+                <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg Tour" class="img-fluid gto_tour"
+                    @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg Tour')" />
             </div>
             <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
             <p class="text-center content-text">
@@ -132,18 +134,32 @@
             Rest in peace, Ben.
         </p>
     </section>
+
+    <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
+        @close="selectedImage = null" />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import ButtonFilled from '@/components/ButtonFilled.vue';
+import ImageModal from '@/components/ImageModal.vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
 const highQualityLoaded = ref(false)
+
+// Reactive property to hold the URL of the clicked image
+const selectedImage = ref(null);
+const selectedCarName = ref('');
+
+// Function to open the image modal
+const openImageModal = (imageUrl, carName) => {
+    selectedImage.value = imageUrl;
+    selectedCarName.value = carName;
+}
 
 onMounted(() => {
     const img = new Image()
@@ -521,6 +537,11 @@ onMounted(() => {
 
     .team-member {
         margin-bottom: 25px;
+    }
+
+    .team-member:hover {
+        transform: scale(1.05);
+        transition: transform 0.2s ease;
     }
 
     .ferrari-488-pista {
