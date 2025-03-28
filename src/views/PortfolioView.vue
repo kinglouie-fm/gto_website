@@ -141,6 +141,7 @@ onMounted(() => {
 .grid-img {
     object-fit: cover;
     display: block;
+    cursor: pointer;
 }
 
 .grid-img.small {
