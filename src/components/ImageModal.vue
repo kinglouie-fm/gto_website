@@ -51,12 +51,17 @@ const close = () => {
 
 .image-modal-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 0.5rem 1rem;
+    padding: 3rem 1rem;
     background: rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 1.2rem;
+}
+
+.modal-title {
+    font-family: 'Apercu Pro', sans-serif;
+    padding-right: 3rem;
 }
 
 .modal-image-container {

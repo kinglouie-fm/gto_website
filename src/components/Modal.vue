@@ -1,7 +1,7 @@
 <template>
     <div class="modal-backdrop" @click.self="close">
-        <div class="modal-content">
-            <div class="modal-header">
+        <div class="book-modal-content">
+            <div class="book-modal-header">
                 <h3 class="modal-title">Booking Form</h3>
                 <button type="button" class="btn btn-close" @click="close"></button>
             </div>
@@ -34,7 +34,7 @@ const close = () => {
     z-index: 2000;
 }
 
-.modal-content {
+.book-modal-content {
     background: white;
     padding: 1rem;
     max-width: 90%;
@@ -43,17 +43,19 @@ const close = () => {
     position: relative;
 }
 
-.modal-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-.btn {
-    border: 1px solid black
+.book-modal-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
 }
 
 .modal-title {
     font-family: 'Apercu Pro', sans-serif;
+    padding-right: 3rem;
+}
+
+.btn {
+    border: 1px solid black;
 }
 </style>

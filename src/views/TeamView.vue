@@ -286,6 +286,10 @@ onMounted(() => {
     background-color: rgb(48, 56, 65);
 }
 
+.img-fluid {
+    cursor: pointer;
+}
+
 .events .h-yellow,
 .team .h-white {
     padding-bottom: 1.25rem;
@@ -477,8 +481,7 @@ onMounted(() => {
     .photoshooting-wrapper {
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
-        /* Optional: limit the overall width */
+        margin: 0 auto;
         max-width: 1200px;
     }
 
