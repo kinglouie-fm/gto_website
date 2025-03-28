@@ -6,45 +6,59 @@
         </picture>
     </section>
     <VerticalSlider />
-    <section class="content">
-        <h3 class="text-center h-yellow">Book a photoshooting</h3>
+    <section class="content container-pb">
+        <h3 class="text-center h-yellow h-first">Book a photoshooting</h3>
         <p class="text-center content-text">
             We'd love to capture your car! Reach out through the contact form below or connect with us on social media.
         </p>
         <div class="container d-flex justify-content-center align-items-center">
-            <Button class="me-5" @click="openForm">Book</Button>
+            <Button @click="openForm">Book</Button>
             <SocialIcons />
         </div>
     </section>
 
-    <section class=" portfolio text-center pb-5">
+    <section class="portfolio text-center container-p">
         <h3 class="text-center h-white">Our portfolio</h3>
         <!-- Portfolio grid as three columns -->
         <div class="portfolio-grid">
             <!-- Column 1: small, large, small -->
             <div class="portfolio-column">
-                <img src="/images/portfolio/Lamborghini_purplemante.webp" alt="Image 1" class="grid-img small img-1" />
-                <img src="/images/other/rollsroyce.webp" alt="Image 2" class="grid-img large img-2" />
-                <img src="/images/portfolio/Porsche_Dakar.webp" alt="Image 3" class="grid-img small img-3" />
+                <img src="/images/portfolio/Lamborghini_purplemante.webp" alt="Image 1" class="grid-img small img-1"
+                    @click="openImageModal('/images/portfolio/Lamborghini_purplemante.webp', 'Lamborghini Huracan Performante')" />
+                <img src="/images/other/rollsroyce.webp" alt="Image 2" class="grid-img large img-2"
+                    @click="openImageModal('/images/other/rollsroyce.webp', 'Rolls Royce Phantom')" />
+                <img src="/images/portfolio/Porsche_Dakar.webp" alt="Image 3" class="grid-img small img-3"
+                    @click="openImageModal('/images/portfolio/Porsche_Dakar.webp', 'Porsche 911 Dakar')" />
             </div>
             <!-- Column 2: large, small, small -->
             <div class="portfolio-column">
-                <img src="/images/portfolio/Gwagon.webp" alt="Image 4" class="grid-img large img-4" />
-                <img src="/images/portfolio/Lamborghini_aventador.webp" alt="Image 5" class="grid-img small img-5" />
-                <img src="/images/portfolio/Audi_R8.webp" alt="Image 6" class="grid-img small img-6" />
+                <img src="/images/portfolio/Gwagon.webp" alt="Image 4" class="grid-img large img-4"
+                    @click="openImageModal('/images/portfolio/Gwagon.webp', 'Mercedes-Benz G63 AMG')" />
+                <img src="/images/portfolio/Lamborghini_aventador.webp" alt="Image 5" class="grid-img small img-5"
+                    @click="openImageModal('/images/portfolio/Lamborghini_aventador.webp', 'Lamborghini Aventador LP700')" />
+                <img src="/images/portfolio/Audi_R8.webp" alt="Image 6" class="grid-img small img-6"
+                    @click="openImageModal('/images/portfolio/Audi_R8.webp', 'Audi R8 V10 Plus')" />
             </div>
             <!-- Column 3: small, small, large -->
             <div class="portfolio-column">
-                <img src="/images/portfolio/Porsche_GT4RS.webp" alt="Image 7" class="grid-img small img-7" />
-                <img src="/images/portfolio/Bmw_m2g87.webp" alt="Image 8" class="grid-img small img-8" />
-                <img src="/images/portfolio/McLaren_765LT.webp" alt="Image 9" class="grid-img large img-9" />
+                <img src="/images/portfolio/Porsche_GT4RS.webp" alt="Image 7" class="grid-img small img-7"
+                    @click="openImageModal('/images/portfolio/Porsche_GT4RS.webp', 'Porsche 718 Cayman GT4 RS')" />
+                <img src="/images/portfolio/Bmw_m2g87.webp" alt="Image 8" class="grid-img small img-8"
+                    @click="openImageModal('/images/portfolio/Bmw_m2g87.webp', 'BMW M2 G87')" />
+                <img src="/images/portfolio/McLaren_765LT.webp" alt="Image 9" class="grid-img large img-9"
+                    @click="openImageModal('/images/portfolio/McLaren_765LT.webp', 'McLaren 765LT')" />
             </div>
         </div>
     </section>
 
+    <!-- Image Modal: Opens when selectedImage is set -->
+    <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
+        @close="selectedImage = null" />
+
     <Modal v-if="showModal" @close="closeForm">
         <iframe title="Booking Form" :src="typeformEmbedUrl" style="width: 100%; height: 500px; border: 0;"
-            allow="camera; microphone; autoplay; encrypted-media;"></iframe>
+            allow="camera; microphone; autoplay; encrypted-media">
+        </iframe>
     </Modal>
 </template>
 
@@ -54,8 +68,9 @@ import Modal from '@/components/Modal.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import Button from '@/components/Button.vue';
 import SocialIcons from '@/components/SocialIcons.vue';
+import ImageModal from '@/components/ImageModal.vue';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -71,8 +86,17 @@ const closeForm = () => {
     showModal.value = false
 }
 
+// Reactive property to hold the URL of the clicked image
+const selectedImage = ref(null);
+const selectedCarName = ref('');
+
+// Function to open the image modal
+const openImageModal = (imageUrl, carName) => {
+    selectedImage.value = imageUrl;
+    selectedCarName.value = carName;
+}
+
 onMounted(() => {
-    // Animate .photoshooting when it scrolls into view
     gsap.from('.portfolio', {
         scrollTrigger: {
             trigger: '.portfolio',
@@ -89,44 +113,9 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* ---------------------- Base Styles ---------------------- */
-.hero {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
+/* Your existing portfolio styles remain here */
 .hero-img {
-    width: 100%;
-    height: 100%;
-    max-height: 900px;
-    object-fit: cover;
     object-position: 50% 100%;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
-}
-
-.content {
-    background-color: rgb(48, 56, 65);
-    margin-top: -80px;
-    padding-top: 80px;
-    color: white;
-}
-
-.content-text {
-    margin: 1.5rem 2.5rem;
-}
-
-.content .container {
-    margin-bottom: 2.5rem;
 }
 
 .portfolio {
@@ -134,12 +123,7 @@ onMounted(() => {
     color: white;
 }
 
-.h-white {
-    padding-top: 3rem;
-}
-
-/* ---------------------- Portfolio Grid ---------------------- */
-/* Portfolio grid container: three columns with an 11px gap between columns and 20px horizontal padding */
+/* Portfolio Grid */
 .portfolio-grid {
     display: flex;
     gap: 11px;
@@ -148,16 +132,12 @@ onMounted(() => {
     margin-top: 24px;
 }
 
-/* Each column is a vertical flex container with an 11px gap between items */
 .portfolio-column {
     display: flex;
     flex-direction: column;
     gap: 11px;
 }
 
-/* Base mobile sizes for the images (for a 393px wide design):
-   - Small images: 110px × 89px
-   - Large images: 110px × 139px */
 .grid-img {
     object-fit: cover;
     display: block;
@@ -185,9 +165,7 @@ onMounted(() => {
     object-position: 50% 70%;
 }
 
-/* Responsive scaling */
-
-/* For screens 576px and wider, scale up by a factor of 1.2 */
+/* Responsive scaling for the grid */
 @media (min-width: 576px) {
     .grid-img.small {
         width: calc(110px * 1.2);
@@ -202,17 +180,8 @@ onMounted(() => {
     .hero-img {
         object-position: 50% 40%;
     }
-
-    .content-text {
-        margin: 1.5rem 5rem;
-    }
-
-    .content .container {
-        margin-bottom: 3rem;
-    }
 }
 
-/* For screens 768px and wider, scale up by a factor of 1.4 */
 @media (min-width: 768px) {
     .grid-img.small {
         width: calc(110px * 1.4);
@@ -223,17 +192,8 @@ onMounted(() => {
         width: calc(110px * 1.4);
         height: calc(139px * 1.4);
     }
-
-    .content-text {
-        margin: 2rem 7rem;
-    }
-
-    .content .container {
-        margin-bottom: 4rem;
-    }
 }
 
-/* For screens 992px and wider, scale up by a factor of 1.6 */
 @media (min-width: 992px) {
     .grid-img.small {
         width: calc(110px * 2);
@@ -243,14 +203,6 @@ onMounted(() => {
     .grid-img.large {
         width: calc(110px * 2);
         height: calc(139px * 2);
-    }
-
-    .content-text {
-        margin: 2.5rem 10rem;
-    }
-
-    .content .container {
-        margin-bottom: 5rem;
     }
 }
 
@@ -263,28 +215,6 @@ onMounted(() => {
     .grid-img.large {
         width: calc(110px * 3);
         height: calc(139px * 3);
-    }
-
-    .content-text {
-        margin: 3rem 15rem;
-    }
-
-    .content .container {
-        margin-bottom: 5rem;
-    }
-}
-
-@media (min-width: 1400px) {
-    .h-yellow {
-        margin-top: 5rem;
-    }
-
-    .content-text {
-        margin: 3rem 20rem;
-    }
-
-    .content .container {
-        margin-bottom: 7rem;
     }
 }
 </style>

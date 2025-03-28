@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@600&display=swap');
+@import url('https://fonts.cdnfonts.com/css/apercu-pro');
 
 @font-face {
     font-family: 'Airstrike';
@@ -39,20 +40,22 @@ body {
     line-height: 1.3rem;
 }
 
+.h-first {
+    padding-top: 3rem;
+}
+
 .h-yellow {
     color: rgb(246, 201, 14);
     font-family: 'Airstrike', sans-serif;
-    padding-top: 3rem;
+    /* padding-top: 2rem; */
     font-size: 1.5rem;
-    /* Base font size for h3 */
 }
 
 .h-white {
     color: white;
     font-family: 'Airstrike', sans-serif;
-    padding-top: 3rem;
+    /* padding-top: 2rem; */
     font-size: 1.5rem;
-    /* Base font size for h3 */
 }
 
 .h-yellow-small {
@@ -83,6 +86,50 @@ body {
     font-size: 1rem;
 }
 
+.hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-img {
+    width: 100%;
+    height: 100%;
+    max-height: 900px;
+    object-fit: cover;
+}
+
+/* Create the gradient fade at the bottom of the hero */
+.hero::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
+}
+
+.content-text {
+    margin: 1.5rem 2.5rem;
+    color: white;
+}
+
+.container-pb {
+    padding-bottom: 2.5rem;
+}
+
+.container-p {
+    padding: 2.5rem 0;
+}
+
+.content {
+    background-color: rgb(48, 56, 65);
+    margin-top: -80px;
+    padding-top: 80px;
+    color: white;
+}
+
 /* ---------------------- Responsive Adjustments ---------------------- */
 
 /* For screens 576px and wider */
@@ -94,8 +141,12 @@ body {
 
     .h-yellow,
     .h-white {
-        padding-top: 4rem;
+        /* padding-top: 2.5rem; */
         font-size: 2rem;
+    }
+
+    .h-first {
+        padding-top: 4rem;
     }
 
     .h-yellow-small,
@@ -110,6 +161,18 @@ body {
         font-size: 1.125rem;
         line-height: 1.25rem;
     }
+
+    .content-text {
+        margin: 1.5rem 5rem;
+    }
+
+    .container-pb {
+        padding-bottom: 3rem;
+    }
+
+    .container-p {
+        padding: 3rem 0;
+    }
 }
 
 /* For screens 768px and wider */
@@ -121,8 +184,12 @@ body {
 
     .h-yellow,
     .h-white {
-        padding-top: 5rem;
+        /* padding-top: 3rem; */
         font-size: 2.25rem;
+    }
+
+    .h-first {
+        padding-top: 5rem;
     }
 
     .h-yellow-small,
@@ -137,6 +204,18 @@ body {
         font-size: 1.25rem;
         line-height: 1.5rem;
     }
+
+    .content-text {
+        margin: 2rem 7rem;
+    }
+
+    .container-pb {
+        padding-bottom: 3.5rem;
+    }
+
+    .container-p {
+        padding: 3.5rem 0;
+    }
 }
 
 /* For screens 992px and wider */
@@ -148,8 +227,12 @@ body {
 
     .h-yellow,
     .h-white {
-        padding-top: 8rem;
+        /* padding-top: 4rem; */
         font-size: 3rem;
+    }
+
+    .h-first {
+        padding-top: 8rem;
     }
 
     .h-yellow-small,
@@ -163,5 +246,67 @@ body {
     .friend p {
         font-size: 1.5rem;
         line-height: 1.75rem;
+    }
+
+    .content-text {
+        margin: 2.5rem 10rem;
+    }
+
+    .container-pb {
+        padding-bottom: 4rem;
+    }
+
+    .container-p {
+        padding: 4rem 0;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .h-yellow,
+    .h-white {
+        /* padding-top: 6rem; */
+        font-size: 3rem;
+    }
+
+    .h-first {
+        padding-top: 9rem;
+    }
+
+    .content-text {
+        margin: 3rem 15rem;
+    }
+
+    .container-pb {
+        padding-bottom: 5rem;
+    }
+
+    .container-p {
+        padding: 5rem 0;
+    }
+}
+
+@media (min-width: 1400px) {
+
+    .h-yellow,
+    .h-white {
+        /* padding-top: 6rem; */
+        font-size: 3rem;
+    }
+
+    .h-first {
+        padding-top: 10rem;
+    }
+
+    .content-text {
+        margin: 3rem 20rem;
+    }
+
+    .container-pb {
+        padding-bottom: 6rem;
+    }
+
+    .container-p {
+        padding: 7rem 0;
     }
 }
