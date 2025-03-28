@@ -60,8 +60,8 @@
 
         <div class="tour-container">
             <div class="tour-img-container">
-                <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg Tour" class="img-fluid gto_tour"
-                    @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg Tour')" />
+                <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg" class="img-fluid gto_tour"
+                    @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
             </div>
             <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
             <p class="text-center content-text">
