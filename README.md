@@ -1,19 +1,32 @@
-# frontend
+# GTO Luxembourg Frontend
 
-## Project setup
-```
-npm install
-```
+A responsive Vue.js website for GTO Luxembourg – a non-profit group of car enthusiasts. It showcases the team, portfolio, events, and more.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Technologies
 
-### Compiles and minifies for production
-```
-npm run build
-```
+- [Vue.js](https://vuejs.org/)
+- [Vue Router](https://router.vuejs.org/)
+- [Bootstrap](https://getbootstrap.com/)
+- [FontAwesome](https://fontawesome.com/)
+- [GSAP]
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Installation
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/your-username/gto-lux-frontend.git
+   cd gto-lux-frontend
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+4. **Build for production:**
+   ```bash
+   npm run build
+   ```
