@@ -1,8 +1,13 @@
 <template>
     <div class="modal-backdrop" @click.self="close">
         <div class="modal-content">
-            <slot></slot>
-            <button class="modal-close" @click="close">Close</button>
+            <div class="modal-header">
+                <h3 class="modal-title">Booking Form</h3>
+                <button type="button" class="btn btn-close" @click="close"></button>
+            </div>
+            <div class="modal-body">
+                <slot></slot>
+            </div>
         </div>
     </div>
 </template>
@@ -42,5 +47,13 @@ const close = () => {
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+.btn {
+    border: 1px solid black
+}
+
+.modal-title {
+    font-family: 'Apercu Pro', sans-serif;
 }
 </style>

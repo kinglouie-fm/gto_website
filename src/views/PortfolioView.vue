@@ -6,18 +6,18 @@
         </picture>
     </section>
     <VerticalSlider />
-    <section class="content">
-        <h3 class="text-center h-yellow">Book a photoshooting</h3>
+    <section class="content container-pb">
+        <h3 class="text-center h-yellow h-first">Book a photoshooting</h3>
         <p class="text-center content-text">
             We'd love to capture your car! Reach out through the contact form below or connect with us on social media.
         </p>
         <div class="container d-flex justify-content-center align-items-center">
-            <Button class="me-5" @click="openForm">Book</Button>
+            <Button @click="openForm">Book</Button>
             <SocialIcons />
         </div>
     </section>
 
-    <section class=" portfolio text-center pb-5">
+    <section class="portfolio text-center container-p">
         <h3 class="text-center h-white">Our portfolio</h3>
         <!-- Portfolio grid as three columns -->
         <div class="portfolio-grid">
@@ -89,53 +89,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* ---------------------- Base Styles ---------------------- */
-.hero {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-}
-
 .hero-img {
-    width: 100%;
-    height: 100%;
-    max-height: 900px;
-    object-fit: cover;
     object-position: 50% 100%;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
-}
-
-.content {
-    background-color: rgb(48, 56, 65);
-    margin-top: -80px;
-    padding-top: 80px;
-    color: white;
-}
-
-.content-text {
-    margin: 1.5rem 2.5rem;
-}
-
-.content .container {
-    margin-bottom: 2.5rem;
 }
 
 .portfolio {
     background-color: rgb(76, 84, 94);
     color: white;
-}
-
-.h-white {
-    padding-top: 3rem;
 }
 
 /* ---------------------- Portfolio Grid ---------------------- */
@@ -185,7 +145,7 @@ onMounted(() => {
     object-position: 50% 70%;
 }
 
-/* Responsive scaling */
+/* Responsive scaling for the grid */
 
 /* For screens 576px and wider, scale up by a factor of 1.2 */
 @media (min-width: 576px) {
@@ -202,14 +162,6 @@ onMounted(() => {
     .hero-img {
         object-position: 50% 40%;
     }
-
-    .content-text {
-        margin: 1.5rem 5rem;
-    }
-
-    .content .container {
-        margin-bottom: 3rem;
-    }
 }
 
 /* For screens 768px and wider, scale up by a factor of 1.4 */
@@ -222,14 +174,6 @@ onMounted(() => {
     .grid-img.large {
         width: calc(110px * 1.4);
         height: calc(139px * 1.4);
-    }
-
-    .content-text {
-        margin: 2rem 7rem;
-    }
-
-    .content .container {
-        margin-bottom: 4rem;
     }
 }
 
@@ -244,14 +188,6 @@ onMounted(() => {
         width: calc(110px * 2);
         height: calc(139px * 2);
     }
-
-    .content-text {
-        margin: 2.5rem 10rem;
-    }
-
-    .content .container {
-        margin-bottom: 5rem;
-    }
 }
 
 @media (min-width: 1200px) {
@@ -263,28 +199,6 @@ onMounted(() => {
     .grid-img.large {
         width: calc(110px * 3);
         height: calc(139px * 3);
-    }
-
-    .content-text {
-        margin: 3rem 15rem;
-    }
-
-    .content .container {
-        margin-bottom: 5rem;
-    }
-}
-
-@media (min-width: 1400px) {
-    .h-yellow {
-        margin-top: 5rem;
-    }
-
-    .content-text {
-        margin: 3rem 20rem;
-    }
-
-    .content .container {
-        margin-bottom: 7rem;
     }
 }
 </style>

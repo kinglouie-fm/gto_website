@@ -1,12 +1,12 @@
 <template>
     <section class="footer text-center" :style="{ backgroundColor: bgColor }">
         <a href="https://www.reinert.lu" target="_blank">
-            <img src="/images/reinert_logo.png" alt="Reinert Logo" class="reinert-logo me-5" />
+            <img src="/images/reinert_logo.png" alt="Reinert Logo" class="reinert-logo" />
         </a>
         <a href="https://www.wot.lu" target="_blank">
             <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="wot-logo" />
         </a>
-        <p class="mb-0 pb-5">
+        <p class="mb-0">
             &copy; 2025 GTO Luxembourg. All rights reserved.
         </p>
     </section>
@@ -41,6 +41,10 @@ const props = defineProps({
     height: 20px;
 }
 
+section {
+    padding-bottom: 3rem;
+}
+
 /* For screens 576px and wider */
 @media (min-width: 576px) {
     .text-center {
@@ -50,11 +54,16 @@ const props = defineProps({
     .reinert-logo {
         width: 150px;
         height: 50px;
+        margin-right: 3rem;
     }
 
     .wot-logo {
         width: 140px;
         height: 25px;
+    }
+
+    section {
+        padding-bottom: 3.5rem;
     }
 }
 
@@ -67,11 +76,16 @@ const props = defineProps({
     .reinert-logo {
         width: 170px;
         height: 60px;
+        margin-right: 3.5rem;
     }
 
     .wot-logo {
         width: 160px;
         height: 30px;
+    }
+
+    section {
+        padding-bottom: 4rem;
     }
 }
 
@@ -84,11 +98,16 @@ const props = defineProps({
     .reinert-logo {
         width: 190px;
         height: 70px;
+        margin-right: 4rem;
     }
 
     .wot-logo {
         width: 180px;
         height: 35px;
+    }
+
+    section {
+        padding-bottom: 4.5rem;
     }
 }
 
@@ -100,11 +119,37 @@ const props = defineProps({
     .reinert-logo {
         width: 250px;
         height: auto;
+        margin-right: 4.5rem;
     }
 
     .wot-logo {
         width: 230px;
         height: auto;
+    }
+
+    section {
+        padding-bottom: 5rem;
+    }
+}
+
+@media (min-width: 1400px) {
+    .text-center {
+        font-size: 20px;
+    }
+
+    .reinert-logo {
+        width: 300px;
+        height: auto;
+        margin-right: 5rem;
+    }
+
+    .wot-logo {
+        width: 270px;
+        height: auto;
+    }
+
+    section {
+        padding-bottom: 5rem;
     }
 }
 </style>

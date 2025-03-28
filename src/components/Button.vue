@@ -37,6 +37,7 @@ const handleClick = () => {
     font-size: 14px;
     font-weight: 400;
     transition: all 0.2s ease;
+    margin-right: 3rem;
 }
 
 .btn:hover {

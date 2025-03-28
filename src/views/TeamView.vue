@@ -10,12 +10,12 @@
 
     <VerticalSlider />
 
-    <section class="content">
-        <h3 class="text-center h-yellow">Who are we?</h3>
-        <p class="text-center mx-4">
+    <section class="content container-pb">
+        <h3 class="text-center h-yellow h-first">Who are we?</h3>
+        <p class="text-center">
             We share passion!
         </p>
-        <p class="text-center content-text pb-5">
+        <p class="text-center content-text">
             Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared passion for
             cars. What started as a simple idea among friends has grown into a team of 8 members, united by the beauty
             of automotive design.
@@ -27,11 +27,11 @@
         </p>
     </section>
 
-    <section class="photoshooting ">
+    <section class="photoshooting container-p">
         <div class="photoshooting-wrapper">
             <div class="photoshooting-text text-center">
-                <h3 class="h-white mx-5">Want to book a <br>photoshooting?</h3>
-                <div class="button-container d-flex justify-content-center align-items-center pt-3">
+                <h3 class="h-white">Want to book a <br>photoshooting?</h3>
+                <div class="button-container d-flex justify-content-center align-items-center">
                     <ButtonFilled to="portfolio" class="portfolio-button">Portfolio</ButtonFilled>
                 </div>
             </div>
@@ -43,15 +43,15 @@
     </section>
 
 
-    <section class="events text-center pb-5">
-        <h3 class="text-center h-yellow mx-5">Events</h3>
+    <section class="events text-center container-p">
+        <h3 class="text-center h-yellow">Events</h3>
 
         <div class="scs-container">
             <div class="scs-img-container">
                 <img src="/images/other/gto_scs6.webp" alt="GTO Supercar Sunday Event" class="img-fluid gto_scs6" />
             </div>
-            <h4 class="text-center h-white-small mt-2">Supercar Sunday</h4>
-            <p class="text-center scs-text pb-5">
+            <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
+            <p class="text-center content-text">
                 Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
                 enthusiasts to share their passion, to check out some cool cars, and spend a great day in good company.
             </p>
@@ -61,8 +61,8 @@
             <div class="tour-img-container">
                 <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg Tour" class="img-fluid gto_tour" />
             </div>
-            <h4 class="text-center h-white-small mt-2">GTO goes Luxembourg</h4>
-            <p class="text-center scs-text pb-5">
+            <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
+            <p class="text-center content-text">
                 GTO goes Luxembourg is our smaller car tour that we organize a few times a year. It's usually held in a
                 more private and relaxed setting, giving everyone a chance to enjoy the drive, have some fun, and
                 connect with other car enthusiasts along the way.
@@ -70,7 +70,7 @@
         </div>
     </section>
 
-    <section class="team pb-5">
+    <section class="team container-p">
         <h3 class="text-center h-white">Get to know the team</h3>
         <div class="team-grid">
             <div class="team-member">
@@ -116,13 +116,13 @@
         </div>
     </section>
 
-    <section class="friend">
+    <section class="friend container-p">
         <div class="friend-container">
             <img src="/images/team/ben_steimens.webp" alt="Our beloved friend Ben Steimens"
                 class="img-fluid ben_steimens" />
         </div>
-        <h4 class="text-center h-white-small mt-2">Ben Steimens</h4>
-        <p class="text-center friend-text pb-5">
+        <h4 class="text-center h-white-small heading-pt">Ben Steimens</h4>
+        <p class="text-center content-text">
             Special thanks to our beloved friend, who sadly passed away a few years ago. Your smile and kindness will be
             missed but never forgotten. We will always keep you in our hearts.
             <br>
@@ -213,35 +213,13 @@ onMounted(() => {
 <style scoped>
 /* ---------------------- Base Styles (for screens below 576px) ---------------------- */
 .hero {
-    position: relative;
     margin-top: var(--navbar-height);
-    width: 100%;
-    overflow: hidden;
-}
-
-.hero-img {
-    width: 100%;
-    height: 100%;
-    max-height: 900px;
-    object-fit: cover;
-}
-
-/* Create the gradient fade at the bottom of the hero */
-.hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
 }
 
 .team-grid {
     display: grid;
     gap: 30px;
     padding: 0 20px;
-    padding-top: 20px;
     justify-content: center;
     /* Default: two columns for mobile */
     grid-template-columns: repeat(2, 1fr);
@@ -261,14 +239,6 @@ onMounted(() => {
     color: white;
 }
 
-.photoshooting {
-    padding: 3rem 0;
-}
-
-.photoshooting .h-white {
-    padding-top: 0rem;
-}
-
 /* The wrapper remains a flex container that stacks vertically on mobile */
 .photoshooting-wrapper {
     display: flex;
@@ -283,8 +253,6 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Add spacing around the image on mobile */
-    padding: 10px;
     /* Set a max-width to control the size on mobile */
     max-width: 90%;
 }
@@ -300,7 +268,11 @@ onMounted(() => {
 
 .events {
     background-color: rgb(48, 56, 65);
-    padding-bottom: 0 !important;
+}
+
+.events .h-yellow,
+.team .h-white {
+    padding-bottom: 1.25rem;
 }
 
 /* Container to center the image using flexbox */
@@ -308,7 +280,6 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 24px;
 }
 
 /* Base styles for the Ferrari image on mobile (e.g. ~393px width screens) */
@@ -316,7 +287,6 @@ onMounted(() => {
     width: 243px;
     height: 160px;
     object-fit: cover;
-    margin: 0 auto;
     border-radius: 10px 10px 0 0;
 }
 
@@ -332,7 +302,6 @@ onMounted(() => {
     width: 243px;
     height: 160px;
     object-fit: cover;
-    margin: 0 auto;
     border-radius: 10px 10px 0 0;
 }
 
@@ -340,23 +309,13 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 3rem;
 }
 
 .ben_steimens {
     width: 157px;
     height: 181px;
     object-fit: cover;
-    margin: 0 auto;
     border-radius: 10px;
-}
-
-.content-text,
-.scs-text,
-.tour-text,
-.friend-text {
-    margin: 0 4.5rem;
-    color: white;
 }
 
 /* Paragraph base font size */
@@ -370,7 +329,7 @@ onMounted(() => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .team-img {
@@ -380,6 +339,10 @@ onMounted(() => {
     object-fit: cover;
     border-radius: 50%;
     /* Fully rounded; use a fixed value like 100px if desired */
+}
+
+.heading-pt {
+    padding-top: 1.25rem;
 }
 
 .team-role {
@@ -410,7 +373,6 @@ onMounted(() => {
         max-width: 300px;
         height: auto;
         max-height: 160px;
-        margin-top: 15px;
     }
 
     .team-img {
@@ -418,11 +380,13 @@ onMounted(() => {
         height: 140px;
     }
 
-    .scs-text,
-    .tour-text,
-    .friend-text {
-        margin: 0 9rem;
-        color: white;
+    .events .h-yellow,
+    .team .h-white {
+        padding-bottom: 1.5rem;
+    }
+
+    .heading-pt {
+        padding-top: 1.5rem;
     }
 
     .h-member {
@@ -434,12 +398,8 @@ onMounted(() => {
         line-height: 1.125rem;
     }
 
-    .team-grid {
-        margin-top: 2rem;
-    }
-
-    .photoshooting {
-        padding: 5rem 0;
+    .team-member {
+        margin-bottom: 15px;
     }
 
     .ferrari-488-pista {
@@ -447,18 +407,6 @@ onMounted(() => {
         height: auto;
         max-width: 300px;
         /* This can be increased by media queries below */
-    }
-
-    .photoshooting .h-white {
-        padding-top: 0rem;
-    }
-
-    .content-text {
-        margin: 1.5rem 5rem;
-    }
-
-    .content .container {
-        margin-bottom: 3rem;
     }
 }
 
@@ -471,7 +419,16 @@ onMounted(() => {
     .content {
         margin-top: -120px;
         padding-top: 120px;
-        margin-bottom: 30px;
+    }
+
+    /* Since it is a special layout when screen larger */
+    .photoshooting .h-white {
+        padding-top: 0;
+    }
+
+    /* Since it is a special layout when screen larger */
+    .portfolio-button {
+        margin-top: 20px;
     }
 
     .ferrari-488-pista,
@@ -481,19 +438,11 @@ onMounted(() => {
         width: 35%;
         max-width: 400px;
         max-height: 200px;
-        margin-top: 20px;
     }
 
     .team-img {
         width: 160px;
         height: 160px;
-    }
-
-    .scs-text,
-    .tour-text,
-    .friend-text {
-        margin: 0 15rem;
-        color: white;
     }
 
     .h-member {
@@ -505,8 +454,8 @@ onMounted(() => {
         line-height: 1.25rem;
     }
 
-    .team-grid {
-        margin-top: 2.5rem;
+    .team-member {
+        margin-bottom: 20px;
     }
 
     .photoshooting-wrapper {
@@ -515,8 +464,6 @@ onMounted(() => {
         justify-content: space-between;
         /* Optional: limit the overall width */
         max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
     }
 
     /* Ensure the text container and image container have equal widths or specific ratios */
@@ -527,7 +474,6 @@ onMounted(() => {
 
     .ferrari-container {
         flex: 1;
-        padding: 10px;
         max-width: 50%;
     }
 
@@ -537,18 +483,6 @@ onMounted(() => {
         max-width: 300px;
         /* This can be increased by media queries below */
     }
-
-    .photoshooting {
-        padding: 7rem 0;
-    }
-
-    .h-white {
-        padding-top: 2rem;
-    }
-
-    .content-text {
-        margin: 2rem 7rem;
-    }
 }
 
 /* For screens 992px and wider */
@@ -556,11 +490,6 @@ onMounted(() => {
     .content {
         margin-top: -140px;
         padding-top: 140px;
-        margin-bottom: 50px;
-    }
-
-    .portfolio-button {
-        margin-top: 20px;
     }
 
     .ferrari-488-pista,
@@ -570,7 +499,6 @@ onMounted(() => {
         width: 35%;
         max-width: 600px;
         max-height: 350px;
-        margin-top: 30px;
     }
 
     .team-img {
@@ -578,11 +506,8 @@ onMounted(() => {
         height: 200px;
     }
 
-    .scs-text,
-    .tour-text,
-    .friend-text {
-        margin: 0 20rem;
-        color: white;
+    .team .h-white {
+        padding-bottom: 2.5rem;
     }
 
     .h-member {
@@ -594,26 +519,14 @@ onMounted(() => {
         line-height: 1.5rem;
     }
 
-    .team .container {
-        margin-top: 50px;
-    }
-
-    .team-grid {
-        margin-top: 3rem;
+    .team-member {
+        margin-bottom: 25px;
     }
 
     .ferrari-488-pista {
         width: 100%;
         height: auto;
         max-width: 400px;
-    }
-
-    .photoshooting {
-        padding: 8rem 0;
-    }
-
-    .content-text {
-        margin: 2.5rem 10rem;
     }
 }
 
@@ -624,19 +537,14 @@ onMounted(() => {
     .team-grid {
         grid-template-columns: repeat(3, 1fr);
         justify-content: center;
-        margin-top: 5rem;
     }
 
-    .photoshooting {
-        padding: 9rem 0;
+    .team .h-white {
+        padding-bottom: 3rem;
     }
 
-    .content .h-yellow {
-        margin-top: 5rem;
-    }
-
-    .content-text {
-        margin: 3rem 15rem;
+    .team-member {
+        margin-bottom: 40px;
     }
 }
 
@@ -645,17 +553,14 @@ onMounted(() => {
     .team-grid {
         grid-template-columns: repeat(4, 1fr);
         justify-content: center;
-        margin-top: 5rem;
     }
 
-    .content-text {
-        margin: 0 20rem;
-        margin-top: 3rem;
-        margin-bottom: 3rem;
+    .team .h-white {
+        padding-bottom: 4rem;
     }
 
-    .h-yellow {
-        margin-top: 5rem;
+    .team-member {
+        margin-bottom: 50px;
     }
 }
 </style>
