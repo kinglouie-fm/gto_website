@@ -16,9 +16,14 @@
             We share passion!
         </p>
         <p class="text-center content-text pb-5">
-            We established the non-profit organization GTO Luxembourg in 2017 as a group of car enthusiasts, and we've
-            grown into a cool crew of 10 members. We're regular individuals who adore all types of cars, but we hold a
-            particular fascination for supercars and hypercars.
+            Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared passion for
+            cars. What started as a simple idea among friends has grown into a team of 8 members, united by the beauty
+            of automotive design.
+            <br>
+            <br>
+            We enjoy bringing people together—whether it's by organizing events, setting up photoshoots, or going on
+            tours with special cars. While we appreciate all types of cars, our hearts beat a little faster for
+            supercars and hypercars.
         </p>
     </section>
 
@@ -47,9 +52,8 @@
             </div>
             <h4 class="text-center h-white-small mt-2">Supercar Sunday</h4>
             <p class="text-center scs-text pb-5">
-                Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. It's the day
-                when sports cars and supercars come together for an amazing display. Trust us; you don't want to miss
-                it!
+                Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
+                enthusiasts to share their passion, to check out some cool cars, and spend a great day in good company.
             </p>
         </div>
 
@@ -59,8 +63,9 @@
             </div>
             <h4 class="text-center h-white-small mt-2">GTO goes Luxembourg</h4>
             <p class="text-center scs-text pb-5">
-                But wait, there's more! We also organize smaller car tours that you can join. It's an opportunity to
-                experience the road in a more intimate setting and to share stories with fellow enthusiasts.
+                GTO goes Luxembourg is our smaller car tour that we organize a few times a year. It's usually held in a
+                more private and relaxed setting, giving everyone a chance to enjoy the drive, have some fun, and
+                connect with other car enthusiasts along the way.
             </p>
         </div>
     </section>

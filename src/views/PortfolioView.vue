@@ -12,12 +12,12 @@
             We'd love to capture your car! Reach out through the contact form below or connect with us on social media.
         </p>
         <div class="container d-flex justify-content-center align-items-center">
-            <Button class="me-5" @click="book()">Book</Button>
+            <Button class="me-5" @click="openForm">Book</Button>
             <SocialIcons />
         </div>
     </section>
 
-    <section class="portfolio text-center pb-5">
+    <section class=" portfolio text-center pb-5">
         <h3 class="text-center h-white">Our portfolio</h3>
         <!-- Portfolio grid as three columns -->
         <div class="portfolio-grid">
@@ -41,10 +41,16 @@
             </div>
         </div>
     </section>
+
+    <Modal v-if="showModal" @close="closeForm">
+        <iframe title="Booking Form" :src="typeformEmbedUrl" style="width: 100%; height: 500px; border: 0;"
+            allow="camera; microphone; autoplay; encrypted-media;"></iframe>
+    </Modal>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { ref, onMounted } from 'vue';
+import Modal from '@/components/Modal.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import Button from '@/components/Button.vue';
 import SocialIcons from '@/components/SocialIcons.vue';
@@ -53,8 +59,16 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const book = () => {
-    window.alert('Not available yet. For any concerns, please contact us via social media or gto.luxembourg@hotmail.com');
+const showModal = ref(false)
+// Replace the URL below with your actual Typeform embed URL.
+const typeformEmbedUrl = "https://cxgwixcj505.typeform.com/to/eRlQG98c"
+
+const openForm = () => {
+    showModal.value = true
+}
+
+const closeForm = () => {
+    showModal.value = false
 }
 
 onMounted(() => {
