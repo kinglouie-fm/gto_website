@@ -15,8 +15,8 @@ A responsive Vue.js website for GTO Luxembourg – a non-profit group of car ent
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/gto-lux-frontend.git
-   cd gto-lux-frontend
+   git clone https://github.com/kinglouie-fm/gto_website.git
+   cd gto_website
    ```
 2. **Install dependencies:**
    ```bash
