@@ -8,7 +8,7 @@ A responsive Vue.js website for GTO Luxembourg – a non-profit group of car ent
 - [Vue Router](https://router.vuejs.org/)
 - [Bootstrap](https://getbootstrap.com/)
 - [FontAwesome](https://fontawesome.com/)
-- GSAP
+- [GSAP](https://gsap.com/)
 
 ## Installation
 
