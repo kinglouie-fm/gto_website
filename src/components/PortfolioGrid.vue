@@ -71,11 +71,35 @@ const onImageClick = (image) => {
     object-position: 80% 0%;
 }
 
-.img-4 {
+.img-2 {
     object-position: 50% 90%;
 }
 
-.img-8 {
+.img-6 {
+    object-position: 50% 70%;
+}
+
+.img-13 {
+    object-position: 50% 10%;
+}
+
+.img-14 {
+    object-position: 20% 0%;
+}
+
+.img-16 {
+    object-position: 50% 70%;
+}
+
+.img-20 {
+    object-position: 50% 70%;
+}
+
+.img-23 {
+    object-position: 50% 0%;
+}
+
+.img-24 {
     object-position: 50% 70%;
 }
 
