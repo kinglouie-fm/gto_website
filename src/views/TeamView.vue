@@ -75,46 +75,14 @@
     <section class="team container-p">
         <h3 class="text-center h-white">Get to know the team</h3>
         <div class="team-grid">
-            <div class="team-member">
-                <img src="/images/team/julien.webp" alt="Julien Imhoff" class="img-fluid team-img" />
-                <h4 class="h-member">Julien Imhoff</h4>
-                <p class="team-role">Founder, President</p>
-            </div>
-            <div class="team-member">
-                <img src="/images/team/ben.webp" alt="Ben Thillen" class="img-fluid team-img" />
-                <h4 class="h-member">Ben Thillen</h4>
-                <p class="team-role">Vice-President, <br />Webmaster</p>
-            </div>
-            <div class="team-member">
-                <img src="/images/team/laurent.webp" alt="Laurent Reding" class="img-fluid team-img" />
-                <h4 class="h-member">Laurent Reding</h4>
-                <p class="team-role">Treasurer</p>
-            </div>
-            <div class="team-member">
-                <img src="/images/team/jeff.webp" alt="Jeff Nosbusch" class="img-fluid team-img" />
-                <h4 class="h-member">Jeff Nosbusch</h4>
-                <p class="team-role">Secretary</p>
-            </div>
-            <div class="team-member">
-                <img src="/images/team/gilles.webp" alt="Gilles Declercq" class="img-fluid team-img" />
-                <h4 class="h-member">Gilles Declercq</h4>
-                <p class="team-role">Administration, Legal</p>
-            </div>
-            <div class="team-member">
-                <img src="/images/team/noah.webp" alt="Noah Leuck" class="img-fluid team-img" />
-                <h4 class="h-member">Noah Leuck</h4>
-                <p class="team-role">Facebook</p>
-            </div>
-            <div class="team-member">
-                <img src="/images/team/jona.webp" alt="Jona Leuck" class="img-fluid team-img" />
-                <h4 class="h-member">Jona Leuck</h4>
-                <p class="team-role">Organisation</p>
-            </div>
-            <div class="team-member">
-                <img src="/images/team/dylan.webp" alt="Dylan Perreira" class="img-fluid team-img" />
-                <h4 class="h-member">Dylan Perreira</h4>
-                <p class="team-role">Media Relations</p>
-            </div>
+            <TeamMemberCard image="/images/team/julien.webp" name="Julien Imhoff" role="Founder, President" />
+            <TeamMemberCard image="/images/team/ben.webp" name="Ben Thillen" role="Vice-President, <br />Webmaster" />
+            <TeamMemberCard image="/images/team/laurent.webp" name="Laurent Reding" role="Treasurer" />
+            <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary" />
+            <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal" />
+            <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Facebook" />
+            <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation" />
+            <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations" />
         </div>
     </section>
 
@@ -144,6 +112,7 @@ import { ref, onMounted } from 'vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import ButtonFilled from '@/components/ButtonFilled.vue';
 import ImageModal from '@/components/ImageModal.vue';
+import TeamMemberCard from '@/components/TeamMemberCard.vue'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -344,36 +313,8 @@ onMounted(() => {
     /* line-height: 15px; */
 }
 
-.team-member {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.team-img {
-    /* On mobile (~393px width), this will be about 243px wide; adjust as needed */
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-    border-radius: 50%;
-    /* Fully rounded; use a fixed value like 100px if desired */
-}
-
 .heading-pt {
     padding-top: 1.25rem;
-}
-
-.team-role {
-    font-size: 0.875rem;
-    color: white;
-    margin: 0;
-    line-height: 1rem;
-}
-
-.team-member h4 {
-    margin-bottom: 0;
 }
 
 /* ---------------------- Responsive Adjustments ---------------------- */
@@ -395,11 +336,6 @@ onMounted(() => {
         max-height: 160px;
     }
 
-    .team-img {
-        width: 140px;
-        height: 140px;
-    }
-
     .events .h-yellow,
     .team .h-white {
         padding-bottom: 1.5rem;
@@ -407,19 +343,6 @@ onMounted(() => {
 
     .heading-pt {
         padding-top: 1.5rem;
-    }
-
-    .h-member {
-        font-size: 1.125rem;
-    }
-
-    .team-role {
-        font-size: 1rem;
-        line-height: 1.125rem;
-    }
-
-    .team-member {
-        margin-bottom: 15px;
     }
 
     .ferrari-488-pista {
@@ -458,24 +381,6 @@ onMounted(() => {
         width: 35%;
         max-width: 400px;
         max-height: 200px;
-    }
-
-    .team-img {
-        width: 160px;
-        height: 160px;
-    }
-
-    .h-member {
-        font-size: 1.25rem;
-    }
-
-    .team-role {
-        font-size: 1.125rem;
-        line-height: 1.25rem;
-    }
-
-    .team-member {
-        margin-bottom: 20px;
     }
 
     .photoshooting-wrapper {
@@ -520,31 +425,8 @@ onMounted(() => {
         max-height: 350px;
     }
 
-    .team-img {
-        width: 200px;
-        height: 200px;
-    }
-
     .team .h-white {
         padding-bottom: 2.5rem;
-    }
-
-    .h-member {
-        font-size: 1.5rem;
-    }
-
-    .team-role {
-        font-size: 1.25rem;
-        line-height: 1.5rem;
-    }
-
-    .team-member {
-        margin-bottom: 25px;
-    }
-
-    .team-member:hover {
-        transform: scale(1.05);
-        transition: transform 0.2s ease;
     }
 
     .ferrari-488-pista {
@@ -566,10 +448,6 @@ onMounted(() => {
     .team .h-white {
         padding-bottom: 3rem;
     }
-
-    .team-member {
-        margin-bottom: 40px;
-    }
 }
 
 /* For screens over 1400px: use four columns (2 rows of 4 items) */
@@ -581,10 +459,6 @@ onMounted(() => {
 
     .team .h-white {
         padding-bottom: 4rem;
-    }
-
-    .team-member {
-        margin-bottom: 50px;
     }
 }
 </style>
