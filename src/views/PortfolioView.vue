@@ -38,10 +38,6 @@ import SocialIcons from '@/components/SocialIcons.vue';
 import Button from '@/components/Button.vue';
 import Modal from '@/components/Modal.vue';
 import ImageModal from '@/components/ImageModal.vue';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger)
 
 const showModal = ref(false)
 // Replace the URL below with your actual Typeform embed URL.
@@ -93,21 +89,6 @@ const portfolioImages = [
     { src: '/images/portfolio/Ferrari_F8Tributo.webp', alt: 'Ferrari F8 Tributo', carName: 'Ferrari F8 Tributo', size: 'large', customClass: 'img-23' },
     { src: '/images/portfolio/SpaClassic-3.webp', alt: 'Spa Classic', carName: 'Spa Classic', size: 'small', customClass: 'img-24' },
 ]
-
-onMounted(() => {
-    gsap.from('.portfolio', {
-        scrollTrigger: {
-            trigger: '.portfolio',
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.2
-    })
-});
 </script>
 
 <style scoped>
