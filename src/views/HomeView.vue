@@ -1,10 +1,5 @@
 <template>
-    <section class="hero">
-        <picture>
-            <source media="(min-width: 768px)" srcset="/images/other/ben911.jpg" class="hero-img" />
-            <img src="/images/other/rollsroyce.webp" alt="Rolls Royce" class="hero-img" />
-        </picture>
-    </section>
+    <HeroSection desktopSrc="/images/other/ben911.jpg" mobileSrc="/images/other/rollsroyce.webp" alt="Rolls Royce" />
     <VerticalSlider />
     <section class="content container-pb">
         <h3 class="text-center h-yellow h-first">We share passion!</h3>
@@ -23,18 +18,7 @@
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import Button from '@/components/Button.vue';
 import SocialIcons from '@/components/SocialIcons.vue';
+import HeroSection from '@/components/HeroSection.vue';
 </script>
 
-<style scoped>
-/* ---------------------- Base Styles (for screens below 576px) ---------------------- */
-
-.hero-img {
-    object-position: 50% 100%;
-}
-
-@media (min-width: 576px) {
-    .hero-img {
-        object-position: 50% 70%;
-    }
-}
-</style>
+<style scoped></style>
