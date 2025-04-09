@@ -19,8 +19,8 @@
     </section>
 
     <!-- Image Modal: Opens when selectedImage is set -->
-    <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
-        @close="selectedImage = null" />
+    <ImageModal v-if="selectedImageIndex !== null" :imageSrc="selectedImage" :carName="selectedCarName"
+        :showNavigation="true" @close="selectedImageIndex = null" @prev="prevImage" @next="nextImage" />
 
     <Modal v-if="showModal" @close="closeForm">
         <iframe title="Booking Form" :src="typeformEmbedUrl" style="width: 100%; height: 500px; border: 0;"
@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, computed } from 'vue';
 import HeroSection from '@/components/HeroSection.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import PortfolioGrid from '@/components/PortfolioGrid.vue'
@@ -51,15 +51,36 @@ const closeForm = () => {
     showModal.value = false
 }
 
-// Reactive property to hold the URL of the clicked image
-const selectedImage = ref(null);
-const selectedCarName = ref('');
+const selectedImageIndex = ref(null);
 
 // Function to open the image modal
 const openImageModal = (image) => {
-    selectedImage.value = image.src;
-    selectedCarName.value = image.carName;
-}
+    selectedImageIndex.value = portfolioImages.findIndex(
+        (img) => img.src === image.src
+    );
+};
+
+const selectedImage = computed(() =>
+    selectedImageIndex.value !== null
+        ? portfolioImages[selectedImageIndex.value].src
+        : null
+);
+
+const selectedCarName = computed(() =>
+    selectedImageIndex.value !== null
+        ? portfolioImages[selectedImageIndex.value].carName
+        : ""
+); const prevImage = () => {
+    if (selectedImageIndex.value > 0) {
+        selectedImageIndex.value--;
+    }
+};
+
+const nextImage = () => {
+    if (selectedImageIndex.value < portfolioImages.length - 1) {
+        selectedImageIndex.value++;
+    }
+};
 
 const portfolioImages = [
     { src: '/images/portfolio/Lamborghini_purplemante.webp', alt: 'Lamborghini Huracan Performante', carName: 'Lamborghini Huracan Performante', size: 'small', customClass: 'img-1' },
