@@ -30,7 +30,7 @@ defineProps({
 
 <style scoped>
 .hero-img {
-    object-position: 50% 100%;
+    object-position: 50% 70%;
 }
 
 .portfolio-hero .hero-img {
