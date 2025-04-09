@@ -5,7 +5,6 @@
                 <span class="modal-title text-center">{{ carName }}</span>
                 <button type="button" class="btn-close btn-close-white" aria-label="Close" @click="close"></button>
             </div>
-            <!-- Navigation: visible only if showNavigation is true -->
             <div v-if="showNavigation" class="navigation">
                 <button class="arrow prev" @click="prev">&#10094;</button>
                 <button class="arrow next" @click="next">&#10095;</button>

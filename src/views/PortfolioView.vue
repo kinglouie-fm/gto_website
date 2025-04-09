@@ -18,7 +18,6 @@
         <PortfolioGrid :images="portfolioImages" @image-click="openImageModal" />
     </section>
 
-    <!-- Image Modal: Opens when selectedImage is set -->
     <ImageModal v-if="selectedImageIndex !== null" :imageSrc="selectedImage" :carName="selectedCarName"
         :showNavigation="true" @close="selectedImageIndex = null" @prev="prevImage" @next="nextImage" />
 
