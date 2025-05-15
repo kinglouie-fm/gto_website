@@ -1,7 +1,7 @@
 <template>
     <Navbar />
     <RouterView />
-    <Footer :bgColor="bgColor" />
+    <Footer v-if="route.path !== '/lens/camera'" :bgColor="bgColor" />
 </template>
 
 <script setup>

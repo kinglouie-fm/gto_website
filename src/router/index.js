@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TeamView from '../views/TeamView.vue'
 import PortfolioView from '../views/PortfolioView.vue'
+import LensView from '../views/LensView.vue'
+import LensCameraView from '../views/LensCameraView.vue'
+import LensDetailsView from '../views/LensDetailsView.vue'
 
 const routes = [
   {
@@ -18,6 +21,22 @@ const routes = [
     path: '/portfolio',
     name: 'portfolio',
     component: PortfolioView
+  },
+  {
+    path: '/lens',
+    name: 'lens',
+    component: LensView
+  },
+  {
+    path: '/lens/camera',
+    name: 'lenscamera',
+    component: LensCameraView
+  }
+  ,
+  {
+    path: '/lens/details',
+    name: 'lensdetails',
+    component: LensDetailsView
   }
 ]
 

@@ -11,11 +11,12 @@
         </div>
 
         <!-- Nav Links Container -->
-        <div class="nav-links-container">
+        <div class="nav-links-container" :class="{ open: isMenuOpen }">
             <div class="nav-links" :class="{ visible: isMenuOpen }">
                 <RouterLink class="nav-link nav-link-mobile" to="/" @click="closeNavbar">Home</RouterLink>
                 <RouterLink class="nav-link nav-link-mobile" to="/team" @click="closeNavbar">Team</RouterLink>
                 <RouterLink class="nav-link nav-link-mobile" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
+                <RouterLink class="nav-link nav-link-mobile" to="/lens" @click="closeNavbar">Lens</RouterLink>
             </div>
         </div>
 
@@ -132,6 +133,15 @@ const toHome = () => {
     opacity: 0;
 }
 
+.nav-links-container.open {
+    /* remove the 81px right-offset (logo width), leave just enough for the close-icon */
+    right: 20px !important;
+}
+
+.nav-links-container.open .nav-links {
+    width: 100% !important;
+}
+
 /* When visible, staggered fade-in via nth-child selectors */
 .nav-links.visible .nav-link:nth-child(1) {
     transition: opacity 0.3s ease-in 0.05s;
@@ -145,6 +155,11 @@ const toHome = () => {
 
 .nav-links.visible .nav-link:nth-child(3) {
     transition: opacity 0.3s ease-in 0.15s;
+    opacity: 1;
+}
+
+.nav-links.visible .nav-link:nth-child(4) {
+    transition: opacity 0.3s ease-in 0.2s;
     opacity: 1;
 }
 
@@ -163,7 +178,8 @@ const toHome = () => {
 
 .logo-container.open {
     /* In open state, position the logo 20px from the right edge */
-    left: calc(100% - 20px - 81px);
+    /* left: calc(100% - 20px - 81px); */
+    display: none;
 }
 
 .logo {
