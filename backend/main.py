@@ -31,8 +31,8 @@ def sanitize_json(raw: str) -> str:
 @app.post("/api/analyze")
 async def analyze(image: UploadFile = File(...)):
     # Validate file type
-    if image.content_type not in ("image/jpeg","image/png"):
-        raise HTTPException(400, "Only JPEG/PNG allowed")
+    if not image.content_type.startswith("image/"):
+        raise HTTPException(400, "Only images allowed")
 
     # Read & size-check
     data = await image.read()
@@ -42,22 +42,21 @@ async def analyze(image: UploadFile = File(...)):
 
     # Base64-encode
     b64 = base64.b64encode(data).decode("utf-8")
-    user_content = f"data:image/png;base64,{b64}"
 
-    # Call OpenAI API
+    mime = image.content_type
+    data_uri = f"data:{mime};base64,{b64}"
+
     resp = client.chat.completions.create(
         model="gpt-4o-mini",
         messages=[
-          {"role":"system", "content": DETAILS_PROMPT},
-          {"role":"user",
-       "content": [{
-                    "type": "image_url",
-                    "image_url": {
-                        "url": user_content
-                    },
-                },]}
+            {"role":"system","content":DETAILS_PROMPT},
+            {"role":"user","content":[
+                {"type":"text",      "text":"Analyze this image:"},
+                {"type":"image_url", "image_url": {"url": data_uri}}
+            ]}
         ]
     )
+
     raw = resp.choices[0].message.content
     clean = sanitize_json(raw)
     logger.info(f"AI raw response: {raw}")
