@@ -37,38 +37,61 @@ onMounted(async () => {
     }
 })
 
-function capture() {
+async function capture() {
     const vid = video.value
     const canvas = document.createElement('canvas')
     canvas.width = vid.videoWidth
     canvas.height = vid.videoHeight
     canvas.getContext('2d').drawImage(vid, 0, 0)
-    const dataUrl = canvas.toDataURL('image/png')
+    // downscale & compress:
+    const scale = 0.5              // 10% of original size
+    const w = vid.videoWidth * scale
+    const h = vid.videoHeight * scale
 
-    // store it temporarily
-    sessionStorage.setItem('capturedImage', dataUrl)
+    const thumb = document.createElement('canvas')
+    thumb.width = w
+    thumb.height = h
+    thumb
+        .getContext('2d')
+        .drawImage(vid, 0, 0, w, h)
 
-    // dummy JSON from “backend”
-    const dummy = {
-        model: 'Ferrari 488 GTB',
-        engine: '3902 cc F154 CB twin-turbo V8',
-        power: '661 HP',
-        torque: '761 Nm',
-        topSpeed: '330 km/h',
-        acceleration: '3.0 s',
-        type: 'Petrol',
-        year: '2018',
-        funFact: '"GTB" stands for Gran Turismo Berlinetta, a nod to Ferrari’s classic grand touring heritage.'
-    }
-    sessionStorage.setItem('capturedDetails', JSON.stringify(dummy))
+    // quality: 0.3 (30%)
+    const dataUrl = thumb.toDataURL('image/jpeg', 0.8)
 
-    // show loader
-    loading.value = true
+    try {
+        // 2) convert dataURL → Blob
+        const res = await fetch(dataUrl)
+        const blob = await res.blob()
 
-    // fake network delay then navigate
-    setTimeout(() => {
+        // 3) build FormData
+        const form = new FormData()
+        form.append('image', blob, 'snapshot.png')
+
+        // 4) send to your Flask backend
+        const response = await fetch('http://localhost:3000/api/analyze', {
+            method: 'POST',
+            body: form
+        })
+
+        if (!response.ok) {
+            const err = await response.json().catch(() => null)
+            throw new Error(err?.error || response.statusText)
+        }
+
+        // 5) get JSON payload
+        const details = await response.json()
+
+        // 6) store for LensDetailsView and navigate
+        sessionStorage.setItem('capturedImage', dataUrl)
+        sessionStorage.setItem('capturedDetails', JSON.stringify(details))
         router.push('/lens/details')
-    }, 2000)
+
+    } catch (error) {
+        console.error('Analysis error:', error)
+        // alert(`Could not analyze image: ${error.message}`)
+    } finally {
+        loading.value = false
+    }
 }
 
 onBeforeUnmount(() => {

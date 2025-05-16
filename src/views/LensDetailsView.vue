@@ -2,43 +2,15 @@
     <!-- HeroSection now shows the user’s own snapshot -->
     <HeroSection :desktopSrc="imageSrc" :mobileSrc="imageSrc" alt="Captured snapshot" customClass="portfolio-hero" />
 
-    <section class="content container-pb">
+    <section v-if="details.make" class="content container-pb">
         <h3 class="text-center h-yellow h-first">CAR DETAILS</h3>
 
-        <h4 class="text-center h-white-small">{{ details.model }}</h4>
+        <h4 v-if="details.model" class="text-center h-white-small">{{ details.make + " " + details.model }}</h4>
 
         <ul class="details-list mx-auto">
-            <li>
-                <span class="detail-key">Engine:</span>
-                <span class="detail-value">{{ details.engine }}</span>
-            </li>
-            <li>
-                <span class="detail-key">Power:</span>
-                <span class="detail-value">{{ details.power }}</span>
-            </li>
-            <li>
-                <span class="detail-key">Torque:</span>
-                <span class="detail-value">{{ details.torque }}</span>
-            </li>
-            <li>
-                <span class="detail-key">Top Speed:</span>
-                <span class="detail-value">{{ details.topSpeed }}</span>
-            </li>
-            <li>
-                <span class="detail-key">0–100 km/h:</span>
-                <span class="detail-value">{{ details.acceleration }}</span>
-            </li>
-            <li>
-                <span class="detail-key">Type:</span>
-                <span class="detail-value">{{ details.type }}</span>
-            </li>
-            <li>
-                <span class="detail-key">Year:</span>
-                <span class="detail-value">{{ details.year }}</span>
-            </li>
-            <li>
-                <span class="detail-key">Fun Fact:</span>
-                <span class="detail-value">{{ details.funFact }}</span>
+            <li v-for="(value, key) in flatDetails" :key="key">
+                <span class="detail-key">{{ key }}</span>
+                <span class="detail-value">{{ value }}</span>
             </li>
         </ul>
 
@@ -54,7 +26,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import HeroSection from '@/components/HeroSection.vue'
 import ButtonFilled from '@/components/ButtonFilled.vue'
@@ -77,6 +49,21 @@ onMounted(() => {
 function scanAgain() {
     router.push('/lens/camera')
 }
+
+// Flatten nested JSON into simple key/value pairs for display
+const flatDetails = computed(() => {
+    if (!details.value) return {}
+    return {
+        'Year': details.value.year,
+        'Engine Type': details.value.engine.type,
+        'Power (HP)': details.value.engine.power_hp,
+        'Torque (Nm)': details.value.engine.torque_nm,
+        'Exact Engine': details.value.engine["exact engine"],
+        'Top Speed (km/h)': details.value.performance.top_speed_kmh,
+        '0–100 km/h (sec)': details.value.performance.acceleration_0_100_kmh_sec,
+        'Fun Fact': details.value.fun_fact
+    }
+})
 </script>
 
 <style scoped>

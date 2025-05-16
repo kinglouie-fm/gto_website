@@ -26,3 +26,8 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+
+.env
+__pycache__/
+*.pyc
+venv
