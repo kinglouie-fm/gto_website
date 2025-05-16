@@ -68,7 +68,7 @@ async function capture() {
         form.append('image', blob, 'snapshot.png')
 
         // 4) send to your Flask backend
-        const response = await fetch('http://localhost:8000/api/analyze', {
+        const response = await fetch('/api/analyze', {
             method: 'POST',
             body: form
         })
