@@ -37,6 +37,17 @@ onMounted(async () => {
     }
 })
 
+function dataURLtoBlob(dataURL) {
+    const [header, base64] = dataURL.split(',')
+    const mime = header.match(/:(.*?);/)[1]
+    const bin = atob(base64)
+    const arr = new Uint8Array(bin.length)
+    for (let i = 0; i < bin.length; i++) {
+        arr[i] = bin.charCodeAt(i)
+    }
+    return new Blob([arr], { type: mime })
+}
+
 async function capture() {
     const vid = video.value
     const canvas = document.createElement('canvas')
@@ -58,18 +69,15 @@ async function capture() {
     // quality: 0.3 (30%)
     const dataUrl = thumb.toDataURL('image/jpeg', 0.8)
 
+    const blob = dataURLtoBlob(dataUrl)
+
+    const form = new FormData()
+    form.append('image', blob, 'snapshot.jpg')
+
     try {
         loading.value = true
 
-        // 2) convert dataURL → Blob
-        const res = await fetch(dataUrl)
-        const blob = await res.blob()
-
-        // 3) build FormData
-        const form = new FormData()
-        form.append('image', blob, 'snapshot.png')
-
-        // 4) send to your Flask backend
+        // Send to backend
         const response = await fetch('http://localhost:3000/api/analyze', {
             method: 'POST',
             body: form
@@ -80,17 +88,17 @@ async function capture() {
             throw new Error(err?.error || response.statusText)
         }
 
-        // 5) get JSON payload
+        // Get JSON payload
         const details = await response.json()
 
-        // 6) store for LensDetailsView and navigate
+        // Store for LensDetailsView and navigate
         sessionStorage.setItem('capturedImage', dataUrl)
         sessionStorage.setItem('capturedDetails', JSON.stringify(details))
         router.push('/lens/details')
 
     } catch (error) {
         console.error('Analysis error:', error)
-        // alert(`Could not analyze image: ${error.message}`)
+        alert(`Could not analyze image: ${error.message}`)
     } finally {
         loading.value = false
     }
