@@ -78,7 +78,7 @@ async function capture() {
         loading.value = true
 
         // Send to backend
-        const response = await fetch('http://localhost:3000/api/analyze', {
+        const response = await fetch('/api/analyze', {
             method: 'POST',
             body: form
         })
