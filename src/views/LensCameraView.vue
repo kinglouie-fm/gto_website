@@ -59,6 +59,8 @@ async function capture() {
     const dataUrl = thumb.toDataURL('image/jpeg', 0.8)
 
     try {
+        loading.value = true
+
         // 2) convert dataURL → Blob
         const res = await fetch(dataUrl)
         const blob = await res.blob()
@@ -68,7 +70,7 @@ async function capture() {
         form.append('image', blob, 'snapshot.png')
 
         // 4) send to your Flask backend
-        const response = await fetch('/api/analyze', {
+        const response = await fetch('http://localhost:3000/api/analyze', {
             method: 'POST',
             body: form
         })
@@ -138,6 +140,13 @@ onBeforeUnmount(() => {
 .camera-btn:hover {
     background: rgb(26, 28, 32);
     color: white;
+}
+
+/* add this below your hover rule */
+.camera-btn:focus {
+    outline: none;
+    background: white !important;
+    color: rgb(26, 28, 32) !important;
 }
 
 .loading-overlay {

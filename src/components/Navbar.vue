@@ -108,7 +108,7 @@ const toHome = () => {
 /* Nav Links Container */
 .nav-links-container {
     position: absolute;
-    left: 40px;
+    left: 60px;
     right: 81px;
     /* keeps space for the logo in the open state */
     top: 0;
