@@ -98,7 +98,7 @@ async function capture() {
 
     } catch (error) {
         console.error('Analysis error:', error)
-        alert(`Could not analyze image: ${error.message}`)
+        alert(`Could not analyze image: Invalid image or network error. Please try again by scanning a car.`)
     } finally {
         loading.value = false
     }
