@@ -137,18 +137,6 @@ onBeforeUnmount(() => {
     border: none;
 }
 
-.camera-btn:hover {
-    background: rgb(26, 28, 32);
-    color: white;
-}
-
-/* add this below your hover rule */
-.camera-btn:focus {
-    outline: none;
-    background: white !important;
-    color: rgb(26, 28, 32) !important;
-}
-
 .loading-overlay {
     position: absolute;
     inset: 0;
