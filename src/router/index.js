@@ -5,6 +5,7 @@ import PortfolioView from '../views/PortfolioView.vue'
 import LensView from '../views/LensView.vue'
 import LensCameraView from '../views/LensCameraView.vue'
 import LensDetailsView from '../views/LensDetailsView.vue'
+import TermsAndConditions from '../views/TermsAndConditions.vue'
 
 const routes = [
   {
@@ -31,12 +32,16 @@ const routes = [
     path: '/lens/camera',
     name: 'lenscamera',
     component: LensCameraView
-  }
-  ,
+  },
   {
     path: '/lens/details',
     name: 'lensdetails',
     component: LensDetailsView
+  },
+  {
+    path: '/terms',
+    name: 'terms',
+    component: TermsAndConditions
   }
 ]
 
