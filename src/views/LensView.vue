@@ -11,7 +11,7 @@
         </p>
 
         <p class="text-center terms-text mt-1">
-            By continuing, you agree to our <a href="/">Terms and Conditions</a>.
+            By continuing, you agree to our <RouterLink to="/terms">Terms and Conditions</RouterLink>.
         </p>
 
         <div class="text-center mt-4">
