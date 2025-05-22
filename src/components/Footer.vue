@@ -6,6 +6,9 @@
         <a href="https://www.wot.lu" target="_blank">
             <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="wot-logo" />
         </a>
+        <p class="mb-1">
+            <RouterLink to="/terms">Terms and Conditions</RouterLink>
+        </p>
         <p class="mb-0">
             &copy; 2025 GTO Luxembourg. All rights reserved.
         </p>
