@@ -82,7 +82,7 @@ jobs:
       - name: Deploy Backend
         run: |
           set -euxo pipefail
-          rsync -avz --delete --exclude='.env' backend/ $SSH_USER@$SSH_HOST:/opt/gto-backend/
+          rsync -avz --delete --exclude='.env' --exclude='venv/' backend/ $SSH_USER@$SSH_HOST:/opt/gto-backend/
           ssh $SSH_USER@$SSH_HOST << 'EOF'
             cd /opt/gto-backend
             source venv/bin/activate
