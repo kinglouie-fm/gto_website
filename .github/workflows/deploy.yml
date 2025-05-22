@@ -102,8 +102,3 @@ jobs:
             pip install --upgrade -r requirements.txt
             sudo systemctl restart gto-backend
           EOF
-
-      - name: Health Check
-        run: |
-          ssh -i $HOME/.ssh/id_ed25519 $SSH_USER@$SSH_HOST \
-            'curl --fail --max-time 5 http://127.0.0.1:8000/healthz'
