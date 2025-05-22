@@ -48,7 +48,8 @@ jobs:
     needs: frontend
     env:
       SSH_HOST: ${{ secrets.LIGHTSAIL_IP }}
-      SSH_USER: ${{ secrets.LIGHTSAIL_USERNAME }}
+      SSH_USER: gto-backend
+      SSH_PRIVATE_KEY: ${{ secrets.GTO_BACKEND_KEY }}
     steps:
       - uses: actions/checkout@v3
 
