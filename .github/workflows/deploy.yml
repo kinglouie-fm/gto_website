@@ -83,8 +83,8 @@ jobs:
       - name: Deploy Backend
         run: |
           set -euxo pipefail
-          rsync -avz --delete --exclude='.env' --exclude='venv/' backend/ $SSH_USER@$SSH_HOST:/opt/gto-backend/
-          ssh $SSH_USER@$SSH_HOST << 'EOF'
+          rsync -avz --delete --exclude='.env' --exclude='venv/' -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" backend/ $SSH_USER@$SSH_HOST:/opt/gto-backend/
+          ssh -i ~/.ssh/id_ed25519 $SSH_USER@$SSH_HOST << 'EOF'
             cd /opt/gto-backend
             source venv/bin/activate
             pip install --upgrade -r requirements.txt
