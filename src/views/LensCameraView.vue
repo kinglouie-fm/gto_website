@@ -50,10 +50,14 @@ function dataURLtoBlob(dataURL) {
 
 async function capture() {
     const vid = video.value
-    const canvas = document.createElement('canvas')
-    canvas.width = vid.videoWidth
-    canvas.height = vid.videoHeight
-    canvas.getContext('2d').drawImage(vid, 0, 0)
+
+    const fullCanvas = document.createElement('canvas')
+    fullCanvas.width = vid.videoWidth
+    fullCanvas.height = vid.videoHeight
+    fullCanvas.getContext('2d').drawImage(vid, 0, 0)
+
+    const fullDataUrl = fullCanvas.toDataURL('image/jpeg', 1.0)
+
     // downscale & compress:
     const scale = 0.5              // 10% of original size
     const w = vid.videoWidth * scale
@@ -67,9 +71,9 @@ async function capture() {
         .drawImage(vid, 0, 0, w, h)
 
     // quality: 0.3 (30%)
-    const dataUrl = thumb.toDataURL('image/jpeg', 0.8)
+    const compressedDataUrl = thumb.toDataURL('image/jpeg', 0.8)
 
-    const blob = dataURLtoBlob(dataUrl)
+    const blob = dataURLtoBlob(compressedDataUrl)
 
     const form = new FormData()
     form.append('image', blob, 'snapshot.jpg')
@@ -92,7 +96,7 @@ async function capture() {
         const details = await response.json()
 
         // Store for LensDetailsView and navigate
-        sessionStorage.setItem('capturedImage', dataUrl)
+        sessionStorage.setItem('capturedImage', fullDataUrl)
         sessionStorage.setItem('capturedDetails', JSON.stringify(details))
         router.push('/lens/details')
 
