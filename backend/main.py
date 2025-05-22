@@ -15,6 +15,14 @@ logger = logging.getLogger(__name__)
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = FastAPI(title="GTO Lens API")
+
+@app.get("/healthz", include_in_schema=False)
+async def healthz():
+    """
+    Liveness probe.
+    """
+    return JSONResponse({"status": "ok"})
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[ os.getenv("CORS_ORIGINS") ],
@@ -34,7 +42,7 @@ async def analyze(image: UploadFile = File(...)):
     """
     Analyze an image and return the result.
     """
-    
+
     # Validate file type
     if not image.content_type.startswith("image/"):
         raise HTTPException(400, "Only images allowed")
@@ -73,10 +81,3 @@ async def analyze(image: UploadFile = File(...)):
         raise HTTPException(502, f"Invalid JSON from AI: {clean}")
 
     return result
-
-@app.get("/healthz", include_in_schema=False)
-async def healthz():
-    """
-    Liveness probe.
-    """
-    return JSONResponse({"status": "ok"})
