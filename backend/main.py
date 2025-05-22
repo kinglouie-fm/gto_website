@@ -2,6 +2,7 @@ import os, re, json, base64, logging
 from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from openai import OpenAI
 from prompts import DETAILS_PROMPT
 
@@ -30,6 +31,10 @@ def sanitize_json(raw: str) -> str:
 
 @app.post("/api/analyze")
 async def analyze(image: UploadFile = File(...)):
+    """
+    Analyze an image and return the result.
+    """
+    
     # Validate file type
     if not image.content_type.startswith("image/"):
         raise HTTPException(400, "Only images allowed")
@@ -68,3 +73,10 @@ async def analyze(image: UploadFile = File(...)):
         raise HTTPException(502, f"Invalid JSON from AI: {clean}")
 
     return result
+
+@app.get("/healthz", include_in_schema=False)
+async def healthz():
+    """
+    Liveness probe.
+    """
+    return JSONResponse({"status": "ok"})
