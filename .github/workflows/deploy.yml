@@ -102,3 +102,20 @@ jobs:
             pip install --upgrade -r requirements.txt
             sudo systemctl restart gto-backend
           EOF
+
+      - name: Health Check (with retries)
+        run: |
+          for i in $(seq 1 10); do
+            if ssh -i $HOME/.ssh/id_ed25519 $SSH_USER@$SSH_HOST \
+                'curl --fail --max-time 2 http://127.0.0.1:8000/healthz'; then
+              echo "✅ backend is healthy"
+              exit 0
+            fi
+            echo "⏳ Attempt $i: backend not up yet, retrying..."
+            sleep 2
+          done
+          echo "❌ backend health check failed after 10 attempts" >&2
+          # print last 20 lines of journal for context
+          ssh -i $HOME/.ssh/id_ed25519 $SSH_USER@$SSH_HOST \
+            'journalctl -u gto-backend -n20 --no-pager'
+          exit 1
