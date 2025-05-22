@@ -73,24 +73,37 @@ jobs:
           pip install --upgrade pip
           pip install -r backend/requirements.txt
       
-      - name: Setup SSH
+      - name: Setup SSH key for backend
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
-          
+          # Make sure .ssh exists
+          mkdir -p $HOME/.ssh
+          # Write the private key
+          echo "$SSH_PRIVATE_KEY" > $HOME/.ssh/id_ed25519
+          chmod 600 $HOME/.ssh/id_ed25519
+          # Add the host to known_hosts
+          ssh-keyscan -H $SSH_HOST >> $HOME/.ssh/known_hosts
+          # Debug: list what’s in .ssh
+          ls -la $HOME/.ssh
+
       - name: Deploy Backend
         run: |
           set -euxo pipefail
-          rsync -avz --delete --exclude='.env' --exclude='venv/' -e "ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" backend/ $SSH_USER@$SSH_HOST:/opt/gto-backend/
-          ssh -i ~/.ssh/id_ed25519 $SSH_USER@$SSH_HOST << 'EOF'
+          rsync -avz \
+            --delete \
+            --exclude='.env' \
+            --exclude='venv/' \
+            -e "ssh -i $HOME/.ssh/id_ed25519 -o StrictHostKeyChecking=yes" \
+            backend/ \
+            $SSH_USER@$SSH_HOST:/opt/gto-backend/
+
+          ssh -i $HOME/.ssh/id_ed25519 $SSH_USER@$SSH_HOST << 'EOF'
             cd /opt/gto-backend
             source venv/bin/activate
             pip install --upgrade -r requirements.txt
             sudo systemctl restart gto-backend
           EOF
-      
+
       - name: Health Check
         run: |
-          ssh $SSH_USER@$SSH_HOST 'curl --fail --max-time 5 http://127.0.0.1:8000/healthz'
+          ssh -i $HOME/.ssh/id_ed25519 $SSH_USER@$SSH_HOST \
+            'curl --fail --max-time 5 http://127.0.0.1:8000/healthz'
