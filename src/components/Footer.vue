@@ -7,10 +7,10 @@
             <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="wot-logo" />
         </a>
         <p class="mb-1">
-            <RouterLink to="/terms">Terms and Conditions</RouterLink>
+            &copy; 2025 GTO Luxembourg. All rights reserved.
         </p>
         <p class="mb-0">
-            &copy; 2025 GTO Luxembourg. All rights reserved.
+            <RouterLink to="/terms">Terms and Conditions</RouterLink>
         </p>
     </section>
 </template>
