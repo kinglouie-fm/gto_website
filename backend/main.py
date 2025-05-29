@@ -3,13 +3,12 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from openai import OpenAI, OpenAIError, Timeout
 from prompts import DETAILS_PROMPT
 
 load_dotenv()
 MAX_SIZE = int(os.getenv("MAX_CONTENT_LENGTH", 5_242_880))
-
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
@@ -21,6 +20,7 @@ async def healthz():
     """
     Liveness probe.
     """
+
     return JSONResponse({"status": "ok"})
 
 app.add_middleware(
@@ -36,12 +36,24 @@ def sanitize_json(raw: str) -> str:
     txt = re.sub(r"\n?```$", "", txt)
     return txt.strip()
 
-class ObjectInfo(BaseModel):
-    label: str
-    bbox: list[int]
+# Pydantic models matching your details JSON
+class EngineInfo(BaseModel):
+    type: str
+    power_hp: int
+    torque_nm: int
+    exact_engine: str = Field(alias="exact engine")
+
+class PerformanceInfo(BaseModel):
+    top_speed_kmh: int
+    acceleration_0_100_kmh_sec: float
 
 class AnalyzeResp(BaseModel):
-    objects: list[ObjectInfo]
+    make: str
+    model: str
+    year: str
+    engine: EngineInfo
+    performance: PerformanceInfo
+    fun_fact: str
 
 @app.exception_handler(HTTPException)
 async def http_exc_handler(request: Request, exc: HTTPException):
@@ -52,10 +64,6 @@ async def http_exc_handler(request: Request, exc: HTTPException):
 
 @app.post("/api/analyze", response_model=AnalyzeResp)
 async def analyze(image: UploadFile = File(...)):
-    """
-    Analyze an image and return the result.
-    """
-
     if not image.content_type.startswith("image/"):
         raise HTTPException(400, "Only images allowed")
     data = await image.read()
@@ -63,9 +71,9 @@ async def analyze(image: UploadFile = File(...)):
         raise HTTPException(413, "Image too large")
     logger.info(f"Received {len(data)} bytes")
 
-    b64 = base64.b64encode(data).decode("utf-8")
+    # Call OpenAI
+    b64 = base64.b64encode(data).decode()
     data_uri = f"data:{image.content_type};base64,{b64}"
-
     try:
         resp = client.chat.completions.create(
             model="gpt-4o-mini",
@@ -87,15 +95,19 @@ async def analyze(image: UploadFile = File(...)):
     clean = sanitize_json(raw)
     logger.info(f"AI raw response: {raw}")
 
+    # Parse & validate shape
     try:
-        result = json.loads(clean)
+        parsed = json.loads(clean)
     except json.JSONDecodeError:
         raise HTTPException(502, "Invalid response format from AI.")
 
-    if not any(obj.get("label") == "car" for obj in result.get("objects", [])):
+    try:
+        result = AnalyzeResp(**parsed)
+    except ValidationError:
         raise HTTPException(
-            422, "No car detected in image",
-            headers={"X-Error-Code": "NO_CAR_DETECTED"}
+            422,
+            "No car details found in image",
+            headers={"X-Error-Code":"NO_CAR_DETECTED"}
         )
 
-    return AnalyzeResp(**result)
+    return result
