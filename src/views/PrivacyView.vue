@@ -40,9 +40,19 @@
                 Manage cookie preferences and essential functionality.
             </ul>
 
+            <h4 class="h-white-small">5. AI Processing</h4>
+            <p class="content-text">
+                To generate detailed vehicle information, we securely transmit your uploaded image data to the OpenAI
+                API.
+                Images are encoded and sent over HTTPS. OpenAI processes the data temporarily and returns a response.
+                We do not store your image or the detailed response beyond the duration necessary to display results in
+                your browser session. No personal data is retained on third-party servers after processing.
+            </p>
+
             <h4 class="h-white-small">5. Data Storage & Security</h4>
             <p class="content-text">
-                Your data is processed and stored securely on our servers.
+                Your data is processed and stored securely on our servers with encryption in transit (HTTPS) and
+                appropriate access controls.
                 We implement technical and organizational measures to protect it against unauthorized access or
                 disclosure.
             </p>
