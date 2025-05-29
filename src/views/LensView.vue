@@ -11,7 +11,8 @@
         </p>
 
         <p class="text-center terms-text mt-1">
-            By continuing, you agree to our <RouterLink to="/terms">Terms and Conditions</RouterLink>.
+            By continuing, you agree to our <RouterLink class="routerlink" to="/terms">Terms and Conditions</RouterLink>
+            .
         </p>
 
         <div class="text-center mt-4">
@@ -42,5 +43,14 @@ function onGetStarted() {
 
 .terms-text {
     font-size: 0.7rem;
+}
+
+.routerlink {
+    color: #f5d442;
+    text-decoration: none;
+}
+
+.routerlink:hover {
+    text-decoration: underline;
 }
 </style>

@@ -6,11 +6,13 @@
         <a href="https://www.wot.lu" target="_blank">
             <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="wot-logo" />
         </a>
-        <p class="mb-1">
-            &copy; 2025 GTO Luxembourg. All rights reserved.
+        <p class="routerlinks my-0">
+            <RouterLink class="routerlink me-4" to="/terms">Terms and Conditions</RouterLink>
+            <RouterLink class="routerlink me-4" to="/privacy">Privacy Policy</RouterLink>
+            <RouterLink class="routerlink" to="/cookie-policy">Cookie Policy</RouterLink>
         </p>
-        <p class="mb-0">
-            <RouterLink to="/terms">Terms and Conditions</RouterLink>
+        <p class="copyright">
+            &copy; 2025 GTO Luxembourg. All rights reserved.
         </p>
     </section>
 </template>
@@ -27,7 +29,6 @@ const props = defineProps({
 <style scoped>
 /* Base text styles for screens below 576px */
 .text-center {
-    color: white;
     font-size: 10px;
 }
 
@@ -42,8 +43,18 @@ const props = defineProps({
     height: 20px;
 }
 
-section {
-    padding-bottom: 3rem;
+.routerlink {
+    color: white;
+    text-decoration: none;
+}
+
+.routerlink:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.copyright {
+    color: white;
 }
 
 /* For screens 576px and wider */
@@ -63,8 +74,9 @@ section {
         height: 25px;
     }
 
-    section {
-        padding-bottom: 3.5rem;
+    .copyright,
+    .routerlinks {
+        font-size: 1rem;
     }
 }
 
@@ -84,10 +96,6 @@ section {
         width: 160px;
         height: 30px;
     }
-
-    section {
-        padding-bottom: 4rem;
-    }
 }
 
 /* For screens 992px and wider */
@@ -106,10 +114,6 @@ section {
         width: 180px;
         height: 35px;
     }
-
-    section {
-        padding-bottom: 4.5rem;
-    }
 }
 
 @media (min-width: 1200px) {
@@ -120,16 +124,12 @@ section {
     .reinert-logo {
         width: 250px;
         height: auto;
-        margin-right: 4.5rem;
+        margin-right: 8rem;
     }
 
     .wot-logo {
         width: 230px;
         height: auto;
-    }
-
-    section {
-        padding-bottom: 5rem;
     }
 }
 
@@ -138,19 +138,8 @@ section {
         font-size: 20px;
     }
 
-    .reinert-logo {
-        width: 300px;
-        height: auto;
-        margin-right: 5rem;
-    }
-
-    .wot-logo {
-        width: 270px;
-        height: auto;
-    }
-
-    section {
-        padding-bottom: 5rem;
+    .routerlinks {
+        margin-bottom: 1rem !important;
     }
 }
 </style>

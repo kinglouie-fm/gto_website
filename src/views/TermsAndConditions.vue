@@ -1,9 +1,9 @@
 <template>
-    <section class="content container-pb">
+    <section class="container content container-pb">
         <h3 class="text-center h-yellow h-first">Terms and Conditions</h3>
         <p class="text-center content-text mb-4">Last Updated: May 22, 2025</p>
 
-        <div class="container text-center terms-sections">
+        <div class="container">
             <h4 class="h-white-small">1. Introduction</h4>
             <p class="content-text">
                 Welcome to GTO Luxembourg. These Terms and Conditions ("Terms") govern your use of our website,
@@ -103,26 +103,14 @@
                 For questions about these Terms, please contact us at
                 <a href="mailto:gto.luxembourg@hotmail.com">gto.luxembourg@hotmail.com</a>.
             </p>
-
-            <div class="text-center mt-5">
-                <ButtonFilled @click="goBack">Back</ButtonFilled>
-            </div>
         </div>
     </section>
 </template>
 
 <script setup>
-import { useRouter } from 'vue-router'
-import ButtonFilled from '@/components/ButtonFilled.vue'
-
-const router = useRouter()
-function goBack() {
-    router.back()
-}
 </script>
 
 <style scoped>
-/* Inherit dark background and white text from .content */
 .container {
     max-width: 800px;
 }
@@ -135,11 +123,18 @@ h3 {
     margin: 0.75rem 0;
 }
 
-/* Adjust subheading spacing */
 .h-white-small {
-    font-family: 'Source Serif Pro', serif;
-    font-weight: 400;
     font-size: 1.25rem;
+}
+
+a {
+    color: #f5d442;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f5d442;
+    text-decoration: underline;
 }
 
 @media (min-width: 576px) {

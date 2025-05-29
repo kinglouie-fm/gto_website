@@ -6,6 +6,8 @@ import LensView from '../views/LensView.vue'
 import LensCameraView from '../views/LensCameraView.vue'
 import LensDetailsView from '../views/LensDetailsView.vue'
 import TermsAndConditions from '../views/TermsAndConditions.vue'
+import PrivacyView from '../views/PrivacyView.vue'
+import CookiePolicyView from '../views/CookiePolicyView.vue'
 
 const routes = [
   {
@@ -42,6 +44,16 @@ const routes = [
     path: '/terms',
     name: 'terms',
     component: TermsAndConditions
+  },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component: PrivacyView
+  },
+  {
+    path: '/cookie-policy',
+    name: 'cookie-policy',
+    component: CookiePolicyView
   }
 ]
 
