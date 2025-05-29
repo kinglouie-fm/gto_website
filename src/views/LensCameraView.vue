@@ -83,8 +83,8 @@ async function capture() {
         })
 
         if (!response.ok) {
-            const err = await res.json().catch(() => ({}))
-            switch (res.status) {
+            const err = await response.json().catch(() => ({}))
+            switch (response.status) {
                 case 400: throw new Error('Please upload a valid image.')
                 case 413: throw new Error('Image too large (max 5 MB).')
                 case 422:
@@ -93,7 +93,7 @@ async function capture() {
             }
         }
 
-        const details = await res.json()
+        const details = await response.json()
         sessionStorage.setItem('capturedImage', fullDataUrl)
         sessionStorage.setItem('capturedDetails', JSON.stringify(details))
         router.push('/lens/details')
