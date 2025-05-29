@@ -13,6 +13,7 @@
             <div class="spinner"></div>
             <p class="loading-text">Loading</p>
         </div>
+        <div v-if="errorMsg" class="error-banner">{{ errorMsg }}</div>
     </section>
 </template>
 
@@ -22,6 +23,7 @@ import { useRouter } from 'vue-router'
 
 const video = ref(null)
 const loading = ref(false)
+const errorMsg = ref('')
 const router = useRouter()
 let stream = null
 
@@ -49,60 +51,56 @@ function dataURLtoBlob(dataURL) {
 }
 
 async function capture() {
-    const vid = video.value
+    errorMsg.value = ''
+    loading.value = true
 
+    const vid = video.value
     const fullCanvas = document.createElement('canvas')
     fullCanvas.width = vid.videoWidth
     fullCanvas.height = vid.videoHeight
     fullCanvas.getContext('2d').drawImage(vid, 0, 0)
-
     const fullDataUrl = fullCanvas.toDataURL('image/jpeg', 1.0)
 
     // downscale & compress:
-    const scale = 0.5              // 10% of original size
-    const w = vid.videoWidth * scale
-    const h = vid.videoHeight * scale
-
+    const scale = 0.5
     const thumb = document.createElement('canvas')
-    thumb.width = w
-    thumb.height = h
-    thumb
-        .getContext('2d')
-        .drawImage(vid, 0, 0, w, h)
-
-    // quality: 0.3 (30%)
-    const compressedDataUrl = thumb.toDataURL('image/jpeg', 0.8)
-
-    const blob = dataURLtoBlob(compressedDataUrl)
+    thumb.width = vid.videoWidth * scale; thumb.height = vid.videoHeight * scale
+    thumb.getContext('2d').drawImage(vid, 0, 0, thumb.width, thumb.height)
+    const blob = dataURLtoBlob(thumb.toDataURL('image/jpeg', 0.8))
 
     const form = new FormData()
     form.append('image', blob, 'snapshot.jpg')
 
-    try {
-        loading.value = true
+    const controller = new AbortController()
+    setTimeout(() => controller.abort(), 10000)
 
+    try {
         // Send to backend
         const response = await fetch('/api/analyze', {
             method: 'POST',
-            body: form
+            body: form,
+            signal: controller.signal
         })
 
         if (!response.ok) {
-            const err = await response.json().catch(() => null)
-            throw new Error(err?.error || response.statusText)
+            const err = await res.json().catch(() => ({}))
+            switch (res.status) {
+                case 400: throw new Error('Please upload a valid image.')
+                case 413: throw new Error('Image too large (max 5 MB).')
+                case 422:
+                    if (err.code === 'NO_CAR_DETECTED') throw new Error('No car detected.')
+                default: throw new Error(err.error || 'Server error.')
+            }
         }
 
-        // Get JSON payload
-        const details = await response.json()
-
-        // Store for LensDetailsView and navigate
+        const details = await res.json()
         sessionStorage.setItem('capturedImage', fullDataUrl)
         sessionStorage.setItem('capturedDetails', JSON.stringify(details))
         router.push('/lens/details')
-
-    } catch (error) {
-        console.error('Analysis error:', error)
-        alert(`Could not analyze image: Invalid image or network error. Please try again by scanning a car.`)
+    } catch (e) {
+        errorMsg.value = e.name === 'AbortError'
+            ? 'Request timed out, please try again.'
+            : e.message
     } finally {
         loading.value = false
     }
@@ -181,5 +179,17 @@ onBeforeUnmount(() => {
     margin-top: 1rem;
     color: white;
     font-size: 1rem;
+}
+
+.error-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(200, 0, 0, 0.8);
+    color: #fff;
+    padding: .5rem;
+    text-align: center;
+    z-index: 20;
 }
 </style>
