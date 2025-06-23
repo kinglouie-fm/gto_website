@@ -87,9 +87,9 @@ async def analyze(image: UploadFile = File(...)):
         )
     except Timeout:
         raise HTTPException(504, "Upstream timeout, please try again.")
-    except OpenAIError:
+    except OpenAIError as e:
         logger.exception("OpenAI error")
-        raise HTTPException(502, "AI service unavailable")
+        raise HTTPException(502, f"AI service unavailable: {e}")
 
     raw = resp.choices[0].message.content
     clean = sanitize_json(raw)
@@ -105,9 +105,17 @@ async def analyze(image: UploadFile = File(...)):
         result = AnalyzeResp(**parsed)
     except ValidationError:
         raise HTTPException(
-            422,
-            "No car details found in image",
+            status_code=422,
+            detail="No car details found in image",
             headers={"X-Error-Code":"NO_CAR_DETECTED"}
         )
 
     return result
+
+@app.exception_handler(Exception)
+async def general_exception_handler(request: Request, exc: Exception):
+    logger.exception("Unhandled exception")
+    return JSONResponse(
+        status_code=500,
+        content={"error": str(exc)}
+    )
