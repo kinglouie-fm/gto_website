@@ -57,10 +57,12 @@ class AnalyzeResp(BaseModel):
 
 @app.exception_handler(HTTPException)
 async def http_exc_handler(request: Request, exc: HTTPException):
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={"error": exc.detail, "code": exc.headers.get("X-Error-Code")}
-    )
+    headers = exc.headers or {}
+    code = headers.get("X-Error-Code")
+    payload = {"error": exc.detail}
+    if code:
+        payload["code"] = code
+    return JSONResponse(status_code=exc.status_code, content=payload)
 
 @app.post("/api/analyze", response_model=AnalyzeResp)
 async def analyze(image: UploadFile = File(...)):
@@ -98,8 +100,13 @@ async def analyze(image: UploadFile = File(...)):
     # Parse & validate shape
     try:
         parsed = json.loads(clean)
-    except json.JSONDecodeError:
-        raise HTTPException(502, "Invalid response format from AI.")
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to parse AI JSON: {clean}")
+        raise HTTPException(
+            status_code=502,
+            detail="Invalid response format from AI.",
+            headers={"X-Error-Code":"INVALID_RESPONSE"}
+            )
 
     try:
         result = AnalyzeResp(**parsed)

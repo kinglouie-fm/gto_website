@@ -84,20 +84,22 @@ async function capture() {
 
         if (!response.ok) {
             const err = await response.json().catch(() => ({}))
-            let message = err.error || "Server error."
-            if (err.code) message += ` (${err.code})`
-            switch (response.status) {
-                // case 400: throw new Error('Please upload a valid image.')
-                // case 413: throw new Error('Image too large (max 5 MB).')
-                // case 422:
-                //     if (err.code === 'NO_CAR_DETECTED') throw new Error('No car detected.')
-                // default: throw new Error(err.error || 'Server error.')
-                case 400: throw new Error('Please upload a valid image.')
-                case 413: throw new Error('Image too large (max 5 MB).')
-                case 422:
-                    if (err.code === 'NO_CAR_DETECTED') throw new Error('No car detected.')
-                default: throw new Error(err.error || 'Server error.')
+            switch (err.code) {
+                case 'NO_CAR_DETECTED':
+                    throw new Error('No car detected. Please take a full shot of the vehicle.')
+                case 'INVALID_AI_FORMAT':
+                    throw new Error('Got an unexpected AI response—please try again.')
             }
+
+            if (response.status === 400) {
+                throw new Error('Please upload a valid image.')
+            }
+
+            if (response.status === 413) {
+                throw new Error('Image too large (max 5 MB).')
+            }
+
+            throw new Error(err.error || 'Server error.')
         }
 
         const details = await response.json()
