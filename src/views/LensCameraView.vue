@@ -87,8 +87,6 @@ async function capture() {
             switch (err.code) {
                 case 'NO_CAR_DETECTED':
                     throw new Error('No car detected. Please take a full shot of the vehicle.')
-                case 'INVALID_AI_FORMAT':
-                    throw new Error('Got an unexpected AI response—please try again.')
             }
 
             if (response.status === 400) {

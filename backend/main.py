@@ -88,10 +88,20 @@ async def analyze(image: UploadFile = File(...)):
             ]
         )
     except Timeout:
-        raise HTTPException(504, "Upstream timeout, please try again.")
+        raise HTTPException(
+            status_code=504, 
+            detail="Upstream timeout, please try again.",
+            headers={"X-Error-Code":"TIMEOUT"}
+        )
+    
     except OpenAIError as e:
         logger.exception("OpenAI error")
-        raise HTTPException(502, f"AI service unavailable: {e}")
+        logger.info(f"OpenAI error: {e}")
+        raise HTTPException(
+            status_code=502, 
+            detail="AI service unavailable",
+            headers={"X-Error-Code":"AI_UNAVAILABLE"}
+        )
 
     raw = resp.choices[0].message.content
     clean = sanitize_json(raw)
@@ -100,21 +110,14 @@ async def analyze(image: UploadFile = File(...)):
     # Parse & validate shape
     try:
         parsed = json.loads(clean)
-    except json.JSONDecodeError as e:
-        logger.error(f"Failed to parse AI JSON: {clean}")
-        raise HTTPException(
-            status_code=502,
-            detail="Invalid response format from AI.",
-            headers={"X-Error-Code":"INVALID_RESPONSE"}
-            )
-
-    try:
         result = AnalyzeResp(**parsed)
-    except ValidationError:
+        return result
+    except (json.JSONDecodeError, ValidationError):
+        logger.info("AI response didn’t match schema, treating as no car detected")
         raise HTTPException(
             status_code=422,
-            detail="No car details found in image",
-            headers={"X-Error-Code":"NO_CAR_DETECTED"}
+            detail="Could not detect car.",
+            headers={"X-Error-Code": "NO_CAR_DETECTED"}
         )
 
     return result
