@@ -3,9 +3,10 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel, Field, ValidationError
+from pydantic import BaseModel, Field, ValidationError, validator
 from openai import OpenAI, OpenAIError, Timeout
 from prompts import DETAILS_PROMPT
+from typing import Union
 
 load_dotenv()
 MAX_SIZE = int(os.getenv("MAX_CONTENT_LENGTH", 5_242_880))
@@ -36,16 +37,35 @@ def sanitize_json(raw: str) -> str:
     txt = re.sub(r"\n?```$", "", txt)
     return txt.strip()
 
-# Pydantic models matching your details JSON
+# Pydantic models 
 class EngineInfo(BaseModel):
     type: str
-    power_hp: int
-    torque_nm: int
+    power_hp: Union[int, str]
+    torque_nm: Union[int, str]
     exact_engine: str = Field(alias="exact engine")
 
+    @validator('power_hp', 'torque_nm', pre=True)
+    def parse_hp_torque(cls, v):
+        if isinstance(v, str) and v.isdigit():
+            return int(v)
+        return v
+
 class PerformanceInfo(BaseModel):
-    top_speed_kmh: int
-    acceleration_0_100_kmh_sec: float
+    top_speed_kmh: Union[int, str]
+    acceleration_0_100_kmh_sec: Union[float, str]
+
+    @validator('top_speed_kmh', pre=True)
+    def parse_speed(cls, v):
+        if isinstance(v, str) and v.isdigit():
+            return int(v)
+        return v
+
+    @validator('acceleration_0_100_kmh_sec', pre=True)
+    def parse_accel(cls, v):
+        try:
+            return float(v)
+        except:
+            return v
 
 class AnalyzeResp(BaseModel):
     make: str
@@ -119,8 +139,6 @@ async def analyze(image: UploadFile = File(...)):
             detail="Could not detect car.",
             headers={"X-Error-Code": "NO_CAR_DETECTED"}
         )
-
-    return result
 
 @app.exception_handler(Exception)
 async def general_exception_handler(request: Request, exc: Exception):
