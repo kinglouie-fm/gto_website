@@ -3,9 +3,9 @@
         alt="Mercedes G63 AMG" customClass="portfolio-hero" />
     <VerticalSlider />
     <section class="content container-pb">
-        <h3 class="text-center h-yellow h-first">Book a photoshooting</h3>
+        <h3 class="text-center h-yellow h-first">Book a free photoshooting</h3>
         <p class="text-center content-text">
-            We'd love to capture your car! Reach out through the contact form below or connect with us on social media.
+            We'd love to capture your car for free! Reach out through the contact form below or connect with us on social media.
         </p>
         <div class="container d-flex justify-content-center align-items-center">
             <Button @click="openForm">Book</Button>
@@ -29,7 +29,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import HeroSection from '@/components/HeroSection.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import PortfolioGrid from '@/components/PortfolioGrid.vue'
@@ -37,6 +37,10 @@ import SocialIcons from '@/components/SocialIcons.vue';
 import Button from '@/components/Button.vue';
 import Modal from '@/components/Modal.vue';
 import ImageModal from '@/components/ImageModal.vue';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const showModal = ref(false)
 // Replace the URL below with your actual Typeform embed URL.
@@ -109,6 +113,22 @@ const portfolioImages = [
     { src: '/images/portfolio/Ferrari_F8Tributo.webp', alt: 'Ferrari F8 Tributo', carName: 'Ferrari F8 Tributo', size: 'large', customClass: 'img-23' },
     { src: '/images/portfolio/SpaClassic-3.webp', alt: 'Spa Classic', carName: 'Spa Classic', size: 'small', customClass: 'img-24' },
 ]
+
+onMounted(() => {
+    // Animate .portfolio when it scrolls into view
+    gsap.from('.portfolio', {
+        scrollTrigger: {
+            trigger: '.portfolio',
+            start: 'top 60%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.2
+    })
+})
 </script>
 
 <style scoped>

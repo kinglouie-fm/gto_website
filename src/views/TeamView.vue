@@ -121,14 +121,14 @@ gsap.registerPlugin(ScrollTrigger)
 const highQualityLoaded = ref(false)
 
 // Reactive property to hold the URL of the clicked image
-const selectedImage = ref(null);
-const selectedCarName = ref('');
+// const selectedImage = ref(null);
+// const selectedCarName = ref('');
 
 // Function to open the image modal
-const openImageModal = (imageUrl, carName) => {
-    selectedImage.value = imageUrl;
-    selectedCarName.value = carName;
-}
+// const openImageModal = (imageUrl, carName) => {
+//     selectedImage.value = imageUrl;
+//     selectedCarName.value = carName;
+// }
 
 onMounted(() => {
     const img = new Image()
