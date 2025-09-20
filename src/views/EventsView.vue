@@ -1,6 +1,6 @@
 <template>
-    <HeroSection desktopSrc="/images/other/rollsroyce_cut.jpeg" mobileSrc="/images/portfolio/Gwagon.webp"
-        alt="Mercedes G63 AMG" customClass="portfolio-hero" />
+    <HeroSection desktopSrc="/images/other/scs7_people.webp" mobileSrc="/images/other/scs7_people.webp"
+        alt="Supercar Sunday #7 by GTO Luxembourg" customClass="events-hero" />
     
     <VerticalSlider />
 
@@ -9,7 +9,7 @@
 
         <div class="scs-container">
             <div class="scs-img-container">
-                <img src="/images/other/gto_scs6.webp" alt="Porsche 992 GT3" class="img-fluid gto_scs6 border"
+                <img src="/images/other/gto_scs6.webp" alt="Supercar Sunday #6" class="img-fluid gto_scs6 border"
                     @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
             </div>
             <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
@@ -38,8 +38,8 @@
         <div class="news-row heading-pt" role="list">
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">Luxemburger Wort</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/gto_scs6.webp" alt="First news image" 
-                    @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
+                <img class="img-fluid news-item-img border" src="/images/other/scs7_fordgt.webp" alt="News article from Luxemburger Wort" 
+                    @click="openImageModal('/images/other/scs7_fordgt.webp', 'Ford GT')" />
                 <p class="news-item-text content-text">
                 “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter on the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
                 </p>
@@ -48,8 +48,8 @@
 
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">RTL Lëtzebuerg</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/gto_tours.webp" alt="Second news image" 
-                @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
+                <img class="img-fluid news-item-img border" src="/images/other/scs7_classic.webp" alt="News article from RTL Lëtzebuerg" 
+                @click="openImageModal('/images/other/scs7_classic.webp', 'Ford Mustang Fastback GT and Ferrari 512 Testarossa')" />
                 <p class="content-text news-item-text">
                 “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.” <br> — <i>Translated from RTL Lëtzebuerg, 2018</i>
                 </p>
@@ -84,7 +84,18 @@ const openImageModal = (imageUrl, carName) => {
 }
 
 onMounted(() => {
-
+    gsap.from('.news', {
+        scrollTrigger: {
+            trigger: '.news',
+            start: 'top 60%',
+            toggleActions: 'play none none reverse'
+        },
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.2
+    });
 });
 </script>
 

@@ -75,14 +75,22 @@
     <section class="team container-p">
         <h3 class="text-center h-white">Get to know the team</h3>
         <div class="team-grid">
-            <TeamMemberCard image="/images/team/julien.webp" name="Julien Imhoff" role="Founder, President" />
-            <TeamMemberCard image="/images/team/ben.webp" name="Ben Thillen" role="Vice-President, <br />Webmaster" />
-            <TeamMemberCard image="/images/team/laurent.webp" name="Laurent Reding" role="Treasurer" />
-            <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary" />
-            <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal" />
-            <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Facebook" />
-            <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation" />
-            <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations" />
+            <TeamMemberCard image="/images/team/julien.webp" name="Julien Imhoff" role="Founder, President" 
+            @click="openImageModal('/images/team/julien.webp', 'Julien Imhoff, Founder and President of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/ben.webp" name="Ben Thillen" role="Vice-President, <br />Webmaster"
+            @click="openImageModal('/images/team/ben.webp', 'Ben Thillen, Vice-President and Webmaster of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/laurent.webp" name="Laurent Reding" role="Treasurer"
+            @click="openImageModal('/images/team/laurent.webp', 'Laurent Reding, Treasurer of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary"
+            @click="openImageModal('/images/team/jeff.webp', 'Jeff Nosbusch, Secretary of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal"
+            @click="openImageModal('/images/team/gilles.webp', 'Gilles Declercq, responsible for Administration and Legal matters.')" />
+            <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Facebook"
+            @click="openImageModal('/images/team/noah.webp', 'Noah Leuck, responsible for our Facebook presence.')" />
+            <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation"
+            @click="openImageModal('/images/team/jona.webp', 'Jona Leuck, responsible for Organisation.')" />
+            <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations"
+            @click="openImageModal('/images/team/dylan.webp', 'Dylan Perreira, responsible for media relations.')" />
         </div>
     </section>
 
@@ -121,14 +129,14 @@ gsap.registerPlugin(ScrollTrigger)
 const highQualityLoaded = ref(false)
 
 // Reactive property to hold the URL of the clicked image
-// const selectedImage = ref(null);
-// const selectedCarName = ref('');
+const selectedImage = ref(null);
+const selectedCarName = ref('');
 
 // Function to open the image modal
-// const openImageModal = (imageUrl, carName) => {
-//     selectedImage.value = imageUrl;
-//     selectedCarName.value = carName;
-// }
+const openImageModal = (imageUrl, carName) => {
+    selectedImage.value = imageUrl;
+    selectedCarName.value = carName;
+}
 
 onMounted(() => {
     const img = new Image()
