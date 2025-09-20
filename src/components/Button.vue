@@ -77,7 +77,7 @@ const handleClick = () => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;            /* keep space between text and arrow */
+  gap: 0.5rem;
   text-decoration: none;
 
   /* Make width responsive to content */
@@ -113,18 +113,16 @@ const handleClick = () => {
   transform: translateX(4px); /* arrow slides right */
 }
 
-/* Responsiveness like before */
 @media (min-width: 576px) {
   .btn {
-    width: 135px;
-    height: 45px;
+    min-width: 135px;
     font-size: 16px;
   }
 }
 
 @media (min-width: 768px) {
   .btn {
-    width: 165px;
+    min-width: 165px;
     height: 50px;
     font-size: 18px;
   }
@@ -132,9 +130,12 @@ const handleClick = () => {
 
 @media (min-width: 992px) {
   .btn {
-    width: 180px;
-    height: 70px;
+    min-width: 180px;
     font-size: 20px;
   }
+}
+
+@media (max-width: 360px) {
+  .btn .btn-arrow { display: none; }
 }
 </style>

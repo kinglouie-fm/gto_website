@@ -61,27 +61,11 @@ const normalizedTo = computed(() =>
 
 <style scoped>
 .btn {
-  width: 120px;
-  height: 40px;
-  color: rgb(48, 56, 65);
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: 600;
-  transition: all 0.2s ease;
-  background-color: white;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem; /* spacing between text and arrow */
-  text-decoration: none;
-}
-
-.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;            /* keep space between text and arrow */
   text-decoration: none;
+  gap: 0.5rem;
 
   /* Make width responsive to content */
   width: auto;            /* was: fixed width */
@@ -121,7 +105,6 @@ const normalizedTo = computed(() =>
 @media (min-width: 576px) {
   .btn {
     min-width: 135px;
-    height: 45px;
     font-size: 16px;
   }
 }
@@ -137,12 +120,10 @@ const normalizedTo = computed(() =>
 @media (min-width: 992px) {
   .btn {
     min-width: 180px;
-    height: 70px;
     font-size: 20px;
   }
 }
 
-/* Optional tiny-screen tweak: if space is super tight, hide the arrow */
 @media (max-width: 360px) {
   .btn .btn-arrow { display: none; }
 }
