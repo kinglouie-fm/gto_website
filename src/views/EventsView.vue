@@ -4,8 +4,8 @@
     
     <VerticalSlider />
 
-    <section class="events text-center container-p">
-        <h3 class="text-center h-yellow">Events</h3>
+    <section class="content events text-center container-p">
+        <h3 class="text-center h-yellow h-first">Events</h3>
 
         <div class="scs-container">
             <div class="scs-img-container">
@@ -38,7 +38,7 @@
         <div class="news-row heading-pt" role="list">
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">Luxemburger Wort</h4>
-                <img class="news-item-img border" src="/images/other/gto_scs6.webp" alt="First news image" />
+                <img class="img-fluid news-item-img border" src="/images/other/gto_scs6.webp" alt="First news image" />
                 <p class="news-item-text content-text">
                 “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter on the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
                 </p>
@@ -47,7 +47,7 @@
 
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">RTL Lëtzebuerg</h4>
-                <img class="news-item-img border" src="/images/other/gto_tours.webp" alt="Second news image" />
+                <img class="img-fluid news-item-img border" src="/images/other/gto_tours.webp" alt="Second news image" />
                 <p class="content-text news-item-text">
                 “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.” <br> — <i>Translated from RTL Lëtzebuerg, 2018</i>
                 </p>
@@ -79,6 +79,13 @@ onMounted(() => {
 
 .img-fluid {
     cursor: pointer;
+}
+
+.content {
+    background-color: rgb(48, 56, 65);
+    margin-top: -80px;
+    padding-top: 80px;
+    color: white;
 }
 
 .events {
@@ -198,6 +205,11 @@ onMounted(() => {
     .heading-pt {
         padding-top: 1.5rem;
     }
+
+    .content {
+        margin-top: -100px;
+        padding-top: 100px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -222,6 +234,11 @@ onMounted(() => {
         justify-content: center;
         align-items: flex-start;
     }
+
+    .content {
+        margin-top: -120px;
+        padding-top: 120px;
+    }
 }
 
 @media (min-width: 992px) {
@@ -230,6 +247,11 @@ onMounted(() => {
         width: 35%;
         max-width: 600px;
         max-height: 350px;
+    }
+
+    .content {
+        margin-top: -140px;
+        padding-top: 140px;
     }
 }
 </style>

@@ -14,6 +14,7 @@
                 <RouterLink class="nav-link nav-link-mobile" to="/team" @click="closeNavbar">Team</RouterLink>
                 <RouterLink class="nav-link nav-link-mobile" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
                 <RouterLink class="nav-link nav-link-mobile" to="/lens" @click="closeNavbar">Lens</RouterLink>
+                <RouterLink class="nav-link nav-link-mobile" to="/events" @click="closeNavbar">Events</RouterLink>
             </div>
         </div>
 
@@ -35,6 +36,7 @@
                     <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
                     <RouterLink class="nav-link mx-3" to="/team" @click="closeNavbar">Team</RouterLink>
                     <RouterLink class="nav-link" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
+                    <RouterLink class="nav-link" to="/events" @click="closeNavbar">Events</RouterLink>
                 </div>
             </div>
         </div>
