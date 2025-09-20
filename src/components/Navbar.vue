@@ -119,6 +119,7 @@ const toHome = () => {
     width: 80%;
     justify-content: space-around;
     align-items: center;
+    font-weight: 400;
 }
 
 /* Mobile nav links styling (initially invisible) */
