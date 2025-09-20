@@ -131,6 +131,17 @@ body {
     color: white;
 }
 
+.mi-text {
+    color: white;
+    font-family: 'Airstrike', sans-serif;
+    font-size: 1.25rem;
+}
+
+.drawer-cta {
+    font-family: 'Airstrike', sans-serif;
+    font-size: 1.5rem;
+}
+
 /* ---------------------- Responsive Adjustments ---------------------- */
 
 /* For screens 576px and wider */
