@@ -216,13 +216,14 @@ const toHome = () => { if (isMenuOpen.value) isMenuOpen.value = false; router.pu
   display: inline-flex; align-items: center; justify-content: center;
   color: #fff; text-decoration: none;
   font-size: 1.125rem; line-height: 1;
-  padding: 10px 0;
-  width: 100%;
+  padding: 10px 14px;
+  width: auto;
   gap: 15px;
 }
-.menu-item:hover { border-radius: 10px; }
 .mi-icon { display: inline-flex; align-items: center; justify-content: center; }
 .mi-text { display: inline-block; }
+
+.router-link-exact-active.menu-item { border: 1px solid white; border-radius: 10px;}
 
 /* CTA 60px below the links */
 .drawer-cta {
