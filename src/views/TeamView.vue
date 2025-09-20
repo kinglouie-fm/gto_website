@@ -89,7 +89,7 @@ text-center<template>
     <section class="friend container-p">
         <div class="friend-container">
             <img src="/images/team/ben_steimens.webp" alt="Our beloved friend Ben Steimens"
-                class="img-fluid ben_steimens" />
+                class="img-fluid ben_steimens border" />
         </div>
         <h4 class="text-center h-white-small heading-pt">Ben Steimens</h4>
         <p class="text-center content-text">

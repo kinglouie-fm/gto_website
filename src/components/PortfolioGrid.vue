@@ -56,6 +56,7 @@ const onImageClick = (image) => {
     display: block;
     cursor: pointer;
     background-color: rgb(48, 56, 65);
+    border-radius: 10px;
 }
 
 .grid-img.small {

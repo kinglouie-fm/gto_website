@@ -1,6 +1,6 @@
 <template>
     <div class="team-member">
-        <img :src="image" :alt="name" class="img-fluid team-img" />
+        <img :src="image" :alt="name" class="img-fluid team-img border" />
         <h4 class="h-member">{{ name }}</h4>
         <p class="team-role" v-html="role"></p>
     </div>
@@ -117,7 +117,7 @@ defineProps({
         margin-bottom: 25px;
     }
 
-    .team-member:hover {
+    .team-img:hover {
         transform: scale(1.05);
         transition: transform 0.2s ease;
     }
