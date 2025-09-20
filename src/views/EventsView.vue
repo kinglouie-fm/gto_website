@@ -110,8 +110,8 @@ p {
 }
 
 .events .content-text {
-  width: calc(var(--event-card-w) + 200px);
-  max-width: calc(var(--event-card-w) + 200px);
+  width: calc(var(--event-card-w) + 100px);
+  max-width: calc(var(--event-card-w) + 100px);
   padding: 0 20px;
   text-align: left;
 }
@@ -137,6 +137,11 @@ p {
 
 .news {
     background-color: rgb(76, 84, 94);
+}
+
+/* ButtonFilled and Button have right margins. Remove these in this specific case. */
+.news-button {
+    margin-right: 0;
 }
 
 /* Container to center the image using flexbox */
@@ -174,50 +179,51 @@ p {
 }
 
 .news {
-  background-color: rgb(76, 84, 94);
+    background-color: rgb(76, 84, 94);
 
-  /* CSS custom props to control the card width + gap per breakpoint */
-  --news-card-w: 243px;  /* base (mobile) */
-  --news-gap: 24px;
+    /* CSS custom props to control the card width + gap per breakpoint */
+    --news-card-w: 243px;  /* base (mobile) */
+    --news-gap: 24px;
 }
 
 /* Layout: stack + center on mobile */
 .news-row {
-  display: flex;
-  flex-direction: column;
-  gap: var(--news-gap);
-  justify-content: center;  /* main axis (vertical on mobile) */
-  align-items: center;      /* cross-axis center for the cards */
-  text-align: left;         /* keep card content left-aligned */
-  margin-top: 1.25rem;      /* keep your heading-pt rhythm */
+    display: flex;
+    flex-direction: column;
+    gap: var(--news-gap);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 1.25rem;
 }
 
 /* Card */
 .news-item {
-  display: flex;
-  flex-direction: column;
-  /* gap: 15px; */
-  align-items: flex-start;
-  width: var(--news-card-w);
+    display: flex;
+    flex-direction: column;
+    /* gap: 15px; */
+    align-items: center;
+    width: var(--news-card-w);
 }
 
 /* Keep headings on one line so both cards align nicely */
 .news-item h4 {
-  /* margin: 0; */
-  line-height: 1.2;
-  white-space: nowrap;
-  /* overflow: hidden; */
-  text-overflow: ellipsis;
+    /* margin: 0; */
+    line-height: 1.2;
+    white-space: nowrap;
+    /* overflow: hidden; */
+    text-overflow: ellipsis;
 }
 
 /* Image scales with the card width */
 .news-item-img {
-  width: var(--news-card-w);
-  aspect-ratio: 243 / 160;
-  height: auto;
-  border-radius: 10px;
-  object-fit: cover;
-  display: block;
+    width: var(--news-card-w);
+    aspect-ratio: 243 / 160;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 1rem;
 }
 
 /* Text width follows card width; kill global margins inside cards */
@@ -225,6 +231,7 @@ p {
   width: var(--news-card-w);
   max-width: var(--news-card-w);
   margin-left: 0;
+  margin-right: 0;
 }
 
 @media (min-width: 576px) {
@@ -282,6 +289,11 @@ p {
         flex-direction: row;
         justify-content: center;
         align-items: flex-start;
+        text-align: left;
+    }
+
+    .news-item {
+        align-items: flex-start;
     }
 
     .content {
@@ -290,6 +302,11 @@ p {
     }
 
     .events { --event-card-w: min(35vw, 400px); }
+
+    .events .content-text {
+        width: calc(var(--event-card-w) + 200px);
+        max-width: calc(var(--event-card-w) + 200px);
+    }
 }
 
 @media (min-width: 992px) {
