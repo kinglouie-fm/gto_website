@@ -11,7 +11,7 @@
             <RouterLink class="routerlink me-4" to="/privacy">Privacy Policy</RouterLink>
             <RouterLink class="routerlink" to="/cookie-policy">Cookie Policy</RouterLink>
         </p>
-        <p class="copyright">
+        <p class="copyright my-0 pb-1">
             &copy; 2025 GTO Luxembourg. All rights reserved.
         </p>
     </section>

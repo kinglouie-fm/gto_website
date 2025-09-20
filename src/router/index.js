@@ -8,6 +8,7 @@ import LensDetailsView from '../views/LensDetailsView.vue'
 import TermsAndConditions from '../views/TermsAndConditions.vue'
 import PrivacyView from '../views/PrivacyView.vue'
 import CookiePolicyView from '../views/CookiePolicyView.vue'
+import EventsView from '../views/EventsView.vue'
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: '/portfolio',
     name: 'portfolio',
     component: PortfolioView
+  },
+  {
+    path: '/events',
+    name: 'events',
+    component: EventsView
   },
   {
     path: '/lens',

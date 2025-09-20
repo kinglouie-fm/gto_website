@@ -1,4 +1,4 @@
-text-center<template>
+<template>
     <section class="hero">
         <img v-if="!highQualityLoaded" src="/images/team/team.webp" alt="GTO Team Picture low quality"
             class="hero-img low-res" />

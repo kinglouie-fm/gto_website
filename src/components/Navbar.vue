@@ -1,7 +1,5 @@
 <template>
-    <!-- Mobile Navbar: visible on screens smaller than 768px -->
-    <nav class="navbar fixed-top mobile-navbar d-md-none">
-        <!-- Toggle Icon Container -->
+<nav class="navbar fixed-top mobile-navbar d-md-none">
         <div class="toggle-container">
             <transition name="icon-fade" mode="out-in">
                 <img v-if="!isMenuOpen" key="hamburger" src="/icons/hamburger.svg" alt="Menu" class="toggle-icon"
@@ -10,7 +8,6 @@
             </transition>
         </div>
 
-        <!-- Nav Links Container -->
         <div class="nav-links-container" :class="{ open: isMenuOpen }">
             <div class="nav-links" :class="{ visible: isMenuOpen }">
                 <RouterLink class="nav-link nav-link-mobile" to="/" @click="closeNavbar">Home</RouterLink>
@@ -20,13 +17,11 @@
             </div>
         </div>
 
-        <!-- Logo Container (mobile) -->
         <div class="logo-container" :class="{ open: isMenuOpen, closed: !isMenuOpen }">
             <img src="/images/gto_logo.png" alt="Logo" class="logo" @click="toHome()" />
         </div>
     </nav>
 
-    <!-- Desktop Navbar: visible on screens 768px and wider -->
     <nav class="navbar desktop-navbar fixed-top d-none d-md-block">
         <div class="desktop-container mx-4">
             <div class="left-container">
