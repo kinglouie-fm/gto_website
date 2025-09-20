@@ -1,7 +1,5 @@
 <template>
-    <!-- Mobile Navbar: visible on screens smaller than 768px -->
-    <nav class="navbar fixed-top mobile-navbar d-md-none">
-        <!-- Toggle Icon Container -->
+<nav class="navbar fixed-top mobile-navbar d-md-none">
         <div class="toggle-container">
             <transition name="icon-fade" mode="out-in">
                 <img v-if="!isMenuOpen" key="hamburger" src="/icons/hamburger.svg" alt="Menu" class="toggle-icon"
@@ -10,7 +8,6 @@
             </transition>
         </div>
 
-        <!-- Nav Links Container -->
         <div class="nav-links-container" :class="{ open: isMenuOpen }">
             <div class="nav-links" :class="{ visible: isMenuOpen }">
                 <RouterLink class="nav-link nav-link-mobile" to="/" @click="closeNavbar">Home</RouterLink>
@@ -20,13 +17,11 @@
             </div>
         </div>
 
-        <!-- Logo Container (mobile) -->
         <div class="logo-container" :class="{ open: isMenuOpen, closed: !isMenuOpen }">
             <img src="/images/gto_logo.png" alt="Logo" class="logo" @click="toHome()" />
         </div>
     </nav>
 
-    <!-- Desktop Navbar: visible on screens 768px and wider -->
     <nav class="navbar desktop-navbar fixed-top d-none d-md-block">
         <div class="desktop-container mx-4">
             <div class="left-container">
@@ -37,9 +32,10 @@
             </div>
             <div class="right-container">
                 <div class="nav-links d-flex">
-                    <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
-                    <RouterLink class="nav-link mx-3" to="/team" @click="closeNavbar">Team</RouterLink>
-                    <RouterLink class="nav-link" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
+                    <RouterLink class="nav-link nav-link-me" to="/" @click="closeNavbar">Home</RouterLink>
+                    <RouterLink class="nav-link nav-link-me" to="/team" @click="closeNavbar">Team</RouterLink>
+                    <RouterLink class="nav-link nav-link-me" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
+                    <RouterLink class="nav-link" to="/events" @click="closeNavbar">Events</RouterLink>
                 </div>
             </div>
         </div>
@@ -72,7 +68,6 @@ const toHome = () => {
 </script>
 
 <style scoped>
-/* COMMON STYLES */
 .navbar {
     top: 0;
     background-color: rgba(48, 56, 65, 0.75);
@@ -124,6 +119,7 @@ const toHome = () => {
     width: 80%;
     justify-content: space-around;
     align-items: center;
+    font-weight: 400;
 }
 
 /* Mobile nav links styling (initially invisible) */
@@ -246,11 +242,8 @@ const toHome = () => {
     border: 1px solid white;
 }
 
-/* ------------------ Media Queries ------------------ */
-
 /* For screens 576px and wider */
 @media (min-width: 576px) {
-
     .navbar,
     .logo-container,
     .nav-links-container,
@@ -270,7 +263,6 @@ const toHome = () => {
 
 /* For screens 768px and wider */
 @media (min-width: 768px) {
-
     .navbar,
     .logo-container,
     .nav-links-container,
@@ -286,11 +278,14 @@ const toHome = () => {
     .desktop-navbar .nav-link {
         font-size: 20px;
     }
+
+    .right-container .nav-link-me {
+        margin-right: 5px;
+    }
 }
 
 /* For screens 992px and wider */
 @media (min-width: 992px) {
-
     .navbar,
     .logo-container,
     .nav-links-container,
@@ -305,6 +300,16 @@ const toHome = () => {
     .nav-link-mobile,
     .desktop-navbar .nav-link {
         font-size: 22px;
+    }
+
+    .right-container .nav-link-me {
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .right-container .nav-link-me {
+        margin-right: 25px;
     }
 }
 </style>

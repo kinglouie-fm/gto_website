@@ -27,7 +27,7 @@
         </p>
     </section>
 
-    <section class="photoshooting container-p">
+    <!-- <section class="photoshooting container-p">
         <div class="photoshooting-wrapper">
             <div class="photoshooting-text text-center">
                 <h3 class="h-white">Want to book a <br>photoshooting?</h3>
@@ -70,26 +70,34 @@
                 connect with other car enthusiasts along the way.
             </p>
         </div>
-    </section>
+    </section> -->
 
     <section class="team container-p">
         <h3 class="text-center h-white">Get to know the team</h3>
         <div class="team-grid">
-            <TeamMemberCard image="/images/team/julien.webp" name="Julien Imhoff" role="Founder, President" />
-            <TeamMemberCard image="/images/team/ben.webp" name="Ben Thillen" role="Vice-President, <br />Webmaster" />
-            <TeamMemberCard image="/images/team/laurent.webp" name="Laurent Reding" role="Treasurer" />
-            <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary" />
-            <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal" />
-            <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Facebook" />
-            <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation" />
-            <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations" />
+            <TeamMemberCard image="/images/team/julien.webp" name="Julien Imhoff" role="Founder, President" 
+            @click="openImageModal('/images/team/julien.webp', 'Julien Imhoff, Founder and President of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/ben.webp" name="Ben Thillen" role="Vice-President, <br />Webmaster"
+            @click="openImageModal('/images/team/ben.webp', 'Ben Thillen, Vice-President and Webmaster of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/laurent.webp" name="Laurent Reding" role="Treasurer"
+            @click="openImageModal('/images/team/laurent.webp', 'Laurent Reding, Treasurer of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary"
+            @click="openImageModal('/images/team/jeff.webp', 'Jeff Nosbusch, Secretary of GTO Luxembourg')" />
+            <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal"
+            @click="openImageModal('/images/team/gilles.webp', 'Gilles Declercq, responsible for Administration and Legal matters.')" />
+            <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Facebook"
+            @click="openImageModal('/images/team/noah.webp', 'Noah Leuck, responsible for our Facebook presence.')" />
+            <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation"
+            @click="openImageModal('/images/team/jona.webp', 'Jona Leuck, responsible for Organisation.')" />
+            <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations"
+            @click="openImageModal('/images/team/dylan.webp', 'Dylan Perreira, responsible for media relations.')" />
         </div>
     </section>
 
     <section class="friend container-p">
         <div class="friend-container">
             <img src="/images/team/ben_steimens.webp" alt="Our beloved friend Ben Steimens"
-                class="img-fluid ben_steimens" />
+                class="img-fluid ben_steimens border" />
         </div>
         <h4 class="text-center h-white-small heading-pt">Ben Steimens</h4>
         <p class="text-center content-text">
@@ -110,7 +118,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
-import ButtonFilled from '@/components/ButtonFilled.vue';
+// import ButtonFilled from '@/components/ButtonFilled.vue';
 import ImageModal from '@/components/ImageModal.vue';
 import TeamMemberCard from '@/components/TeamMemberCard.vue'
 import gsap from 'gsap';
@@ -137,39 +145,39 @@ onMounted(() => {
         highQualityLoaded.value = true
     }
 
-    // Animate .photoshooting when it scrolls into view
-    gsap.from('.photoshooting', {
-        scrollTrigger: {
-            trigger: '.photoshooting',
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.2
-    })
+    // // Animate .photoshooting when it scrolls into view
+    // gsap.from('.photoshooting', {
+    //     scrollTrigger: {
+    //         trigger: '.photoshooting',
+    //         start: 'top 85%',
+    //         toggleActions: 'play none none reverse'
+    //     },
+    //     opacity: 0,
+    //     y: 50,
+    //     duration: 1,
+    //     ease: 'power2.out',
+    //     delay: 0.2
+    // })
 
-    // Animate .events when it scrolls into view
-    gsap.from('.events', {
-        scrollTrigger: {
-            trigger: '.events',
-            start: 'top 90%',
-            toggleActions: 'play none none reverse'
-        },
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: 'power2.out',
-        delay: 0.2
-    })
+    // // Animate .events when it scrolls into view
+    // gsap.from('.events', {
+    //     scrollTrigger: {
+    //         trigger: '.events',
+    //         start: 'top 90%',
+    //         toggleActions: 'play none none reverse'
+    //     },
+    //     opacity: 0,
+    //     y: 50,
+    //     duration: 1,
+    //     ease: 'power2.out',
+    //     delay: 0.2
+    // })
 
     // Animate .team when it scrolls into view
     gsap.from('.team', {
         scrollTrigger: {
             trigger: '.team',
-            start: 'top 90%',
+            start: 'top 50%',
             toggleActions: 'play none none reverse'
         },
         opacity: 0,
@@ -183,7 +191,7 @@ onMounted(() => {
     gsap.from('.friend', {
         scrollTrigger: {
             trigger: '.friend',
-            start: 'top 90%',
+            start: 'top 60%',
             toggleActions: 'play none none reverse'
         },
         opacity: 0,
@@ -218,29 +226,27 @@ onMounted(() => {
     color: white;
 }
 
-.photoshooting,
+/* .photoshooting, */
 .team {
     background-color: rgb(76, 84, 94);
     color: white;
 }
 
 /* The wrapper remains a flex container that stacks vertically on mobile */
-.photoshooting-wrapper {
+/* .photoshooting-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* add some vertical spacing */
     gap: 20px;
-}
+} */
 
 /* Ferrari container – add padding/margin so the image doesn't touch the container edges */
-.ferrari-container {
+/* .ferrari-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* Set a max-width to control the size on mobile */
     max-width: 90%;
-}
+} */
 
 /* Optionally, adjust the image size if needed */
 .ferrari-488-pista {
@@ -251,48 +257,48 @@ onMounted(() => {
     border-radius: 10px;
 }
 
-.events {
+/* .events {
     background-color: rgb(48, 56, 65);
-}
+} */
 
 .img-fluid {
     cursor: pointer;
 }
 
-.events .h-yellow,
-.team .h-white {
+/* .events, */
+.h-yellow .team .h-white {
     padding-bottom: 1.25rem;
 }
 
 /* Container to center the image using flexbox */
-.scs-img-container {
+/* .scs-img-container {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 /* Base styles for the Ferrari image on mobile (e.g. ~393px width screens) */
-.gto_scs6 {
+/* .gto_scs6 {
     width: 243px;
     height: 160px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-}
+} */
 
 /* Container to center the image using flexbox */
-.tour-img-container {
+/* .tour-img-container {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 /* Base styles for the Ferrari image on mobile (e.g. ~393px width screens) */
-.gto_tour {
+/* .gto_tour {
     width: 243px;
     height: 160px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
-}
+} */
 
 .friend-container {
     display: flex;
@@ -308,9 +314,9 @@ onMounted(() => {
 }
 
 /* Paragraph base font size */
-.content .photoshooting .events p {
+/* .photoshooting .events, */
+.content, p {
     font-size: 1rem;
-    /* line-height: 15px; */
 }
 
 .heading-pt {
@@ -327,8 +333,8 @@ onMounted(() => {
     }
 
     .ferrari-488-pista,
-    .gto_scs6,
-    .gto_tour,
+    /* .gto_scs6, */
+    /* .gto_tour, */
     .ben_steimens {
         width: 40%;
         max-width: 300px;
@@ -336,8 +342,8 @@ onMounted(() => {
         max-height: 160px;
     }
 
-    .events .h-yellow,
-    .team .h-white {
+    /* .events, */
+    .h-yellow .team .h-white {
         padding-bottom: 1.5rem;
     }
 
@@ -375,31 +381,31 @@ onMounted(() => {
     }
 
     .ferrari-488-pista,
-    .gto_scs6,
-    .gto_tour,
+    /* .gto_scs6, */
+    /* .gto_tour, */
     .ben_steimens {
         width: 35%;
         max-width: 400px;
         max-height: 200px;
     }
 
-    .photoshooting-wrapper {
+    /* .photoshooting-wrapper {
         flex-direction: row;
         align-items: center;
         margin: 0 auto;
         max-width: 1200px;
-    }
+    } */
 
     /* Ensure the text container and image container have equal widths or specific ratios */
-    .photoshooting-text {
+    /* .photoshooting-text {
         flex: 1;
         text-align: left;
-    }
+    } */
 
-    .ferrari-container {
+    /* .ferrari-container {
         flex: 1;
         max-width: 50%;
-    }
+    } */
 
     .ferrari-488-pista {
         width: 100%;
@@ -417,8 +423,8 @@ onMounted(() => {
     }
 
     .ferrari-488-pista,
-    .gto_scs6,
-    .gto_tour,
+    /* .gto_scs6, */
+    /* .gto_tour, */
     .ben_steimens {
         width: 35%;
         max-width: 600px;

@@ -15,7 +15,7 @@ import CookieBanner from './components/CookieBanner.vue'
 const route = useRoute()
 
 const bgColor = computed(() =>
-    route.path === '/portfolio' ? 'rgb(76, 84, 94)' : 'rgb(48, 56, 65)'
+    route.path === '/portfolio' || route.path === '/events' ? 'rgb(76, 84, 94)' : 'rgb(48, 56, 65)'
 )
 </script>
 
