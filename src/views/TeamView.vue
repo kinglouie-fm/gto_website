@@ -27,51 +27,6 @@
         </p>
     </section>
 
-    <!-- <section class="photoshooting container-p">
-        <div class="photoshooting-wrapper">
-            <div class="photoshooting-text text-center">
-                <h3 class="h-white">Want to book a <br>photoshooting?</h3>
-                <div class="button-container d-flex justify-content-center align-items-center">
-                    <ButtonFilled to="portfolio" class="portfolio-button">Portfolio</ButtonFilled>
-                </div>
-            </div>
-            <div class="ferrari-container">
-                <img src="/images/other/ferrari_488pista.webp" alt="Ferrari 488 Pista"
-                    class="img-fluid ferrari-488-pista"
-                    @click="openImageModal('/images/other/ferrari_488pista.webp', 'Ferrari 488 Pista')" />
-            </div>
-        </div>
-    </section>
-
-    <section class="events text-center container-p">
-        <h3 class="text-center h-yellow">Events</h3>
-
-        <div class="scs-container">
-            <div class="scs-img-container">
-                <img src="/images/other/gto_scs6.webp" alt="Porsche 992 GT3" class="img-fluid gto_scs6"
-                    @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
-            </div>
-            <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
-            <p class="text-center content-text">
-                Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
-                enthusiasts to share their passion, to check out some cool cars, and spend a great day in good company.
-            </p>
-        </div>
-
-        <div class="tour-container">
-            <div class="tour-img-container">
-                <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg" class="img-fluid gto_tour"
-                    @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
-            </div>
-            <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
-            <p class="text-center content-text">
-                GTO goes Luxembourg is our smaller car tour that we organize a few times a year. It's usually held in a
-                more private and relaxed setting, giving everyone a chance to enjoy the drive, have some fun, and
-                connect with other car enthusiasts along the way.
-            </p>
-        </div>
-    </section> -->
-
     <section class="team container-p">
         <h3 class="text-center h-white">Get to know the team</h3>
         <div class="team-grid">
@@ -118,7 +73,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
-// import ButtonFilled from '@/components/ButtonFilled.vue';
 import ImageModal from '@/components/ImageModal.vue';
 import TeamMemberCard from '@/components/TeamMemberCard.vue'
 import gsap from 'gsap';
@@ -144,34 +98,6 @@ onMounted(() => {
     img.onload = () => {
         highQualityLoaded.value = true
     }
-
-    // // Animate .photoshooting when it scrolls into view
-    // gsap.from('.photoshooting', {
-    //     scrollTrigger: {
-    //         trigger: '.photoshooting',
-    //         start: 'top 85%',
-    //         toggleActions: 'play none none reverse'
-    //     },
-    //     opacity: 0,
-    //     y: 50,
-    //     duration: 1,
-    //     ease: 'power2.out',
-    //     delay: 0.2
-    // })
-
-    // // Animate .events when it scrolls into view
-    // gsap.from('.events', {
-    //     scrollTrigger: {
-    //         trigger: '.events',
-    //         start: 'top 90%',
-    //         toggleActions: 'play none none reverse'
-    //     },
-    //     opacity: 0,
-    //     y: 50,
-    //     duration: 1,
-    //     ease: 'power2.out',
-    //     delay: 0.2
-    // })
 
     // Animate .team when it scrolls into view
     gsap.from('.team', {
@@ -204,7 +130,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* ---------------------- Base Styles (for screens below 576px) ---------------------- */
 .hero {
     margin-top: var(--navbar-height);
 }
@@ -214,11 +139,9 @@ onMounted(() => {
     gap: 30px;
     padding: 0 20px;
     justify-content: center;
-    /* Default: two columns for mobile */
     grid-template-columns: repeat(2, 1fr);
 }
 
-/* Content section overlaps the hero by 80px */
 .content {
     background-color: rgb(48, 56, 65);
     margin-top: -80px;
@@ -226,79 +149,18 @@ onMounted(() => {
     color: white;
 }
 
-/* .photoshooting, */
 .team {
     background-color: rgb(76, 84, 94);
     color: white;
 }
 
-/* The wrapper remains a flex container that stacks vertically on mobile */
-/* .photoshooting-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-} */
-
-/* Ferrari container – add padding/margin so the image doesn't touch the container edges */
-/* .ferrari-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 90%;
-} */
-
-/* Optionally, adjust the image size if needed */
-.ferrari-488-pista {
-    width: 100%;
-    height: auto;
-    max-width: 243px;
-    /* Base size for mobile */
-    border-radius: 10px;
-}
-
-/* .events {
-    background-color: rgb(48, 56, 65);
-} */
-
 .img-fluid {
     cursor: pointer;
 }
 
-/* .events, */
 .h-yellow .team .h-white {
     padding-bottom: 1.25rem;
 }
-
-/* Container to center the image using flexbox */
-/* .scs-img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* Base styles for the Ferrari image on mobile (e.g. ~393px width screens) */
-/* .gto_scs6 {
-    width: 243px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-} */
-
-/* Container to center the image using flexbox */
-/* .tour-img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
-
-/* Base styles for the Ferrari image on mobile (e.g. ~393px width screens) */
-/* .gto_tour {
-    width: 243px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 10px 10px 0 0;
-} */
 
 .friend-container {
     display: flex;
@@ -314,7 +176,6 @@ onMounted(() => {
 }
 
 /* Paragraph base font size */
-/* .photoshooting .events, */
 .content, p {
     font-size: 1rem;
 }
@@ -323,8 +184,6 @@ onMounted(() => {
     padding-top: 1.25rem;
 }
 
-/* ---------------------- Responsive Adjustments ---------------------- */
-
 /* For screens 576px and wider */
 @media (min-width: 576px) {
     .content {
@@ -332,9 +191,6 @@ onMounted(() => {
         padding-top: 100px;
     }
 
-    .ferrari-488-pista,
-    /* .gto_scs6, */
-    /* .gto_tour, */
     .ben_steimens {
         width: 40%;
         max-width: 300px;
@@ -342,20 +198,12 @@ onMounted(() => {
         max-height: 160px;
     }
 
-    /* .events, */
     .h-yellow .team .h-white {
         padding-bottom: 1.5rem;
     }
 
     .heading-pt {
         padding-top: 1.5rem;
-    }
-
-    .ferrari-488-pista {
-        width: 100%;
-        height: auto;
-        max-width: 300px;
-        /* This can be increased by media queries below */
     }
 }
 
@@ -370,48 +218,10 @@ onMounted(() => {
         padding-top: 120px;
     }
 
-    /* Since it is a special layout when screen larger */
-    .photoshooting .h-white {
-        padding-top: 0;
-    }
-
-    /* Since it is a special layout when screen larger */
-    .portfolio-button {
-        margin-top: 20px;
-    }
-
-    .ferrari-488-pista,
-    /* .gto_scs6, */
-    /* .gto_tour, */
     .ben_steimens {
         width: 35%;
         max-width: 400px;
         max-height: 200px;
-    }
-
-    /* .photoshooting-wrapper {
-        flex-direction: row;
-        align-items: center;
-        margin: 0 auto;
-        max-width: 1200px;
-    } */
-
-    /* Ensure the text container and image container have equal widths or specific ratios */
-    /* .photoshooting-text {
-        flex: 1;
-        text-align: left;
-    } */
-
-    /* .ferrari-container {
-        flex: 1;
-        max-width: 50%;
-    } */
-
-    .ferrari-488-pista {
-        width: 100%;
-        height: auto;
-        max-width: 300px;
-        /* This can be increased by media queries below */
     }
 }
 
@@ -422,9 +232,6 @@ onMounted(() => {
         padding-top: 140px;
     }
 
-    .ferrari-488-pista,
-    /* .gto_scs6, */
-    /* .gto_tour, */
     .ben_steimens {
         width: 35%;
         max-width: 600px;
@@ -433,12 +240,6 @@ onMounted(() => {
 
     .team .h-white {
         padding-bottom: 2.5rem;
-    }
-
-    .ferrari-488-pista {
-        width: 100%;
-        height: auto;
-        max-width: 400px;
     }
 }
 
