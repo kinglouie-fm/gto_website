@@ -13,7 +13,7 @@
                     @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
             </div>
             <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
-            <p class="text-center content-text">
+            <p class="text-center content-text scs6-text">
                 Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
                 enthusiasts to share their passion, to check out some cool cars, and spend a great day in good company.
             </p>
@@ -25,7 +25,7 @@
                     @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
             </div>
             <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
-            <p class="text-center content-text">
+            <p class="text-center content-text tour-text">
                 GTO goes Luxembourg is our smaller car tour that we organize a few times a year. It's usually held in a
                 more private and relaxed setting, giving everyone a chance to enjoy the drive, have some fun, and
                 connect with other car enthusiasts along the way.
@@ -38,7 +38,8 @@
         <div class="news-row heading-pt" role="list">
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">Luxemburger Wort</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/gto_scs6.webp" alt="First news image" />
+                <img class="img-fluid news-item-img border" src="/images/other/gto_scs6.webp" alt="First news image" 
+                    @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
                 <p class="news-item-text content-text">
                 “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter on the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
                 </p>
@@ -47,7 +48,8 @@
 
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">RTL Lëtzebuerg</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/gto_tours.webp" alt="Second news image" />
+                <img class="img-fluid news-item-img border" src="/images/other/gto_tours.webp" alt="Second news image" 
+                @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
                 <p class="content-text news-item-text">
                 “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.” <br> — <i>Translated from RTL Lëtzebuerg, 2018</i>
                 </p>
@@ -55,11 +57,15 @@
             </article>
         </div>
     </section>
+
+    <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
+        @close="selectedImage = null" />
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
 import HeroSection from '@/components/HeroSection.vue';
+import ImageModal from '@/components/ImageModal.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import ButtonFilled from '@/components/ButtonFilled.vue';
 import gsap from 'gsap';
@@ -67,16 +73,22 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Reactive property to hold the URL of the clicked image
+const selectedImage = ref(null);
+const selectedCarName = ref('');
+
+// Function to open the image modal
+const openImageModal = (imageUrl, carName) => {
+    selectedImage.value = imageUrl;
+    selectedCarName.value = carName;
+}
+
 onMounted(() => {
 
 });
 </script>
 
 <style scoped>
-.hero {
-    margin-top: var(--navbar-height);
-}
-
 .img-fluid {
     cursor: pointer;
 }
@@ -88,8 +100,39 @@ onMounted(() => {
     color: white;
 }
 
+p {
+    margin-top: 0;
+}
+
 .events {
     background-color: rgb(48, 56, 65);
+    --event-card-w: 243px;
+}
+
+.events .content-text {
+  width: calc(var(--event-card-w) + 200px);
+  max-width: calc(var(--event-card-w) + 200px);
+  padding: 0 20px;
+  text-align: left;
+}
+
+.scs-container,
+.tour-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;                 /* header → image → text spacing */
+}
+
+/* Images: use the variable width + keep your ratio/radius */
+.events .scs-img-container .gto_scs6,
+.events .tour-img-container .gto_tour {
+  width: var(--event-card-w);
+  aspect-ratio: 243 / 160;
+  height: auto;              /* override fixed height */
+  border-radius: 10px;
+  object-fit: cover;
+  display: block;
 }
 
 .news {
@@ -197,6 +240,8 @@ onMounted(() => {
         padding-bottom: 1.5rem;
     }
 
+    .events { --event-card-w: min(40vw, 300px); }
+
     .news {
         --news-card-w: min(40vw, 300px);
         --news-gap: 32px;
@@ -224,6 +269,10 @@ onMounted(() => {
         max-height: 200px;
     }
 
+    .gto_scs6 {
+        margin-top: 2rem;
+    }
+
     .news {
         --news-card-w: min(35vw, 400px);
         --news-gap: 100px;
@@ -239,6 +288,8 @@ onMounted(() => {
         margin-top: -120px;
         padding-top: 120px;
     }
+
+    .events { --event-card-w: min(35vw, 400px); }
 }
 
 @media (min-width: 992px) {
@@ -249,9 +300,20 @@ onMounted(() => {
         max-height: 350px;
     }
 
+    .scs6-text,
+    .tour-text {
+        margin-bottom: 4rem;
+    }
+
+    .news-item-img {
+        margin-bottom: 2rem;
+    }
+
     .content {
         margin-top: -140px;
         padding-top: 140px;
     }
+
+    .events { --event-card-w: min(35vw, 600px); }
 }
 </style>

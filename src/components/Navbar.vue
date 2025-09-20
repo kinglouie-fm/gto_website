@@ -14,7 +14,6 @@
                 <RouterLink class="nav-link nav-link-mobile" to="/team" @click="closeNavbar">Team</RouterLink>
                 <RouterLink class="nav-link nav-link-mobile" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
                 <RouterLink class="nav-link nav-link-mobile" to="/lens" @click="closeNavbar">Lens</RouterLink>
-                <RouterLink class="nav-link nav-link-mobile" to="/events" @click="closeNavbar">Events</RouterLink>
             </div>
         </div>
 
@@ -33,9 +32,9 @@
             </div>
             <div class="right-container">
                 <div class="nav-links d-flex">
-                    <RouterLink class="nav-link" to="/" @click="closeNavbar">Home</RouterLink>
-                    <RouterLink class="nav-link mx-3" to="/team" @click="closeNavbar">Team</RouterLink>
-                    <RouterLink class="nav-link" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
+                    <RouterLink class="nav-link nav-link-me" to="/" @click="closeNavbar">Home</RouterLink>
+                    <RouterLink class="nav-link nav-link-me" to="/team" @click="closeNavbar">Team</RouterLink>
+                    <RouterLink class="nav-link nav-link-me" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
                     <RouterLink class="nav-link" to="/events" @click="closeNavbar">Events</RouterLink>
                 </div>
             </div>
@@ -69,7 +68,6 @@ const toHome = () => {
 </script>
 
 <style scoped>
-/* COMMON STYLES */
 .navbar {
     top: 0;
     background-color: rgba(48, 56, 65, 0.75);
@@ -243,11 +241,8 @@ const toHome = () => {
     border: 1px solid white;
 }
 
-/* ------------------ Media Queries ------------------ */
-
 /* For screens 576px and wider */
 @media (min-width: 576px) {
-
     .navbar,
     .logo-container,
     .nav-links-container,
@@ -267,7 +262,6 @@ const toHome = () => {
 
 /* For screens 768px and wider */
 @media (min-width: 768px) {
-
     .navbar,
     .logo-container,
     .nav-links-container,
@@ -283,11 +277,14 @@ const toHome = () => {
     .desktop-navbar .nav-link {
         font-size: 20px;
     }
+
+    .right-container .nav-link-me {
+        margin-right: 5px;
+    }
 }
 
 /* For screens 992px and wider */
 @media (min-width: 992px) {
-
     .navbar,
     .logo-container,
     .nav-links-container,
@@ -302,6 +299,16 @@ const toHome = () => {
     .nav-link-mobile,
     .desktop-navbar .nav-link {
         font-size: 22px;
+    }
+
+    .right-container .nav-link-me {
+        margin-right: 10px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .right-container .nav-link-me {
+        margin-right: 25px;
     }
 }
 </style>

@@ -252,9 +252,9 @@ body {
         line-height: 1.75rem;
     }
 
-    .content-text {
+    /* .content-text {
         margin: 2.5rem 10rem;
-    }
+    } */
 
     .container-pb {
         padding-bottom: 4rem;
@@ -277,9 +277,9 @@ body {
         padding-top: 9rem;
     }
 
-    .content-text {
+    /* .content-text {
         margin: 3rem 15rem;
-    }
+    } */
 
     .container-pb {
         padding-bottom: 5rem;
@@ -302,9 +302,9 @@ body {
         padding-top: 10rem;
     }
 
-    .content-text {
+    /* .content-text {
         margin: 3rem 20rem;
-    }
+    } */
 
     .container-pb {
         padding-bottom: 6rem;
