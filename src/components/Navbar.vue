@@ -135,11 +135,12 @@ watch(isMenuOpen, (open) => {
 
 <style scoped>
 .navbar {
-  top: 0;
-  background-color: rgba(48, 56, 65, 0.75);
-  height: var(--navbar-height);
-  overflow: hidden;
-  padding: 0;
+    top: 0;
+    background-color: rgba(48, 56, 65, 0.75);
+    height: var(--navbar-height);
+    overflow: hidden;
+    padding: 0;
+    z-index: 2001;
 }
 
 .mobile-navbar { width: 100%; }

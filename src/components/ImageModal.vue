@@ -63,6 +63,7 @@ onUnmounted(() => {
     flex-direction: column;
     background: transparent;
     overflow: hidden;
+    min-height: 0;
 }
 
 /* Header stays at the top */
@@ -74,6 +75,21 @@ onUnmounted(() => {
     background: rgba(0, 0, 0, 0.5);
     color: white;
     font-size: 1.2rem;
+}
+
+.modal-image-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.modal-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 /* Desktop: for screens 576px and up, position navigation absolutely over image */
@@ -98,10 +114,16 @@ onUnmounted(() => {
         cursor: pointer;
         padding: 1rem;
     }
+
+    .image-modal-header {
+        font-size: 1.5rem;
+    }
 }
 
 /* Mobile: below 576px, display navigation as a row between header and image container */
 @media (max-width: 575px) {
+    :root { --modal-chrome: 120px; }
+
     .navigation {
         display: flex;
         justify-content: center;
@@ -117,19 +139,15 @@ onUnmounted(() => {
         cursor: pointer;
         padding: 1rem;
     }
-}
 
-.modal-image-container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
+    .modal-image-container {
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 0.5rem;
+    }
 
-.modal-image-container img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    .modal-image-container img {
+        max-height: calc(100% - var(--modal-chrome));
+    }
 }
 </style>
