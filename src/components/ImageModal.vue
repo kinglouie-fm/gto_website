@@ -1,5 +1,5 @@
 <template>
-    <div class="image-modal-overlay" @click.self="close">
+    <div class="image-modal-overlay pt-5" @click.self="close">
         <div class="image-modal-content">
             <div class="image-modal-header">
                 <span class="modal-title text-center">{{ carName }}</span>
@@ -17,6 +17,7 @@
 </template>
 
 <script setup>
+import { onMounted, onUnmounted } from 'vue';
 const props = defineProps({
     imageSrc: { type: String, required: true },
     carName: { type: String, default: '' },
@@ -33,13 +34,21 @@ const prev = () => {
 const next = () => {
     emit('next');
 };
+
+onMounted(() => {
+  document.body.style.overflow = 'hidden'
+})
+
+onUnmounted(() => {
+  document.body.style.overflow = ''
+})
 </script>
 
 <style scoped>
 .image-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -96,7 +105,7 @@ const next = () => {
     .navigation {
         display: flex;
         justify-content: center;
-        gap: 1rem;
+        gap: 4rem;
         padding: 0.5rem 0;
     }
 
@@ -106,6 +115,7 @@ const next = () => {
         color: white;
         font-size: 2rem;
         cursor: pointer;
+        padding: 1rem;
     }
 }
 

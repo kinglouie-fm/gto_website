@@ -22,14 +22,14 @@
         :showNavigation="true" @close="selectedImageIndex = null" @prev="prevImage" @next="nextImage" />
 
     <Modal v-if="showModal" @close="closeForm">
-        <iframe title="Booking Form" :src="typeformEmbedUrl" style="width: 100%; height: 500px; border: 0;"
+        <iframe title="Booking Form" :src="typeformEmbedUrl"
             allow="camera; microphone; autoplay; encrypted-media">
         </iframe>
     </Modal>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, watch } from 'vue';
 import HeroSection from '@/components/HeroSection.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import PortfolioGrid from '@/components/PortfolioGrid.vue'
@@ -114,6 +114,14 @@ const portfolioImages = [
     { src: '/images/portfolio/SpaClassic-3.webp', alt: 'Spa Classic', carName: 'Spa Classic', size: 'small', customClass: 'img-24' },
 ]
 
+watch(showModal, (open) => {
+  if (open) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
+
 onMounted(() => {
     // Animate .portfolio when it scrolls into view
     gsap.from('.portfolio', {
@@ -132,7 +140,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* Your existing portfolio styles remain here */
+iframe { 
+    width: 100%; height: calc(100vh - 80px); border: 0;
+}
+
 .hero-img {
     object-position: 50% 100%;
 }

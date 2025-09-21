@@ -91,7 +91,7 @@
         <!-- CTA 60px below links -->
         <div class="drawer-cta">
           <p class="cta-text">Photoshooting for free?</p>
-          <ButtonFilled to="portfolio">Book</ButtonFilled>
+          <ButtonFilled to="portfolio" @click="closeNavbar">Book</ButtonFilled>
         </div>
       </aside>
     </transition>
@@ -119,7 +119,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import SocialIcons from './SocialIcons.vue'
 import ButtonFilled from '@/components/ButtonFilled.vue'
@@ -130,6 +130,14 @@ const router = useRouter()
 const toggleMenu = () => { isMenuOpen.value = !isMenuOpen.value }
 const closeNavbar = () => { isMenuOpen.value = false }
 const toHome = () => { if (isMenuOpen.value) isMenuOpen.value = false; router.push('/') }
+
+watch(isMenuOpen, (open) => {
+  if (open) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
 </script>
 
 <style scoped>
