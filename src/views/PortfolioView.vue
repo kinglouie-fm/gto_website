@@ -47,6 +47,9 @@ const showModal = ref(false)
 const typeformEmbedUrl = "https://cxgwixcj505.typeform.com/to/eRlQG98c"
 
 const openForm = () => {
+    window.gtag?.('event', 'book_button_click', {
+        placement: 'portfolio_section'
+    });
     showModal.value = true
 }
 
@@ -141,7 +144,7 @@ onMounted(() => {
 
 <style scoped>
 iframe { 
-    width: 100%; height: calc(100vh - 80px); border: 0;
+    width: 100%; height: calc(100dvh - 80px); border: 0;
 }
 
 .hero-img {

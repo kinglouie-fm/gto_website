@@ -1,7 +1,5 @@
 <template>
-  <!-- ===== MOBILE NAVBAR (updated) ===== -->
   <nav class="navbar fixed-top mobile-navbar d-md-none">
-    <!-- Hamburger (same spot as before) -->
     <div class="toggle-container">
       <transition name="icon-fade" mode="out-in">
         <img
@@ -23,17 +21,14 @@
       </transition>
     </div>
 
-    <!-- Centered logo while closed (your old behavior) -->
     <div class="logo-container" :class="{ open: isMenuOpen, closed: !isMenuOpen }">
       <img src="/images/gto_logo.png" alt="Logo" class="logo" @click="toHome()" />
     </div>
 
-    <!-- Backdrop -->
     <transition name="fade">
       <div v-if="isMenuOpen" class="backdrop" @click="closeNavbar"></div>
     </transition>
 
-    <!-- LEFT Drawer -->
     <transition name="slide">
       <aside
         v-if="isMenuOpen"
@@ -42,25 +37,20 @@
         aria-modal="true"
         aria-labelledby="mobileMenuTitle"
       >
-        <!-- Drawer top bar: close icon (same spot as trigger) + centered logo -->
         <div class="drawer-toprow">
-          <!-- Close icon (exactly where the hamburger lives) -->
           <button class="close-btn" @click="closeNavbar" aria-label="Close menu">
             <img src="/icons/close.svg" alt="Close" />
           </button>
 
-          <!-- Centered GTO logo in the drawer header row -->
           <img src="/images/gto_logo.png" alt="GTO" class="drawer-logo" />
         </div>
 
-        <!-- Social icons (centered), then divider with 60px spacing above the line -->
         <div class="social-wrap">
           <SocialIcons />
         </div>
 
         <hr class="drawer-sep" />
 
-        <!-- Nav list (starts 60px below the line) -->
         <nav class="menu">
           <RouterLink to="/" class="menu-item" @click="closeNavbar">
             <span class="material-symbols-outlined">home</span>
@@ -88,16 +78,14 @@
           </RouterLink>
         </nav>
 
-        <!-- CTA 60px below links -->
         <div class="drawer-cta">
           <p class="cta-text">Photoshooting for free?</p>
-          <ButtonFilled to="portfolio" @click="closeNavbar">Book</ButtonFilled>
+          <ButtonFilled to="portfolio" @click="trackDrawerBook">Book</ButtonFilled>
         </div>
       </aside>
     </transition>
   </nav>
 
-  <!-- ===== DESKTOP NAVBAR (unchanged) ===== -->
   <nav class="navbar desktop-navbar fixed-top d-none d-md-block">
     <div class="desktop-container mx-4">
       <div class="left-container">
@@ -131,6 +119,11 @@ const toggleMenu = () => { isMenuOpen.value = !isMenuOpen.value }
 const closeNavbar = () => { isMenuOpen.value = false }
 const toHome = () => { if (isMenuOpen.value) isMenuOpen.value = false; router.push('/') }
 
+const trackDrawerBook = () => {
+  window.gtag?.('event', 'book_button_click', { placement: 'drawer_cta' })
+  closeNavbar()
+}
+
 watch(isMenuOpen, (open) => {
   if (open) {
     document.body.style.overflow = 'hidden'
@@ -149,11 +142,9 @@ watch(isMenuOpen, (open) => {
   padding: 0;
 }
 
-/* ===== MOBILE ONLY ===== */
 .mobile-navbar { width: 100%; }
 @media (min-width: 768px) { .mobile-navbar { display: none; } }
 
-/* Toggle (hamburger/close) — top-left */
 .toggle-container {
   position: absolute; left: 20px; top: 0; bottom: 0;
   display: flex; align-items: center; justify-content: center;
@@ -252,7 +243,6 @@ watch(isMenuOpen, (open) => {
 .slide-enter-active, .slide-leave-active { transition: transform .22s ease; }
 .slide-enter-from, .slide-leave-to { transform: translateX(-100%); } /* from LEFT */
 
-/* ===== DESKTOP (unchanged) ===== */
 .desktop-navbar { width: 100%; }
 .desktop-container {
   position: relative; display: flex; justify-content: space-between; align-items: center; height: var(--navbar-height);
