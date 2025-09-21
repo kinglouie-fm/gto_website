@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="">
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,10 +7,29 @@
   <link rel="icon" href="/images/GTO_round.webp">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
   <title>GTO Luxembourg</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF7RPN8SN1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+
+    // Default: deny analytics until user consents (GDPR-friendly)
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      functionality_storage: 'granted',
+      security_storage: 'granted'
+    });
+
+    gtag('js', new Date());
+    // SPA: we'll send page views manually from the router
+    gtag('config', 'G-WF7RPN8SN1', { send_page_view: false });
+  </script>
 </head>
 
 <body>
   <div id="app"></div>
 </body>
-
 </html>

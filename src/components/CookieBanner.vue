@@ -63,6 +63,15 @@ const customizing = ref(false)
 // default prefs
 const prefs = ref({ analytics: true, marketing: true })
 
+const updateGaConsent = ({ analytics, marketing }) => {
+  window.gtag?.('consent', 'update', {
+    analytics_storage: analytics ? 'granted' : 'denied',
+    ad_storage: marketing ? 'granted' : 'denied',
+    ad_user_data: marketing ? 'granted' : 'denied',
+    ad_personalization: marketing ? 'granted' : 'denied',
+  });
+};
+
 // cookie helpers
 function setConsentCookie(valueObj) {
     const json = encodeURIComponent(JSON.stringify(valueObj))
@@ -89,24 +98,30 @@ onMounted(() => {
             analytics: !!saved.analytics,
             marketing: !!saved.marketing
         }
+        updateGaConsent(prefs.value)
     }
 })
 
 function acceptEssential() {
-    setConsentCookie({ analytics: false, marketing: false })
+    const value = { analytics: true, marketing: true }
+    setConsentCookie(value)
+    updateGaConsent(value)
     dismissed.value = true
 }
 
 function acceptAll() {
+    const value = { analytics: false, marketing: false }
     setConsentCookie({ analytics: true, marketing: true })
     dismissed.value = true
 }
 
 function savePreferences() {
-    setConsentCookie({
-        analytics: prefs.value.analytics,
-        marketing: prefs.value.marketing
-    })
+    const value = {
+        analytics: !!prefs.value.analytics,
+        marketing: !!prefs.value.marketing
+    }
+    setConsentCookie(value)
+    updateGaConsent(value) 
     dismissed.value = true
 }
 
