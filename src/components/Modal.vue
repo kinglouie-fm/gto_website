@@ -30,7 +30,7 @@ const close = () => {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2000;
+    z-index: 2002;
 }
 
 .book-modal-content {

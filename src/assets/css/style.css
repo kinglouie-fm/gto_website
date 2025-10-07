@@ -1,13 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@600&display=swap');
-@import url('https://fonts.cdnfonts.com/css/apercu-pro');
-
 @font-face {
     font-family: 'Airstrike';
     src: url('../fonts/airstrike/airstrike.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+@font-face {
+    font-family: "Apercu Pro";
+    src: url("../fonts/apercu-pro/ApercuPro-Regular.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
 }
 
 :root {
