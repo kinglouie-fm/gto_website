@@ -10,16 +10,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;400;600&family=Material+Symbols+Outlined&display=swap" />
-  </noscript>
   <title>GTO Luxembourg</title>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-WF7RPN8SN1"></script>
-  <script>
+  <script nonce="{{ csp_nonce }}" async src="https://www.googletagmanager.com/gtag/js?id=G-WF7RPN8SN1"></script>
+  <script nonce="{{ csp_nonce }}">
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
-    gtag('config', 'G-WF7RPN8SN1');
+    gtag('config', 'G-WF7RPN8SN1'); /* { send_page_view:false } */
   </script>
 </head>
 

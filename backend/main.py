@@ -1,8 +1,9 @@
-import os, re, json, base64, logging
+import os, re, json, base64, logging, secrets
 from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field, ValidationError, validator
 from openai import OpenAI, OpenAIError, Timeout
 from prompts import DETAILS_PROMPT
@@ -15,6 +16,9 @@ logger = logging.getLogger(__name__)
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 app = FastAPI(title="GTO Lens API")
+
+FRONTEND_DIST = os.getenv("FRONTEND_DIST", "/var/www/html")
+templates = Jinja2Templates(directory=FRONTEND_DIST)
 
 @app.get("/healthz", include_in_schema=False)
 async def healthz():
@@ -147,3 +151,34 @@ async def general_exception_handler(request: Request, exc: Exception):
         status_code=500,
         content={"error": str(exc)}
     )
+
+@app.middleware("http")
+async def csp_nonce_middleware(request: Request, call_next):
+    nonce = secrets.token_urlsafe(16)
+    request.state.csp_nonce = nonce
+
+    resp: Response = await call_next(request)
+
+    csp = (
+        "default-src 'self'; "
+        "base-uri 'self'; object-src 'none'; form-action 'self'; "
+        f"script-src 'self' 'nonce-{nonce}' https://www.googletagmanager.com https://www.google-analytics.com; "
+        "script-src-attr 'none'; "
+        "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; "
+        "img-src 'self' data: https://www.google-analytics.com https://stats.g.doubleclick.net; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "font-src 'self' https://fonts.gstatic.com data:; "
+        "frame-src 'self' https://*.typeform.com; "
+        "upgrade-insecure-requests"
+    )
+    resp.headers["Content-Security-Policy"] = csp
+    resp.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    resp.headers.setdefault("X-Content-Type-Options", "nosniff")
+    resp.headers.setdefault("X-Frame-Options", "DENY")
+    resp.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+    return resp
+
+# Catch-all for SPA routes: render /var/www/html/index.html with the nonce
+@app.get("/{path:path}", include_in_schema=False)
+async def spa(request: Request, path: str):
+    return templates.TemplateResponse("index.html", {"request": request, "csp_nonce": request.state.csp_nonce})
