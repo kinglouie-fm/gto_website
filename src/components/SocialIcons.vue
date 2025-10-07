@@ -1,15 +1,15 @@
 <template>
     <div class="social-icons d-flex">
         <a class="social-icon" style="color: white;" href="https://www.instagram.com/gto.lu/" target="_blank"
-            role="button">
+            role="button" aria-label="Instagram">
             <font-awesome-icon :icon="['fab', 'instagram']" />
         </a>
         <a class="social-icon mx-3" style="color: white;" href="https://www.tiktok.com/@gto.lu" target="_blank"
-            role="button">
+            role="button" aria-label="TikTok">
             <font-awesome-icon :icon="['fab', 'tiktok']" />
         </a>
         <a class="social-icon" style="color: white;" href="https://www.facebook.com/GTOLuxembourg" target="_blank"
-            role="button">
+            role="button" aria-label="Facebook">
             <font-awesome-icon :icon="['fab', 'facebook']" />
         </a>
     </div>
