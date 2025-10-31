@@ -20,10 +20,10 @@
 
             <h4 class="h-white-small">3. Service Descriptions</h4>
             <p class="content-text">
-                <strong>Photo-Shoot Booking:</strong> Through our online booking form, you may request a professional
-                car photoshoot ("Photoshoot Service"). All bookings are subject to confirmation by us.<br>
-                <strong>Events & Tours:</strong> We organize Supercar Sunday, GTO goes Luxembourg tours, and other
+                <strong>Events & Tours:</strong> We organize Supercar Sunday, GTO goes Luxembourg, and other
                 gatherings ("Events"). Details and schedules are posted on our social media and/or website.<br>
+                <strong>Photoshoot Booking:</strong> Through our online booking form, you may request a professional
+                car photoshoot ("Photoshoot Service"). All bookings are subject to confirmation by us.<br>
                 <strong>AI Car Recognition:</strong> We use your smartphone camera and AI to analyze uploaded car images
                 and return vehicle details.
             </p>
@@ -58,8 +58,8 @@
             <p class="content-text">
                 We collect personal data (e.g., images, contact details) via image uploads, booking forms, and social
                 media links.
-                <!-- Our <a href="/privacy-policy">Privacy Policy</a> explains how we handle your data in -->
-                <!-- compliance with GDPR. By using our Services, you consent to that processing. -->
+                Our <a href="/privacy">Privacy Policy</a> explains how we handle your data in
+                compliance with GDPR. By using our Services, you consent to that processing.
             </p>
 
             <h4 class="h-white-small">9. Third-Party Services & Links</h4>
@@ -69,11 +69,11 @@
                 only and do not imply endorsement.
             </p>
 
-            <!-- <h4 class="h-white-small">10. Cookies & Tracking</h4>
+            <h4 class="h-white-small">10. Cookies & Tracking</h4>
             <p class="content-text">
                 We use cookies and similar technologies to enhance your experience, analyze traffic, and display
                 personalized content. For details, see our <a href="/cookie-policy">Cookie Policy</a>.
-            </p> -->
+            </p>
 
             <h4 class="h-white-small">11. Prohibited Uses</h4>
             <p class="content-text">
@@ -84,7 +84,7 @@
             <h4 class="h-white-small">12. Limitation of Liability</h4>
             <p class="content-text">
                 GTO Luxembourg provides the Services "as is" without warranties. We are not liable for any damages
-                arising from your use, delay, or inability to use the Services, including booking or event attendance.
+                arising from your use, delay, or inability to use the Services.
             </p>
 
             <h4 class="h-white-small">13. Changes to Terms</h4>

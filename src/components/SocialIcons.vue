@@ -24,6 +24,11 @@
     vertical-align: middle;
 }
 
+.social-icon:hover {
+    transform: scale(1.2);
+    transition: transform 0.2s ease;
+}
+
 /* For screens 576px and wider */
 @media (min-width: 576px) {
     .social-icon {

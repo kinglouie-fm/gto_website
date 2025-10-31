@@ -6,8 +6,7 @@
         <div class="container">
             <h4 class="h-white-small">1. Introduction</h4>
             <p class="content-text">
-                Welcome to GTO Lens ("we", "us", or "our"). We respect your privacy and are committed to protecting your
-                personal data.
+                We respect your privacy and are committed to protecting your personal data.
                 This policy explains how we collect, use, and safeguard the personal data you provide when using our
                 website or AI-powered car recognition service ("Service").
             </p>
@@ -46,7 +45,8 @@
                 API.
                 Images are encoded and sent over HTTPS. OpenAI processes the data temporarily and returns a response.
                 We do not store your image or the detailed response beyond the duration necessary to display results in
-                your browser session. No personal data is retained on third-party servers after processing.
+                your browser session.
+                <!-- No personal data is retained on third-party servers after processing. -->
             </p>
 
             <h4 class="h-white-small">5. Data Storage & Security</h4>
