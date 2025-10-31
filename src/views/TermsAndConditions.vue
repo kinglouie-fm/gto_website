@@ -28,7 +28,7 @@
                 and return vehicle details.
             </p>
 
-            <h4 class="h-white-small">4. Booking & Payment</h4>
+            <h4 class="h-white-small">4. Booking</h4>
             <p class="content-text">
                 Booking a Photoshoot via our embedded Typeform is a request for service. A contract is only formed
                 once we confirm availability.
