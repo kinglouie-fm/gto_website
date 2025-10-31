@@ -1,36 +1,22 @@
 <template>
   <!-- External link -->
-  <a
-    v-if="href"
-    :href="href"
-    :target="newTab ? '_blank' : '_self'"
-    rel="noopener noreferrer"
-    class="btn"
-  >
+  <a v-if="href" :href="href" :target="newTab ? '_blank' : '_self'" rel="noopener noreferrer" class="btn">
     <slot />
     <span class="btn-arrow" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path
-          fill="currentColor"
-          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z"
-        />
+        <path fill="currentColor"
+          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z" />
       </svg>
     </span>
   </a>
 
   <!-- Internal route -->
-  <button
-    v-else-if="to"
-    class="btn"
-    @click="handleClick"
-  >
+  <button v-else-if="to" class="btn" @click="handleClick">
     <slot />
     <span class="btn-arrow" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path
-          fill="currentColor"
-          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z"
-        />
+        <path fill="currentColor"
+          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z" />
       </svg>
     </span>
   </button>
@@ -40,10 +26,8 @@
     <slot />
     <span class="btn-arrow" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path
-          fill="currentColor"
-          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z"
-        />
+        <path fill="currentColor"
+          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z" />
       </svg>
     </span>
   </button>
@@ -79,24 +63,18 @@ const handleClick = () => {
   justify-content: center;
   gap: 0.5rem;
   text-decoration: none;
-
-  /* Make width responsive to content */
-  width: auto;            /* was: fixed width */
-  min-width: 120px;       /* preserve your size rhythm */
-  padding: 0 14px;        /* add horizontal padding instead of fixed width */
-
-  /* Prevent wrapping */
+  width: auto;
+  min-width: 120px;
+  padding: 0 14px;
   white-space: nowrap;
-
-  /* keep your colors/border/transition as is */
   height: 40px;
-  color: inherit;         /* or your specific color */
-  border: 1px solid white;/* for Button.vue; remove if not needed in Filled */
+  color: inherit;
+  border: 1px solid white;
   border-radius: 5px;
   font-size: 14px;
-  font-weight: 400;       /* 600 for Filled */
+  font-weight: 400;
   transition: all 0.2s ease;
-  margin-right: 3rem;     /* if you need spacing to neighbor */
+  margin-right: 3rem;
 }
 
 .btn:hover {
@@ -110,7 +88,8 @@ const handleClick = () => {
 }
 
 .btn:hover .btn-arrow {
-  transform: translateX(4px); /* arrow slides right */
+  transform: translateX(4px);
+  /* arrow slides right */
 }
 
 @media (min-width: 576px) {
@@ -136,6 +115,8 @@ const handleClick = () => {
 }
 
 @media (max-width: 360px) {
-  .btn .btn-arrow { display: none; }
+  .btn .btn-arrow {
+    display: none;
+  }
 }
 </style>

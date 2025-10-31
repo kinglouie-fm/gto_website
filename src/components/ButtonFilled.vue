@@ -1,19 +1,11 @@
 <template>
   <!-- External link -->
-  <a
-    v-if="href"
-    :href="href"
-    :target="newTab ? '_blank' : '_self'"
-    rel="noopener noreferrer"
-    class="btn"
-  >
+  <a v-if="href" :href="href" :target="newTab ? '_blank' : '_self'" rel="noopener noreferrer" class="btn">
     <slot />
     <span class="btn-arrow" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path
-          fill="currentColor"
-          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z"
-        />
+        <path fill="currentColor"
+          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z" />
       </svg>
     </span>
   </a>
@@ -23,10 +15,8 @@
     <slot />
     <span class="btn-arrow" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path
-          fill="currentColor"
-          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z"
-        />
+        <path fill="currentColor"
+          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z" />
       </svg>
     </span>
   </router-link>
@@ -36,10 +26,8 @@
     <slot />
     <span class="btn-arrow" aria-hidden="true">
       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
-        <path
-          fill="currentColor"
-          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z"
-        />
+        <path fill="currentColor"
+          d="M11.293 4.707 17.586 11H4v2h13.586l-6.293 6.293 1.414 1.414L21.414 12l-8.707-8.707-1.414 1.414z" />
       </svg>
     </span>
   </button>
@@ -66,24 +54,17 @@ const normalizedTo = computed(() =>
   justify-content: center;
   text-decoration: none;
   gap: 0.5rem;
-
-  /* Make width responsive to content */
-  width: auto;            /* was: fixed width */
-  min-width: 120px;       /* preserve your size rhythm */
-  padding: 0 14px;        /* add horizontal padding instead of fixed width */
-
-  /* Prevent wrapping */
+  width: auto;
+  min-width: 120px;
+  padding: 0 14px;
   white-space: nowrap;
-
-  /* keep your colors/border/transition as is */
   height: 40px;
   color: rgb(48, 56, 65);
   background-color: white;
   border-radius: 5px;
   font-size: 14px;
-  font-weight: 400;       /* 600 for Filled */
+  font-weight: 400;
   transition: all 0.2s ease;
-  margin-right: 3rem;     /* if you need spacing to neighbor */
 }
 
 .btn:hover {
@@ -125,6 +106,8 @@ const normalizedTo = computed(() =>
 }
 
 @media (max-width: 360px) {
-  .btn .btn-arrow { display: none; }
+  .btn .btn-arrow {
+    display: none;
+  }
 }
 </style>
