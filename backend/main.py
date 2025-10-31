@@ -149,7 +149,10 @@ async def general_exception_handler(request: Request, exc: Exception):
     logger.exception("Unhandled exception")
     return JSONResponse(
         status_code=500,
-        content={"error": str(exc)}
+        content={
+            "error": "Unexpected server error.",
+            "code": "INTERNAL_ERROR"
+        },
     )
 
 @app.middleware("http")
