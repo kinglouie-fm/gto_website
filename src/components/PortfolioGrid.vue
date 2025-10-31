@@ -2,7 +2,8 @@
     <div class="portfolio-grid">
         <div v-for="(column, colIndex) in columns" :key="colIndex" class="portfolio-column">
             <img v-for="(image, idx) in column" :key="idx" :src="image.src" :alt="image.alt"
-                :class="['grid-img', image.size, image.customClass]" @click="() => onImageClick(image)" />
+                :class="['grid-img', image.size, image.customClass]" loading="lazy" decoding="async"
+                @click="() => onImageClick(image)" />
         </div>
     </div>
 </template>
