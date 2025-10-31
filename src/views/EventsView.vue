@@ -1,7 +1,7 @@
 <template>
     <HeroSection desktopSrc="/images/other/scs7_people.webp" mobileSrc="/images/other/scs7_people.webp"
         alt="Supercar Sunday #7 by GTO Luxembourg" customClass="events-hero" />
-    
+
     <VerticalSlider />
 
     <section class="content events text-center container-p">
@@ -15,7 +15,8 @@
             <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
             <p class="text-center content-text scs6-text">
                 Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
-                enthusiasts to share their passion, to check out some cool cars, and spend a great day in good company.
+                enthusiasts to share their passion and spend a great day in good company. The event is completely free
+                for both visitors and participants.
             </p>
         </div>
 
@@ -26,9 +27,9 @@
             </div>
             <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
             <p class="text-center content-text tour-text">
-                GTO goes Luxembourg is our smaller car tour that we organize a few times a year. It's usually held in a
-                more private and relaxed setting, giving everyone a chance to enjoy the drive, have some fun, and
-                connect with other car enthusiasts along the way.
+                GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a
+                more private and relaxed setting, giving everyone a chance to enjoy the drive and
+                connect with other car enthusiasts. This event, too, is free for all participants.
             </p>
         </div>
     </section>
@@ -38,22 +39,29 @@
         <div class="news-row heading-pt" role="list">
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">Luxemburger Wort</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/scs7_fordgt.webp" alt="News article from Luxemburger Wort" 
+                <img class="img-fluid news-item-img border" src="/images/other/scs7_fordgt.webp"
+                    alt="News article from Luxemburger Wort"
                     @click="openImageModal('/images/other/scs7_fordgt.webp', 'Ford GT')" />
                 <p class="news-item-text content-text">
-                “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter on the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
+                    “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter on
+                    the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
                 </p>
-                <ButtonFilled href="https://www.wort.lu/panorama/neun-freunde-holen-die-supercars-nach-luxemburg/13661126.html" class="news-button">Learn more</ButtonFilled>
+                <ButtonFilled
+                    href="https://www.wort.lu/panorama/neun-freunde-holen-die-supercars-nach-luxemburg/13661126.html"
+                    class="news-button">Learn more</ButtonFilled>
             </article>
 
             <article class="news-item" role="listitem">
                 <h4 class="h-yellow-small">RTL Lëtzebuerg</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/scs7_classic.webp" alt="News article from RTL Lëtzebuerg" 
-                @click="openImageModal('/images/other/scs7_classic.webp', 'Ford Mustang Fastback GT and Ferrari 512 Testarossa')" />
+                <img class="img-fluid news-item-img border" src="/images/other/scs7_classic.webp"
+                    alt="News article from RTL Lëtzebuerg"
+                    @click="openImageModal('/images/other/scs7_classic.webp', 'Ford Mustang Fastback GT and Ferrari 512 Testarossa')" />
                 <p class="content-text news-item-text">
-                “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.” <br> — <i>Translated from RTL Lëtzebuerg, 2018</i>
+                    “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.” <br>
+                    — <i>Translated from RTL Lëtzebuerg, 2018</i>
                 </p>
-                <ButtonFilled href="https://today.rtl.lu/pictures/30089.html" class="news-button">Learn more</ButtonFilled>
+                <ButtonFilled href="https://today.rtl.lu/pictures/30089.html" class="news-button">Learn more
+                </ButtonFilled>
             </article>
         </div>
     </section>
@@ -121,29 +129,31 @@ p {
 }
 
 .events .content-text {
-  width: calc(var(--event-card-w) + 100px);
-  max-width: calc(var(--event-card-w) + 100px);
-  padding: 0 20px;
-  text-align: left;
+    width: calc(var(--event-card-w) + 100px);
+    max-width: calc(var(--event-card-w) + 100px);
+    padding: 0 20px;
+    text-align: left;
 }
 
 .scs-container,
 .tour-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;                 /* header → image → text spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    /* header → image → text spacing */
 }
 
 /* Images: use the variable width + keep your ratio/radius */
 .events .scs-img-container .gto_scs6,
 .events .tour-img-container .gto_tour {
-  width: var(--event-card-w);
-  aspect-ratio: 243 / 160;
-  height: auto;              /* override fixed height */
-  border-radius: 10px;
-  object-fit: cover;
-  display: block;
+    width: var(--event-card-w);
+    aspect-ratio: 243 / 160;
+    height: auto;
+    /* override fixed height */
+    border-radius: 10px;
+    object-fit: cover;
+    display: block;
 }
 
 .news {
@@ -193,7 +203,8 @@ p {
     background-color: rgb(76, 84, 94);
 
     /* CSS custom props to control the card width + gap per breakpoint */
-    --news-card-w: 243px;  /* base (mobile) */
+    --news-card-w: 243px;
+    /* base (mobile) */
     --news-gap: 24px;
 }
 
@@ -239,13 +250,14 @@ p {
 
 /* Text width follows card width; kill global margins inside cards */
 .news-item-text {
-  width: var(--news-card-w);
-  max-width: var(--news-card-w);
-  margin-left: 0;
-  margin-right: 0;
+    width: var(--news-card-w);
+    max-width: var(--news-card-w);
+    margin-left: 0;
+    margin-right: 0;
 }
 
 @media (min-width: 576px) {
+
     .gto_scs6,
     .gto_tour {
         width: 40%;
@@ -258,7 +270,9 @@ p {
         padding-bottom: 1.5rem;
     }
 
-    .events { --event-card-w: min(40vw, 300px); }
+    .events {
+        --event-card-w: min(40vw, 300px);
+    }
 
     .news {
         --news-card-w: min(40vw, 300px);
@@ -312,7 +326,9 @@ p {
         padding-top: 120px;
     }
 
-    .events { --event-card-w: min(35vw, 400px); }
+    .events {
+        --event-card-w: min(35vw, 400px);
+    }
 
     .events .content-text {
         width: calc(var(--event-card-w) + 200px);
@@ -321,6 +337,7 @@ p {
 }
 
 @media (min-width: 992px) {
+
     .gto_scs6,
     .gto_tour {
         width: 35%;
@@ -342,6 +359,8 @@ p {
         padding-top: 140px;
     }
 
-    .events { --event-card-w: min(35vw, 600px); }
+    .events {
+        --event-card-w: min(35vw, 600px);
+    }
 }
 </style>

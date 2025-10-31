@@ -44,13 +44,24 @@ const props = defineProps({
 }
 
 .routerlink {
+    position: relative;
     color: white;
     text-decoration: none;
 }
 
-.routerlink:hover {
-    color: white;
-    text-decoration: underline;
+.routerlink::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: rgb(246, 201, 14);
+    transition: width 0.3s ease;
+}
+
+.routerlink:hover::after {
+    width: 100%;
 }
 
 .copyright {
