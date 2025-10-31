@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field, ValidationError, validator
-from openai import OpenAI, OpenAIError, Timeout
+from openai import OpenAI, OpenAIError, APITimeoutError
 from prompts import DETAILS_PROMPT
 from typing import Union
 
@@ -111,7 +111,7 @@ async def analyze(image: UploadFile = File(...)):
                 ]}
             ]
         )
-    except Timeout:
+    except APITimeoutError:
         raise HTTPException(
             status_code=504, 
             detail="Upstream timeout, please try again.",
