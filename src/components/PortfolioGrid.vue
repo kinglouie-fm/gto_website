@@ -1,25 +1,20 @@
 <template>
     <div class="portfolio-grid">
         <div v-for="(column, colIndex) in columns" :key="colIndex" class="portfolio-column">
-            <img v-for="(image, idx) in column" :key="idx" :src="image.src" :alt="image.alt"
-                :class="['grid-img', image.size, image.customClass]" loading="lazy" decoding="async"
-                @click="() => onImageClick(image)" />
+            <LazyImage v-for="(image, idx) in column" :key="image.thumb || idx" :src="image.thumb" :alt="image.alt"
+                :imgClass="['grid-img', image.size, image.customClass]" rootMargin="450px 0px"
+                :loading="colIndex === 0 && idx === 0 ? 'eager' : 'lazy'" @click="onImageClick(image)" />
         </div>
     </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import LazyImage from '@/components/LazyImage.vue'
 
 const props = defineProps({
-    images: {
-        type: Array,
-        required: true
-    },
-    columnsCount: {
-        type: Number,
-        default: 3
-    }
+    images: { type: Array, required: true },
+    columnsCount: { type: Number, default: 3 }
 })
 
 const emits = defineEmits(['image-click'])
