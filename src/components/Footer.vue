@@ -1,11 +1,30 @@
 <template>
     <section class="footer text-center" :style="{ backgroundColor: bgColor }">
-        <a href="https://www.reinert.lu" target="_blank">
-            <img src="/images/reinert_logo.png" alt="Reinert Logo" class="reinert-logo" />
-        </a>
-        <a href="https://www.wot.lu" target="_blank">
-            <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="wot-logo" />
-        </a>
+        <div class="sponsor-marquee" aria-label="Sponsors">
+            <div class="marquee-track">
+                <!-- set 1 -->
+                <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
+                    <img src="/images/reinert_logo.png" alt="Reinert Logo" class="logo logo--reinert" />
+                </a>
+                <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
+                    <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="logo logo--wot" />
+                </a>
+                <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
+                    <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
+                </a>
+
+                <!-- set 2 (duplicate for seamless loop) -->
+                <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
+                    <img src="/images/reinert_logo.png" alt="Reinert Logo" class="logo logo--reinert" />
+                </a>
+                <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
+                    <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="logo logo--wot" />
+                </a>
+                <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
+                    <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
+                </a>
+            </div>
+        </div>
         <p class="routerlinks my-0">
             <RouterLink class="routerlink me-4" to="/terms">Terms and Conditions</RouterLink>
             <RouterLink class="routerlink me-4" to="/privacy">Privacy Policy</RouterLink>
@@ -27,22 +46,123 @@ const props = defineProps({
 </script>
 
 <style scoped>
-/* Base text styles for screens below 576px */
+/* Footer wrapper */
+.footer {
+    text-align: center;
+}
+
+/* Base text styles */
 .text-center {
-    font-size: 10px;
+    font-size: clamp(10px, 1.2vw, 20px);
 }
 
-/* Logo sizes for small screens */
-.reinert-logo {
-    width: 135px;
-    height: 45px;
+/* Shared logo rules */
+.logo {
+    display: block;
+    height: auto;
+    /* keep aspect ratio */
+    max-width: 100%;
 }
 
-.wot-logo {
-    width: 125px;
-    height: 20px;
+/* Individual logo sizing (fluid with clamp) */
+.logo--reinert {
+    width: clamp(135px, 45vw, 170px);
 }
 
+.logo--wot {
+    width: clamp(125px, 40vw, 160px);
+}
+
+.logo--dvm {
+    width: clamp(135px, 45vw, 170px);
+}
+
+/* ===== Mobile flowing carousel (default) ===== */
+.sponsor-marquee {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-top: 0.75rem;
+    padding-bottom: 0.5rem;
+
+    /* soft edge fade (optional, looks nice) */
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    gap: clamp(1.25rem, 4vw, 3rem);
+    animation: sponsor-marquee 18s linear infinite;
+}
+
+.marquee-item {
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Pause on hover (desktop users / accessibility) */
+.sponsor-marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+        animation: none;
+    }
+}
+
+/* This assumes track contains two identical sets */
+@keyframes sponsor-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* ===== Switch to static centered row on bigger screens ===== */
+@media (min-width: 576px) {
+    .sponsor-marquee {
+        overflow: visible;
+        -webkit-mask-image: none;
+        mask-image: none;
+    }
+
+    .marquee-track {
+        animation: none;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: nowrap;
+        transform: none;
+        gap: clamp(1rem, 3vw, 8rem);
+    }
+
+    /* hide duplicates on larger screens so you don't see 6 logos */
+    .marquee-item:nth-child(n + 4) {
+        display: none;
+    }
+
+    /* allow larger max sizes on bigger screens */
+    .logo--reinert {
+        width: clamp(150px, 18vw, 250px);
+    }
+
+    .logo--wot {
+        width: clamp(140px, 16vw, 230px);
+    }
+
+    .logo--dvm {
+        width: clamp(150px, 18vw, 200px);
+    }
+}
+
+/* Router links */
 .routerlink {
     position: relative;
     color: white;
@@ -68,87 +188,12 @@ const props = defineProps({
     color: white;
 }
 
-/* For screens 576px and wider */
-@media (min-width: 576px) {
-    .text-center {
-        font-size: 12px;
-    }
-
-    .reinert-logo {
-        width: 150px;
-        height: 50px;
-        margin-right: 3rem;
-    }
-
-    .wot-logo {
-        width: 140px;
-        height: 25px;
-    }
-
-    .copyright,
-    .routerlinks {
-        font-size: 1rem;
-    }
-}
-
-/* For screens 768px and wider */
-@media (min-width: 768px) {
-    .text-center {
-        font-size: 14px;
-    }
-
-    .reinert-logo {
-        width: 170px;
-        height: 60px;
-        margin-right: 3.5rem;
-    }
-
-    .wot-logo {
-        width: 160px;
-        height: 30px;
-    }
-}
-
-/* For screens 992px and wider */
-@media (min-width: 992px) {
-    .text-center {
-        font-size: 16px;
-    }
-
-    .reinert-logo {
-        width: 190px;
-        height: 70px;
-        margin-right: 4rem;
-    }
-
-    .wot-logo {
-        width: 180px;
-        height: 35px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .text-center {
-        font-size: 18px;
-    }
-
-    .reinert-logo {
-        width: 250px;
-        height: auto;
-        margin-right: 8rem;
-    }
-
-    .wot-logo {
-        width: 230px;
-        height: auto;
-    }
+.routerlinks,
+.copyright {
+    font-size: clamp(0.75rem, 1vw, 1rem);
 }
 
 @media (min-width: 1400px) {
-    .text-center {
-        font-size: 20px;
-    }
-
     .routerlinks {
         margin-bottom: 1rem !important;
     }
