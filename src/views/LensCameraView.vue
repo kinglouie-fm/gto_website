@@ -1,20 +1,22 @@
 <template>
-    <section class="camera-view">
-        <!-- live camera feed -->
-        <video ref="video" autoplay playsinline class="camera-feed"></video>
+    <main>
+        <section class="camera-view">
+            <!-- live camera feed -->
+            <video ref="video" autoplay playsinline class="camera-feed"></video>
 
-        <div class="camera-button-container">
-            <button class="camera-btn" @click="capture">
-                <img src="/icons/camera.svg" alt="Camera Icon" width="20" height="20" />
-            </button>
-        </div>
+            <div class="camera-button-container">
+                <button class="camera-btn" @click="capture">
+                    <img src="/icons/camera.svg" alt="Camera Icon" width="20" height="20" />
+                </button>
+            </div>
 
-        <div v-if="loading" class="loading-overlay">
-            <div class="spinner"></div>
-            <p class="loading-text">Loading</p>
-        </div>
-        <div v-if="errorMsg" class="error-banner">{{ errorMsg }}</div>
-    </section>
+            <div v-if="loading" class="loading-overlay">
+                <div class="spinner"></div>
+                <p class="loading-text">Loading</p>
+            </div>
+            <div v-if="errorMsg" class="error-banner">{{ errorMsg }}</div>
+        </section>
+    </main>
 </template>
 
 <script setup>

@@ -1,31 +1,33 @@
 <template>
-    <HeroSection desktopSrc="/images/other/rollsroyce_cut.jpeg" mobileSrc="/images/portfolio/Gwagon.webp"
-        alt="Mercedes G63 AMG" customClass="portfolio-hero" />
-    <VerticalSlider />
-    <section class="content container-pb">
-        <h3 class="text-center h-yellow h-first">Book a free photoshooting</h3>
-        <p class="text-center content-text">
-            We'd love to capture your car for free! Reach out through the contact form below or connect with us on social media.
-        </p>
-        <div class="container d-flex justify-content-center align-items-center">
-            <Button @click="openForm">Book</Button>
-            <SocialIcons />
-        </div>
-    </section>
+    <main>
+        <HeroSection desktopSrc="/images/other/rollsroyce_cut.jpeg" mobileSrc="/images/portfolio/Gwagon.webp"
+            alt="Mercedes G63 AMG" customClass="portfolio-hero" />
+        <VerticalSlider />
+        <section class="content container-pb">
+            <h3 class="text-center h-yellow h-first">Book a free photoshooting</h3>
+            <p class="text-center content-text">
+                We'd love to capture your car for free! Reach out through the contact form below or connect with us on
+                social media.
+            </p>
+            <div class="container d-flex justify-content-center align-items-center">
+                <Button @click="openForm">Book</Button>
+                <SocialIcons />
+            </div>
+        </section>
 
-    <section class="portfolio text-center container-p">
-        <h3 class="text-center h-white">Our portfolio</h3>
-        <PortfolioGrid :images="portfolioImages" @image-click="openImageModal" />
-    </section>
+        <section class="portfolio text-center container-p">
+            <h3 class="text-center h-white">Our portfolio</h3>
+            <PortfolioGrid :images="portfolioImages" @image-click="openImageModal" />
+        </section>
 
-    <ImageModal v-if="selectedImageIndex !== null" :imageSrc="selectedImage" :carName="selectedCarName"
-        :showNavigation="true" @close="selectedImageIndex = null" @prev="prevImage" @next="nextImage" />
+        <ImageModal v-if="selectedImageIndex !== null" :imageSrc="selectedImage" :carName="selectedCarName"
+            :showNavigation="true" @close="selectedImageIndex = null" @prev="prevImage" @next="nextImage" />
 
-    <Modal v-if="showModal" @close="closeForm">
-        <iframe title="Booking Form" :src="typeformEmbedUrl"
-            allow="camera; microphone; autoplay; encrypted-media">
-        </iframe>
-    </Modal>
+        <Modal v-if="showModal" @close="closeForm">
+            <iframe title="Booking Form" :src="typeformEmbedUrl" allow="camera; microphone; autoplay; encrypted-media">
+            </iframe>
+        </Modal>
+    </main>
 </template>
 
 <script setup>
@@ -118,11 +120,11 @@ const portfolioImages = [
 ]
 
 watch(showModal, (open) => {
-  if (open) {
-    document.body.style.overflow = 'hidden'
-  } else {
-    document.body.style.overflow = ''
-  }
+    if (open) {
+        document.body.style.overflow = 'hidden'
+    } else {
+        document.body.style.overflow = ''
+    }
 })
 
 onMounted(() => {
@@ -143,8 +145,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
-iframe { 
-    width: 100%; height: calc(100dvh - 80px); border: 0;
+iframe {
+    width: 100%;
+    height: calc(100dvh - 80px);
+    border: 0;
 }
 
 .hero-img {

@@ -1,73 +1,78 @@
 <template>
-    <HeroSection desktopSrc="/images/other/scs7_people.webp" mobileSrc="/images/other/scs7_people.webp"
-        alt="Supercar Sunday #7 by GTO Luxembourg" customClass="events-hero" />
+    <main>
+        <HeroSection desktopSrc="/images/other/scs7_people.webp" mobileSrc="/images/other/scs7_people.webp"
+            alt="Supercar Sunday #7 by GTO Luxembourg" customClass="events-hero" />
 
-    <VerticalSlider />
+        <VerticalSlider />
 
-    <section class="content events text-center container-p">
-        <h3 class="text-center h-yellow h-first">Events</h3>
+        <section class="content events text-center container-p">
+            <h3 class="text-center h-yellow h-first">Events</h3>
 
-        <div class="scs-container">
-            <div class="scs-img-container">
-                <img src="/images/other/gto_scs6.webp" alt="Supercar Sunday #6" class="img-fluid gto_scs6 border"
-                    @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
-            </div>
-            <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
-            <p class="text-center content-text scs6-text">
-                Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
-                enthusiasts to share their passion and spend a great day in good company. The event is completely free
-                for both visitors and participants.
-            </p>
-        </div>
-
-        <div class="tour-container">
-            <div class="tour-img-container">
-                <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg" class="img-fluid gto_tour border"
-                    @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
-            </div>
-            <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
-            <p class="text-center content-text tour-text">
-                GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a
-                more private and relaxed setting, giving everyone a chance to enjoy the drive and
-                connect with other car enthusiasts. This event, too, is free for all participants.
-            </p>
-        </div>
-    </section>
-
-    <section class="news text-center container-p">
-        <h3 class="text-center h-white">News that helps</h3>
-        <div class="news-row heading-pt" role="list">
-            <article class="news-item" role="listitem">
-                <h4 class="h-yellow-small">Luxemburger Wort</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/scs7_fordgt.webp"
-                    alt="News article from Luxemburger Wort"
-                    @click="openImageModal('/images/other/scs7_fordgt.webp', 'Ford GT')" />
-                <p class="news-item-text content-text">
-                    “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter on
-                    the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
+            <div class="scs-container">
+                <div class="scs-img-container">
+                    <img src="/images/other/gto_scs6.webp" alt="Supercar Sunday #6" class="img-fluid gto_scs6 border"
+                        @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
+                </div>
+                <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
+                <p class="text-center content-text scs6-text">
+                    Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
+                    enthusiasts to share their passion and spend a great day in good company. The event is completely
+                    free
+                    for both visitors and participants.
                 </p>
-                <ButtonFilled
-                    href="https://www.wort.lu/panorama/neun-freunde-holen-die-supercars-nach-luxemburg/13661126.html"
-                    class="news-button">Learn more</ButtonFilled>
-            </article>
+            </div>
 
-            <article class="news-item" role="listitem">
-                <h4 class="h-yellow-small">RTL Lëtzebuerg</h4>
-                <img class="img-fluid news-item-img border" src="/images/other/scs7_classic.webp"
-                    alt="News article from RTL Lëtzebuerg"
-                    @click="openImageModal('/images/other/scs7_classic.webp', 'Ford Mustang Fastback GT and Ferrari 512 Testarossa')" />
-                <p class="content-text news-item-text">
-                    “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.” <br>
-                    — <i>Translated from RTL Lëtzebuerg, 2018</i>
+            <div class="tour-container">
+                <div class="tour-img-container">
+                    <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg" class="img-fluid gto_tour border"
+                        @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
+                </div>
+                <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
+                <p class="text-center content-text tour-text">
+                    GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a
+                    more private and relaxed setting, giving everyone a chance to enjoy the drive and
+                    connect with other car enthusiasts. This event, too, is free for all participants.
                 </p>
-                <ButtonFilled href="https://today.rtl.lu/pictures/30089.html" class="news-button">Learn more
-                </ButtonFilled>
-            </article>
-        </div>
-    </section>
+            </div>
+        </section>
 
-    <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
-        @close="selectedImage = null" />
+        <section class="news text-center container-p">
+            <h3 class="text-center h-white">News that helps</h3>
+            <div class="news-row heading-pt" role="list">
+                <article class="news-item" role="listitem">
+                    <h4 class="h-yellow-small">Luxemburger Wort</h4>
+                    <img class="img-fluid news-item-img border" src="/images/other/scs7_fordgt.webp"
+                        alt="News article from Luxemburger Wort"
+                        @click="openImageModal('/images/other/scs7_fordgt.webp', 'Ford GT')" />
+                    <p class="news-item-text content-text">
+                        “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter
+                        on
+                        the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
+                    </p>
+                    <ButtonFilled
+                        href="https://www.wort.lu/panorama/neun-freunde-holen-die-supercars-nach-luxemburg/13661126.html"
+                        class="news-button">Learn more</ButtonFilled>
+                </article>
+
+                <article class="news-item" role="listitem">
+                    <h4 class="h-yellow-small">RTL Lëtzebuerg</h4>
+                    <img class="img-fluid news-item-img border" src="/images/other/scs7_classic.webp"
+                        alt="News article from RTL Lëtzebuerg"
+                        @click="openImageModal('/images/other/scs7_classic.webp', 'Ford Mustang Fastback GT and Ferrari 512 Testarossa')" />
+                    <p class="content-text news-item-text">
+                        “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.”
+                        <br>
+                        — <i>Translated from RTL Lëtzebuerg, 2018</i>
+                    </p>
+                    <ButtonFilled href="https://today.rtl.lu/pictures/30089.html" class="news-button">Learn more
+                    </ButtonFilled>
+                </article>
+            </div>
+        </section>
+
+        <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
+            @close="selectedImage = null" />
+    </main>
 </template>
 
 <script setup>
