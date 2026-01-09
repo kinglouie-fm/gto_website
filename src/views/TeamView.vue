@@ -1,72 +1,76 @@
 <template>
-    <section class="hero">
-        <img v-if="!highQualityLoaded" src="/images/team/team.webp" alt="GTO Team Picture low quality"
-            class="hero-img low-res" />
-        <transition name="fade">
-            <img v-if="highQualityLoaded" src="/images/team/team.jpeg" alt="GTO Team Picture high quality"
-                class="hero-img high-res" />
-        </transition>
-    </section>
+    <main>
+        <section class="hero">
+            <img v-if="!highQualityLoaded" src="/images/team/team.webp" alt="GTO Team Picture low quality"
+                class="hero-img low-res" />
+            <transition name="fade">
+                <img v-if="highQualityLoaded" src="/images/team/team.jpeg" alt="GTO Team Picture high quality"
+                    class="hero-img high-res" />
+            </transition>
+        </section>
 
-    <VerticalSlider />
+        <VerticalSlider />
 
-    <section class="content container-pb">
-        <h3 class="text-center h-yellow h-first">Who are we?</h3>
-        <p class="text-center">
-            We share passion!
-        </p>
-        <p class="text-center content-text">
-            Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared passion for
-            cars. Since then, we have grown into a team of 8 members.
-            <br>
-            <br>
-            Whether it's by organizing events, going on tours with special cars, or arranging photoshoots, we're
-            dedicated to promoting the car culture in Luxembourg. While we appreciate all
-            kinds of cars, our main focus lies on the exclusive niche of supercars and hypercars.
-        </p>
-    </section>
+        <section class="content container-pb">
+            <h3 class="text-center h-yellow h-first">Who are we?</h3>
+            <p class="text-center">
+                We share passion!
+            </p>
+            <p class="text-center content-text">
+                Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared passion
+                for
+                cars. Since then, we have grown into a team of 8 members.
+                <br>
+                <br>
+                Whether it's by organizing events, going on tours with special cars, or arranging photoshoots, we're
+                dedicated to promoting the car culture in Luxembourg. While we appreciate all
+                kinds of cars, our main focus lies on the exclusive niche of supercars and hypercars.
+            </p>
+        </section>
 
-    <section class="team container-p">
-        <h3 class="text-center h-white">Get to know the team</h3>
-        <div class="team-grid">
-            <TeamMemberCard image="/images/team/julien.webp" name="Julien Imhoff" role="Founder, President"
-                @click="openImageModal('/images/team/julien.webp', 'Julien Imhoff, Founder and President of GTO Luxembourg')" />
-            <TeamMemberCard image="/images/team/ben.webp" name="Ben Thillen" role="Vice-President, <br />Webmaster"
-                @click="openImageModal('/images/team/ben.webp', 'Ben Thillen, Vice-President and Webmaster of GTO Luxembourg')" />
-            <TeamMemberCard image="/images/team/laurent.webp" name="Laurent Reding" role="Treasurer"
-                @click="openImageModal('/images/team/laurent.webp', 'Laurent Reding, Treasurer of GTO Luxembourg')" />
-            <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary"
-                @click="openImageModal('/images/team/jeff.webp', 'Jeff Nosbusch, Secretary of GTO Luxembourg')" />
-            <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal"
-                @click="openImageModal('/images/team/gilles.webp', 'Gilles Declercq, responsible for Administration and Legal matters.')" />
-            <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Organisation"
-                @click="openImageModal('/images/team/noah.webp', 'Noah Leuck, responsible for Organisation.')" />
-            <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation"
-                @click="openImageModal('/images/team/jona.webp', 'Jona Leuck, responsible for Organisation.')" />
-            <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations"
-                @click="openImageModal('/images/team/dylan.webp', 'Dylan Perreira, responsible for media relations.')" />
-        </div>
-    </section>
+        <section class="team container-p">
+            <h3 class="text-center h-white">Get to know the team</h3>
+            <div class="team-grid">
+                <TeamMemberCard image="/images/team/julien.webp" name="Julien Imhoff" role="Founder, President"
+                    @click="openImageModal('/images/team/julien.webp', 'Julien Imhoff, Founder and President of GTO Luxembourg')" />
+                <TeamMemberCard image="/images/team/ben.webp" name="Ben Thillen" role="Vice-President, <br />Webmaster"
+                    @click="openImageModal('/images/team/ben.webp', 'Ben Thillen, Vice-President and Webmaster of GTO Luxembourg')" />
+                <TeamMemberCard image="/images/team/laurent.webp" name="Laurent Reding" role="Treasurer"
+                    @click="openImageModal('/images/team/laurent.webp', 'Laurent Reding, Treasurer of GTO Luxembourg')" />
+                <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary"
+                    @click="openImageModal('/images/team/jeff.webp', 'Jeff Nosbusch, Secretary of GTO Luxembourg')" />
+                <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal"
+                    @click="openImageModal('/images/team/gilles.webp', 'Gilles Declercq, responsible for Administration and Legal matters.')" />
+                <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Organisation"
+                    @click="openImageModal('/images/team/noah.webp', 'Noah Leuck, responsible for Organisation.')" />
+                <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation"
+                    @click="openImageModal('/images/team/jona.webp', 'Jona Leuck, responsible for Organisation.')" />
+                <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations"
+                    @click="openImageModal('/images/team/dylan.webp', 'Dylan Perreira, responsible for media relations.')" />
+            </div>
+        </section>
 
-    <section class="friend container-p">
-        <div class="friend-container">
-            <img src="/images/team/ben_steimens.webp" alt="Our beloved friend Ben Steimens"
-                class="img-fluid ben_steimens border" />
-        </div>
-        <h4 class="text-center h-white-small heading-pt">Ben Steimens</h4>
-        <p class="text-center content-text">
-            Special thanks to our beloved friend, who sadly passed away a few years ago. Your smile and kindness will be
-            missed but never forgotten. We will always keep you in our hearts.
-            <br>
-            <br>
-            <i>Mia san GTO.</i>
-            <br>
-            Rest in peace, Ben.
-        </p>
-    </section>
+        <section class="friend container-p">
+            <div class="friend-container">
+                <img src="/images/team/ben_steimens.webp" alt="Our beloved friend Ben Steimens"
+                    class="img-fluid ben_steimens border" />
+            </div>
+            <h4 class="text-center h-white-small heading-pt">Ben Steimens</h4>
+            <p class="text-center content-text">
+                Special thanks to our beloved friend, who sadly passed away a few years ago. Your smile and kindness
+                will be
+                missed but never forgotten. We will always keep you in our hearts.
+                <br>
+                <br>
+                <i>Mia san GTO.</i>
+                <br>
+                Rest in peace, Ben.
+            </p>
+        </section>
 
-    <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
-        @close="selectedImage = null" />
+        <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
+            @close="selectedImage = null" />
+    </main>
 </template>
 
 <script setup>

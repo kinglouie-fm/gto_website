@@ -1,28 +1,30 @@
 <template>
-    <!-- HeroSection now shows the user’s own snapshot -->
-    <HeroSection :desktopSrc="imageSrc" :mobileSrc="imageSrc" alt="Captured snapshot" customClass="portfolio-hero" />
+    <main>
+        <HeroSection :desktopSrc="imageSrc" :mobileSrc="imageSrc" alt="Captured snapshot"
+            customClass="portfolio-hero" />
 
-    <section v-if="details.make" class="content container-pb">
-        <h3 class="text-center h-yellow h-first">CAR DETAILS</h3>
+        <section v-if="details.make" class="content container-pb">
+            <h3 class="text-center h-yellow h-first">CAR DETAILS</h3>
 
-        <h4 v-if="details.model" class="text-center h-white-small">{{ details.make + " " + details.model }}</h4>
+            <h4 v-if="details.model" class="text-center h-white-small">{{ details.make + " " + details.model }}</h4>
 
-        <ul class="details-list mx-auto">
-            <li v-for="(value, key) in flatDetails" :key="key">
-                <span class="detail-key">{{ key }}</span>
-                <span class="detail-value">{{ value }}</span>
-            </li>
-        </ul>
+            <ul class="details-list mx-auto">
+                <li v-for="(value, key) in flatDetails" :key="key">
+                    <span class="detail-key">{{ key }}</span>
+                    <span class="detail-value">{{ value }}</span>
+                </li>
+            </ul>
 
-        <!-- scan again -->
-        <div class="text-center mt-4">
-            <ButtonFilled @click="scanAgain">Scan Again</ButtonFilled>
-        </div>
+            <!-- scan again -->
+            <div class="text-center mt-4">
+                <ButtonFilled @click="scanAgain">Scan Again</ButtonFilled>
+            </div>
 
-        <p class="text-center terms-text mt-2">
-            AI can make mistakes. Check important info.
-        </p>
-    </section>
+            <p class="text-center terms-text mt-2">
+                AI can make mistakes. Check important info.
+            </p>
+        </section>
+    </main>
 </template>
 
 <script setup>

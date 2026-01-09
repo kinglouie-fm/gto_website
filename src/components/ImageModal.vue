@@ -5,42 +5,64 @@
                 <span class="modal-title text-center">{{ carName }}</span>
                 <button type="button" class="btn-close btn-close-white" aria-label="Close" @click="close"></button>
             </div>
+
             <div v-if="showNavigation" class="navigation">
-                <button class="arrow prev" @click="prev">&#10094;</button>
-                <button class="arrow next" @click="next">&#10095;</button>
+                <button class="arrow prev" @click="prev" aria-label="Previous image">&#10094;</button>
+                <button class="arrow next" @click="next" aria-label="Next image">&#10095;</button>
             </div>
+
             <div class="modal-image-container">
-                <img :src="imageSrc" alt="Enlarged image" />
+                <img class="modal-img modal-img--full" :class="{ 'is-loaded': isFullLoaded }" :src="imageSrc"
+                    alt="Enlarged image" decoding="async" @load="onFullLoad" />
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, watch } from 'vue'
+
 const props = defineProps({
     imageSrc: { type: String, required: true },
     carName: { type: String, default: '' },
     showNavigation: { type: Boolean, default: false }
-});
-const emit = defineEmits(['close', 'prev', 'next']);
+})
 
-const close = () => {
-    emit('close');
-};
-const prev = () => {
-    emit('prev');
-};
-const next = () => {
-    emit('next');
-};
+const emit = defineEmits(['close', 'prev', 'next'])
+
+const isFullLoaded = ref(false)
+
+const close = () => emit('close')
+const prev = () => emit('prev')
+const next = () => emit('next')
+
+const onFullLoad = () => {
+    isFullLoaded.value = true
+}
+
+watch(
+    () => props.imageSrc,
+    () => {
+        // reset loaded state when switching images
+        isFullLoaded.value = false
+    }
+)
+
+const onKeydown = (e) => {
+    if (e.key === 'Escape') close()
+    if (!props.showNavigation) return
+    if (e.key === 'ArrowLeft') prev()
+    if (e.key === 'ArrowRight') next()
+}
 
 onMounted(() => {
-  document.body.style.overflow = 'hidden'
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeydown)
 })
 
 onUnmounted(() => {
-  document.body.style.overflow = ''
+    document.body.style.overflow = ''
+    window.removeEventListener('keydown', onKeydown)
 })
 </script>
 
@@ -79,6 +101,7 @@ onUnmounted(() => {
 
 .modal-image-container {
     flex: 1;
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,10 +109,22 @@ onUnmounted(() => {
     min-height: 0;
 }
 
-.modal-image-container img {
+/* both images share sizing rules */
+.modal-img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+}
+
+/* full image fades in */
+.modal-img--full {
+    position: relative;
+    opacity: 0;
+    transition: opacity 220ms ease;
+}
+
+.modal-img--full.is-loaded {
+    opacity: 1;
 }
 
 /* Desktop: for screens 576px and up, position navigation absolutely over image */
@@ -103,6 +138,7 @@ onUnmounted(() => {
         width: 100%;
         transform: translateY(-50%);
         pointer-events: none;
+        z-index: 10;
     }
 
     .arrow {
@@ -113,6 +149,7 @@ onUnmounted(() => {
         font-size: 2rem;
         cursor: pointer;
         padding: 1rem;
+        z-index: 11;
     }
 
     .image-modal-header {
@@ -122,7 +159,9 @@ onUnmounted(() => {
 
 /* Mobile: below 576px, display navigation as a row between header and image container */
 @media (max-width: 575px) {
-    :root { --modal-chrome: 120px; }
+    :root {
+        --modal-chrome: 120px;
+    }
 
     .navigation {
         display: flex;
@@ -146,7 +185,7 @@ onUnmounted(() => {
         padding-top: 0.5rem;
     }
 
-    .modal-image-container img {
+    .modal-img {
         max-height: calc(100% - var(--modal-chrome));
     }
 }
