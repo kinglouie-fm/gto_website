@@ -12,6 +12,10 @@
                 <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
                     <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
                 </a>
+                <a class="marquee-item" href="https://www.aral.de/de_lu/luxembourg/home.html" target="_blank"
+                    rel="noopener">
+                    <img src="/images/aral.webp" alt="Aral Luxembourg Logo" class="logo logo--aral" />
+                </a>
 
                 <!-- set 2 (duplicate for seamless loop) -->
                 <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
@@ -22,6 +26,10 @@
                 </a>
                 <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
                     <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
+                </a>
+                <a class="marquee-item" href="https://www.aral.de/de_lu/luxembourg/home.html" target="_blank"
+                    rel="noopener">
+                    <img src="/images/aral.webp" alt="Aral Luxembourg Logo" class="logo logo--aral" />
                 </a>
             </div>
         </div>
@@ -75,6 +83,10 @@ const props = defineProps({
 
 .logo--dvm {
     width: clamp(135px, 45vw, 170px);
+}
+
+.logo--aral {
+    width: clamp(100px, 30vw, 130px);
 }
 
 /* ===== Mobile flowing carousel (default) ===== */
@@ -144,7 +156,7 @@ const props = defineProps({
     }
 
     /* hide duplicates on larger screens so you don't see 6 logos */
-    .marquee-item:nth-child(n + 4) {
+    .marquee-item:nth-child(n + 5) {
         display: none;
     }
 
@@ -159,6 +171,10 @@ const props = defineProps({
 
     .logo--dvm {
         width: clamp(150px, 18vw, 200px);
+    }
+
+    .logo--aral {
+        width: clamp(100px, 14vw, 150px);
     }
 }
 
