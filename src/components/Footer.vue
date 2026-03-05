@@ -6,9 +6,9 @@
                 <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
                     <img src="/images/reinert_logo.png" alt="Reinert Logo" class="logo logo--reinert" />
                 </a>
-                <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
+                <!-- <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
                     <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="logo logo--wot" />
-                </a>
+                </a> -->
                 <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
                     <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
                 </a>
@@ -21,9 +21,9 @@
                 <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
                     <img src="/images/reinert_logo.png" alt="Reinert Logo" class="logo logo--reinert" />
                 </a>
-                <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
+                <!-- <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
                     <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="logo logo--wot" />
-                </a>
+                </a> -->
                 <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
                     <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
                 </a>
@@ -77,9 +77,9 @@ const props = defineProps({
     width: clamp(135px, 45vw, 170px);
 }
 
-.logo--wot {
+/* .logo--wot {
     width: clamp(125px, 40vw, 160px);
-}
+} */
 
 .logo--dvm {
     width: clamp(135px, 45vw, 170px);
@@ -165,9 +165,9 @@ const props = defineProps({
         width: clamp(150px, 18vw, 250px);
     }
 
-    .logo--wot {
+    /* .logo--wot {
         width: clamp(140px, 16vw, 230px);
-    }
+    } */
 
     .logo--dvm {
         width: clamp(150px, 18vw, 200px);
