@@ -84,12 +84,18 @@ const close = () => {
     padding-top: 0;
 }
 
-.modal-close-only {
+.modal-close-only,
+.book-modal-header .btn-close {
     position: absolute;
-    top: 16px;
-    right: 20px;
-    z-index: 2;
+    top: 10px;
+    right: 10px;
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     border: 1px solid black;
+    border-radius: 8px;
+    background-size: 20px;
 }
 
 .btn {
@@ -115,9 +121,12 @@ const close = () => {
         font-size: 1rem;
     }
 
-    .modal-close-only {
-        top: 12px;
-        right: 14px;
+    .modal-close-only,
+    .book-modal-header .btn-close {
+        top: 8px;
+        right: 8px;
+        width: 32px;
+        height: 32px;
     }
 }
 </style>
