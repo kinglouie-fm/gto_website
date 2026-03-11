@@ -29,7 +29,7 @@
             :carName="selectedCarName" :showNavigation="true" @close="selectedImageIndex = null" @prev="prevImage"
             @next="nextImage" />
 
-        <Modal v-if="showModal" @close="closeForm">
+        <Modal v-if="showModal" :show-header="false" @close="closeForm">
             <iframe title="Booking Form" :src="typeformEmbedUrl"
                 allow="camera; microphone; autoplay; encrypted-media" />
         </Modal>
@@ -107,8 +107,6 @@ watch(selectedImageIndex, (idx) => {
     preload(portfolioImages[idx - 1]?.full)
 })
 
-// ✅ THUMBS + FULLS
-// Keep thumbs small (e.g. 300–500px wide) to make the grid fast.
 const portfolioImages = [
     {
         thumb: '/images/portfolio/thumbs/Lamborghini_purplemante.webp',
@@ -323,8 +321,9 @@ onMounted(() => {
 <style scoped>
 iframe {
     width: 100%;
-    height: calc(100dvh - 80px);
+    height: 100%;
     border: 0;
+    display: block;
 }
 
 .hero-img {

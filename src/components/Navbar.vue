@@ -371,7 +371,7 @@ watch(isMenuOpen, (open) => {
 .nav-link {
   padding: 8px 10px;
   cursor: pointer;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .nav-link:hover {

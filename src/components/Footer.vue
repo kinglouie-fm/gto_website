@@ -2,13 +2,9 @@
     <section class="footer text-center" :style="{ backgroundColor: bgColor }">
         <div class="sponsor-marquee" aria-label="Sponsors">
             <div class="marquee-track">
-                <!-- set 1 -->
                 <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
                     <img src="/images/reinert_logo.png" alt="Reinert Logo" class="logo logo--reinert" />
                 </a>
-                <!-- <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
-                    <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="logo logo--wot" />
-                </a> -->
                 <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
                     <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
                 </a>
@@ -17,13 +13,9 @@
                     <img src="/images/aral.webp" alt="Aral Luxembourg Logo" class="logo logo--aral" />
                 </a>
 
-                <!-- set 2 (duplicate for seamless loop) -->
                 <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
                     <img src="/images/reinert_logo.png" alt="Reinert Logo" class="logo logo--reinert" />
                 </a>
-                <!-- <a class="marquee-item" href="https://www.wot.lu" target="_blank" rel="noopener">
-                    <img src="/images/wot_white_logo.svg" alt="WOT Logo" class="logo logo--wot" />
-                </a> -->
                 <a class="marquee-item" href="https://www.vinsmoselle.lu/en" target="_blank" rel="noopener">
                     <img src="/images/dvm-logo-white.svg" alt="Domaine Vinsmoselle Logo" class="logo logo--dvm" />
                 </a>
@@ -156,7 +148,7 @@ const props = defineProps({
     }
 
     /* hide duplicates on larger screens so you don't see 6 logos */
-    .marquee-item:nth-child(n + 5) {
+    .marquee-item:nth-child(n + 4) {
         display: none;
     }
 
