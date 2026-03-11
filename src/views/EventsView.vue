@@ -8,31 +8,54 @@
         <section class="content events text-center container-p">
             <h3 class="text-center h-yellow h-first">Events</h3>
 
-            <div class="scs-container">
-                <div class="scs-img-container">
-                    <img src="/images/other/gto_scs6.webp" alt="Supercar Sunday #6" class="img-fluid gto_scs6 border"
-                        @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
+            <div class="events-mobile d-lg-none">
+                <div class="scs-container">
+                    <div class="scs-img-container">
+                        <img src="/images/other/gto_scs6.webp" alt="Supercar Sunday #6"
+                            class="img-fluid gto_scs6 border"
+                            @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
+                    </div>
+                    <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
+                    <p class="text-center content-text scs6-text">
+                        Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together
+                        car enthusiasts to share their passion and spend a great day in good company. The event is
+                        completely free for both visitors and participants.
+                    </p>
+                    <div class="event-mobile-cta">
+                        <GetInTouchButton analytics-event="event_get_in_touch_click"
+                            analytics-placement="events_section" />
+                    </div>
                 </div>
-                <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
-                <p class="text-center content-text scs6-text">
-                    Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car
-                    enthusiasts to share their passion and spend a great day in good company. The event is completely
-                    free
-                    for both visitors and participants.
-                </p>
+
+                <div class="tour-container">
+                    <div class="tour-img-container">
+                        <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg"
+                            class="img-fluid gto_tour border"
+                            @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
+                    </div>
+                    <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
+                    <p class="text-center content-text tour-text">
+                        GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a
+                        more private and relaxed setting, giving everyone a chance to enjoy the drive and
+                        connect with other car enthusiasts. This event, too, is free for all participants.
+                    </p>
+                    <div class="event-mobile-cta">
+                        <GetInTouchButton analytics-event="event_get_in_touch_click"
+                            analytics-placement="events_section" />
+                    </div>
+                </div>
             </div>
 
-            <div class="tour-container">
-                <div class="tour-img-container">
-                    <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg" class="img-fluid gto_tour border"
-                        @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
-                </div>
-                <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
-                <p class="text-center content-text tour-text">
-                    GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a
-                    more private and relaxed setting, giving everyone a chance to enjoy the drive and
-                    connect with other car enthusiasts. This event, too, is free for all participants.
-                </p>
+            <div class="events-desktop d-none d-lg-flex">
+                <Event image-src="/images/other/gto_scs6.webp" image-alt="Supercar Sunday #6"
+                    modal-car-name="Porsche 992 GT3" title="Supercar Sunday"
+                    text="Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car enthusiasts to share their passion and spend a great day in good company. The event is completely free for both visitors and participants."
+                    @image-click="({ imageSrc, carName }) => openImageModal(imageSrc, carName)" />
+
+                <Event image-src="/images/other/gto_tours.webp" image-alt="GTO goes Luxembourg"
+                    modal-car-name="GTO goes Luxembourg" title="GTO goes Luxembourg"
+                    text="GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a more private and relaxed setting, giving everyone a chance to enjoy the drive and connect with other car enthusiasts. This event, too, is free for all participants."
+                    @image-click="({ imageSrc, carName }) => openImageModal(imageSrc, carName)" />
             </div>
         </section>
 
@@ -69,7 +92,6 @@
                 </article>
             </div>
         </section>
-
         <ImageModal v-if="selectedImage" :imageSrc="selectedImage" :carName="selectedCarName"
             @close="selectedImage = null" />
     </main>
@@ -80,17 +102,17 @@ import { ref, onMounted } from 'vue';
 import HeroSection from '@/components/HeroSection.vue';
 import ImageModal from '@/components/ImageModal.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
-import ButtonFilled from '@/components/ButtonFilled.vue';
+import Event from '@/components/Event.vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import ButtonFilled from '@/components/ButtonFilled.vue'
+import GetInTouchButton from '@/components/GetInTouchButton.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Reactive property to hold the URL of the clicked image
 const selectedImage = ref(null);
 const selectedCarName = ref('');
 
-// Function to open the image modal
 const openImageModal = (imageUrl, carName) => {
     selectedImage.value = imageUrl;
     selectedCarName.value = carName;
@@ -100,7 +122,7 @@ onMounted(() => {
     gsap.from('.news', {
         scrollTrigger: {
             trigger: '.news',
-            start: 'top 60%',
+            start: 'top 80%',
             toggleActions: 'play none none reverse'
         },
         opacity: 0,
@@ -115,6 +137,13 @@ onMounted(() => {
 <style scoped>
 .img-fluid {
     cursor: pointer;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
 }
 
 .content {
@@ -161,8 +190,25 @@ p {
     display: block;
 }
 
+.events-desktop {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.event-mobile-cta {
+    display: flex;
+    justify-content: center;
+}
+
 .news {
     background-color: rgb(76, 84, 94);
+}
+
+.scs6-text,
+.tour-text {
+    margin-bottom: 0;
 }
 
 /* ButtonFilled and Button have right margins. Remove these in this specific case. */
@@ -183,6 +229,12 @@ p {
     height: 160px;
     object-fit: cover;
     border-radius: 10px;
+}
+
+.events-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 }
 
 /* Container to center the image using flexbox */
@@ -342,6 +394,13 @@ p {
 }
 
 @media (min-width: 992px) {
+    .events-mobile {
+        display: none;
+    }
+
+    .events-desktop {
+        display: flex;
+    }
 
     .gto_scs6,
     .gto_tour {
