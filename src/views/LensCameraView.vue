@@ -74,7 +74,7 @@ async function capture() {
     form.append('image', blob, 'snapshot.jpg')
 
     const controller = new AbortController()
-    setTimeout(() => controller.abort(), 10000)
+    setTimeout(() => controller.abort(), 30000)
 
     try {
         // Send to backend
