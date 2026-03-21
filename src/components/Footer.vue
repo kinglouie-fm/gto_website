@@ -12,6 +12,10 @@
                     rel="noopener">
                     <img src="/images/aral.webp" alt="Aral Luxembourg Logo" class="logo logo--aral" />
                 </a>
+                <a class="marquee-item" href="https://www.alphacarservices.lu/" target="_blank" rel="noopener">
+                    <img src="/images/alpha-car-services_white.svg" alt="Alpha Car Services Logo"
+                        class="logo logo--acs" />
+                </a>
 
                 <a class="marquee-item" href="https://www.reinert.lu" target="_blank" rel="noopener">
                     <img src="/images/reinert_logo.png" alt="Reinert Logo" class="logo logo--reinert" />
@@ -22,6 +26,10 @@
                 <a class="marquee-item" href="https://www.aral.de/de_lu/luxembourg/home.html" target="_blank"
                     rel="noopener">
                     <img src="/images/aral.webp" alt="Aral Luxembourg Logo" class="logo logo--aral" />
+                </a>
+                <a class="marquee-item" href="https://www.alphacarservices.lu/" target="_blank" rel="noopener">
+                    <img src="/images/alpha-car-services_white.svg" alt="Alpha Car Services Logo"
+                        class="logo logo--acs" />
                 </a>
             </div>
         </div>
@@ -69,9 +77,9 @@ const props = defineProps({
     width: clamp(135px, 45vw, 170px);
 }
 
-/* .logo--wot {
-    width: clamp(125px, 40vw, 160px);
-} */
+.logo--acs {
+    width: clamp(120px, 40vw, 250px);
+}
 
 .logo--dvm {
     width: clamp(135px, 45vw, 170px);
@@ -130,7 +138,6 @@ const props = defineProps({
     }
 }
 
-/* ===== Switch to static centered row on bigger screens ===== */
 @media (min-width: 576px) {
     .sponsor-marquee {
         overflow: visible;
@@ -148,7 +155,7 @@ const props = defineProps({
     }
 
     /* hide duplicates on larger screens so you don't see 6 logos */
-    .marquee-item:nth-child(n + 4) {
+    .marquee-item:nth-child(n + 5) {
         display: none;
     }
 
@@ -157,9 +164,9 @@ const props = defineProps({
         width: clamp(150px, 18vw, 250px);
     }
 
-    /* .logo--wot {
-        width: clamp(140px, 16vw, 230px);
-    } */
+    .logo--acs {
+        width: clamp(120px, 14vw, 200px);
+    }
 
     .logo--dvm {
         width: clamp(150px, 18vw, 200px);
