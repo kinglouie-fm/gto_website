@@ -43,7 +43,7 @@ const props = defineProps({
     },
     formUrl: {
         type: String,
-        default: 'https://cxgwixcj505.typeform.com/to/eRlQG98c'
+        default: 'https://app.youform.com/forms/qg1axr1r'
     }
 })
 

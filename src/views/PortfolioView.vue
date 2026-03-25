@@ -51,7 +51,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const showModal = ref(false)
-const typeformEmbedUrl = 'https://cxgwixcj505.typeform.com/to/eRlQG98c'
+const typeformEmbedUrl = 'https://app.youform.com/forms/qg1axr1r'
 
 const openForm = () => {
     window.gtag?.('event', 'book_button_click', { placement: 'portfolio_section' })

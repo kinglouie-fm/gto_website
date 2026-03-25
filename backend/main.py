@@ -171,7 +171,7 @@ async def csp_nonce_middleware(request: Request, call_next):
         "img-src 'self' data: https://www.google-analytics.com https://stats.g.doubleclick.net; "
         "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
         "font-src 'self' https://fonts.gstatic.com data:; "
-        "frame-src 'self' https://*.typeform.com; "
+        "frame-src 'self' https://app.youform.com https://*.youform.com; "
         "upgrade-insecure-requests"
     )
     resp.headers["Content-Security-Policy"] = csp

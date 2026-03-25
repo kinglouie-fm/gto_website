@@ -105,12 +105,25 @@ const close = () => {
 
 @media (max-width: 768px) {
     .modal-backdrop {
-        padding: 12px;
+        padding: 0;
+        align-items: stretch;
     }
 
     .book-modal-content {
-        height: min(88dvh, 900px);
-        border-radius: 12px;
+        width: 100vw;
+        height: 100dvh;
+        max-width: 100vw;
+        max-height: 100dvh;
+        border-radius: 0;
+    }
+
+    .modal-close-only,
+    .book-modal-header .btn-close {
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+        z-index: 10;
     }
 
     .book-modal-header {
@@ -119,14 +132,6 @@ const close = () => {
 
     .modal-title {
         font-size: 1rem;
-    }
-
-    .modal-close-only,
-    .book-modal-header .btn-close {
-        top: 8px;
-        right: 8px;
-        width: 32px;
-        height: 32px;
     }
 }
 </style>
