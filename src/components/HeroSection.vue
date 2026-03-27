@@ -147,8 +147,29 @@ const heroVars = computed(() => ({
     }
 
     .hero-desktop-framed .hero-frame {
-        border-radius: var(--hero-desktop-radius);
+        position: relative;
         height: var(--hero-desktop-height);
+        border-radius: var(--hero-desktop-radius);
+        overflow: hidden;
+        background: rgb(38, 45, 54);
+    }
+
+    .hero-desktop-framed .hero-frame::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: 2;
+        box-shadow:
+            inset 0 0 34px 14px rgba(0, 0, 0, 0.34),
+            inset 0 0 90px 24px rgba(0, 0, 0, 0.18),
+            inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-desktop-framed .hero-img {
+        border-radius: var(--hero-desktop-radius);
+        filter: brightness(0.97);
     }
 
     .hero-desktop-framed::after {
