@@ -47,13 +47,21 @@ const props = defineProps({
     },
     mobileHeight: {
         type: String,
-        default: 'auto',
+        default: '56svh',
+    },
+    tabletHeight: {
+        type: String,
+        default: '58svh',
     },
     desktopHeight: {
         type: String,
         default: '60svh',
     },
     mobileObjectPosition: {
+        type: String,
+        default: '50% 70%',
+    },
+    tabletObjectPosition: {
         type: String,
         default: '50% 70%',
     },
@@ -73,8 +81,10 @@ const props = defineProps({
 
 const heroVars = computed(() => ({
     '--hero-mobile-height': props.mobileHeight,
+    '--hero-tablet-height': props.tabletHeight,
     '--hero-desktop-height': props.desktopHeight,
     '--hero-mobile-object-position': props.mobileObjectPosition,
+    '--hero-tablet-object-position': props.tabletObjectPosition,
     '--hero-desktop-object-position': props.desktopObjectPosition,
     '--hero-desktop-radius': props.desktopRadius,
     '--hero-desktop-side-gap': props.desktopSideGap,
@@ -90,6 +100,7 @@ const heroVars = computed(() => ({
 .hero-frame {
     width: 100%;
     overflow: hidden;
+    height: var(--hero-mobile-height);
 }
 
 .hero-frame picture,
@@ -104,11 +115,6 @@ const heroVars = computed(() => ({
     object-position: var(--hero-mobile-object-position);
 }
 
-.hero-frame {
-    height: var(--hero-mobile-height);
-}
-
-/* keep old full-bleed behavior below desktop */
 .hero-mobile-fade::after {
     content: "";
     position: absolute;
@@ -118,6 +124,16 @@ const heroVars = computed(() => ({
     height: 80px;
     background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
     pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .hero-frame {
+        height: var(--hero-tablet-height);
+    }
+
+    .hero-img {
+        object-position: var(--hero-tablet-object-position);
+    }
 }
 
 @media (min-width: 992px) {

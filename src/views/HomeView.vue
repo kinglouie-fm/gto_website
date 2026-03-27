@@ -2,7 +2,7 @@
     <main>
         <HeroSection desktopSrc="/images/other/ben911.jpg" mobileSrc="/images/other/rollsroyce.webp" alt="Rolls Royce"
             customClass="home-hero" :desktopFramed="true" :showMobileFade="true" desktopHeight="60svh"
-            mobileObjectPosition="50% 70%" desktopObjectPosition="60% 60%" />
+            mobileObjectPosition="50% 80%" desktopObjectPosition="60% 60%" />
         <VerticalSlider />
         <section class="content container-pb">
             <h3 class="text-center h-yellow h-first">We share passion!</h3>

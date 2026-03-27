@@ -1,7 +1,9 @@
 <template>
     <main>
         <HeroSection desktopSrc="/images/other/scs7_people.webp" mobileSrc="/images/other/scs7_people.webp"
-            alt="Supercar Sunday #7 by GTO Luxembourg" customClass="events-hero" />
+            alt="Supercar Sunday #7 by GTO Luxembourg" customClass="events-hero" :desktopFramed="true"
+            :showMobileFade="true" tablet-height="40svh" desktopHeight="60svh" mobileObjectPosition="50% 50%"
+            tabletObjectPosition="50% 90%" desktopObjectPosition="50% 85%" />
 
         <VerticalSlider />
 
@@ -159,12 +161,9 @@ p {
 
 .events {
     background-color: rgb(48, 56, 65);
-    --event-card-w: 243px;
 }
 
 .events .content-text {
-    width: calc(var(--event-card-w) + 100px);
-    max-width: calc(var(--event-card-w) + 100px);
     padding: 0 20px;
     text-align: left;
 }
@@ -181,7 +180,6 @@ p {
 /* Images: use the variable width + keep your ratio/radius */
 .events .scs-img-container .gto_scs6,
 .events .tour-img-container .gto_tour {
-    width: var(--event-card-w);
     aspect-ratio: 243 / 160;
     height: auto;
     /* override fixed height */
@@ -314,21 +312,19 @@ p {
 }
 
 @media (min-width: 576px) {
+    .events {
+        --event-card-w: min(65vw, 360px);
+    }
 
     .gto_scs6,
     .gto_tour {
-        width: 40%;
-        max-width: 300px;
+        width: var(--event-card-w);
         height: auto;
-        max-height: 160px;
+        max-height: none;
     }
 
     .events .news .h-yellow .h-white {
         padding-bottom: 1.5rem;
-    }
-
-    .events {
-        --event-card-w: min(40vw, 300px);
     }
 
     .news {
@@ -347,15 +343,15 @@ p {
 }
 
 @media (min-width: 768px) {
-    .hero-img {
-        object-position: 50% 10%;
+    .events {
+        --event-card-w: min(55vw, 420px);
     }
 
     .gto_scs6,
     .gto_tour {
-        width: 35%;
-        max-width: 400px;
-        max-height: 200px;
+        width: var(--event-card-w);
+        height: auto;
+        max-height: none;
     }
 
     .gto_scs6 {
@@ -383,13 +379,9 @@ p {
         padding-top: 120px;
     }
 
-    .events {
-        --event-card-w: min(35vw, 400px);
-    }
-
     .events .content-text {
-        width: calc(var(--event-card-w) + 200px);
-        max-width: calc(var(--event-card-w) + 200px);
+        width: calc(var(--event-card-w) + 120px);
+        max-width: calc(var(--event-card-w) + 120px);
     }
 }
 
@@ -421,10 +413,6 @@ p {
     .content {
         margin-top: -140px;
         padding-top: 140px;
-    }
-
-    .events {
-        --event-card-w: min(35vw, 600px);
     }
 }
 </style>
