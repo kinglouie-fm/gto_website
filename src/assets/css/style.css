@@ -90,43 +90,6 @@ body {
     font-size: 1rem;
 }
 
-/* .hero {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-} */
-
-.hero-img {
-    width: 100%;
-    height: 100%;
-    max-height: 900px;
-    object-fit: cover;
-}
-
-/* Create the gradient fade at the bottom of the hero */
-/* .hero::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 80px;
-    background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
-} */
-
-@media (min-width: 992px) and (max-width: 1500px) {
-    .home-hero::after {
-        content: none;
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1500px) {
-    .content {
-        margin-top: -90px;
-        padding-top: 110px;
-    }
-}
-
 .content-text {
     margin: 1.5rem 2.5rem;
     color: white;

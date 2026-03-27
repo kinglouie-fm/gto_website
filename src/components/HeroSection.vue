@@ -1,5 +1,12 @@
 <template>
-    <section :class="['hero-shell', customClass]">
+    <section :class="[
+        'hero-shell',
+        customClass,
+        {
+            'hero-desktop-framed': desktopFramed,
+            'hero-mobile-fade': showMobileFade
+        }
+    ]" :style="heroVars">
         <div class="hero-frame">
             <picture>
                 <source :srcset="desktopSrc" media="(min-width: 768px)" />
@@ -11,7 +18,9 @@
 </template>
 
 <script setup>
-defineProps({
+import { computed } from 'vue'
+
+const props = defineProps({
     desktopSrc: {
         type: String,
         required: true,
@@ -27,12 +36,54 @@ defineProps({
     customClass: {
         type: String,
         default: '',
+    },
+    desktopFramed: {
+        type: Boolean,
+        default: false,
+    },
+    showMobileFade: {
+        type: Boolean,
+        default: true,
+    },
+    mobileHeight: {
+        type: String,
+        default: 'auto',
+    },
+    desktopHeight: {
+        type: String,
+        default: '60svh',
+    },
+    mobileObjectPosition: {
+        type: String,
+        default: '50% 70%',
+    },
+    desktopObjectPosition: {
+        type: String,
+        default: '50% 70%',
+    },
+    desktopRadius: {
+        type: String,
+        default: '24px',
+    },
+    desktopSideGap: {
+        type: String,
+        default: '20px',
     }
 })
+
+const heroVars = computed(() => ({
+    '--hero-mobile-height': props.mobileHeight,
+    '--hero-desktop-height': props.desktopHeight,
+    '--hero-mobile-object-position': props.mobileObjectPosition,
+    '--hero-desktop-object-position': props.desktopObjectPosition,
+    '--hero-desktop-radius': props.desktopRadius,
+    '--hero-desktop-side-gap': props.desktopSideGap,
+}))
 </script>
 
 <style scoped>
 .hero-shell {
+    position: relative;
     margin-top: var(--navbar-height);
 }
 
@@ -50,35 +101,42 @@ defineProps({
 
 .hero-img {
     object-fit: cover;
-    object-position: 50% 70%;
+    object-position: var(--hero-mobile-object-position);
 }
 
-/* Home hero base */
-.home-hero .hero-frame {
-    height: 58svh;
-    min-height: 420px;
+.hero-frame {
+    height: var(--hero-mobile-height);
 }
 
-.home-hero .hero-img {
-    object-position: 60% 60%;
+/* keep old full-bleed behavior below desktop */
+.hero-mobile-fade::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
+    pointer-events: none;
 }
 
-/* laptop range only */
-@media (min-width: 992px) and (max-width: 1500px) {
-    .home-hero {
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 0px;
+@media (min-width: 992px) {
+    .hero-img {
+        object-position: var(--hero-desktop-object-position);
     }
 
-    .home-hero .hero-frame {
-        border-radius: 24px;
-        height: 60svh;
-        min-height: 440px;
+    .hero-desktop-framed {
+        padding-left: var(--hero-desktop-side-gap);
+        padding-right: var(--hero-desktop-side-gap);
     }
-}
 
-.portfolio-hero .hero-img {
-    object-position: 50% 40%;
+    .hero-desktop-framed .hero-frame {
+        border-radius: var(--hero-desktop-radius);
+        height: var(--hero-desktop-height);
+    }
+
+    .hero-desktop-framed::after {
+        content: none;
+    }
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
     <main>
         <HeroSection desktopSrc="/images/other/rollsroyce_cut.jpeg" mobileSrc="/images/portfolio/Gwagon.webp"
-            alt="Mercedes G63 AMG" customClass="portfolio-hero" />
+            alt="Mercedes G63 AMG" customClass="portfolio-hero" :desktopFramed="true" :showMobileFade="true"
+            desktopHeight="60svh" mobileObjectPosition="50% 70%" desktopObjectPosition="50% 40%" />
 
         <VerticalSlider />
 
