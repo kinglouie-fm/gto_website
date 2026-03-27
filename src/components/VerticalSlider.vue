@@ -1,10 +1,5 @@
 <template>
-  <div
-    ref="sliderEl"
-    class="vertical-slider scroll-hint"
-    :style="{ top: sliderTop + 'px' }"
-    aria-hidden="true"
-  >
+  <div ref="sliderEl" class="vertical-slider scroll-hint" :style="{ top: sliderTop + 'px' }" aria-hidden="true">
     <div class="slider-track"></div>
     <div ref="thumbEl" class="slider-thumb"></div>
   </div>
@@ -86,14 +81,18 @@ onUnmounted(() => {
   border-radius: 20px;
 
   /* animation tunables */
-  --travel: 80px;                /* updated at runtime */
-  --slide-duration: 2s;        /* glide down time */
-  --pause-duration: 2s;          /* wait at top while invisible */
+  --travel: 80px;
+  /* updated at runtime */
+  --slide-duration: 2s;
+  /* glide down time */
+  --pause-duration: 2s;
+  /* wait at top while invisible */
 }
 
 .scroll-hint,
 .scroll-hint * {
-  pointer-events: none; /* purely decorative */
+  pointer-events: none;
+  /* purely decorative */
 }
 
 .slider-track {
@@ -131,22 +130,27 @@ onUnmounted(() => {
     transform: translateY(0);
     opacity: 1;
   }
+
   50% {
     transform: translateY(var(--travel));
     opacity: 1;
   }
+
   51% {
     /* hide */
     opacity: 0;
   }
+
   55% {
     /* jump back to top */
     transform: translateY(0);
   }
+
   90% {
     /* reappear at top */
     opacity: 1;
   }
+
   100% {
     transform: translateY(0);
     opacity: 1;
@@ -154,39 +158,62 @@ onUnmounted(() => {
 }
 
 /* Breakpoints (kept, minor tidy) */
+.vertical-slider {
+  display: none;
+}
+
 @media (min-width: 576px) {
   .vertical-slider {
     width: clamp(3px, 0.5vw, 6px);
     height: clamp(60px, 10vw, 120px);
   }
-  .slider-thumb { height: clamp(12px, 2.2vw, 22px); }
+
+  .slider-thumb {
+    height: clamp(12px, 2.2vw, 22px);
+  }
 }
+
 @media (min-width: 768px) {
   .vertical-slider {
     width: clamp(4px, 0.5vw, 7px);
     height: clamp(70px, 10vw, 140px);
   }
-  .slider-thumb { height: clamp(14px, 2.5vw, 24px); }
+
+  .slider-thumb {
+    height: clamp(14px, 2.5vw, 24px);
+  }
 }
+
 @media (min-width: 992px) {
   .vertical-slider {
     width: clamp(5px, 0.5vw, 8px);
     height: clamp(80px, 10vw, 160px);
   }
-  .slider-thumb { height: clamp(16px, 2.8vw, 26px); }
+
+  .slider-thumb {
+    height: clamp(16px, 2.8vw, 26px);
+  }
 }
+
 @media (min-width: 1200px) {
   .vertical-slider {
     width: clamp(6px, 0.5vw, 9px);
     height: clamp(90px, 10vw, 180px);
   }
-  .slider-thumb { height: clamp(18px, 3vw, 28px); }
+
+  .slider-thumb {
+    height: clamp(18px, 3vw, 28px);
+  }
 }
+
 @media (min-width: 1400px) {
   .vertical-slider {
     width: clamp(7px, 0.5vw, 10px);
     height: clamp(100px, 10vw, 200px);
   }
-  .slider-thumb { height: clamp(20px, 3.2vw, 30px); }
+
+  .slider-thumb {
+    height: clamp(20px, 3.2vw, 30px);
+  }
 }
 </style>
