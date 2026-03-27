@@ -1,7 +1,7 @@
 <template>
     <main>
-        <HeroSection desktopSrc="/images/other/ben911.jpg" mobileSrc="/images/other/rollsroyce.webp"
-            alt="Rolls Royce" />
+        <HeroSection desktopSrc="/images/other/ben911.jpg" mobileSrc="/images/other/rollsroyce.webp" alt="Rolls Royce"
+            customClass="home-hero" />
         <VerticalSlider />
         <section class="content container-pb">
             <h3 class="text-center h-yellow h-first">We share passion!</h3>

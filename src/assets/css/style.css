@@ -90,11 +90,11 @@ body {
     font-size: 1rem;
 }
 
-.hero {
+/* .hero {
     position: relative;
     width: 100%;
     overflow: hidden;
-}
+} */
 
 .hero-img {
     width: 100%;
@@ -104,7 +104,7 @@ body {
 }
 
 /* Create the gradient fade at the bottom of the hero */
-.hero::after {
+/* .hero::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -112,6 +112,19 @@ body {
     right: 0;
     height: 80px;
     background: linear-gradient(to bottom, transparent, rgb(48, 56, 65));
+} */
+
+@media (min-width: 992px) and (max-width: 1500px) {
+    .home-hero::after {
+        content: none;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1500px) {
+    .content {
+        margin-top: -90px;
+        padding-top: 110px;
+    }
 }
 
 .content-text {
@@ -252,7 +265,7 @@ body {
     }
 
     .h-first {
-        padding-top: 8rem;
+        padding-top: 4rem;
     }
 
     .h-yellow-small,
@@ -291,7 +304,7 @@ body {
     }
 
     .h-first {
-        padding-top: 9rem;
+        padding-top: 4rem;
     }
 
     /* .content-text {
@@ -316,7 +329,7 @@ body {
     }
 
     .h-first {
-        padding-top: 10rem;
+        padding-top: 5rem;
     }
 
     /* .content-text {
