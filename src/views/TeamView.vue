@@ -1,13 +1,8 @@
 <template>
     <main>
-        <section class="hero">
-            <img v-if="!highQualityLoaded" src="/images/team/team.webp" alt="GTO Team Picture low quality"
-                class="hero-img low-res" />
-            <transition name="fade">
-                <img v-if="highQualityLoaded" src="/images/team/team.jpeg" alt="GTO Team Picture high quality"
-                    class="hero-img high-res" />
-            </transition>
-        </section>
+        <HeroSection desktopSrc="/images/team/team.jpeg" mobileSrc="/images/team/team.webp" alt="GTO Team Picture"
+            customClass="team-hero" :desktopFramed="true" :showMobileFade="true" desktopHeight="60svh"
+            mobileObjectPosition="50% 50%" tabletObjectPosition="50% 30%" desktopObjectPosition="50% 18%" />
 
         <VerticalSlider />
 
@@ -78,35 +73,25 @@ import { ref, onMounted } from 'vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
 import ImageModal from '@/components/ImageModal.vue';
 import TeamMemberCard from '@/components/TeamMemberCard.vue'
+import HeroSection from '@/components/HeroSection.vue'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const highQualityLoaded = ref(false)
-
-// Reactive property to hold the URL of the clicked image
 const selectedImage = ref(null);
 const selectedCarName = ref('');
 
-// Function to open the image modal
 const openImageModal = (imageUrl, carName) => {
     selectedImage.value = imageUrl;
     selectedCarName.value = carName;
 }
 
 onMounted(() => {
-    const img = new Image()
-    img.src = '/images/team/team.jpeg'
-    img.onload = () => {
-        highQualityLoaded.value = true
-    }
-
-    // Animate .team when it scrolls into view
     gsap.from('.team', {
         scrollTrigger: {
             trigger: '.team',
-            start: 'top 50%',
+            start: 'top 80%',
             toggleActions: 'play none none reverse'
         },
         opacity: 0,
@@ -116,11 +101,10 @@ onMounted(() => {
         delay: 0.2
     })
 
-    // Animate .friend when it scrolls into view
     gsap.from('.friend', {
         scrollTrigger: {
             trigger: '.friend',
-            start: 'top 60%',
+            start: 'top 80%',
             toggleActions: 'play none none reverse'
         },
         opacity: 0,

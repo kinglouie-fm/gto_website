@@ -100,4 +100,42 @@ const handleImageClick = () => {
     text-align: left;
     max-width: 650px;
 }
+
+/* Small desktop */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .event-desktop-card {
+        gap: 2rem;
+        width: min(900px, 100%);
+    }
+
+    .event-desktop-card__image-wrap {
+        flex: 0 0 320px;
+    }
+
+    .event-desktop-card__text {
+        max-width: 420px;
+    }
+}
+
+/* Medium desktop */
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    .event-desktop-card__image-wrap {
+        flex: 0 0 380px;
+    }
+
+    .event-desktop-card__text {
+        max-width: 520px;
+    }
+}
+
+/* Large desktop */
+@media (min-width: 1400px) {
+    .event-desktop-card__image-wrap {
+        flex: 0 0 420px;
+    }
+
+    .event-desktop-card__text {
+        max-width: 650px;
+    }
+}
 </style>
