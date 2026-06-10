@@ -1,7 +1,7 @@
 <template>
     <div>
         <ButtonFilled @click="openModal" class="get-in-touch-button">
-            Get in touch
+            Reach out
         </ButtonFilled>
 
         <Modal v-if="showModal" :show-header="false" @close="closeModal">

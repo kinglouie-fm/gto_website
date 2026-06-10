@@ -60,8 +60,8 @@
         </nav>
 
         <div class="drawer-cta">
-          <p class="cta-text">Photoshooting for free?</p>
-          <ButtonFilled to="portfolio" @click="trackDrawerBook">Book</ButtonFilled>
+          <p class="cta-text">Got a request?</p>
+          <GetInTouchButton analytics-event="event_reach_out_click" analytics-placement="navbar" />
         </div>
       </aside>
     </transition>
@@ -92,6 +92,7 @@ import { ref, watch } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import SocialIcons from './SocialIcons.vue'
 import ButtonFilled from '@/components/ButtonFilled.vue'
+import GetInTouchButton from '@/components/GetInTouchButton.vue'
 
 const isMenuOpen = ref(false)
 const router = useRouter()
