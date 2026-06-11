@@ -72,8 +72,10 @@
       <div class="left-container">
         <SocialIcons />
       </div>
-      <div class="logo-container">
-        <img src="/images/gto_logo.png" alt="Logo" class="logo" @click="toHome()" />
+      <div class="logo-container desktop-logo-link" @click="toHome()">
+        <img src="/images/gto_logo.png" alt="Logo" class="logo desktop-logo desktop-logo--base" />
+        <img src="/images/gto_logo_lux_hover.png" alt="" class="logo desktop-logo desktop-logo--hover"
+          aria-hidden="true" />
       </div>
       <div class="right-container">
         <div class="nav-links d-flex">
@@ -174,6 +176,31 @@ watch(isMenuOpen, (open) => {
   object-fit: contain;
   margin-top: calc((var(--navbar-height) - 40px) / 2);
   cursor: pointer;
+}
+
+.desktop-logo-link {
+  width: 81px;
+  cursor: pointer;
+}
+
+.desktop-logo {
+  position: absolute;
+  top: calc((var(--navbar-height) - 40px) / 2);
+  left: 0;
+  margin-top: 0;
+  transition: opacity 0.28s ease;
+}
+
+.desktop-logo--hover {
+  opacity: 0;
+}
+
+.desktop-navbar .desktop-logo-link:hover .desktop-logo--hover {
+  opacity: 1;
+}
+
+.desktop-navbar .desktop-logo-link:hover .desktop-logo--base {
+  opacity: 0;
 }
 
 /* Backdrop */
@@ -448,5 +475,9 @@ watch(isMenuOpen, (open) => {
   .right-container .nav-link-me {
     margin-right: 25px;
   }
+}
+
+.desktop-navbar .desktop-logo {
+  margin-top: 0;
 }
 </style>

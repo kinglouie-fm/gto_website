@@ -8,7 +8,8 @@ export const events = [
         startsAtLabel: '21.06.2026, 14:00',
         meta: '21.06.2026 · Mersch',
         location: '33, rue de la Gare, L-7535 Mersch',
-        imageSrc: '/images/other/gto_scs6.webp',
+        imageSrcRow: '/images/other/gto_scs6.webp',
+        imageSrc: '/images/other/scs7_people.webp',
         imageAlt: 'Supercar Sunday by GTO Luxembourg',
         modalCarName: 'Supercar Sunday',
         shortDescription:
@@ -22,12 +23,12 @@ export const events = [
                 answer: 'Yes. The event is free for everyone because we want to keep it accessible to all visitors.'
             },
             {
-                question: 'As a visitor, do I need to register?',
-                answer: 'No. Visitors do not need to register.'
-            },
-            {
                 question: 'I want to exhibit my car. How is that possible?',
                 answer: 'You can fill out the form below, send us an email at gto.luxembourg@hotmail.com, or contact us on social media.'
+            },
+            {
+                question: 'As a visitor, do I need to register?',
+                answer: 'No. Visitors do not need to register.'
             },
             {
                 question: 'Which cars are eligible?',
@@ -47,6 +48,7 @@ export const events = [
         startsAtLabel: null,
         meta: 'Date to be announced · Luxembourg',
         location: 'Luxembourg',
+        imageSrcRow: '/images/other/gto_tours.webp',
         imageSrc: '/images/other/gto_tours.webp',
         imageAlt: 'GTO goes Luxembourg tour',
         modalCarName: 'GTO goes Luxembourg',

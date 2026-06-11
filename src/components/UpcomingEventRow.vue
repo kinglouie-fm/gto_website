@@ -1,7 +1,7 @@
 <template>
     <article class="upcoming-event-row" :class="{ 'upcoming-event-row--reverse': reverse }">
         <button type="button" class="upcoming-event-row__image-button" @click="handleImageClick">
-            <img :src="event.imageSrc" :alt="event.imageAlt" class="upcoming-event-row__image border" />
+            <img :src="event.imageSrcRow" :alt="event.imageAlt" class="upcoming-event-row__image border" />
         </button>
 
         <div class="upcoming-event-row__content">
