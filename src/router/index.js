@@ -9,6 +9,7 @@ import TermsAndConditions from '../views/TermsAndConditions.vue'
 import PrivacyView from '../views/PrivacyView.vue'
 import CookiePolicyView from '../views/CookiePolicyView.vue'
 import EventsView from '../views/EventsView.vue'
+import EventDetailView from '../views/EventDetailView.vue'
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: '/events',
     name: 'events',
     component: EventsView
+  },
+  {
+    path: '/events/:slug',
+    name: 'event-detail',
+    component: EventDetailView
   },
   {
     path: '/lens',

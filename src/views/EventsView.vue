@@ -8,55 +8,11 @@
         <VerticalSlider />
 
         <section class="content events text-center container-p">
-            <h3 class="text-center h-yellow h-first">Events</h3>
+            <h3 class="text-center h-yellow h-first">Upcoming Events</h3>
 
-            <div class="events-mobile d-lg-none">
-                <div class="scs-container">
-                    <div class="scs-img-container">
-                        <img src="/images/other/gto_scs6.webp" alt="Supercar Sunday #6"
-                            class="img-fluid gto_scs6 border"
-                            @click="openImageModal('/images/other/gto_scs6.webp', 'Porsche 992 GT3')" />
-                    </div>
-                    <h4 class="text-center h-white-small heading-pt">Supercar Sunday</h4>
-                    <p class="text-center content-text scs6-text">
-                        Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together
-                        car enthusiasts to share their passion and spend a great day in good company. The event is
-                        completely free for both visitors and participants.
-                    </p>
-                    <div class="event-mobile-cta">
-                        <GetInTouchButton analytics-event="event_get_in_touch_click"
-                            analytics-placement="events_section" />
-                    </div>
-                </div>
-
-                <div class="tour-container">
-                    <div class="tour-img-container">
-                        <img src="/images/other/gto_tours.webp" alt="GTO goes Luxembourg"
-                            class="img-fluid gto_tour border"
-                            @click="openImageModal('/images/other/gto_tours.webp', 'GTO goes Luxembourg')" />
-                    </div>
-                    <h4 class="text-center h-white-small heading-pt">GTO goes Luxembourg</h4>
-                    <p class="text-center content-text tour-text">
-                        GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a
-                        more private and relaxed setting, giving everyone a chance to enjoy the drive and
-                        connect with other car enthusiasts. This event, too, is free for all participants.
-                    </p>
-                    <div class="event-mobile-cta">
-                        <GetInTouchButton analytics-event="event_get_in_touch_click"
-                            analytics-placement="events_section" />
-                    </div>
-                </div>
-            </div>
-
-            <div class="events-desktop d-none d-lg-flex">
-                <Event image-src="/images/other/gto_scs6.webp" image-alt="Supercar Sunday #6"
-                    modal-car-name="Porsche 992 GT3" title="Supercar Sunday"
-                    text="Our main event is the Supercar Sunday (SCS) by GTO Luxembourg. Once a year, we bring together car enthusiasts to share their passion and spend a great day in good company. The event is completely free for both visitors and participants."
-                    @image-click="({ imageSrc, carName }) => openImageModal(imageSrc, carName)" />
-
-                <Event image-src="/images/other/gto_tours.webp" image-alt="GTO goes Luxembourg"
-                    modal-car-name="GTO goes Luxembourg" title="GTO goes Luxembourg"
-                    text="GTO goes Luxembourg is our smaller exclusive car tour around Luxembourg. It's held in a more private and relaxed setting, giving everyone a chance to enjoy the drive and connect with other car enthusiasts. This event, too, is free for all participants."
+            <div class="upcoming-events">
+                <UpcomingEventRow v-for="(event, index) in events" :key="event.slug" :event="event"
+                    :reverse="index % 2 === 1"
                     @image-click="({ imageSrc, carName }) => openImageModal(imageSrc, carName)" />
             </div>
         </section>
@@ -104,11 +60,11 @@ import { ref, onMounted } from 'vue';
 import HeroSection from '@/components/HeroSection.vue';
 import ImageModal from '@/components/ImageModal.vue';
 import VerticalSlider from '@/components/VerticalSlider.vue';
-import Event from '@/components/Event.vue';
+import UpcomingEventRow from '@/components/UpcomingEventRow.vue';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ButtonFilled from '@/components/ButtonFilled.vue'
-import GetInTouchButton from '@/components/GetInTouchButton.vue'
+import { events } from '@/data/events'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -163,91 +119,20 @@ p {
     background-color: rgb(48, 56, 65);
 }
 
-.events .content-text {
-    padding: 0 20px;
-    text-align: left;
-}
-
-.scs-container,
-.tour-container {
+.upcoming-events {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    /* header → image → text spacing */
-}
-
-/* Images: use the variable width + keep your ratio/radius */
-.events .scs-img-container .gto_scs6,
-.events .tour-img-container .gto_tour {
-    aspect-ratio: 243 / 160;
-    height: auto;
-    /* override fixed height */
-    border-radius: 10px;
-    object-fit: cover;
-    display: block;
-}
-
-.events-desktop {
-    display: flex;
-    flex-direction: column;
-    gap: 4rem;
+    gap: clamp(3rem, 7vw, 6rem);
     margin-top: 3rem;
-}
-
-.event-mobile-cta {
-    display: flex;
-    justify-content: center;
 }
 
 .news {
     background-color: rgb(76, 84, 94);
 }
 
-.scs6-text,
-.tour-text {
-    margin-bottom: 0;
-}
-
 /* ButtonFilled and Button have right margins. Remove these in this specific case. */
 .news-button {
     margin-right: 0;
-}
-
-/* Container to center the image using flexbox */
-.scs-img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Base styles for the Ferrari image on mobile (e.g. ~393px width screens) */
-.gto_scs6 {
-    width: 243px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-.events-mobile {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-
-/* Container to center the image using flexbox */
-.tour-img-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Base styles for the Ferrari image on mobile (e.g. ~393px width screens) */
-.gto_tour {
-    width: 243px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 10px;
 }
 
 .heading-pt {
@@ -312,17 +197,6 @@ p {
 }
 
 @media (min-width: 576px) {
-    .events {
-        --event-card-w: min(65vw, 360px);
-    }
-
-    .gto_scs6,
-    .gto_tour {
-        width: var(--event-card-w);
-        height: auto;
-        max-height: none;
-    }
-
     .events .news .h-yellow .h-white {
         padding-bottom: 1.5rem;
     }
@@ -343,21 +217,6 @@ p {
 }
 
 @media (min-width: 768px) {
-    .events {
-        --event-card-w: min(55vw, 420px);
-    }
-
-    .gto_scs6,
-    .gto_tour {
-        width: var(--event-card-w);
-        height: auto;
-        max-height: none;
-    }
-
-    .gto_scs6 {
-        margin-top: 2rem;
-    }
-
     .news {
         --news-card-w: min(35vw, 400px);
         --news-gap: 100px;
@@ -378,34 +237,9 @@ p {
         margin-top: -120px;
         padding-top: 120px;
     }
-
-    .events .content-text {
-        width: calc(var(--event-card-w) + 120px);
-        max-width: calc(var(--event-card-w) + 120px);
-    }
 }
 
 @media (min-width: 992px) {
-    .events-mobile {
-        display: none;
-    }
-
-    .events-desktop {
-        display: flex;
-    }
-
-    .gto_scs6,
-    .gto_tour {
-        width: 35%;
-        max-width: 600px;
-        max-height: 350px;
-    }
-
-    .scs6-text,
-    .tour-text {
-        margin-bottom: 4rem;
-    }
-
     .news-item-img {
         margin-bottom: 2rem;
     }
