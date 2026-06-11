@@ -64,14 +64,14 @@ body {
 .h-yellow-small {
     color: rgb(246, 201, 14);
     font-family: 'Airstrike', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     /* Base font size for h3 */
 }
 
 .h-white-small {
     color: white;
     font-family: 'Airstrike', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     /* Base font size for h3 */
 }
 
@@ -145,7 +145,7 @@ body {
 
     .h-yellow-small,
     .h-white-small {
-        font-size: 1.5rem;
+        font-size: 1.6rem;
     }
 
     .content p,
@@ -241,7 +241,7 @@ body {
     .team p,
     .friend p,
     .news p {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
         line-height: 1.75rem;
     }
 
