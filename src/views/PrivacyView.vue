@@ -2,7 +2,7 @@
     <main>
         <section class="container content container-pb">
             <h3 class="text-center h-yellow h-first">Privacy Policy</h3>
-            <p class="text-center content-text mb-4">Last Updated: May 22, 2025</p>
+            <p class="text-center content-text mb-4">Last Updated: June 11, 2026</p>
 
             <div class="container">
                 <h4 class="h-white-small">1. Introduction</h4>
@@ -27,7 +27,10 @@
                 <ul class="content-text">
                     <strong>Image Data:</strong> Photos of cars you upload for analysis.<br>
                     <strong>Technical Data:</strong> IP address, browser type, device info, and usage logs.<br>
-                    <strong>Preferences:</strong> Cookie consent choices stored in cookies.
+                    <strong>Preferences:</strong> Cookie consent choices stored in cookies.<br>
+                    <strong>Third-party map data:</strong> If you choose to load Google Maps on an event page, Google
+                    may receive technical data such as your IP address, browser and device information, and interaction
+                    data.
                 </ul>
 
                 <h4 class="h-white-small">4. How We Use Your Data</h4>
@@ -82,7 +85,18 @@
                     <RouterLink to="/cookie-policy">Cookie Policy</RouterLink>.
                 </p>
 
-                <h4 class="h-white-small">9. Changes to Policy</h4>
+                <h4 class="h-white-small">9. Google Maps</h4>
+                <p class="content-text">
+                    Some event pages include an optional Google Maps embed to show the meeting point. The map is loaded
+                    only after you click to load it. When loaded, Google may process data under its own
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy
+                        Policy</a>
+                    and
+                    <a href="https://maps.google.com/help/terms_maps/" target="_blank" rel="noopener noreferrer">Google
+                        Maps Terms</a>.
+                </p>
+
+                <h4 class="h-white-small">10. Changes to Policy</h4>
                 <p class="content-text">
                     We may update this policy. Changes take effect when posted, with the updated date at the top.
                     Please review periodically.
