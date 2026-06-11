@@ -37,9 +37,18 @@
 
                     <aside v-if="event.mapQuery" class="event-detail__aside">
                         <div class="event-detail__map border">
-                            <iframe title="Supercar Sunday meeting point"
-                                :src="`https://www.google.com/maps?q=${encodeURIComponent(event.mapQuery)}&output=embed`"
+                            <iframe v-if="mapLoaded" title="Supercar Sunday meeting point" :src="mapEmbedUrl"
                                 loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                            <div v-else class="event-detail__map-placeholder">
+                                <h4 class="h-white-small">Meeting point</h4>
+                                <p>
+                                    Load Google Maps to view the event location. Google may receive technical data when
+                                    the map is loaded.
+                                </p>
+                                <ButtonFilled class="event-detail__map-button" @click="mapLoaded = true">Load Google
+                                    Maps</ButtonFilled>
+                            </div>
                         </div>
                     </aside>
                 </div>
@@ -50,8 +59,9 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute } from 'vue-router'
+import ButtonFilled from '@/components/ButtonFilled.vue'
 import EventCountdown from '@/components/EventCountdown.vue'
 import FaqAccordion from '@/components/FaqAccordion.vue'
 import GetInTouchButton from '@/components/GetInTouchButton.vue'
@@ -59,6 +69,12 @@ import { findEventBySlug } from '@/data/events'
 
 const route = useRoute()
 const event = computed(() => findEventBySlug(route.params.slug))
+const mapLoaded = ref(false)
+const mapEmbedUrl = computed(() =>
+    event.value?.mapQuery
+        ? `https://www.google.com/maps?q=${encodeURIComponent(event.value.mapQuery)}&output=embed`
+        : ''
+)
 </script>
 
 <style scoped>
@@ -161,6 +177,31 @@ const event = computed(() => findEventBySlug(route.params.slug))
     width: 100%;
     height: 100%;
     border: 0;
+}
+
+.event-detail__map-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    padding: 1.5rem;
+    color: white;
+}
+
+.event-detail__map-placeholder h4,
+.event-detail__map-placeholder p {
+    margin: 0;
+}
+
+.event-detail__map-placeholder p {
+    max-width: 420px;
+}
+
+.event-detail__map-button {
+    margin-right: 0;
 }
 
 .event-detail__directions {
