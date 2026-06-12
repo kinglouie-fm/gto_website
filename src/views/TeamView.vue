@@ -34,8 +34,9 @@
                     @click="openImageModal('/images/team/laurent.webp', 'Laurent Reding, Treasurer of GTO Luxembourg')" />
                 <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary"
                     @click="openImageModal('/images/team/jeff.webp', 'Jeff Nosbusch, Secretary of GTO Luxembourg')" />
-                <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal"
-                    @click="openImageModal('/images/team/gilles.webp', 'Gilles Declercq, responsible for Administration and Legal matters.')" />
+                <TeamMemberCard image="/images/team/gilles.webp" name="Maître Gilles Declercq"
+                    role="Administration, Legal"
+                    @click="openImageModal('/images/team/gilles.webp', 'Maître Gilles Declercq, responsible for Administration and Legal matters.')" />
                 <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Organisation"
                     @click="openImageModal('/images/team/noah.webp', 'Noah Leuck, responsible for Organisation.')" />
                 <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation"
