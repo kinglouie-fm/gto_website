@@ -82,3 +82,18 @@ export const events = [
 ]
 
 export const findEventBySlug = (slug) => events.find((event) => event.slug === slug)
+
+export const getEventStatus = (event, now = new Date()) => {
+    if (!event.startsAt) return 'to-be-announced'
+
+    return new Date(event.startsAt).getTime() > now.getTime() ? 'upcoming' : 'past'
+}
+
+export const getEventMeta = (event, now = new Date()) => {
+    const status = getEventStatus(event, now)
+
+    if (status === 'upcoming') return `Upcoming event · ${event.meta}`
+    if (status === 'past') return `Past event · ${event.meta}`
+
+    return event.meta
+}

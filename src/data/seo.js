@@ -165,14 +165,14 @@ export const seoRoutes = {
     '/portfolio': {
         title: 'Car Photoshoots in Luxembourg | GTO Portfolio',
         description:
-            'Explore GTO Luxembourg car photography and book a free automotive photoshoot for selected cars in Luxembourg.',
+            'Explore GTO Luxembourg car photography and request a free photoshoot for selected supercars and high-end sportscars in Luxembourg.',
         image: '/images/portfolio/Lamborghini_purplemante.webp',
         staticTitle: 'Car Photoshoots in Luxembourg',
         staticSections: [
             {
                 heading: 'Free automotive photoshoots',
                 text:
-                    'GTO Luxembourg offers free automotive photoshoots for selected cars. Owners can reach out through the contact form or social media to request a shoot.'
+                    'GTO Luxembourg offers free automotive photoshoots for selected supercars and high-end sportscars. Owners can reach out through the contact form or social media to request a shoot.'
             },
             {
                 heading: 'Portfolio',

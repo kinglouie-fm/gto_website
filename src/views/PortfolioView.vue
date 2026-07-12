@@ -8,10 +8,10 @@
         <VerticalSlider />
 
         <section class="content container-pb">
-            <h1 class="text-center h-yellow h-first">Book a free photoshooting</h1>
+            <h1 class="text-center h-yellow h-first">Book a free photoshoot</h1>
             <p class="text-center content-text">
-                We'd love to capture your car for free! Reach out through the contact form below or connect with us on
-                social media.
+                We offer free photoshoots for selected supercars and high-end sportscars. If your car fits, reach out
+                through the contact form below or connect with us on social media.
             </p>
             <div class="container d-flex justify-content-center align-items-center">
                 <Button @click="openForm">Book</Button>
