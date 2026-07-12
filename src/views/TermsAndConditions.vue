@@ -1,7 +1,7 @@
 <template>
     <main>
         <section class="container content container-pb">
-            <h3 class="text-center h-yellow h-first">Terms and Conditions</h3>
+            <h1 class="text-center h-yellow h-first">Terms and Conditions</h1>
             <p class="text-center content-text mb-4">Last Updated: May 22, 2025</p>
 
             <div class="container">
@@ -123,7 +123,7 @@
     max-width: 800px;
 }
 
-h3 {
+h1 {
     padding-top: var(--navbar-height);
 }
 

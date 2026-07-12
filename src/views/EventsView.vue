@@ -8,7 +8,7 @@
         <VerticalSlider />
 
         <section class="content events text-center container-p">
-            <h3 class="text-center h-yellow h-first">Upcoming Events</h3>
+            <h1 class="text-center h-yellow h-first">Upcoming Events</h1>
 
             <div class="upcoming-events">
                 <UpcomingEventRow v-for="(event, index) in events" :key="event.slug" :event="event"
@@ -26,9 +26,8 @@
                         alt="News article from Luxemburger Wort"
                         @click="openImageModal('/images/other/scs7_fordgt.webp', 'Ford GT')" />
                     <p class="news-item-text content-text">
-                        “In Mersch on Sunday, 'Supercar Sunday' will showcase dream cars that one would hardly encounter
-                        on
-                        the roads of the Grand Duchy.” <br> — <i>Translated from Luxemburger Wort, 2024</i>
+                        Luxemburger Wort covered Supercar Sunday in Mersch in 2024, highlighting the dream cars that
+                        visitors would rarely encounter on Luxembourg roads.
                     </p>
                     <ButtonFilled
                         href="https://www.wort.lu/panorama/neun-freunde-holen-die-supercars-nach-luxemburg/13661126.html"
@@ -41,9 +40,8 @@
                         alt="News article from RTL Lëtzebuerg"
                         @click="openImageModal('/images/other/scs7_classic.webp', 'Ford Mustang Fastback GT and Ferrari 512 Testarossa')" />
                     <p class="content-text news-item-text">
-                        “This Sunday in Mersch, under good weather, the first edition of 'Supercar Sunday' took place.”
-                        <br>
-                        — <i>Translated from RTL Lëtzebuerg, 2018</i>
+                        RTL Lëtzebuerg covered the first Supercar Sunday in Mersch in 2018, documenting the public event
+                        and the cars brought together by GTO Luxembourg.
                     </p>
                     <ButtonFilled href="https://today.rtl.lu/pictures/30089.html" class="news-button">Learn more
                     </ButtonFilled>

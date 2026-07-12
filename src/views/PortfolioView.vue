@@ -8,7 +8,7 @@
         <VerticalSlider />
 
         <section class="content container-pb">
-            <h3 class="text-center h-yellow h-first">Book a free photoshooting</h3>
+            <h1 class="text-center h-yellow h-first">Book a free photoshooting</h1>
             <p class="text-center content-text">
                 We'd love to capture your car for free! Reach out through the contact form below or connect with us on
                 social media.

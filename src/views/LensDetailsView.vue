@@ -4,7 +4,7 @@
             customClass="portfolio-hero" />
 
         <section v-if="details.make" class="content container-pb">
-            <h3 class="text-center h-yellow h-first">CAR DETAILS</h3>
+            <h1 class="text-center h-yellow h-first">CAR DETAILS</h1>
 
             <h4 v-if="details.model" class="text-center h-white-small">{{ details.make + " " + details.model }}</h4>
 

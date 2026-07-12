@@ -19,6 +19,10 @@ export const events = [
         duration: '21.06.2026, 14:00-17:00',
         faqs: [
             {
+                question: 'What is Supercar Sunday?',
+                answer: 'Supercar Sunday is a public and free GTO Luxembourg event where owners and enthusiasts meet in a relaxed, respectful and family-friendly atmosphere.'
+            },
+            {
                 question: 'Is the event free?',
                 answer: 'Yes. The event is free for everyone because we want to keep it accessible to all visitors.'
             },
@@ -29,6 +33,10 @@ export const events = [
             {
                 question: 'As a visitor, do I need to register?',
                 answer: 'No. Visitors do not need to register.'
+            },
+            {
+                question: 'Where does Supercar Sunday take place?',
+                answer: 'Supercar Sunday takes place at 33, rue de la Gare, L-7535 Mersch.'
             },
             {
                 question: 'Which cars are eligible?',
@@ -58,6 +66,10 @@ export const events = [
             'GTO goes Luxembourg is a smaller and more exclusive tour organised by GTO Luxembourg through the country. The event takes place in a more private and relaxed setting, giving participants the opportunity to enjoy the drive, discover Luxembourg roads and connect with other car enthusiasts.',
         duration: null,
         faqs: [
+            {
+                question: 'What is GTO goes Luxembourg?',
+                answer: 'GTO goes Luxembourg is a smaller and more exclusive tour through Luxembourg, created for selected participants who want to enjoy the drive and connect with other car enthusiasts.'
+            },
             {
                 question: 'Who can participate?',
                 answer: 'Places are very limited, so we cannot offer open registration for everyone. If you are interested in joining, you can send us a request, but participation is not guaranteed.'

@@ -9,7 +9,7 @@
     </div>
 
     <div class="logo-container" :class="{ open: isMenuOpen, closed: !isMenuOpen }">
-      <img src="/images/gto_logo.png" alt="Logo" class="logo" @click="toHome()" />
+      <img src="/images/gto_logo.png" alt="GTO Luxembourg" class="logo" @click="toHome()" />
     </div>
 
     <transition name="fade">
@@ -23,7 +23,7 @@
             <img src="/icons/close.svg" alt="Close" />
           </button>
 
-          <img src="/images/gto_logo.png" alt="GTO" class="drawer-logo" />
+          <img src="/images/gto_logo.png" alt="GTO Luxembourg" class="drawer-logo" />
         </div>
 
         <div class="social-wrap">
@@ -73,7 +73,7 @@
         <SocialIcons />
       </div>
       <div class="logo-container desktop-logo-link" @click="toHome()">
-        <img src="/images/gto_logo.png" alt="Logo" class="logo desktop-logo desktop-logo--base" />
+        <img src="/images/gto_logo.png" alt="GTO Luxembourg" class="logo desktop-logo desktop-logo--base" />
         <img src="/images/gto_logo_lux_hover.png" alt="" class="logo desktop-logo desktop-logo--hover"
           aria-hidden="true" />
       </div>

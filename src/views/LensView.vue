@@ -3,9 +3,9 @@
         <section class="content container-pb">
             <img src="/images/other/gto-lens.png" alt="Welcome to GTO Lens" class="lens-hero mx-auto d-block" />
 
-            <h3 class="text-center h-yellow h-first">
+            <h1 class="text-center h-yellow h-first">
                 WELCOME TO <br>GTO LENS
-            </h3>
+            </h1>
 
             <p class="text-center content-text mb-0">
                 Discover car details instantly using your phone camera – powered by AI.
