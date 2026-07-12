@@ -5,7 +5,7 @@
         </button>
 
         <div class="upcoming-event-row__content">
-            <p class="upcoming-event-row__meta">{{ event.meta }}</p>
+            <p class="upcoming-event-row__meta">{{ eventMeta }}</p>
             <h4 class="h-white-small upcoming-event-row__title">{{ event.title }}</h4>
             <p class="content-text upcoming-event-row__text">{{ event.shortDescription }}</p>
             <ButtonFilled :to="`/events/${event.slug}`" class="upcoming-event-row__button">Learn more</ButtonFilled>
@@ -14,7 +14,9 @@
 </template>
 
 <script setup>
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 import ButtonFilled from '@/components/ButtonFilled.vue'
+import { getEventMeta } from '@/data/events'
 
 const props = defineProps({
     event: {
@@ -28,6 +30,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['image-click'])
+const now = ref(new Date())
+let timer = null
+
+const eventMeta = computed(() => getEventMeta(props.event, now.value))
 
 const handleImageClick = () => {
     emit('image-click', {
@@ -35,6 +41,16 @@ const handleImageClick = () => {
         carName: props.event.modalCarName
     })
 }
+
+onMounted(() => {
+    timer = window.setInterval(() => {
+        now.value = new Date()
+    }, 60000)
+})
+
+onUnmounted(() => {
+    if (timer) window.clearInterval(timer)
+})
 </script>
 
 <style scoped>

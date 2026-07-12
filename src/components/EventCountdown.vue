@@ -1,6 +1,12 @@
 <template>
     <div class="event-countdown">
-        <template v-if="hasStartDate">
+        <template v-if="isPastEvent">
+            <p class="event-countdown__label">Event status</p>
+            <p class="event-countdown__pending">Event has ended</p>
+            <p class="event-countdown__starts">Started at {{ startsAtLabel }}</p>
+        </template>
+
+        <template v-else-if="hasStartDate">
             <p class="event-countdown__label">Countdown until event</p>
             <div class="event-countdown__time" aria-live="polite">
                 <span>
@@ -45,6 +51,7 @@ let timer = null
 
 const hasStartDate = computed(() => Boolean(props.startsAt))
 const startMs = computed(() => (props.startsAt ? new Date(props.startsAt).getTime() : null))
+const isPastEvent = computed(() => Boolean(startMs.value && now.value >= startMs.value))
 
 const remaining = computed(() => {
     const diff = Math.max(0, (startMs.value || now.value) - now.value)
