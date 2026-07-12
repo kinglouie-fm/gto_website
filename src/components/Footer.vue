@@ -33,11 +33,18 @@
                 </a>
             </div>
         </div>
-        <p class="routerlinks my-0">
-            <RouterLink class="routerlink me-4" to="/terms">Terms and Conditions</RouterLink>
-            <RouterLink class="routerlink me-4" to="/privacy">Privacy Policy</RouterLink>
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <RouterLink class="routerlink" to="/">Home</RouterLink>
+            <RouterLink class="routerlink" to="/team">Team</RouterLink>
+            <RouterLink class="routerlink" to="/portfolio">Portfolio</RouterLink>
+            <RouterLink class="routerlink" to="/events">Events</RouterLink>
+            <RouterLink class="routerlink" to="/lens">GTOLens</RouterLink>
+        </nav>
+        <nav class="footer-nav footer-nav--legal" aria-label="Legal navigation">
+            <RouterLink class="routerlink" to="/terms">Terms and Conditions</RouterLink>
+            <RouterLink class="routerlink" to="/privacy">Privacy Policy</RouterLink>
             <RouterLink class="routerlink" to="/cookie-policy">Cookie Policy</RouterLink>
-        </p>
+        </nav>
         <p class="copyright my-0 pb-1">
             &copy; 2025 GTO Luxembourg. All rights reserved.
         </p>
@@ -203,13 +210,25 @@ const props = defineProps({
     color: white;
 }
 
-.routerlinks,
+.footer-nav,
 .copyright {
     font-size: clamp(0.75rem, 1vw, 1rem);
 }
 
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1.5rem;
+    margin: 0 1rem 0.75rem;
+}
+
+.footer-nav--legal {
+    margin-bottom: 0;
+}
+
 @media (min-width: 1400px) {
-    .routerlinks {
+    .footer-nav {
         margin-bottom: 1rem !important;
     }
 }

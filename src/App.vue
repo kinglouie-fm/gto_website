@@ -35,7 +35,7 @@ const route = useRoute()
 const router = useRouter()
 
 const bgColor = computed(() =>
-    route.path === '/portfolio' || route.path === '/events'
+    route.path === '/portfolio' || route.path.startsWith('/events')
         ? 'rgb(76, 84, 94)'
         : 'rgb(48, 56, 65)'
 )

@@ -7,7 +7,7 @@
         <VerticalSlider />
 
         <section class="content container-pb">
-            <h3 class="text-center h-yellow h-first">Who are we?</h3>
+            <h1 class="text-center h-yellow h-first">Who are we?</h1>
             <p class="text-center">
                 We share passion!
             </p>

@@ -10,7 +10,7 @@
         <div class="hero-frame">
             <picture>
                 <source :srcset="desktopSrc" media="(min-width: 768px)" />
-                <img :src="mobileSrc" :alt="alt" class="hero-img" decoding="async" fetchpriority="high"
+                <img :src="mobileSrc" :alt="alt" class="hero-img" width="1600" height="900" decoding="async" fetchpriority="high"
                     loading="eager" />
             </picture>
         </div>

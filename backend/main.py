@@ -1,8 +1,9 @@
 import os, re, json, base64, logging, secrets
+from pathlib import Path
 from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, Response
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field, ValidationError, validator
 from openai import OpenAI, OpenAIError, APITimeoutError
@@ -19,6 +20,7 @@ app = FastAPI(title="GTO Lens API")
 
 FRONTEND_DIST = os.getenv("FRONTEND_DIST", "/var/www/html")
 templates = Jinja2Templates(directory=FRONTEND_DIST)
+frontend_dist_path = Path(FRONTEND_DIST).resolve()
 
 @app.get("/healthz", include_in_schema=False)
 async def healthz():
@@ -179,9 +181,35 @@ async def csp_nonce_middleware(request: Request, call_next):
     resp.headers.setdefault("X-Content-Type-Options", "nosniff")
     resp.headers.setdefault("X-Frame-Options", "DENY")
     resp.headers.setdefault("Permissions-Policy", "camera=(), microphone=(), geolocation=()")
+    if request.url.path.startswith("/assets/"):
+        resp.headers.setdefault("Cache-Control", "public, max-age=31536000, immutable")
+    elif request.url.path in {"/robots.txt", "/sitemap.xml", "/llms.txt"}:
+        resp.headers.setdefault("Cache-Control", "public, max-age=3600")
+    elif resp.headers.get("content-type", "").startswith("text/html"):
+        resp.headers.setdefault("Cache-Control", "no-cache")
     return resp
+
+@app.get("/robots.txt", include_in_schema=False)
+async def robots_txt():
+    return FileResponse(frontend_dist_path / "robots.txt", media_type="text/plain")
+
+@app.get("/sitemap.xml", include_in_schema=False)
+async def sitemap_xml():
+    return FileResponse(frontend_dist_path / "sitemap.xml", media_type="application/xml")
+
+@app.get("/llms.txt", include_in_schema=False)
+async def llms_txt():
+    return FileResponse(frontend_dist_path / "llms.txt", media_type="text/plain")
 
 # Catch-all for SPA routes: render /var/www/html/index.html with the nonce
 @app.get("/{path:path}", include_in_schema=False)
 async def spa(request: Request, path: str):
-    return templates.TemplateResponse("index.html", {"request": request, "csp_nonce": request.state.csp_nonce})
+    safe_path = Path(path.strip("/"))
+    route_index = (frontend_dist_path / safe_path / "index.html").resolve()
+
+    if route_index.is_file() and frontend_dist_path in route_index.parents:
+        template_name = str(route_index.relative_to(frontend_dist_path))
+    else:
+        template_name = "index.html"
+
+    return templates.TemplateResponse(template_name, {"request": request, "csp_nonce": request.state.csp_nonce})

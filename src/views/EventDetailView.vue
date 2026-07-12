@@ -11,7 +11,7 @@
 
         <section class="event-detail content container-p">
             <div class="event-detail__inner">
-                <h3 class="h-yellow h-first event-detail__title">{{ event.title }}</h3>
+                <h1 class="h-yellow h-first event-detail__title">{{ event.title }}</h1>
 
                 <div class="event-detail__grid" :class="{ 'event-detail__grid--single': !event.mapQuery }">
                     <div class="event-detail__main">

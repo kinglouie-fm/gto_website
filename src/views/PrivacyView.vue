@@ -1,7 +1,7 @@
 <template>
     <main>
         <section class="container content container-pb">
-            <h3 class="text-center h-yellow h-first">Privacy Policy</h3>
+            <h1 class="text-center h-yellow h-first">Privacy Policy</h1>
             <p class="text-center content-text mb-4">Last Updated: June 11, 2026</p>
 
             <div class="container">
@@ -115,7 +115,7 @@ import { RouterLink } from 'vue-router'
     max-width: 800px;
 }
 
-h3 {
+h1 {
     padding-top: var(--navbar-height);
 }
 

@@ -12,13 +12,19 @@
     href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@300;400;600&family=Material+Symbols+Outlined&display=swap" />
   <title>GTO Luxembourg</title>
 
-  <script nonce="{{ csp_nonce }}" async src="https://www.googletagmanager.com/gtag/js?id=G-WF7RPN8SN1"></script>
   <script nonce="{{ csp_nonce }}">
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied'
+    });
     gtag('js', new Date());
     gtag('config', 'G-WF7RPN8SN1'); /* { send_page_view:false } */
   </script>
+  <script nonce="{{ csp_nonce }}" async src="https://www.googletagmanager.com/gtag/js?id=G-WF7RPN8SN1"></script>
 </head>
 
 <body>

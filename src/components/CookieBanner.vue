@@ -60,8 +60,8 @@ import { RouterLink } from 'vue-router'
 const dismissed = ref(false)
 const customizing = ref(false)
 
-// default prefs
-const prefs = ref({ analytics: true, marketing: true })
+// default prefs stay denied until the visitor chooses otherwise
+const prefs = ref({ analytics: false, marketing: false })
 
 const updateGaConsent = ({ analytics, marketing }) => {
   window.gtag?.('consent', 'update', {
@@ -103,15 +103,16 @@ onMounted(() => {
 })
 
 function acceptEssential() {
-    const value = { analytics: true, marketing: true }
+    const value = { analytics: false, marketing: false }
     setConsentCookie(value)
     updateGaConsent(value)
     dismissed.value = true
 }
 
 function acceptAll() {
-    const value = { analytics: false, marketing: false }
-    setConsentCookie({ analytics: true, marketing: true })
+    const value = { analytics: true, marketing: true }
+    setConsentCookie(value)
+    updateGaConsent(value)
     dismissed.value = true
 }
 
