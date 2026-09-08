@@ -79,10 +79,22 @@
       </div>
       <div class="right-container">
         <div class="nav-links d-flex">
-          <RouterLink class="nav-link nav-link-me" to="/" @click="closeNavbar">Home</RouterLink>
-          <RouterLink class="nav-link nav-link-me" to="/team" @click="closeNavbar">Team</RouterLink>
-          <RouterLink class="nav-link nav-link-me" to="/portfolio" @click="closeNavbar">Portfolio</RouterLink>
-          <RouterLink class="nav-link" to="/events" @click="closeNavbar">Events</RouterLink>
+          <RouterLink v-for="item in desktopNavItems" :key="item.to" class="nav-link" :to="item.to"
+            :aria-label="item.label" @click="closeNavbar">
+            <span class="nav-link__text" aria-hidden="true">
+              <span v-for="(character, index) in item.label" :key="`${item.to}-${index}`" class="nav-link__char"
+                :style="{ '--char-index': index }">
+                <span class="nav-link__char-track">
+                  <span>{{ character }}</span>
+                  <span>{{ character }}</span>
+                </span>
+              </span>
+            </span>
+            <svg class="nav-link__racing-line" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true"
+              focusable="false">
+              <!-- <path d="M0 4H43 2H100" /> -->
+            </svg>
+          </RouterLink>
         </div>
       </div>
     </div>
@@ -98,6 +110,12 @@ import GetInTouchButton from '@/components/GetInTouchButton.vue'
 
 const isMenuOpen = ref(false)
 const router = useRouter()
+const desktopNavItems = [
+  { label: 'Home', to: '/' },
+  { label: 'Team', to: '/team' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Events', to: '/events' }
+]
 
 const toggleMenu = () => { isMenuOpen.value = !isMenuOpen.value }
 const closeNavbar = () => { isMenuOpen.value = false }
@@ -479,5 +497,137 @@ watch(isMenuOpen, (open) => {
 
 .desktop-navbar .desktop-logo {
   margin-top: 0;
+}
+
+/* Desktop navigation: letter-by-letter hover and a protected centre logo column. */
+@media (min-width: 768px) {
+  .desktop-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    column-gap: clamp(0.75rem, 2vw, 2rem);
+  }
+
+  .left-container {
+    grid-column: 1;
+    min-width: 0;
+  }
+
+  .desktop-navbar .logo-container {
+    position: relative;
+    left: auto;
+    transform: none;
+    grid-column: 2;
+    justify-self: center;
+  }
+
+  .right-container {
+    grid-column: 3;
+    justify-self: end;
+    min-width: 0;
+  }
+
+  .nav-links {
+    align-items: center;
+    justify-content: flex-end;
+    gap: clamp(0.25rem, 0.75vw, 1.25rem);
+    white-space: nowrap;
+  }
+
+  .desktop-navbar .nav-link {
+    display: inline-block;
+    overflow: visible;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: white;
+    font-size: clamp(0.95rem, 2.05vw, 1.25rem);
+    line-height: 1.1;
+  }
+
+  .right-container .nav-link-me {
+    margin-right: 0;
+  }
+
+  .desktop-navbar .nav-link:hover,
+  .desktop-navbar .nav-link:focus-visible {
+    background: transparent;
+    color: white;
+    text-decoration: none;
+  }
+
+  .desktop-navbar .nav-link:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 5px;
+  }
+
+  .desktop-navbar .nav-link.router-link-active {
+    border: 0;
+    position: relative;
+  }
+
+  .nav-link__racing-line {
+    position: absolute;
+    left: 0;
+    bottom: -0.6rem;
+    width: 100%;
+    height: 0.75rem;
+    color: rgb(246, 201, 14);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-link__racing-line path {
+    fill: none;
+    stroke: currentColor;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+    stroke-width: 2;
+  }
+
+  .desktop-navbar .nav-link.router-link-active .nav-link__racing-line {
+    opacity: 1;
+  }
+
+  .nav-link__text {
+    display: inline-flex;
+  }
+
+  .nav-link__char {
+    display: inline-block;
+    height: 1.1em;
+    overflow: hidden;
+    vertical-align: top;
+  }
+
+  .nav-link__char-track {
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--char-index) * 20ms);
+    will-change: transform;
+  }
+
+  .nav-link__char-track>span {
+    display: block;
+    height: 1.1em;
+    line-height: 1.1;
+  }
+
+  .desktop-navbar .nav-link:hover .nav-link__char-track,
+  .desktop-navbar .nav-link:focus-visible .nav-link__char-track {
+    transform: translateY(-50%);
+  }
+}
+
+@media (min-width: 992px) {
+  .desktop-navbar .nav-link {
+    font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link__char-track {
+    transition: none;
+  }
 }
 </style>
