@@ -162,6 +162,27 @@ const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
   }
 }
 
+@media (max-width: 767.98px) {
+  .btn__char {
+    height: auto;
+    clip-path: none;
+  }
+
+  .btn__char-track {
+    transform: none !important;
+    transition: none;
+  }
+
+  .btn__char-track>span {
+    height: auto;
+    line-height: inherit;
+  }
+
+  .btn__char-track>span:nth-child(2) {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
 
   .btn,

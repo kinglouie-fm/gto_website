@@ -53,5 +53,11 @@ const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
 @media (min-width: 576px) { .btn { min-width: 145px; font-size: 1rem; } }
 @media (min-width: 768px) { .btn { min-width: 165px; height: 50px; font-size: 1.1rem; } }
 @media (min-width: 992px) { .btn { min-width: 180px; font-size: 1.2rem; } }
+@media (max-width: 767.98px) {
+  .btn__char { height: auto; clip-path: none; }
+  .btn__char-track { transform: none !important; transition: none; }
+  .btn__char-track > span { height: auto; line-height: inherit; }
+  .btn__char-track > span:nth-child(2) { display: none; }
+}
 @media (prefers-reduced-motion: reduce) { .btn, .btn__char-track, .btn-arrow { transition: none; } }
 </style>
