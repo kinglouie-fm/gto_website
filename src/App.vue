@@ -1,6 +1,6 @@
 <template>
     <CookieBanner />
-    <Navbar />
+    <Navbar :navigation-complete="!isNavigating" />
 
     <!-- Logo overlay on route change -->
     <Transition name="logo-overlay">

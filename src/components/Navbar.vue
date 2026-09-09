@@ -80,7 +80,7 @@
       <div class="right-container">
         <div class="nav-links d-flex">
           <RouterLink v-for="item in desktopNavItems" :key="item.to" class="nav-link" :to="item.to"
-            :aria-label="item.label" @click="closeNavbar">
+            :aria-label="item.label" :class="{ 'nav-link--active-visible': navigationComplete }" @click="closeNavbar">
             <span class="nav-link__text" aria-hidden="true">
               <span v-for="(character, index) in item.label" :key="`${item.to}-${index}`" class="nav-link__char"
                 :style="{ '--char-index': index }">
@@ -90,10 +90,6 @@
                 </span>
               </span>
             </span>
-            <svg class="nav-link__racing-line" viewBox="0 0 100 12" preserveAspectRatio="none" aria-hidden="true"
-              focusable="false">
-              <!-- <path d="M0 4H43 2H100" /> -->
-            </svg>
           </RouterLink>
         </div>
       </div>
@@ -110,6 +106,9 @@ import GetInTouchButton from '@/components/GetInTouchButton.vue'
 
 const isMenuOpen = ref(false)
 const router = useRouter()
+defineProps({
+  navigationComplete: { type: Boolean, default: true }
+})
 const desktopNavItems = [
   { label: 'Home', to: '/' },
   { label: 'Team', to: '/team' },
@@ -566,27 +565,21 @@ watch(isMenuOpen, (open) => {
     position: relative;
   }
 
-  .nav-link__racing-line {
+  .desktop-navbar .nav-link::after {
+    content: '';
     position: absolute;
     left: 0;
-    bottom: -0.6rem;
-    width: 100%;
-    height: 0.75rem;
-    color: rgb(246, 201, 14);
-    opacity: 0;
+    bottom: -0.45rem;
+    width: 0;
+    height: 2px;
+    background-color: rgb(246, 201, 14);
+    transition: width 0.25s ease;
     pointer-events: none;
   }
 
-  .nav-link__racing-line path {
-    fill: none;
-    stroke: currentColor;
-    stroke-linecap: butt;
-    stroke-linejoin: miter;
-    stroke-width: 2;
-  }
-
-  .desktop-navbar .nav-link.router-link-active .nav-link__racing-line {
-    opacity: 1;
+.desktop-navbar .nav-link.router-link-exact-active.nav-link--active-visible::after {
+    width: 100%;
+    transition-delay: 0.12s;
   }
 
   .nav-link__text {
@@ -595,22 +588,23 @@ watch(isMenuOpen, (open) => {
 
   .nav-link__char {
     display: inline-block;
-    height: 1.1em;
-    overflow: hidden;
+    height: 1.3em;
+    overflow: visible;
+    clip-path: inset(0 -0.18em);
     vertical-align: top;
   }
 
   .nav-link__char-track {
     display: block;
-    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     transition-delay: calc(var(--char-index) * 20ms);
     will-change: transform;
   }
 
   .nav-link__char-track>span {
     display: block;
-    height: 1.1em;
-    line-height: 1.1;
+    height: 1.3em;
+    line-height: 1.3;
   }
 
   .desktop-navbar .nav-link:hover .nav-link__char-track,
