@@ -37,7 +37,7 @@
         </span>
       </span>
     </span>
-    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRight" /></span>
+    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRightLong" /></span>
   </button>
 </template>
 
