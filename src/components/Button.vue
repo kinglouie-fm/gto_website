@@ -1,38 +1,56 @@
 <template>
-  <a v-if="href" :href="href" :target="newTab ? '_blank' : '_self'" rel="noopener noreferrer" class="btn"
-    :aria-label="label">
-    <span class="btn__label" aria-hidden="true">
-      <span v-for="(character, index) in characters" :key="index" class="btn__char" :style="{ '--char-index': index }">
-        <span class="btn__char-track"><span>{{ displayCharacter(character) }}</span><span>{{ displayCharacter(character)
-        }}</span></span>
+  <a v-if="href" ref="buttonElement" data-anim="text-hover" :href="href" :target="newTab ? '_blank' : '_self'"
+    rel="noopener noreferrer" class="btn" :aria-label="label">
+    <span class="btn__label-window" aria-hidden="true">
+      <span class="btn__label">
+        <span v-for="(character, index) in characters" :key="index" class="btn__char"
+          :style="{ '--char-index': index }">
+          <span class="btn__char-track">
+            <span>{{ displayCharacter(character) }}</span>
+            <span>{{ displayCharacter(character) }}</span>
+          </span>
+        </span>
       </span>
     </span>
-    <span class="btn-arrow" aria-hidden="true">→</span>
+    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRightLong" /></span>
   </a>
 
-  <router-link v-else-if="to" :to="normalizedTo" class="btn" :aria-label="label">
-    <span class="btn__label" aria-hidden="true">
-      <span v-for="(character, index) in characters" :key="index" class="btn__char" :style="{ '--char-index': index }">
-        <span class="btn__char-track"><span>{{ displayCharacter(character) }}</span><span>{{ displayCharacter(character)
-        }}</span></span>
+  <router-link v-else-if="to" ref="buttonElement" data-anim="text-hover" :to="normalizedTo" class="btn"
+    :aria-label="label">
+    <span class="btn__label-window" aria-hidden="true">
+      <span class="btn__label">
+        <span v-for="(character, index) in characters" :key="index" class="btn__char"
+          :style="{ '--char-index': index }">
+          <span class="btn__char-track">
+            <span>{{ displayCharacter(character) }}</span>
+            <span>{{ displayCharacter(character) }}</span>
+          </span>
+        </span>
       </span>
     </span>
-    <span class="btn-arrow" aria-hidden="true">→</span>
+    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRightLong" /></span>
   </router-link>
 
-  <button v-else class="btn" :aria-label="label">
-    <span class="btn__label" aria-hidden="true">
-      <span v-for="(character, index) in characters" :key="index" class="btn__char" :style="{ '--char-index': index }">
-        <span class="btn__char-track"><span>{{ displayCharacter(character) }}</span><span>{{ displayCharacter(character)
-        }}</span></span>
+  <button v-else ref="buttonElement" data-anim="text-hover" type="button" class="btn" :aria-label="label">
+    <span class="btn__label-window" aria-hidden="true">
+      <span class="btn__label">
+        <span v-for="(character, index) in characters" :key="index" class="btn__char"
+          :style="{ '--char-index': index }">
+          <span class="btn__char-track">
+            <span>{{ displayCharacter(character) }}</span>
+            <span>{{ displayCharacter(character) }}</span>
+          </span>
+        </span>
       </span>
     </span>
-    <span class="btn-arrow" aria-hidden="true">→</span>
+    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRightLong" /></span>
   </button>
 </template>
 
 <script setup>
-import { computed, useSlots } from 'vue'
+import { computed, ref, useSlots } from 'vue'
+import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons'
+import { useTextHoverAnimation } from '@/composables/useTextHoverAnimation'
 
 const props = defineProps({
   to: { type: String, default: null },
@@ -41,6 +59,7 @@ const props = defineProps({
 })
 
 const slots = useSlots()
+const buttonElement = ref(null)
 const label = computed(() => (slots.default?.() ?? [])
   .map((node) => typeof node.children === 'string' ? node.children : '')
   .join('')
@@ -49,6 +68,11 @@ const label = computed(() => (slots.default?.() ?? [])
 const characters = computed(() => Array.from(label.value))
 const normalizedTo = computed(() => props.to?.startsWith('/') ? props.to : `/${props.to}`)
 const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
+
+useTextHoverAnimation(buttonElement, {
+  characterSelector: '.btn__char-track',
+  y: '-50%'
+})
 </script>
 
 <style scoped>
@@ -91,22 +115,25 @@ const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
   outline-offset: 4px;
 }
 
+.btn__label-window {
+  display: inline-flex;
+  height: 1.3em;
+  overflow: hidden;
+  line-height: 1.3;
+}
+
 .btn__label {
   display: inline-flex;
+  align-items: flex-start;
 }
 
 .btn__char {
   display: inline-block;
-  height: 1.3em;
-  overflow: visible;
-  clip-path: inset(0 -0.18em);
   vertical-align: top;
 }
 
 .btn__char-track {
   display: block;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--char-index) * 20ms);
   will-change: transform;
 }
 
@@ -116,22 +143,12 @@ const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
   line-height: 1.3;
 }
 
-.btn:hover .btn__char-track,
-.btn:focus-visible .btn__char-track {
-  transform: translateY(-50%);
-}
-
 .btn-arrow {
   display: inline-flex;
   font-family: Arial, sans-serif;
   font-size: 1.15em;
   line-height: 1;
   transition: transform 0.25s ease;
-}
-
-.btn:hover .btn-arrow,
-.btn:focus-visible .btn-arrow {
-  transform: translateX(4px);
 }
 
 @media (min-width: 576px) {
@@ -146,6 +163,11 @@ const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
     min-width: 165px;
     height: 50px;
     font-size: 1.1rem;
+  }
+
+  .btn:hover .btn-arrow,
+  .btn:focus-visible .btn-arrow {
+    transform: translateX(4px);
   }
 }
 
@@ -162,32 +184,10 @@ const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
   }
 }
 
-@media (max-width: 767.98px) {
-  .btn__char {
-    height: auto;
-    clip-path: none;
-  }
-
-  .btn__char-track {
-    transform: none !important;
-    transition: none;
-  }
-
-  .btn__char-track>span {
-    height: auto;
-    line-height: inherit;
-  }
-
-  .btn__char-track>span:nth-child(2) {
-    display: none;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
 
   .btn,
   .btn::after,
-  .btn__char-track,
   .btn-arrow {
     transition: none;
   }

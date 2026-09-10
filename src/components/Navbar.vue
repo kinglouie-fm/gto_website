@@ -67,7 +67,7 @@
     </transition>
   </nav>
 
-  <nav class="navbar desktop-navbar fixed-top d-none d-md-block">
+  <nav ref="desktopNavbar" class="navbar desktop-navbar fixed-top d-none d-md-block" data-anim="text-hover">
     <div class="desktop-container mx-4">
       <div class="left-container">
         <SocialIcons />
@@ -80,13 +80,18 @@
       <div class="right-container">
         <div class="nav-links d-flex">
           <RouterLink v-for="item in desktopNavItems" :key="item.to" class="nav-link" :to="item.to"
-            :aria-label="item.label" :class="{ 'nav-link--active-visible': navigationComplete }" @click="closeNavbar">
-            <span class="nav-link__text" aria-hidden="true">
-              <span v-for="(character, index) in item.label" :key="`${item.to}-${index}`" class="nav-link__char"
-                :style="{ '--char-index': index }">
-                <span class="nav-link__char-track">
-                  <span>{{ character }}</span>
-                  <span>{{ character }}</span>
+            :aria-label="item.label" :class="{
+              'nav-link--active-visible': navigationComplete,
+              'nav-link--current': isCurrentNavItem(item.to)
+            }" @click="closeNavbar">
+            <span class="nav-link__label-window" aria-hidden="true">
+              <span class="nav-link__text">
+                <span v-for="(character, index) in item.label" :key="`${item.to}-${index}`" class="nav-link__char"
+                  :style="{ '--char-index': index }">
+                  <span class="nav-link__char-track">
+                    <span>{{ character }}</span>
+                    <span>{{ character }}</span>
+                  </span>
                 </span>
               </span>
             </span>
@@ -99,13 +104,16 @@
 
 <script setup>
 import { ref, watch } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import SocialIcons from './SocialIcons.vue'
 import ButtonFilled from '@/components/ButtonFilled.vue'
 import GetInTouchButton from '@/components/GetInTouchButton.vue'
+import { useTextHoverAnimation } from '@/composables/useTextHoverAnimation'
 
 const isMenuOpen = ref(false)
 const router = useRouter()
+const route = useRoute()
+const desktopNavbar = ref(null)
 defineProps({
   navigationComplete: { type: Boolean, default: true }
 })
@@ -119,6 +127,11 @@ const desktopNavItems = [
 const toggleMenu = () => { isMenuOpen.value = !isMenuOpen.value }
 const closeNavbar = () => { isMenuOpen.value = false }
 const toHome = () => { if (isMenuOpen.value) isMenuOpen.value = false; router.push('/') }
+const isCurrentNavItem = (to) => (
+  to === '/'
+    ? route.path === '/'
+    : route.path === to || route.path.startsWith(`${to}/`)
+)
 
 const trackDrawerBook = () => {
   window.gtag?.('event', 'book_button_click', { placement: 'drawer_cta' })
@@ -131,6 +144,12 @@ watch(isMenuOpen, (open) => {
   } else {
     document.body.style.overflow = ''
   }
+})
+
+useTextHoverAnimation(desktopNavbar, {
+  targetSelector: '.nav-link',
+  characterSelector: '.nav-link__char-track',
+  y: '-50%'
 })
 </script>
 
@@ -577,39 +596,37 @@ watch(isMenuOpen, (open) => {
     pointer-events: none;
   }
 
-.desktop-navbar .nav-link.router-link-exact-active.nav-link--active-visible::after {
+  .desktop-navbar .nav-link.nav-link--current.nav-link--active-visible::after {
     width: 100%;
     transition-delay: 0.12s;
   }
 
+  .nav-link__label-window {
+    display: inline-flex;
+    height: 1.3em;
+    overflow: hidden;
+    line-height: 1.3;
+  }
+
   .nav-link__text {
     display: inline-flex;
+    align-items: flex-start;
   }
 
   .nav-link__char {
     display: inline-block;
-    height: 1.3em;
-    overflow: visible;
-    clip-path: inset(0 -0.18em);
     vertical-align: top;
   }
 
   .nav-link__char-track {
     display: block;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--char-index) * 20ms);
     will-change: transform;
   }
 
-  .nav-link__char-track>span {
+  .nav-link__char-track > span {
     display: block;
     height: 1.3em;
     line-height: 1.3;
-  }
-
-  .desktop-navbar .nav-link:hover .nav-link__char-track,
-  .desktop-navbar .nav-link:focus-visible .nav-link__char-track {
-    transform: translateY(-50%);
   }
 }
 
@@ -620,8 +637,6 @@ watch(isMenuOpen, (open) => {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-link__char-track {
-    transition: none;
-  }
+  .nav-link__char-track { will-change: auto; }
 }
 </style>
