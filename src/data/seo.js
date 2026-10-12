@@ -1,4 +1,5 @@
 import { events } from './events.js'
+import { getEventImageSrc, getEventStatus, getEventTitle } from '../utils/events.js'
 
 export const site = {
     name: 'GTO Luxembourg',
@@ -69,60 +70,56 @@ const eventSchema = (event) => ({
     '@context': 'https://schema.org',
     '@type': 'Event',
     '@id': `${absoluteUrl(`/events/${event.slug}`)}#event`,
-    name: event.title,
-    description: event.explanation,
-    image: [absoluteAsset(event.imageSrc)],
+    name: getEventTitle(event),
+    description: event.explanation || event.shortDescription,
+    image: getEventImageSrc(event) ? [absoluteAsset(getEventImageSrc(event))] : undefined,
     url: absoluteUrl(`/events/${event.slug}`),
     eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
-    eventStatus: event.startsAt
-        ? 'https://schema.org/EventScheduled'
-        : 'https://schema.org/EventScheduled',
+    eventStatus: 'https://schema.org/EventScheduled',
     startDate: event.startsAt,
-    endDate: event.startsAt && event.time?.includes('-')
-        ? '2026-06-21T17:00:00+02:00'
-        : undefined,
-    location: {
+    endDate: event.endsAt,
+    location: event.location ? {
         '@type': 'Place',
         name: event.location,
         address: event.location
-    },
+    } : undefined,
     organizer: { '@id': `${site.url}/#organization` },
-    offers: {
+    offers: getEventStatus(event) === 'upcoming' && event.registration && event.price !== undefined ? {
         '@type': 'Offer',
-        price: '0',
+        price: String(event.price),
         priceCurrency: 'EUR',
         availability: 'https://schema.org/InStock',
-        url: absoluteUrl(`/events/${event.slug}`)
-    }
+        url: event.registration.url
+    } : undefined
 })
 
 const eventJsonLd = (event) => [
     ...(event.startsAt ? [eventSchema(event)] : []),
-    faqSchema(event.faqs),
+    ...(getEventStatus(event) !== 'past' && event.faqs?.length ? [faqSchema(event.faqs)] : []),
     breadcrumbSchema([
         { name: 'Home', path: '/' },
         { name: 'Events', path: '/events' },
-        { name: event.title, path: `/events/${event.slug}` }
+        { name: getEventTitle(event), path: `/events/${event.slug}` }
     ])
 ]
 
 const eventPages = Object.fromEntries(events.map((event) => [
     `/events/${event.slug}`,
     {
-        title: `${event.title} | GTO Luxembourg`,
+        title: `${getEventTitle(event)} | GTO Luxembourg`,
         description: event.shortDescription,
-        image: event.imageSrc,
-        staticTitle: event.title,
+        image: getEventImageSrc(event),
+        staticTitle: getEventTitle(event),
         staticSections: [
             {
-                heading: 'The Experience',
-                text: event.explanation
+                heading: getEventStatus(event) === 'past' ? 'Event recap' : 'The experience',
+                text: event.explanation || event.shortDescription
             },
-            ...(event.duration ? [{
+            ...(getEventStatus(event) !== 'past' && event.duration ? [{
                 heading: 'Duration',
                 text: event.duration
             }] : []),
-            ...event.faqs.map((faq) => ({
+            ...(getEventStatus(event) === 'past' ? [] : (event.faqs || [])).map((faq) => ({
                 heading: faq.question,
                 text: faq.answer
             }))
@@ -189,12 +186,12 @@ export const seoRoutes = {
         ]
     },
     '/events': {
-        title: 'Upcoming Events | GTO Luxembourg',
+        title: 'Events | GTO Luxembourg',
         description:
-            'Discover upcoming GTO Luxembourg events including Supercar Sunday and GTO goes Luxembourg.',
+            'Discover upcoming GTO Luxembourg gatherings and tours, and explore photos and recaps from past events.',
         image: '/images/other/scs7_people.webp',
-        staticTitle: 'Upcoming Events',
-        staticSections: [],
+        staticTitle: 'Events',
+        staticSections: events.map((event) => ({ heading: getEventTitle(event), text: event.shortDescription })),
         jsonLd: [
             organizationSchema,
             ...events.filter((event) => event.startsAt).map(eventSchema),

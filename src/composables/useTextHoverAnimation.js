@@ -8,7 +8,7 @@ import gsap from 'gsap'
 export const useTextHoverAnimation = (rootRef, {
   targetSelector,
   characterSelector,
-  y
+  yPercent
 }) => {
   let cleanup = () => {}
 
@@ -28,19 +28,36 @@ export const useTextHoverAnimation = (rootRef, {
       const characters = target.querySelectorAll(characterSelector)
       if (!characters.length) return
 
+      const reset = (elements) => gsap.set(elements, {
+        clearProps: 'transform,translate,rotate,scale,willChange'
+      })
+
       const animate = (position) => {
-        if (!canAnimate()) return
+        if (!canAnimate()) {
+          gsap.killTweensOf(characters)
+          reset(characters)
+          return
+        }
+
+        gsap.set(characters, { willChange: 'transform' })
 
         gsap.to(characters, {
-          y: position,
+          yPercent: position,
+          force3D: false,
           duration: 0.6,
-          stagger: 0.02,
+          stagger: {
+            each: 0.02,
+            onComplete() {
+              // Let resting letters share the original, untransformed baseline.
+              if (position === 0) reset(this.targets())
+            }
+          },
           ease: 'power3.out',
           overwrite: true
         })
       }
 
-      const enter = () => animate(y)
+      const enter = () => animate(yPercent)
       const leave = () => animate(0)
       target.addEventListener('mouseenter', enter)
       target.addEventListener('mouseleave', leave)

@@ -1,5 +1,6 @@
 <template>
-    <div class="image-modal-overlay pt-5" @click.self="close">
+    <div ref="dialog" class="image-modal-overlay pt-5" :class="{ 'image-modal--static': staticDisplay }"
+        role="dialog" aria-modal="true" :aria-label="carName || 'Photo viewer'" @click.self="close">
         <div class="image-modal-content">
             <div class="image-modal-header">
                 <span class="modal-title text-center">{{ carName }}</span>
@@ -13,7 +14,7 @@
 
             <div class="modal-image-container">
                 <img class="modal-img modal-img--full" :class="{ 'is-loaded': isFullLoaded }" :src="imageSrc"
-                    alt="Enlarged image" decoding="async" @load="onFullLoad" />
+                    :alt="imageAlt" decoding="async" @load="onFullLoad" />
             </div>
         </div>
     </div>
@@ -25,12 +26,17 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 const props = defineProps({
     imageSrc: { type: String, required: true },
     carName: { type: String, default: '' },
-    showNavigation: { type: Boolean, default: false }
+    showNavigation: { type: Boolean, default: false },
+    imageAlt: { type: String, default: 'Enlarged image' },
+    staticDisplay: Boolean
 })
 
 const emit = defineEmits(['close', 'prev', 'next'])
 
 const isFullLoaded = ref(false)
+const dialog = ref(null)
+let previousFocus
+let previousOverflow
 
 const close = () => emit('close')
 const prev = () => emit('prev')
@@ -49,6 +55,18 @@ watch(
 )
 
 const onKeydown = (e) => {
+    if (e.key === 'Tab') {
+        const buttons = dialog.value.querySelectorAll('button')
+        const first = buttons[0]
+        const last = buttons[buttons.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault()
+            last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault()
+            first.focus()
+        }
+    }
     if (e.key === 'Escape') close()
     if (!props.showNavigation) return
     if (e.key === 'ArrowLeft') prev()
@@ -56,12 +74,16 @@ const onKeydown = (e) => {
 }
 
 onMounted(() => {
+    previousFocus = document.activeElement
+    previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
+    dialog.value.querySelector('button').focus()
     window.addEventListener('keydown', onKeydown)
 })
 
 onUnmounted(() => {
-    document.body.style.overflow = ''
+    document.body.style.overflow = previousOverflow
+    previousFocus?.focus()
     window.removeEventListener('keydown', onKeydown)
 })
 </script>
@@ -125,6 +147,16 @@ onUnmounted(() => {
 
 .modal-img--full.is-loaded {
     opacity: 1;
+}
+
+.image-modal--static .modal-img--full {
+    opacity: 1;
+    transition: none;
+}
+
+.image-modal--static button:focus-visible {
+    outline: 2px solid rgb(246, 201, 14);
+    outline-offset: 4px;
 }
 
 /* Desktop: for screens 576px and up, position navigation absolutely over image */
