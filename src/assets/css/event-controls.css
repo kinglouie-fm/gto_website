@@ -1,0 +1,7 @@
+.event-link { color: white; text-underline-offset: 5px; text-decoration-thickness: 1px; }
+.event-link:hover { color: rgb(246, 201, 14); }
+.event-photo, .event-photo:hover { color: white; text-decoration: none; }
+.event-link:focus-visible, .event-photo:focus-visible {
+    outline: 2px solid rgb(246, 201, 14);
+    outline-offset: 5px;
+}

@@ -44,12 +44,13 @@ test('button labels render an incoming character layer beneath the visible layer
   assert.equal((html.match(/>D</g) ?? []).length, 2)
 })
 
-test('buttons use a vector arrow instead of a text glyph', async () => {
+test('shared buttons show only their label without an arrow', async () => {
   const { default: Button } = await vite.ssrLoadModule('/src/components/Button.vue')
-  const html = await renderComponent(Button)
-
-  assert.doesNotMatch(html, />→</)
-  assert.match(html, /<svg\b/)
+  const { default: ButtonFilled } = await vite.ssrLoadModule('/src/components/ButtonFilled.vue')
+  for (const Component of [Button, ButtonFilled]) {
+    const html = await renderComponent(Component)
+    assert.doesNotMatch(html, /btn-arrow|<svg\b/)
+  }
 })
 
 test('desktop navigation marks a section route without marking Home', async () => {

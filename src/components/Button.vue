@@ -12,7 +12,6 @@
         </span>
       </span>
     </span>
-    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRightLong" /></span>
   </a>
 
   <router-link v-else-if="to" ref="buttonElement" data-anim="text-hover" :to="normalizedTo" class="btn"
@@ -28,7 +27,6 @@
         </span>
       </span>
     </span>
-    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRightLong" /></span>
   </router-link>
 
   <button v-else ref="buttonElement" data-anim="text-hover" type="button" class="btn" :aria-label="label">
@@ -43,13 +41,11 @@
         </span>
       </span>
     </span>
-    <span class="btn-arrow" aria-hidden="true"><font-awesome-icon :icon="faArrowRightLong" /></span>
   </button>
 </template>
 
 <script setup>
 import { computed, ref, useSlots } from 'vue'
-import { faArrowRightLong } from '@fortawesome/free-solid-svg-icons'
 import { useTextHoverAnimation } from '@/composables/useTextHoverAnimation'
 
 const props = defineProps({
@@ -71,7 +67,7 @@ const displayCharacter = (character) => character === ' ' ? '\u00a0' : character
 
 useTextHoverAnimation(buttonElement, {
   characterSelector: '.btn__char-track',
-  y: '-50%'
+  yPercent: -50
 })
 </script>
 
@@ -81,7 +77,6 @@ useTextHoverAnimation(buttonElement, {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.7rem;
   width: auto;
   min-width: 132px;
   height: 44px;
@@ -117,6 +112,9 @@ useTextHoverAnimation(buttonElement, {
 
 .btn__label-window {
   display: inline-flex;
+  flex-shrink: 0;
+  /* Airstrike's slanted glyphs extend beyond their character widths. */
+  padding-inline: 0.2em;
   height: 1.3em;
   overflow: hidden;
   line-height: 1.3;
@@ -134,7 +132,6 @@ useTextHoverAnimation(buttonElement, {
 
 .btn__char-track {
   display: block;
-  will-change: transform;
 }
 
 .btn__char-track>span {
@@ -143,13 +140,6 @@ useTextHoverAnimation(buttonElement, {
   line-height: 1.3;
 }
 
-.btn-arrow {
-  display: inline-flex;
-  font-family: Arial, sans-serif;
-  font-size: 1.15em;
-  line-height: 1;
-  transition: transform 0.25s ease;
-}
 
 @media (min-width: 576px) {
   .btn {
@@ -165,10 +155,6 @@ useTextHoverAnimation(buttonElement, {
     font-size: 1.1rem;
   }
 
-  .btn:hover .btn-arrow,
-  .btn:focus-visible .btn-arrow {
-    transform: translateX(4px);
-  }
 }
 
 @media (min-width: 992px) {
@@ -178,17 +164,10 @@ useTextHoverAnimation(buttonElement, {
   }
 }
 
-@media (max-width: 360px) {
-  .btn .btn-arrow {
-    display: none;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
 
-  .btn,
-  .btn::after,
-  .btn-arrow {
+  .btn {
     transition: none;
   }
 }

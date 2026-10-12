@@ -31,3 +31,6 @@ coverage
 __pycache__/
 *.pyc
 venv
+
+# Full-resolution event photo originals; generated WebP files are versioned.
+/image-sources/events/

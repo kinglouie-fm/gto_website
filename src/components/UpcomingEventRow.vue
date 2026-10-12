@@ -1,167 +1,61 @@
 <template>
-    <article class="upcoming-event-row" :class="{ 'upcoming-event-row--reverse': reverse }">
-        <button type="button" class="upcoming-event-row__image-button" @click="handleImageClick">
-            <img :src="event.imageSrcRow" :alt="event.imageAlt" class="upcoming-event-row__image border" />
-        </button>
-
-        <div class="upcoming-event-row__content">
-            <p class="upcoming-event-row__meta">{{ eventMeta }}</p>
-            <h4 class="h-white-small upcoming-event-row__title">{{ event.title }}</h4>
-            <p class="content-text upcoming-event-row__text">{{ event.shortDescription }}</p>
-            <ButtonFilled :to="`/events/${event.slug}`" class="upcoming-event-row__button">Learn more</ButtonFilled>
+    <article class="upcoming-event" :class="{ 'upcoming-event--featured': featured }">
+        <RouterLink :to="`/events/${event.slug}`" class="event-photo" :aria-label="`View ${getEventTitle(event)}`">
+            <EventImage :event="event" :eager="featured" />
+        </RouterLink>
+        <div class="upcoming-event__content">
+            <p class="upcoming-event__meta">{{ getEventMeta(event) }}</p>
+            <h3 class="h-white-small">{{ getEventTitle(event) }}</h3>
+            <p class="upcoming-event__description">{{ event.shortDescription }}</p>
+            <Button :to="`/events/${event.slug}`">View event</Button>
         </div>
     </article>
 </template>
 
 <script setup>
-import { computed, onMounted, onUnmounted, ref } from 'vue'
-import ButtonFilled from '@/components/ButtonFilled.vue'
-import { getEventMeta } from '@/data/events'
-
-const props = defineProps({
-    event: {
-        type: Object,
-        required: true
-    },
-    reverse: {
-        type: Boolean,
-        default: false
-    }
-})
-
-const emit = defineEmits(['image-click'])
-const now = ref(new Date())
-let timer = null
-
-const eventMeta = computed(() => getEventMeta(props.event, now.value))
-
-const handleImageClick = () => {
-    emit('image-click', {
-        imageSrc: props.event.imageSrc,
-        carName: props.event.modalCarName
-    })
-}
-
-onMounted(() => {
-    timer = window.setInterval(() => {
-        now.value = new Date()
-    }, 60000)
-})
-
-onUnmounted(() => {
-    if (timer) window.clearInterval(timer)
-})
+import EventImage from '@/components/EventImage.vue'
+import Button from '@/components/Button.vue'
+import { getEventMeta, getEventTitle } from '@/utils/events'
+import '@/assets/css/event-controls.css'
+defineProps({ event: { type: Object, required: true }, featured: Boolean })
 </script>
 
 <style scoped>
-.upcoming-event-row {
+.upcoming-event {
     display: grid;
-    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
-    align-items: center;
-    gap: clamp(2rem, 5vw, 5rem);
-    width: min(1180px, calc(100% - 40px));
-    margin: 0 auto;
+    gap: 1.75rem;
     text-align: left;
+    align-items: center;
 }
 
-.upcoming-event-row--reverse {
-    grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.45fr);
-}
-
-.upcoming-event-row--reverse .upcoming-event-row__image-button {
-    order: 2;
-}
-
-.upcoming-event-row--reverse .upcoming-event-row__content {
-    order: 1;
-}
-
-.upcoming-event-row__image-button {
+.event-photo {
     display: block;
-    width: 100%;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-}
-
-.upcoming-event-row__image {
-    display: block;
-    width: 100%;
-    aspect-ratio: 16 / 10;
-    object-fit: cover;
     border-radius: 10px;
 }
 
-.upcoming-event-row__content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    min-width: 0;
-}
-
-.upcoming-event-row__meta {
-    margin: 0 0 0.75rem;
+.upcoming-event__meta {
     color: rgb(246, 201, 14);
-    font-size: 0.95rem;
-    line-height: 1.25rem;
-}
-
-.upcoming-event-row__title {
     margin: 0 0 1rem;
-    text-align: left;
 }
 
-.upcoming-event-row__text {
-    margin: 0 0 1.5rem;
-    padding: 0;
-    max-width: 520px;
-    text-align: left;
+.upcoming-event h3 {
+    margin: 0 0 1rem;
+    line-height: 1.25;
 }
 
-.upcoming-event-row__button {
-    margin-right: 0;
+.upcoming-event__description {
+    max-width: 48ch;
+    margin: 0 0 1.75rem;
+    line-height: 1.65;
 }
 
-@media (max-width: 991.98px) {
-
-    .upcoming-event-row,
-    .upcoming-event-row--reverse {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        width: min(680px, calc(100% - 40px));
+@media (min-width: 992px) {
+    .upcoming-event--featured {
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+        gap: clamp(2rem, 5vw, 5rem);
     }
-
-    .upcoming-event-row--reverse .upcoming-event-row__image-button,
-    .upcoming-event-row--reverse .upcoming-event-row__content {
-        order: initial;
-    }
-
-    .upcoming-event-row__content {
-        align-items: center;
-        text-align: center;
-    }
-
-    .upcoming-event-row__title,
-    .upcoming-event-row__text {
-        text-align: center;
-    }
-
-    .upcoming-event-row__text {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 575.98px) {
-
-    .upcoming-event-row,
-    .upcoming-event-row--reverse {
-        width: min(100% - 32px, 420px);
-    }
-
-    .upcoming-event-row__image {
-        aspect-ratio: 243 / 160;
+    .upcoming-event--featured h3 {
+        font-size: clamp(1.75rem, 2.5vw, 2.5rem);
     }
 }
 </style>

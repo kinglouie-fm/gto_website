@@ -149,7 +149,7 @@ watch(isMenuOpen, (open) => {
 useTextHoverAnimation(desktopNavbar, {
   targetSelector: '.nav-link',
   characterSelector: '.nav-link__char-track',
-  y: '-50%'
+  yPercent: -50
 })
 </script>
 
@@ -620,7 +620,6 @@ useTextHoverAnimation(desktopNavbar, {
 
   .nav-link__char-track {
     display: block;
-    will-change: transform;
   }
 
   .nav-link__char-track > span {
