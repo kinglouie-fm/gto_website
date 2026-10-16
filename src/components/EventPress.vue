@@ -15,7 +15,7 @@
                 </article>
             </div>
         </div>
-        <Teleport to="body">
+        <Teleport to="#modals">
             <ImageModal v-if="selectedArticle" :image-src="selectedArticle.imageSrc" :image-alt="selectedArticle.imageAlt"
                 :car-name="selectedArticle.imageAlt" static-display @close="selectedArticle = null" />
         </Teleport>

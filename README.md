@@ -30,3 +30,9 @@ A responsive Vue.js website for GTO Luxembourg – a non-profit group of car ent
    ```bash
    npm run build
    ```
+
+## SEO and AEO
+
+The production build prerenders the Vue pages with their content, navigation,
+images, metadata and structured data. See [SEO and AEO maintenance](docs/seo-aeo.md)
+for the build, preview, testing and server requirements.

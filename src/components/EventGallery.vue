@@ -9,7 +9,7 @@
                     :width="photo.thumbWidth || 1200" :height="photo.thumbHeight || 800" />
             </button>
         </div>
-        <Teleport to="body">
+        <Teleport to="#modals">
             <ImageModal v-if="selectedPhoto" :image-src="selectedPhoto.src" :image-alt="selectedPhoto.alt"
                 :car-name="`${title} — ${selectedIndex + 1} / ${photos.length}`" :show-navigation="photos.length > 1"
                 static-display @close="selectedIndex = null" @prev="navigate(-1)" @next="navigate(1)" />

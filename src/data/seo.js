@@ -109,21 +109,6 @@ const eventPages = Object.fromEntries(events.map((event) => [
         title: `${getEventTitle(event)} | GTO Luxembourg`,
         description: event.shortDescription,
         image: getEventImageSrc(event),
-        staticTitle: getEventTitle(event),
-        staticSections: [
-            {
-                heading: getEventStatus(event) === 'past' ? 'Event recap' : 'The experience',
-                text: event.explanation || event.shortDescription
-            },
-            ...(getEventStatus(event) !== 'past' && event.duration ? [{
-                heading: 'Duration',
-                text: event.duration
-            }] : []),
-            ...(getEventStatus(event) === 'past' ? [] : (event.faqs || [])).map((faq) => ({
-                heading: faq.question,
-                text: faq.answer
-            }))
-        ],
         jsonLd: eventJsonLd(event)
     }
 ]))
@@ -134,8 +119,6 @@ export const seoRoutes = {
         description:
             'GTO Luxembourg is a non-profit car enthusiast organization creating supercar events, private tours and automotive photoshoots in Luxembourg.',
         image: '/images/other/ben911.jpg',
-        staticTitle: 'GTO Luxembourg',
-        staticSections: [],
         jsonLd: [organizationSchema, websiteSchema]
     },
     '/team': {
@@ -143,14 +126,6 @@ export const seoRoutes = {
         description:
             'Meet the GTO Luxembourg team, a non-profit group founded in 2017 to promote car culture, events and tours in Luxembourg.',
         image: '/images/team/team.jpeg',
-        staticTitle: 'GTO Luxembourg Team',
-        staticSections: [
-            {
-                heading: 'Who is behind GTO Luxembourg?',
-                text:
-                    'GTO Luxembourg was founded in 2017 and is run by a small team of friends who share a passion for cars, events and Luxembourg automotive culture.'
-            }
-        ],
         jsonLd: [
             organizationSchema,
             breadcrumbSchema([
@@ -164,19 +139,6 @@ export const seoRoutes = {
         description:
             'Explore GTO Luxembourg car photography and request a free photoshoot for selected supercars and high-end sportscars in Luxembourg.',
         image: '/images/portfolio/Lamborghini_purplemante.webp',
-        staticTitle: 'Car Photoshoots in Luxembourg',
-        staticSections: [
-            {
-                heading: 'Free automotive photoshoots',
-                text:
-                    'GTO Luxembourg offers free automotive photoshoots for selected supercars and high-end sportscars. Owners can reach out through the contact form or social media to request a shoot.'
-            },
-            {
-                heading: 'Portfolio',
-                text:
-                    'The portfolio includes supercars, sportscars and special automotive moments photographed by GTO Luxembourg.'
-            }
-        ],
         jsonLd: [
             organizationSchema,
             breadcrumbSchema([
@@ -190,8 +152,6 @@ export const seoRoutes = {
         description:
             'Discover upcoming GTO Luxembourg gatherings and tours, and explore photos and recaps from past events.',
         image: '/images/other/scs7_people.webp',
-        staticTitle: 'Events',
-        staticSections: events.map((event) => ({ heading: getEventTitle(event), text: event.shortDescription })),
         jsonLd: [
             organizationSchema,
             ...events.filter((event) => event.startsAt).map(eventSchema),
@@ -207,14 +167,6 @@ export const seoRoutes = {
         description:
             'Use GTO Lens to discover car details instantly from your phone camera with AI-powered vehicle recognition.',
         image: '/images/other/gto-lens.png',
-        staticTitle: 'GTO Lens',
-        staticSections: [
-            {
-                heading: 'What is GTO Lens?',
-                text:
-                    'GTO Lens is an AI-powered tool by GTO Luxembourg that helps visitors identify cars and discover details from a photo.'
-            }
-        ],
         jsonLd: [
             organizationSchema,
             breadcrumbSchema([
@@ -227,8 +179,6 @@ export const seoRoutes = {
         title: 'Terms and Conditions | GTO Luxembourg',
         description: 'Read the terms and conditions for using the GTO Luxembourg website and GTO Lens.',
         image: site.image,
-        staticTitle: 'Terms and Conditions',
-        staticSections: [{ heading: 'Terms', text: 'Terms and conditions for using the GTO Luxembourg website and services.' }],
         robots: 'noindex,follow',
         jsonLd: [organizationSchema]
     },
@@ -236,8 +186,6 @@ export const seoRoutes = {
         title: 'Privacy Policy | GTO Luxembourg',
         description: 'Read how GTO Luxembourg processes personal data, cookies, analytics and optional Google Maps embeds.',
         image: site.image,
-        staticTitle: 'Privacy Policy',
-        staticSections: [{ heading: 'Privacy', text: 'Privacy information for the GTO Luxembourg website and services.' }],
         robots: 'noindex,follow',
         jsonLd: [organizationSchema]
     },
@@ -245,16 +193,35 @@ export const seoRoutes = {
         title: 'Cookie Policy | GTO Luxembourg',
         description: 'Read how GTO Luxembourg uses essential, analytics and optional third-party cookies.',
         image: site.image,
-        staticTitle: 'Cookie Policy',
-        staticSections: [{ heading: 'Cookies', text: 'Cookie information for the GTO Luxembourg website and services.' }],
         robots: 'noindex,follow',
         jsonLd: [organizationSchema]
+    },
+    '/lens/camera': {
+        title: 'Car Recognition Camera | GTO Lens',
+        description: 'Take a photo to identify a car with GTO Lens.',
+        robots: 'noindex,follow',
+        jsonLd: []
+    },
+    '/lens/details': {
+        title: 'Car Recognition Results | GTO Lens',
+        description: 'View the details of the car you photographed with GTO Lens.',
+        robots: 'noindex,follow',
+        jsonLd: []
+    },
+    '/404': {
+        title: 'Page Not Found | GTO Luxembourg',
+        description: 'This page could not be found. Explore GTO Luxembourg events, photography and car culture.',
+        robots: 'noindex,follow',
+        status: 404,
+        jsonLd: []
     }
 }
 
 export const publicRoutes = Object.keys(seoRoutes)
 
-export const getSeoForPath = (path) => seoRoutes[path] || seoRoutes['/']
+export const normalizePath = (path) => path.split(/[?#]/)[0].replace(/\/+$/, '') || '/'
+
+export const getSeoForPath = (path) => seoRoutes[normalizePath(path)] || seoRoutes['/404']
 
 export const toCanonical = absoluteUrl
 export const toAbsoluteAsset = absoluteAsset

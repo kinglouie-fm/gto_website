@@ -1,98 +1,60 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
-import { publicRoutes, seoRoutes, site, toAbsoluteAsset, toCanonical } from '../src/data/seo.js'
+import { dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { build } from 'vite'
+import { publicRoutes, seoRoutes, site, toCanonical } from '../src/data/seo.js'
+import { getHeadMetadata, serializeJsonLd } from '../src/utils/seo.js'
 
-const distDir = new URL('../dist/', import.meta.url)
 const template = await readFile(new URL('../dist/index.html', import.meta.url), 'utf8')
 
-const escapeHtml = (value = '') =>
-    String(value)
-        .replaceAll('&', '&amp;')
-        .replaceAll('<', '&lt;')
-        .replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;')
-        .replaceAll("'", '&#39;')
+// A production SSR build shares Vue's scoped style IDs with the client build.
+await build({
+    build: { ssr: 'src/entry-server.js', outDir: 'dist-ssr', copyPublicDir: false },
+    // Bundle the Vue icon component so it shares the same ESM icon registry.
+    ssr: { noExternal: ['gsap', '@fortawesome/vue-fontawesome'] }
+})
+const { renderPage } = await import('../dist-ssr/entry-server.js')
 
-const escapeAttr = escapeHtml
+const escapeHtml = (value = '') => String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;')
 
-const stripUndefined = (value) => {
-    if (Array.isArray(value)) return value.map(stripUndefined)
-    if (value && typeof value === 'object') {
-        return Object.fromEntries(
-            Object.entries(value)
-                .filter(([, entryValue]) => entryValue !== undefined)
-                .map(([key, entryValue]) => [key, stripUndefined(entryValue)])
-        )
-    }
-    return value
-}
-
-const metaTags = (path, seo) => {
-    const canonical = toCanonical(path)
-    const image = toAbsoluteAsset(seo.image || site.image)
-    const robots = seo.robots || 'index,follow'
-    const jsonLd = JSON.stringify(stripUndefined(seo.jsonLd || []))
-
+const metaTags = (path) => {
+    const { title, canonical, meta, jsonLd } = getHeadMetadata(path)
     return [
-        `<title>${escapeHtml(seo.title)}</title>`,
-        `<meta name="description" content="${escapeAttr(seo.description)}">`,
-        `<meta name="robots" content="${escapeAttr(robots)}">`,
-        `<link rel="canonical" href="${escapeAttr(canonical)}">`,
-        `<meta property="og:type" content="website">`,
-        `<meta property="og:site_name" content="${escapeAttr(site.name)}">`,
-        `<meta property="og:title" content="${escapeAttr(seo.title)}">`,
-        `<meta property="og:description" content="${escapeAttr(seo.description)}">`,
-        `<meta property="og:url" content="${escapeAttr(canonical)}">`,
-        `<meta property="og:image" content="${escapeAttr(image)}">`,
-        `<meta name="twitter:card" content="summary_large_image">`,
-        `<meta name="twitter:title" content="${escapeAttr(seo.title)}">`,
-        `<meta name="twitter:description" content="${escapeAttr(seo.description)}">`,
-        `<meta name="twitter:image" content="${escapeAttr(image)}">`,
-        `<script nonce="{{ csp_nonce }}" type="application/ld+json">${jsonLd.replaceAll('</script', '<\\/script')}</script>`
+        `<title>${escapeHtml(title)}</title>`,
+        ...meta.map(attributes => `<meta ${Object.entries(attributes)
+            .map(([key, value]) => `${key}="${escapeHtml(value)}"`).join(' ')}>`),
+        ...(canonical ? [`<link rel="canonical" href="${escapeHtml(canonical)}">`] : []),
+        ...(jsonLd.length ? [
+            `<script id="page-structured-data" nonce="{{ csp_nonce }}" type="application/ld+json">${serializeJsonLd(jsonLd)}</script>`
+        ] : [])
     ].join('\n  ')
 }
 
-const staticContent = (seo) => `
-    <article class="seo-prerender" aria-label="${escapeAttr(seo.staticTitle)}">
-      <h1>${escapeHtml(seo.staticTitle)}</h1>
-      <p>${escapeHtml(seo.description)}</p>
-      ${(seo.staticSections || []).map((section) => `
-      <section>
-        <h2>${escapeHtml(section.heading)}</h2>
-        <p>${escapeHtml(section.text)}</p>
-      </section>`).join('')}
-    </article>`
-
-const renderHtml = (path, seo) => {
-    let html = template
+for (const path of publicRoutes) {
+    const { html: content, modals } = await renderPage(path)
+    const html = template
         .replace(/<title>[\s\S]*?<\/title>/, '')
         .replace(/<meta name="description" content="[\s\S]*?">/, '')
-        .replace('</head>', `  ${metaTags(path, seo)}\n</head>`)
-        .replace('<div id="app"></div>', `<div id="app">${staticContent(seo)}\n  </div>`)
-
-    return html
+        .replace('</head>', `  ${metaTags(path)}\n</head>`)
+        .replace('<div id="app"></div>', () => `<div id="app" data-prerendered="${escapeHtml(path)}">${content}</div>`)
+        .replace('<div id="modals"></div>', () => `<div id="modals">${modals}</div>`)
+    const output = new URL(`../dist${path === '/' ? '' : path}/index.html`, import.meta.url)
+    await mkdir(dirname(fileURLToPath(output)), { recursive: true })
+    await writeFile(output, html, 'utf8')
 }
 
-const routeOutputPath = (path) => {
-    if (path === '/') return new URL('../dist/index.html', import.meta.url)
-    return new URL(`../dist${path}/index.html`, import.meta.url)
-}
-
-for (const path of publicRoutes) {
-    const outputUrl = routeOutputPath(path)
-    await mkdir(dirname(outputUrl.pathname), { recursive: true })
-    await writeFile(outputUrl, renderHtml(path, seoRoutes[path]), 'utf8')
-}
-
+const indexableRoutes = publicRoutes.filter(path => !seoRoutes[path].robots?.includes('noindex'))
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${publicRoutes
-    .filter((path) => seoRoutes[path].robots !== 'noindex,follow')
-    .map((path) => `  <url>
+${indexableRoutes.map(path => `  <url>
     <loc>${toCanonical(path)}</loc>
     <changefreq>${path.startsWith('/events') ? 'weekly' : 'monthly'}</changefreq>
-  </url>`)
-    .join('\n')}
+  </url>`).join('\n')}
 </urlset>
 `
 
@@ -107,17 +69,15 @@ const llms = `# ${site.name}
 ${site.name} is a non-profit car enthusiast organization in Luxembourg focused on supercar events, private tours, automotive photoshoots and GTO Lens.
 
 ## Main pages
-${publicRoutes.map((path) => `- ${seoRoutes[path].title}: ${toCanonical(path)}`).join('\n')}
+${indexableRoutes.map(path => `- ${seoRoutes[path].title}: ${toCanonical(path)}`).join('\n')}
 
 ## Contact
 - Email: ${site.email}
-- Instagram: https://www.instagram.com/gto.lu/
-- TikTok: https://www.tiktok.com/@gto.lu
-- Facebook: https://www.facebook.com/GTOLuxembourg
+${site.sameAs.map(url => `- ${url}`).join('\n')}
 `
 
 await writeFile(new URL('../dist/sitemap.xml', import.meta.url), sitemap, 'utf8')
 await writeFile(new URL('../dist/robots.txt', import.meta.url), robots, 'utf8')
 await writeFile(new URL('../dist/llms.txt', import.meta.url), llms, 'utf8')
 
-console.log(`Generated SEO HTML for ${publicRoutes.length} routes.`)
+console.log(`Prerendered ${publicRoutes.length} Vue pages; ${indexableRoutes.length} indexable URLs.`)

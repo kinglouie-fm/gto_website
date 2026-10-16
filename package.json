@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/generate-seo-pages.mjs",
+    "test": "npm run build && node --test tests/*.test.mjs",
     "preview": "vite preview --host",
     "images:events": "node scripts/prepare-event-images.mjs"
   },

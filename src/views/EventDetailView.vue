@@ -46,12 +46,7 @@
                 :title="getEventTitle(event)" />
         </div>
     </main>
-    <main v-else class="event-detail-page">
-        <div class="event-detail__inner">
-            <h1 class="h-yellow">Event not found</h1>
-            <RouterLink to="/events" class="event-link">Back to events</RouterLink>
-        </div>
-    </main>
+    <NotFoundView v-else title="Event not found" />
 </template>
 
 <script setup>
@@ -61,6 +56,7 @@ import EventImage from '@/components/EventImage.vue'
 import Button from '@/components/Button.vue'
 import EventGallery from '@/components/EventGallery.vue'
 import FaqAccordion from '@/components/FaqAccordion.vue'
+import NotFoundView from '@/views/NotFoundView.vue'
 import { findEventBySlug } from '@/data/events'
 import { getEventMeta, getEventStatus, getEventTitle } from '@/utils/events'
 import { useEvents } from '@/composables/useEvents'

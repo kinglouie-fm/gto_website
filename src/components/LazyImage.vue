@@ -1,6 +1,6 @@
 <template>
-    <img ref="imgEl" v-bind="attrs" :src="currentSrc" :alt="alt" :class="imgClass" :style="styleObj" :loading="loading"
-        decoding="async" @load="onLoad" />
+    <img ref="imgEl" v-bind="attrs" :src="currentSrc" :alt="alt" :class="imgClass" :loading="loading"
+        decoding="async" />
 </template>
 
 <script setup>
@@ -26,28 +26,12 @@ const props = defineProps({
 
 const imgEl = ref(null)
 const isVisible = ref(false)
-const isLoaded = ref(false)
 let io = null
 
 const currentSrc = computed(() => {
     if (isVisible.value) return props.src
     return props.placeholder || props.src
 })
-
-const styleObj = computed(() => {
-    // If you have a placeholder, we can show it immediately
-    // If you don't, we fade in when visible+loaded to prevent popping
-    const shouldShow = props.placeholder ? true : (isVisible.value && isLoaded.value)
-
-    return {
-        opacity: shouldShow ? 1 : 0,
-        transition: 'opacity 220ms ease'
-    }
-})
-
-const onLoad = () => {
-    isLoaded.value = true
-}
 
 onMounted(() => {
     io = new IntersectionObserver(

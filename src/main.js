@@ -1,18 +1,9 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
+import { createSiteApp } from './app.js'
+import { normalizePath } from './data/seo.js'
 import 'bootstrap/dist/css/bootstrap.css'
 import './assets/css/style.css'
 
-// 1) import the core FA styles
 import '@fortawesome/fontawesome-svg-core/styles.css'
-// 2) disable the auto-injection
-import { config, library } from '@fortawesome/fontawesome-svg-core'
-config.autoAddCss = false
-import { faFacebook, faInstagram, faTiktok} from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faFacebook, faInstagram, faTiktok)
 
 import 'bootstrap/dist/js/bootstrap.js'
 
@@ -27,7 +18,10 @@ function sendPageview(path, title = document.title) {
     }
 }
 
-const app = createApp(App).use(store).use(router).component('font-awesome-icon', FontAwesomeIcon)
+const { app, router } = createSiteApp({
+    // The generic 404 HTML can be served at a different URL from its rendered route.
+    hydrate: document.getElementById('app').dataset.prerendered === normalizePath(window.location.pathname)
+})
 
 router.isReady().then(() => {
   // initial pageview
