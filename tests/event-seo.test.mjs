@@ -2,15 +2,13 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 import { events } from '../src/data/events.js'
 import { seoRoutes } from '../src/data/seo.js'
-import { getEventStatus } from '../src/utils/events.js'
 
 test('every minimal event entry gets a generated detail route', () => {
     for (const event of events) {
         const seo = seoRoutes[`/events/${event.slug}`]
         assert.ok(seo)
         if (event.year) assert.ok(seo.title.includes(String(event.year)))
-        const heading = getEventStatus(event) === 'past' ? 'Event recap' : 'The experience'
-        assert.ok(seo.staticSections.some(section => section.heading === heading))
+        assert.equal(seo.description, event.shortDescription)
     }
 })
 
@@ -19,7 +17,7 @@ test('past editions do not publish open-registration offers or fabricated dates'
     assert.equal(past.endDate, '2026-06-21T17:00:00+02:00')
     assert.equal(past.offers, undefined)
     assert.equal(seoRoutes['/events/gto-goes-luxembourg-2024'].jsonLd.some(item => item['@type'] === 'Event'), false)
-    assert.equal(seoRoutes['/events'].staticTitle, 'Events')
+    assert.equal(seoRoutes['/events'].title, 'Events | GTO Luxembourg')
 })
 
 test('gallery-only entries use their first photo in social previews and structured data', async () => {

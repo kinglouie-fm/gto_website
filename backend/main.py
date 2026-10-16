@@ -201,7 +201,7 @@ async def sitemap_xml():
 async def llms_txt():
     return FileResponse(frontend_dist_path / "llms.txt", media_type="text/plain")
 
-# Catch-all for SPA routes: render /var/www/html/index.html with the nonce
+# Generated routes keep their HTML; unknown paths receive the branded 404 page.
 @app.get("/{path:path}", include_in_schema=False)
 async def spa(request: Request, path: str):
     safe_path = Path(path.strip("/"))
@@ -209,7 +209,15 @@ async def spa(request: Request, path: str):
 
     if route_index.is_file() and frontend_dist_path in route_index.parents:
         template_name = str(route_index.relative_to(frontend_dist_path))
+        status_code = 404 if template_name == "404/index.html" else 200
     else:
-        template_name = "index.html"
+        template_name = "404/index.html"
+        status_code = 404
 
-    return templates.TemplateResponse(template_name, {"request": request, "csp_nonce": request.state.csp_nonce})
+    return templates.TemplateResponse(
+        request=request,
+        name=template_name,
+        context={"csp_nonce": request.state.csp_nonce},
+        status_code=status_code,
+        headers={"X-Robots-Tag": "noindex, follow"} if status_code == 404 else None,
+    )
