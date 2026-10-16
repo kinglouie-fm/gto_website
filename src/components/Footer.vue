@@ -46,7 +46,7 @@
             <RouterLink class="routerlink" to="/cookie-policy">Cookie Policy</RouterLink>
         </nav>
         <p class="copyright my-0 pb-1">
-            &copy; 2025 GTO Luxembourg. All rights reserved.
+            &copy; 2026 GTO Luxembourg. All rights reserved.
         </p>
     </section>
 </template>
