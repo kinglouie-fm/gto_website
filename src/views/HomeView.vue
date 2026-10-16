@@ -5,7 +5,8 @@
             mobileObjectPosition="50% 80%" desktopObjectPosition="60% 60%" />
         <VerticalSlider />
         <section class="content container-pb">
-            <h1 class="text-center h-yellow h-first">We share passion!</h1>
+            <h1 class="visually-hidden">GTO Luxembourg: supercar events and car culture</h1>
+            <h2 class="text-center h-yellow h-first">We share passion!</h2>
             <p class="text-center content-text">
                 We are a small passionate group of car enthusiasts from Luxembourg dedicated to sharing our love for
                 the automobile world through events, photoshoots, and prestige car tours.

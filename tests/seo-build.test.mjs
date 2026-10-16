@@ -20,6 +20,16 @@ test('built homepage contains the actual view and crawlable navigation', async (
     assert.match(html, /<svg[^>]+data-icon="instagram"/)
 })
 
+test('homepage has one descriptive screen-reader heading while keeping the visible slogan', async () => {
+    const html = await readBuilt('index.html')
+    const headings = html.match(/<h1\b[^>]*>[\s\S]*?<\/h1>/g) || []
+    assert.equal(headings.length, 1)
+    assert.match(headings[0], /class="visually-hidden"/)
+    assert.match(headings[0], /GTO Luxembourg: supercar events and car culture/)
+    assert.doesNotMatch(headings[0], /aria-hidden|\shidden(?:\s|=|>)/)
+    assert.match(html, /<h2\b[^>]*class="text-center h-yellow h-first"[^>]*>We share passion!<\/h2>/)
+})
+
 test('built team and portfolio pages use the content and images from their Vue views', async () => {
     const team = await readBuilt('team/index.html')
     assert.match(team, /Julien Imhoff/)
