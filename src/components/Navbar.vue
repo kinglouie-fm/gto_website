@@ -73,9 +73,10 @@
         <SocialIcons />
       </div>
       <div class="logo-container desktop-logo-link" @click="toHome()">
-        <img src="/images/gto_logo.png" alt="GTO Luxembourg" class="logo desktop-logo desktop-logo--base" />
-        <img src="/images/gto_logo_lux_hover.png" alt="" class="logo desktop-logo desktop-logo--hover"
-          aria-hidden="true" />
+        <img src="/images/gto_logo.png" alt="White Logo of GTO Luxembourg"
+          class="logo desktop-logo desktop-logo--base" />
+        <img src="/images/gto_logo_lux_hover.png" alt="Colored Logo of GTO Luxembourg"
+          class="logo desktop-logo desktop-logo--hover" aria-hidden="true" />
       </div>
       <div class="right-container">
         <div class="nav-links d-flex">
@@ -622,7 +623,7 @@ useTextHoverAnimation(desktopNavbar, {
     display: block;
   }
 
-  .nav-link__char-track > span {
+  .nav-link__char-track>span {
     display: block;
     height: 1.3em;
     line-height: 1.3;
@@ -636,6 +637,8 @@ useTextHoverAnimation(desktopNavbar, {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-link__char-track { will-change: auto; }
+  .nav-link__char-track {
+    will-change: auto;
+  }
 }
 </style>
