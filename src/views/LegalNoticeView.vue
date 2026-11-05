@@ -27,7 +27,7 @@
                 <h2 class="h-white-small">About the association</h2>
                 <p class="content-text">
                     Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared passion
-                    for cars. Since then, we have grown into a team of 8 members.
+                    for cars. Since then, we have grown into a team of 9 members.
                 </p>
                 <p class="content-text">
                     Whether it's by organizing events, going on tours with special cars, or arranging photoshoots, we're

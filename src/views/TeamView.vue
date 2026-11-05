@@ -14,7 +14,7 @@
             <p class="text-center content-text">
                 Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared passion
                 for
-                cars. Since then, we have grown into a team of 8 members.
+                cars. Since then, we have grown into a team of 9 members.
                 <br>
                 <br>
                 Whether it's by organizing events, going on tours with special cars, or arranging photoshoots, we're
@@ -34,13 +34,14 @@
                     @click="openImageModal('/images/team/laurent.webp', 'Laurent Reding, Treasurer of GTO Luxembourg')" />
                 <TeamMemberCard image="/images/team/jeff.webp" name="Jeff Nosbusch" role="Secretary"
                     @click="openImageModal('/images/team/jeff.webp', 'Jeff Nosbusch, Secretary of GTO Luxembourg')" />
-                <TeamMemberCard image="/images/team/gilles.webp" name="Maître Gilles Declercq"
-                    role="Administration, Legal"
-                    @click="openImageModal('/images/team/gilles.webp', 'Maître Gilles Declercq, responsible for Administration and Legal matters.')" />
+                <TeamMemberCard image="/images/team/gilles.webp" name="Gilles Declercq" role="Administration, Legal"
+                    @click="openImageModal('/images/team/gilles.webp', 'Gilles Declercq, responsible for Administration and Legal matters.')" />
                 <TeamMemberCard image="/images/team/noah.webp" name="Noah Leuck" role="Organisation"
                     @click="openImageModal('/images/team/noah.webp', 'Noah Leuck, responsible for Organisation.')" />
                 <TeamMemberCard image="/images/team/jona.webp" name="Jona Leuck" role="Organisation"
                     @click="openImageModal('/images/team/jona.webp', 'Jona Leuck, responsible for Organisation.')" />
+                <TeamMemberCard image="/images/team/tim.webp" name="Tim Franssens" role="Organisation"
+                    @click="openImageModal('/images/team/tim.webp', 'Tim Franssens, responsible for Organisation.')" />
                 <TeamMemberCard image="/images/team/dylan.webp" name="Dylan Perreira" role="Media Relations"
                     @click="openImageModal('/images/team/dylan.webp', 'Dylan Perreira, responsible for media relations.')" />
             </div>
@@ -128,6 +129,10 @@ onMounted(() => {
     padding: 0 20px;
     justify-content: center;
     grid-template-columns: repeat(2, 1fr);
+}
+
+.team-grid > :last-child:nth-child(odd) {
+    grid-column: 1 / -1;
 }
 
 .content {
@@ -232,13 +237,15 @@ p {
     }
 }
 
-/* For screens over 1200px: use three columns.
-   With 8 items, this yields 3 rows: first two rows with 3 items, last row with 2 items.
-   The last row will be centered via justify-content */
+/* For screens over 1200px: use three columns. */
 @media (min-width: 1200px) {
     .team-grid {
         grid-template-columns: repeat(3, 1fr);
         justify-content: center;
+    }
+
+    .team-grid > :last-child:nth-child(odd) {
+        grid-column: auto;
     }
 
     .team .h-white {
@@ -246,11 +253,15 @@ p {
     }
 }
 
-/* For screens over 1400px: use four columns (2 rows of 4 items) */
+/* For screens over 1400px: use four columns and center a single final member. */
 @media (min-width: 1400px) {
     .team-grid {
         grid-template-columns: repeat(4, 1fr);
         justify-content: center;
+    }
+
+    .team-grid > :last-child:nth-child(4n + 1) {
+        grid-column: 1 / -1;
     }
 
     .team .h-white {
