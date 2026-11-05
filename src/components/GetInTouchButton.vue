@@ -1,8 +1,10 @@
 <template>
     <div>
-        <ButtonFilled @click="openModal" class="get-in-touch-button">
-            Reach out
-        </ButtonFilled>
+        <slot name="trigger" :open="openModal">
+            <ButtonFilled @click="openModal" class="get-in-touch-button">
+                Reach out
+            </ButtonFilled>
+        </slot>
 
         <Modal v-if="showModal" :show-header="false" @close="closeModal">
             <iframe title="Get in touch form" :src="formUrl" allow="camera; microphone; autoplay; encrypted-media" />

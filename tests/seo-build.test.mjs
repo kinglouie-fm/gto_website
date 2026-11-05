@@ -70,6 +70,27 @@ test('utility and error HTML is noindex and excluded from discovery files', asyn
     assert.doesNotMatch(missing, /rel="canonical"/)
 })
 
+test('legal identity pages are crawlable with their own HTML and discoverable URLs', async () => {
+    const sitemap = await readBuilt('sitemap.xml')
+    for (const [path, heading] of [['legal-notice', 'Legal Notice'], ['privacy', 'Privacy Policy']]) {
+        const html = await readBuilt(`${path}/index.html`)
+        assert.match(html, new RegExp(`<h1\\b[^>]*>${heading}</h1>`))
+        assert.match(html, /GTO Luxembourg ASBL/)
+        assert.match(html, /F11601/)
+        assert.match(html, /4, Lengerwiss, L-9184 Schrondweiler, Luxembourg/)
+        assert.match(html, /name="robots" content="index,follow"/)
+        assert.doesNotMatch(html, /noindex/)
+        assert.ok(html.includes(`rel="canonical" href="https://gto-luxembourg.lu/${path}"`))
+        assert.ok(sitemap.includes(`<loc>https://gto-luxembourg.lu/${path}</loc>`))
+        const organization = schemas(html).find(item => item['@type'] === 'Organization')
+        assert.equal(organization.legalName, 'GTO Luxembourg')
+        assert.equal(organization.identifier.propertyID, 'RCS Luxembourg')
+        assert.equal(organization.identifier.value, 'F11601')
+        assert.equal(organization.address.postalCode, 'L-9184')
+        assert.equal(organization.address.addressCountry, 'LU')
+    }
+})
+
 test('production preview serves the generated route HTML and real 404 responses', async () => {
     let middleware
     seoPreview().configurePreviewServer({
@@ -77,6 +98,8 @@ test('production preview serves the generated route HTML and real 404 responses'
         middlewares: { use: handler => { middleware = handler } }
     })
     for (const [url, status, expected] of [
+        ['/legal-notice', 200, 'Website ownership'],
+        ['/privacy', 200, 'F11601'],
         ['/events?source=test', 200, 'events-page'],
         ['/events/supercar-sunday', 200, 'Event recap'],
         ['/missing', 404, 'Page not found'],

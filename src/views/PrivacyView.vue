@@ -2,7 +2,7 @@
     <main>
         <section class="container content container-pb">
             <h1 class="text-center h-yellow h-first">Privacy Policy</h1>
-            <p class="text-center content-text mb-4">Last Updated: June 11, 2026</p>
+            <p class="text-center content-text mb-4">Last Updated: November 5, 2026</p>
 
             <div class="container">
                 <h4 class="h-white-small">1. Introduction</h4>
@@ -14,7 +14,9 @@
 
                 <h4 class="h-white-small">2. Data Controller</h4>
                 <p class="content-text">
-                    GTO Luxembourg is the controller of your personal data. We do not share your personal data with
+                    GTO Luxembourg ASBL, an association sans but lucratif registered in Luxembourg under RCS number
+                    F11601, is the controller of your personal data. Its registered office is at
+                    4, Lengerwiss, L-9184 Schrondweiler, Luxembourg. We do not share your personal data with
                     unauthorized third parties;
                     it remains essential for providing and improving the Service. For questions, contact us at
                     <a href="mailto:gto.luxembourg@hotmail.com">gto.luxembourg@hotmail.com</a>.

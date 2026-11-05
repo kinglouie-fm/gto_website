@@ -24,12 +24,24 @@ const organizationSchema = {
     '@id': `${site.url}/#organization`,
     name: site.name,
     legalName: site.legalName,
+    identifier: {
+        '@type': 'PropertyValue',
+        propertyID: 'RCS Luxembourg',
+        value: 'F11601'
+    },
+    address: {
+        '@type': 'PostalAddress',
+        streetAddress: '4, Lengerwiss',
+        postalCode: 'L-9184',
+        addressLocality: 'Schrondweiler',
+        addressCountry: 'LU'
+    },
     url: site.url,
     logo: absoluteAsset(site.logo),
     email: site.email,
     sameAs: site.sameAs,
     description:
-        'GTO Luxembourg is a non-profit car enthusiast organization in Luxembourg, focused on supercar events, private tours, photoshoots and automotive culture.'
+        'GTO Luxembourg is a Luxembourg association sans but lucratif (ASBL) bringing together car enthusiasts through automotive events, tours and photoshoots.'
 }
 
 const websiteSchema = {
@@ -182,11 +194,16 @@ export const seoRoutes = {
         robots: 'noindex,follow',
         jsonLd: [organizationSchema]
     },
+    '/legal-notice': {
+        title: 'Legal Notice | GTO Luxembourg',
+        description: 'Legal identity, registered office and official website of GTO Luxembourg ASBL, registered in Luxembourg under RCS number F11601.',
+        image: site.image,
+        jsonLd: [organizationSchema]
+    },
     '/privacy': {
         title: 'Privacy Policy | GTO Luxembourg',
         description: 'Read how GTO Luxembourg processes personal data, cookies, analytics and optional Google Maps embeds.',
         image: site.image,
-        robots: 'noindex,follow',
         jsonLd: [organizationSchema]
     },
     '/cookie-policy': {
