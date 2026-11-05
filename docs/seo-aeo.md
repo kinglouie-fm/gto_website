@@ -6,7 +6,8 @@
 - Maintain titles, descriptions, images, indexing rules and JSON-LD in `src/data/seo.js`.
 - `src/utils/seo.js` supplies metadata to both the build and the router. Successful navigation replaces the page's JSON-LD and removes stale schemas and canonical URLs from missing pages.
 - New event entries automatically receive their own metadata and generated pages. Continue to distinguish past editions from future announcements and supply only confirmed dates and registration details.
-- `/lens/camera`, `/lens/details`, legal pages and the error page are `noindex,follow` and excluded from the generated sitemap and `llms.txt`.
+- `/legal-notice` and `/privacy` are public, indexable and included in the generated sitemap and `llms.txt`. Keep the association's legal identity consistent with the Organization JSON-LD; the RCS record for F11601 was checked on 5 November 2026.
+- `/lens/camera`, `/lens/details`, `/terms`, `/cookie-policy` and the error page are `noindex,follow` and excluded from the generated sitemap and `llms.txt`.
 
 ## Build and preview
 

@@ -7,6 +7,7 @@ import LensCameraView from '../views/LensCameraView.vue'
 import LensDetailsView from '../views/LensDetailsView.vue'
 import TermsAndConditions from '../views/TermsAndConditions.vue'
 import PrivacyView from '../views/PrivacyView.vue'
+import LegalNoticeView from '../views/LegalNoticeView.vue'
 import CookiePolicyView from '../views/CookiePolicyView.vue'
 import EventsView from '../views/EventsView.vue'
 import EventDetailView from '../views/EventDetailView.vue'
@@ -58,6 +59,11 @@ const routes = [
     path: '/terms',
     name: 'terms',
     component: TermsAndConditions
+  },
+  {
+    path: '/legal-notice',
+    name: 'legal-notice',
+    component: LegalNoticeView
   },
   {
     path: '/privacy',

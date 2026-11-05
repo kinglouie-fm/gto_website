@@ -39,12 +39,19 @@
             <RouterLink class="routerlink" to="/portfolio">Portfolio</RouterLink>
             <RouterLink class="routerlink" to="/events">Events</RouterLink>
             <RouterLink class="routerlink" to="/lens">GTOLens</RouterLink>
+            <GetInTouchButton class="footer-contact-trigger" analytics-placement="footer">
+                <template #trigger="{ open }">
+                    <button type="button" class="routerlink footer-contact" @click="open">Contact</button>
+                </template>
+            </GetInTouchButton>
         </nav>
         <nav class="footer-nav footer-nav--legal" aria-label="Legal navigation">
+            <RouterLink class="routerlink" to="/legal-notice">Legal Notice</RouterLink>
             <RouterLink class="routerlink" to="/terms">Terms and Conditions</RouterLink>
             <RouterLink class="routerlink" to="/privacy">Privacy Policy</RouterLink>
             <RouterLink class="routerlink" to="/cookie-policy">Cookie Policy</RouterLink>
         </nav>
+        <p class="legal-identity my-0">GTO Luxembourg ASBL - RCS Luxembourg F11601</p>
         <p class="copyright my-0 pb-1">
             &copy; 2026 GTO Luxembourg. All rights reserved.
         </p>
@@ -52,6 +59,8 @@
 </template>
 
 <script setup>
+import GetInTouchButton from './GetInTouchButton.vue'
+
 const props = defineProps({
     bgColor: {
         type: String,
@@ -202,15 +211,29 @@ const props = defineProps({
     transition: width 0.3s ease;
 }
 
-.routerlink:hover::after {
+.routerlink:hover::after,
+.routerlink:focus-visible::after {
     width: 100%;
 }
 
+.footer-contact-trigger {
+    display: flex;
+}
+
+.footer-contact {
+    background: none;
+    border: 0;
+    padding: 0;
+    font: inherit;
+}
+
+.legal-identity,
 .copyright {
     color: white;
 }
 
 .footer-nav,
+.legal-identity,
 .copyright {
     font-size: clamp(0.75rem, 1vw, 1rem);
 }
