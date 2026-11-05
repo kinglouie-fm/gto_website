@@ -28,7 +28,7 @@ on supercars, hypercars, and selected sportscars.
 - Website: https://gto-luxembourg.lu
 - Instagram: **@gto.lu**
 - Facebook: **GTO Luxembourg**
-- Email: **gto.luxembourg@hotmail.com**
+- Email: **info@gto-luxembourg.lu**
 
 ## Main events
 

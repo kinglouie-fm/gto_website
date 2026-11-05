@@ -17,7 +17,7 @@
                     Official website: <a href="https://gto-luxembourg.lu">https://gto-luxembourg.lu</a>
                 </p>
                 <p class="content-text">
-                    Contact: <a href="mailto:gto.luxembourg@hotmail.com">gto.luxembourg@hotmail.com</a>
+                    Contact: <a href="mailto:info@gto-luxembourg.lu">info@gto-luxembourg.lu</a>
                 </p>
                 <p class="content-text">
                     This contact email address will be updated once an email address on our official domain,
@@ -26,7 +26,8 @@
 
                 <h2 class="h-white-small">About the association</h2>
                 <p class="content-text">
-                    Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared passion
+                    Founded in 2017, GTO Luxembourg is a non-profit organization built on friendship and a shared
+                    passion
                     for cars. Since then, we have grown into a team of 9 members.
                 </p>
                 <p class="content-text">

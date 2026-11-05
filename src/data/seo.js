@@ -5,7 +5,7 @@ export const site = {
     name: 'GTO Luxembourg',
     legalName: 'GTO Luxembourg',
     url: 'https://gto-luxembourg.lu',
-    email: 'gto.luxembourg@hotmail.com',
+    email: 'info@gto-luxembourg.lu',
     logo: '/images/gto_logo.png',
     image: '/images/other/scs7_people.webp',
     sameAs: [

@@ -108,7 +108,7 @@
                 <h4 class="h-white-small">15. Contact Information</h4>
                 <p class="content-text">
                     For questions about these Terms, please contact us at
-                    <a href="mailto:gto.luxembourg@hotmail.com">gto.luxembourg@hotmail.com</a>.
+                    <a href="mailto:info@gto-luxembourg.lu">info@gto-luxembourg.lu</a>.
                 </p>
             </div>
         </section>

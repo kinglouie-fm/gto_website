@@ -19,7 +19,7 @@
                     4, Lengerwiss, L-9184 Schrondweiler, Luxembourg. We do not share your personal data with
                     unauthorized third parties;
                     it remains essential for providing and improving the Service. For questions, contact us at
-                    <a href="mailto:gto.luxembourg@hotmail.com">gto.luxembourg@hotmail.com</a>.
+                    <a href="mailto:info@gto-luxembourg.lu">info@gto-luxembourg.lu</a>.
                 </p>
 
                 <h4 class="h-white-small">3. Data We Collect</h4>
@@ -78,7 +78,7 @@
                     You have the right to access, rectify, or delete your personal data. To exercise these rights, email
                     us
                     at
-                    <a href="mailto:gto.luxembourg@hotmail.com">gto.luxembourg@hotmail.com</a>.
+                    <a href="mailto:info@gto-luxembourg.lu">info@gto-luxembourg.lu</a>.
                 </p>
 
                 <h4 class="h-white-small">8. Cookies & Tracking</h4>

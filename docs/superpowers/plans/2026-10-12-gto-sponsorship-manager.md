@@ -75,7 +75,7 @@ with their own approval flow.
 
 ### Proposed defaults and unresolved setup choices
 
-- Proposed sender: `gto.luxembourg@hotmail.com`; the user has not confirmed it.
+- Proposed sender: `info@gto-luxembourg.lu`; the user has not confirmed it.
   Confirm the actual sender before configuring the email integration.
 - Proposed AI provider: OpenAI API. This is an implementation recommendation,
   not an account connection already available to the application.
@@ -150,7 +150,7 @@ can optionally be copied later; it is not required to understand this plan.
 - All 2026 events are done. No 2027 event dates or special anniversary event are confirmed.
 - 2027 marks ten years since founding; do not invent anniversary programming.
 - Website: `https://gto-luxembourg.lu`; Instagram: `@gto.lu`;
-  Facebook: `GTO Luxembourg`; email: `gto.luxembourg@hotmail.com`.
+  Facebook: `GTO Luxembourg`; email: `info@gto-luxembourg.lu`.
 - The user is vice-president and coordinates communication, sponsors, media,
   and technology, including the website.
 - 2026 sponsors: Reinert, Aral Luxembourg, Domaines Vinsmoselle, Alpha Car Services.
