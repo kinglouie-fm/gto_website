@@ -53,6 +53,20 @@ test('built event pages retain honest announcements, recaps and links to the arc
     assert.match(past, /<div id="modals"><!--teleport start anchor-->/)
     assert.doesNotMatch(past, /Register your car/)
     assert.equal(schemas(past).find(item => item['@type'] === 'Event').offers, undefined)
+    assert.match(past, /21 June 2026/)
+    assert.match(past, /33, rue de la Gare, L-7535 Mersch/)
+    assert.match(past, /14:00–17:00/)
+})
+
+test('built event listing and edition without a venue do not expose invalid Event items', async () => {
+    for (const path of ['events', 'events/supercar-sunday-2018-july']) {
+        const html = await readBuilt(`${path}/index.html`)
+        assert.equal(schemas(html).some(item => item['@type'] === 'Event'), false)
+        assert.match(html, /name="robots" content="index,follow"/)
+    }
+    const missingVenue = await readBuilt('events/supercar-sunday-2018-july/index.html')
+    assert.match(missingVenue, /15 July 2018/)
+    assert.match(missingVenue, /Event recap/)
 })
 
 test('utility and error HTML is noindex and excluded from discovery files', async () => {

@@ -112,7 +112,15 @@ For a confirmed event whose date hasn't been announced, omit `startsAt`. It appe
 - `mapQuery`: a confirmed address for the optional, click-to-load Google map.
 - `registration`: `{ url: 'https://...', label: 'Register your car' }`; add only while registration is open, and remove when it closes. For Supercar Sunday, clarify in the description or FAQ that public attendance does not require vehicle registration.
 - `price`: optional confirmed numeric price for registration structured data; use `0` only if confirmed free.
+- `locationAddress`: optional structured address, for example `{ streetAddress: '33, rue de la Gare', postalCode: 'L-7535', addressLocality: 'Mersch', addressCountry: 'LU' }`. It must describe the same confirmed address shown in `location`.
+- `isPublic: false`: use for private or invitation-only gatherings; these are not eligible for Google's Event rich results. This is the default for `luxembourgTour`.
 
-Past detail pages show a recap and photographs. They hide participation, FAQ, and map sections automatically, even if those fields remain in the record.
+Past detail pages show a recap, confirmed date/location/duration, and photographs. They hide participation, FAQ, and map sections automatically, even if those fields remain in the record.
+
+## Event structured data
+
+Only an individual, public event page with a full confirmed start date and a non-empty location publishes `Event` JSON-LD. A date-only value such as `2026-06-21` is sufficient when the time is unknown. The events listing does not repeat these Event items. Incomplete editions and undated announcements remain indexable with their normal title, description and breadcrumbs; adding the missing confirmed details enables Event markup on the next build.
+
+Google's optional-field warnings are not a reason to invent data. Add `endsAt` only when the end date/time is confirmed, and use photographs from that edition for `image`. Leave `performer` absent for gatherings without a performer. Past editions must not advertise currently available registration offers. The July 2018 edition currently has no confirmed location, so it intentionally has no Event item; Nommern's street address and several historical end times/photos are also still unknown.
 
 The existing 2026 slugs stay unchanged to preserve their published URLs. Use year-specific slugs for new editions, for example `supercar-sunday-2027` once that edition is confirmed.

@@ -78,6 +78,13 @@ const faqSchema = (faqs) => ({
     }))
 })
 
+// Keep incomplete announcements and private gatherings out of Google's Event results.
+const hasEventDetails = (event) => event.isPublic !== false
+    && typeof event.startsAt === 'string'
+    && /^\d{4}-\d{2}-\d{2}(?:T.+)?$/.test(event.startsAt)
+    && !Number.isNaN(Date.parse(event.startsAt))
+    && typeof event.location === 'string' && Boolean(event.location.trim())
+
 const eventSchema = (event) => ({
     '@context': 'https://schema.org',
     '@type': 'Event',
@@ -90,12 +97,20 @@ const eventSchema = (event) => ({
     eventStatus: 'https://schema.org/EventScheduled',
     startDate: event.startsAt,
     endDate: event.endsAt,
-    location: event.location ? {
+    location: {
         '@type': 'Place',
         name: event.location,
-        address: event.location
-    } : undefined,
-    organizer: { '@id': `${site.url}/#organization` },
+        address: {
+            '@type': 'PostalAddress',
+            ...(event.locationAddress || { name: event.location })
+        }
+    },
+    organizer: {
+        '@type': 'Organization',
+        '@id': `${site.url}/#organization`,
+        name: site.name,
+        url: site.url
+    },
     offers: getEventStatus(event) === 'upcoming' && event.registration && event.price !== undefined ? {
         '@type': 'Offer',
         price: String(event.price),
@@ -106,7 +121,7 @@ const eventSchema = (event) => ({
 })
 
 const eventJsonLd = (event) => [
-    ...(event.startsAt ? [eventSchema(event)] : []),
+    ...(hasEventDetails(event) ? [eventSchema(event)] : []),
     ...(getEventStatus(event) !== 'past' && event.faqs?.length ? [faqSchema(event.faqs)] : []),
     breadcrumbSchema([
         { name: 'Home', path: '/' },
@@ -166,7 +181,6 @@ export const seoRoutes = {
         image: '/images/other/scs7_people.webp',
         jsonLd: [
             organizationSchema,
-            ...events.filter((event) => event.startsAt).map(eventSchema),
             breadcrumbSchema([
                 { name: 'Home', path: '/' },
                 { name: 'Events', path: '/events' }

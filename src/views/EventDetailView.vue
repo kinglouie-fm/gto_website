@@ -3,6 +3,8 @@
         <div class="event-detail__inner">
             <RouterLink to="/events" class="event-link event-detail__back">Back to events</RouterLink>
             <header class="event-detail__header">
+                <p class="event-detail__meta">{{ statusLabel }} · {{ getEventMeta(event) }}</p>
+                <p v-if="event.location && event.locationLabel" class="event-detail__meta">{{ event.location }}</p>
                 <h1 class="h-yellow">{{ getEventTitle(event) }}</h1>
             </header>
             <EventImage :event="event" eager class="event-detail__cover" />
@@ -15,11 +17,11 @@
                         <a v-if="event.sourceUrl" :href="event.sourceUrl" class="event-link event-detail__source"
                             target="_blank" rel="noopener noreferrer">View Facebook event</a>
                     </section>
+                    <section v-if="event.duration" class="event-detail__block">
+                        <h2 class="h-white-small">When</h2>
+                        <p>{{ event.duration }}</p>
+                    </section>
                     <template v-if="!isPast">
-                        <section v-if="event.duration" class="event-detail__block">
-                            <h2 class="h-white-small">When</h2>
-                            <p>{{ event.duration }}</p>
-                        </section>
                         <section v-if="event.faqs?.length" class="event-detail__block">
                             <h2 class="h-white-small">FAQ</h2>
                             <FaqAccordion :items="event.faqs" />

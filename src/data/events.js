@@ -11,8 +11,16 @@ const eventTypes = {
     luxembourgTour: {
         title: 'GTO goes Luxembourg',
         shortDescription: 'A private tour through Luxembourg, sharing the roads and our passion for cars.',
+        isPublic: false,
         location: 'Luxembourg'
     }
+}
+
+const merschAddress = {
+    streetAddress: '33, rue de la Gare',
+    postalCode: 'L-7535',
+    addressLocality: 'Mersch',
+    addressCountry: 'LU'
 }
 
 export const events = [
@@ -49,7 +57,9 @@ export const events = [
         year: 2026,
         startsAt: '2026-06-21T14:00:00+02:00',
         endsAt: '2026-06-21T17:00:00+02:00',
+        duration: '14:00–17:00',
         location: '33, rue de la Gare, L-7535 Mersch',
+        locationAddress: merschAddress,
         locationLabel: 'Mersch',
         sourceUrl: 'https://www.facebook.com/events/1585184282735112/',
         imageFolder: "supercar-sunday-2026",
@@ -90,6 +100,7 @@ export const events = [
         year: 2025,
         startsAt: '2025-06-29',
         location: '33, rue de la Gare, L-7535 Mersch',
+        locationAddress: merschAddress,
         locationLabel: 'Mersch',
         sourceUrl: 'https://www.facebook.com/events/1571756113508331/',
         imageFolder: "supercar-sunday-2025",
@@ -129,6 +140,7 @@ export const events = [
         year: 2024,
         startsAt: '2024-06-16',
         location: '33, rue de la Gare, L-7535 Mersch',
+        locationAddress: merschAddress,
         locationLabel: 'Mersch',
         sourceUrl: 'https://www.facebook.com/events/951451519897936/',
         imageFolder: "supercar-sunday-2024",
@@ -150,6 +162,7 @@ export const events = [
         year: 2022,
         startsAt: '2022-07-17',
         location: '33, rue de la Gare, L-7535 Mersch',
+        locationAddress: merschAddress,
         locationLabel: 'Mersch',
         sourceUrl: 'https://www.facebook.com/events/1203334913534022/',
         imageFolder: "supercar-sunday-2022",
@@ -172,6 +185,7 @@ export const events = [
         year: 2019,
         startsAt: '2019-07-21',
         location: 'Nommern',
+        locationAddress: { addressLocality: 'Nommern', addressCountry: 'LU' },
         sourceUrl: 'https://www.facebook.com/events/2200820543333930/',
         imageFolder: "supercar-sunday-2019-july"
     },
@@ -182,6 +196,7 @@ export const events = [
         year: 2019,
         startsAt: '2019-04-28',
         location: '33, rue de la Gare, L-7535 Mersch',
+        locationAddress: merschAddress,
         locationLabel: 'Mersch',
         sourceUrl: 'https://www.facebook.com/events/2310313759237615/',
         imageFolder: "supercar-sunday-2019-april",
@@ -212,6 +227,7 @@ export const events = [
         year: 2018,
         startsAt: '2018-05-06',
         location: '33, rue de la Gare, L-7535 Mersch',
+        locationAddress: merschAddress,
         locationLabel: 'Mersch',
         sourceUrl: 'https://www.facebook.com/events/151921635479641/',
         imageFolder: "supercar-sunday-2018-may",
@@ -233,6 +249,12 @@ export const events = [
         year: 2017,
         startsAt: '2017-11-05',
         location: '24, rue du Village, L-6140 Junglinster',
+        locationAddress: {
+            streetAddress: '24, rue du Village',
+            postalCode: 'L-6140',
+            addressLocality: 'Junglinster',
+            addressCountry: 'LU'
+        },
         locationLabel: 'Junglinster',
         shortDescription: 'An automotive photoshoot in Junglinster.',
         sourceUrl: 'https://www.facebook.com/events/748383038678545/',
