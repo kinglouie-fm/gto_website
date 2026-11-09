@@ -13,8 +13,8 @@
             </p>
             <div class="container home-cta">
                 <div class="home-cta__buttons">
-                    <Button to="events">Events</Button>
-                    <Button to="portfolio">Portfolio</Button>
+                    <Button to="/events/">Events</Button>
+                    <Button to="/portfolio/">Portfolio</Button>
                 </div>
                 <SocialIcons />
             </div>

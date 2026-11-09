@@ -15,7 +15,7 @@ export const site = {
     ]
 }
 
-const absoluteUrl = (path = '/') => `${site.url}${path === '/' ? '' : path}`
+const absoluteUrl = (path = '/') => `${site.url}${path.endsWith('/') ? path : path + '/'}`
 const absoluteAsset = (path) => `${site.url}${path}`
 
 const organizationSchema = {

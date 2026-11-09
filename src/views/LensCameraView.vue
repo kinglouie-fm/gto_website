@@ -105,7 +105,7 @@ async function capture() {
         const details = await response.json()
         sessionStorage.setItem('capturedImage', fullDataUrl)
         sessionStorage.setItem('capturedDetails', JSON.stringify(details))
-        router.push('/lens/details')
+        router.push('/lens/details/')
     } catch (e) {
         errorMsg.value = e.name === 'AbortError'
             ? 'Request timed out, please try again.'

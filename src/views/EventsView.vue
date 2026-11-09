@@ -32,7 +32,8 @@
                     <h2 id="past-heading" class="h-white">Past events</h2>
                 </div>
                 <div id="past-events-grid" ref="archiveGrid" class="events-archive__grid">
-                    <PastEventCard v-for="event in visiblePastEvents" :key="event.slug" :event="event" />
+                    <PastEventCard v-for="(event, index) in groups.past" :key="event.slug"
+                        v-show="index < visibleCount" :event="event" />
                 </div>
                 <div v-if="visibleCount < groups.past.length" class="events-archive__more">
                     <Button aria-controls="past-events-grid" @click="showMoreEvents">
@@ -47,7 +48,7 @@
 </template>
 
 <script setup>
-import { computed, nextTick, ref } from 'vue'
+import { computed, nextTick, onMounted, ref } from 'vue'
 import HeroSection from '@/components/HeroSection.vue'
 import UpcomingEventRow from '@/components/UpcomingEventRow.vue'
 import PastEventCard from '@/components/PastEventCard.vue'
@@ -58,13 +59,16 @@ import '@/assets/css/event-controls.css'
 
 const { groups } = useEvents()
 const nextEvents = computed(() => [...groups.value.upcoming, ...groups.value.announced])
-const visibleCount = ref(6)
+const pageSize = 6
+const visibleCount = ref(Infinity)
 const archiveGrid = ref(null)
-const visiblePastEvents = computed(() => groups.value.past.slice(0, visibleCount.value))
+
+// The static archive exposes every edition. Enable the button once it is interactive.
+onMounted(() => { visibleCount.value = pageSize })
 
 const showMoreEvents = async () => {
     const firstNewIndex = visibleCount.value
-    visibleCount.value += 6
+    visibleCount.value += pageSize
     await nextTick()
     archiveGrid.value.children[firstNewIndex]?.querySelector('a')?.focus({ preventScroll: true })
 }

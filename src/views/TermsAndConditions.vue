@@ -64,7 +64,7 @@
                     We collect personal data (e.g., images, contact details) via image uploads, booking forms, and
                     social
                     media links.
-                    Our <a href="/privacy">Privacy Policy</a> explains how we handle your data in
+                    Our <a href="/privacy/">Privacy Policy</a> explains how we handle your data in
                     compliance with GDPR. By using our Services, you consent to that processing.
                 </p>
 
@@ -78,7 +78,7 @@
                 <h4 class="h-white-small">10. Cookies & Tracking</h4>
                 <p class="content-text">
                     We use cookies and similar technologies to enhance your experience, analyze traffic, and display
-                    personalized content. For details, see our <a href="/cookie-policy">Cookie Policy</a>.
+                    personalized content. For details, see our <a href="/cookie-policy/">Cookie Policy</a>.
                 </p>
 
                 <h4 class="h-white-small">11. Prohibited Uses</h4>

@@ -12,7 +12,7 @@
             </p>
 
             <p class="text-center terms-text mt-1">
-                By continuing, you agree to our <RouterLink class="routerlink" to="/terms">Terms and Conditions
+                By continuing, you agree to our <RouterLink class="routerlink" to="/terms/">Terms and Conditions
                 </RouterLink>
                 .
             </p>
@@ -31,7 +31,7 @@ import ButtonFilled from '@/components/ButtonFilled.vue'
 const router = useRouter()
 
 function onGetStarted() {
-    router.push('/lens/camera')
+    router.push('/lens/camera/')
 }
 </script>
 

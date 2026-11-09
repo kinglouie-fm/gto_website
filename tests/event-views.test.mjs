@@ -38,7 +38,7 @@ test('a future entry added only to the data file becomes the featured event', as
     try {
         const html = await render('/events', '/src/views/EventsView.vue')
         assert.match(html, /upcoming-event--featured/)
-        assert.match(html, /href="\/events\/test-future"/)
+        assert.match(html, /href="\/events\/test-future\/"/)
         assert.doesNotMatch(html, /Our next events will be announced here/)
     } finally { events.pop() }
 })
@@ -75,13 +75,16 @@ test('a minimal future detail entry supports optional participation fields', asy
     } finally { events.pop() }
 })
 
-test('the current catalog features the undated 2027 announcement and paginates the archive', async () => {
+test('the current catalog features the undated 2027 announcement and links every edition before JavaScript runs', async () => {
     const html = await render('/events', '/src/views/EventsView.vue')
     assert.match(html, /Supercar Sunday #9 2027/)
     assert.match(html, /2027 · Date to be announced/)
     assert.doesNotMatch(html, /Exceptional cars\. Shared moments/)
-    assert.equal((html.match(/class="past-event"/g) || []).length, 6)
-    assert.match(html, /Show more events/)
+    const { events } = await vite.ssrLoadModule('/src/data/events.js')
+    for (const event of events) {
+        assert.ok(html.includes(`href="/events/${event.slug}/"`), event.slug)
+    }
+    assert.doesNotMatch(html, /Show more events/)
 })
 
 test.after(() => vite.close())

@@ -1,13 +1,13 @@
 <template>
     <article class="upcoming-event" :class="{ 'upcoming-event--featured': featured }">
-        <RouterLink :to="`/events/${event.slug}`" class="event-photo" :aria-label="`View ${getEventTitle(event)}`">
+        <RouterLink :to="`/events/${event.slug}/`" class="event-photo" :aria-label="`View ${getEventTitle(event)}`">
             <EventImage :event="event" :eager="featured" />
         </RouterLink>
         <div class="upcoming-event__content">
             <p class="upcoming-event__meta">{{ getEventMeta(event) }}</p>
             <h3 class="h-white-small">{{ getEventTitle(event) }}</h3>
             <p class="upcoming-event__description">{{ event.shortDescription }}</p>
-            <Button :to="`/events/${event.slug}`">View event</Button>
+            <Button :to="`/events/${event.slug}/`">View event</Button>
         </div>
     </article>
 </template>

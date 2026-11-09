@@ -38,22 +38,22 @@
             <span class="mi-text">Home</span>
           </RouterLink>
 
-          <RouterLink to="/team" class="menu-item" @click="closeNavbar">
+          <RouterLink to="/team/" class="menu-item" @click="closeNavbar">
             <span class="material-symbols-outlined">group</span>
             <span class="mi-text">Team</span>
           </RouterLink>
 
-          <RouterLink to="/portfolio" class="menu-item" @click="closeNavbar">
+          <RouterLink to="/portfolio/" class="menu-item" @click="closeNavbar">
             <span class="material-symbols-outlined">cases</span>
             <span class="mi-text">Portfolio</span>
           </RouterLink>
 
-          <RouterLink to="/events" class="menu-item" @click="closeNavbar">
+          <RouterLink to="/events/" class="menu-item" @click="closeNavbar">
             <span class="material-symbols-outlined">festival</span>
             <span class="mi-text">Events</span>
           </RouterLink>
 
-          <RouterLink to="/lens" class="menu-item" @click="closeNavbar">
+          <RouterLink to="/lens/" class="menu-item" @click="closeNavbar">
             <span class="material-symbols-outlined">photo_camera</span>
             <span class="mi-text">GTOLens</span>
           </RouterLink>
@@ -120,9 +120,9 @@ defineProps({
 })
 const desktopNavItems = [
   { label: 'Home', to: '/' },
-  { label: 'Team', to: '/team' },
-  { label: 'Portfolio', to: '/portfolio' },
-  { label: 'Events', to: '/events' }
+  { label: 'Team', to: '/team/' },
+  { label: 'Portfolio', to: '/portfolio/' },
+  { label: 'Events', to: '/events/' }
 ]
 
 const toggleMenu = () => { isMenuOpen.value = !isMenuOpen.value }
@@ -131,7 +131,7 @@ const toHome = () => { if (isMenuOpen.value) isMenuOpen.value = false; router.pu
 const isCurrentNavItem = (to) => (
   to === '/'
     ? route.path === '/'
-    : route.path === to || route.path.startsWith(`${to}/`)
+    : route.path === to.slice(0, -1) || route.path.startsWith(to)
 )
 
 const trackDrawerBook = () => {

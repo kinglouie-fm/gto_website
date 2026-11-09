@@ -5,7 +5,7 @@
             <p>This page may have moved, or the address may be incorrect.</p>
             <div class="not-found__actions">
                 <Button to="/">Back to home</Button>
-                <Button to="/events">Explore events</Button>
+                <Button to="/events/">Explore events</Button>
             </div>
         </section>
     </main>

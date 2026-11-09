@@ -3,8 +3,8 @@
         <div class="banner-main" v-if="!customizing">
             <p class="banner-text">
                 We use cookies to improve your experience. Read our
-                <RouterLink to="/privacy">Privacy Policy</RouterLink> and
-                <RouterLink to="/cookie-policy">Cookie Policy</RouterLink>.
+                <RouterLink to="/privacy/">Privacy Policy</RouterLink> and
+                <RouterLink to="/cookie-policy/">Cookie Policy</RouterLink>.
             </p>
             <div class="banner-actions">
                 <button @click="acceptEssential" class="btn-essential">

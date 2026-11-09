@@ -21,7 +21,7 @@
         </Transition>
     </RouterView>
 
-    <Footer v-if="route.path !== '/lens/camera'" :bgColor="bgColor" />
+    <Footer v-if="route.name !== 'lenscamera'" :bgColor="bgColor" />
 </template>
 
 <script setup>
@@ -35,7 +35,7 @@ const route = useRoute()
 const router = useRouter()
 
 const bgColor = computed(() =>
-    route.path === '/portfolio' || route.path.startsWith('/events')
+    route.name === 'portfolio' || route.path.startsWith('/events')
         ? 'rgb(76, 84, 94)'
         : 'rgb(48, 56, 65)'
 )

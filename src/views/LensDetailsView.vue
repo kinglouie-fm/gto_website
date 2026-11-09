@@ -49,7 +49,7 @@ onMounted(() => {
 // })
 
 function scanAgain() {
-    router.push('/lens/camera')
+    router.push('/lens/camera/')
 }
 
 // Flatten nested JSON into simple key/value pairs for display

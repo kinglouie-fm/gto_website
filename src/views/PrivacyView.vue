@@ -84,7 +84,7 @@
                 <h4 class="h-white-small">8. Cookies & Tracking</h4>
                 <p class="content-text">
                     We use cookies to manage user preferences and essential functionality. For details, see our
-                    <RouterLink to="/cookie-policy">Cookie Policy</RouterLink>.
+                    <RouterLink to="/cookie-policy/">Cookie Policy</RouterLink>.
                 </p>
 
                 <h4 class="h-white-small">9. Google Maps</h4>

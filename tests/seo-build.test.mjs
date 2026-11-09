@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import test from 'node:test'
+import { publicRoutes } from '../src/data/seo.js'
 import { seoPreview } from '../scripts/preview-seo.mjs'
 
 const readBuilt = (path) => readFile(new URL(`../dist/${path}`, import.meta.url), 'utf8')
@@ -11,8 +12,8 @@ test('built homepage contains the actual view and crawlable navigation', async (
     const html = await readBuilt('index.html')
     assert.match(html, /We share passion!/)
     assert.match(html, /small passionate group of car enthusiasts/)
-    assert.match(html, /href="\/events"/)
-    assert.match(html, /href="\/team"/)
+    assert.match(html, /href="\/events\/"/)
+    assert.match(html, /href="\/team\/"/)
     assert.match(html, /data-prerendered="\/"/)
     assert.doesNotMatch(html, /seo-prerender/)
     assert.equal((html.match(/<title>/g) || []).length, 1)
@@ -47,7 +48,7 @@ test('built event pages retain honest announcements, recaps and links to the arc
     assert.equal(schemas(announcement).some(item => item['@type'] === 'Event'), false)
     const past = await readBuilt('events/supercar-sunday/index.html')
     assert.match(past, /Event recap/)
-    assert.match(past, /href="\/events"/)
+    assert.match(past, /href="\/events\/"/)
     assert.match(past, /Event photos/)
     assert.match(past, /data-prerendered="\/events\/supercar-sunday"/)
     assert.match(past, /<div id="modals"><!--teleport start anchor-->/)
@@ -76,12 +77,32 @@ test('utility and error HTML is noindex and excluded from discovery files', asyn
         const html = await readBuilt(`${path}/index.html`)
         assert.match(html, /name="robots" content="noindex,follow"/)
         assert.equal(schemas(html).length, 0)
-        assert.doesNotMatch(sitemap, new RegExp(`/${path}[<\\s]`))
-        assert.doesNotMatch(llms, new RegExp(`/${path}[\\s]`))
+        assert.doesNotMatch(sitemap, new RegExp(`/${path}/?[<\\s]`))
+        assert.doesNotMatch(llms, new RegExp(`/${path}/?[\\s]`))
     }
     const missing = await readBuilt('404/index.html')
     assert.match(missing, /Page not found/)
     assert.doesNotMatch(missing, /rel="canonical"/)
+})
+
+test('sitemap entries and internal page links use the final page addresses', async () => {
+    const sitemap = await readBuilt('sitemap.xml')
+    const urls = new Set([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]))
+    const expected = new Set()
+    for (const path of publicRoutes) {
+        const directory = path === '/' ? '' : path.slice(1) + '/'
+        const url = `https://gto-luxembourg.lu/${directory}`
+        const html = await readBuilt(directory + 'index.html')
+        if (!html.includes('content="noindex,follow"')) {
+            assert.ok(html.includes(`rel="canonical" href="${url}"`), path)
+            expected.add(url)
+        }
+        for (const [, href] of html.matchAll(/<a\b[^>]*?\shref="(\/[^"]*)"/g)) {
+            const pathname = href.split(/[?#]/)[0]
+            if (publicRoutes.includes(pathname)) assert.ok(pathname.endsWith('/'), `${path} links to ${href}`)
+        }
+    }
+    assert.deepEqual(urls, expected)
 })
 
 test('legal identity pages are crawlable with their own HTML and discoverable URLs', async () => {
@@ -94,8 +115,8 @@ test('legal identity pages are crawlable with their own HTML and discoverable UR
         assert.match(html, /4, Lengerwiss, L-9184 Schrondweiler, Luxembourg/)
         assert.match(html, /name="robots" content="index,follow"/)
         assert.doesNotMatch(html, /noindex/)
-        assert.ok(html.includes(`rel="canonical" href="https://gto-luxembourg.lu/${path}"`))
-        assert.ok(sitemap.includes(`<loc>https://gto-luxembourg.lu/${path}</loc>`))
+        assert.ok(html.includes(`rel="canonical" href="https://gto-luxembourg.lu/${path}/"`))
+        assert.ok(sitemap.includes(`<loc>https://gto-luxembourg.lu/${path}/</loc>`))
         const organization = schemas(html).find(item => item['@type'] === 'Organization')
         assert.equal(organization.legalName, 'GTO Luxembourg')
         assert.equal(organization.identifier.propertyID, 'RCS Luxembourg')
@@ -114,6 +135,8 @@ test('production preview serves the generated route HTML and real 404 responses'
     for (const [url, status, expected] of [
         ['/legal-notice', 200, 'Website ownership'],
         ['/privacy', 200, 'F11601'],
+        ['/privacy/', 200, 'F11601'],
+        ['/legal-notice/', 200, 'Website ownership'],
         ['/events?source=test', 200, 'events-page'],
         ['/events/supercar-sunday', 200, 'Event recap'],
         ['/missing', 404, 'Page not found'],

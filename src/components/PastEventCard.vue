@@ -1,12 +1,12 @@
 <template>
     <article class="past-event">
-        <RouterLink :to="`/events/${event.slug}`" class="event-photo" :aria-label="`View ${getEventTitle(event)}`">
+        <RouterLink :to="`/events/${event.slug}/`" class="event-photo" :aria-label="`View ${getEventTitle(event)}`">
             <EventImage :event="event" />
         </RouterLink>
         <p class="past-event__meta">{{ getEventMeta(event) }}</p>
         <h3 class="h-white-small">{{ event.title }}</h3>
         <p class="past-event__recap">{{ event.shortDescription }}</p>
-        <Button :to="`/events/${event.slug}`" class="past-event__button">
+        <Button :to="`/events/${event.slug}/`" class="past-event__button">
             {{ event.gallery?.length ? 'View photos' : 'View recap' }}
         </Button>
     </article>

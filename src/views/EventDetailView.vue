@@ -1,7 +1,7 @@
 <template>
     <main v-if="event" class="event-detail-page">
         <div class="event-detail__inner">
-            <RouterLink to="/events" class="event-link event-detail__back">Back to events</RouterLink>
+            <RouterLink to="/events/" class="event-link event-detail__back">Back to events</RouterLink>
             <header class="event-detail__header">
                 <p class="event-detail__meta">{{ statusLabel }} · {{ getEventMeta(event) }}</p>
                 <p v-if="event.location && event.locationLabel" class="event-detail__meta">{{ event.location }}</p>

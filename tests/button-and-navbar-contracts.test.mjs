@@ -72,7 +72,7 @@ test('desktop navigation marks a section route without marking Home', async () =
   app.component('font-awesome-icon', FontAwesomeIcon)
   const html = await renderToString(app)
 
-  assert.match(html, /href="\/events"[^>]*nav-link--current/)
+  assert.match(html, /href="\/events\/"[^>]*nav-link--current/)
   assert.doesNotMatch(html, /href="\/"[^>]*nav-link--current/)
 })
 

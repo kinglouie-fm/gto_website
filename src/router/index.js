@@ -21,57 +21,57 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/team',
+    path: '/team/',
     name: 'team',
     component: TeamView
   },
   {
-    path: '/portfolio',
+    path: '/portfolio/',
     name: 'portfolio',
     component: PortfolioView
   },
   {
-    path: '/events',
+    path: '/events/',
     name: 'events',
     component: EventsView
   },
   {
-    path: '/events/:slug',
+    path: '/events/:slug/',
     name: 'event-detail',
     component: EventDetailView
   },
   {
-    path: '/lens',
+    path: '/lens/',
     name: 'lens',
     component: LensView
   },
   {
-    path: '/lens/camera',
+    path: '/lens/camera/',
     name: 'lenscamera',
     component: LensCameraView
   },
   {
-    path: '/lens/details',
+    path: '/lens/details/',
     name: 'lensdetails',
     component: LensDetailsView
   },
   {
-    path: '/terms',
+    path: '/terms/',
     name: 'terms',
     component: TermsAndConditions
   },
   {
-    path: '/legal-notice',
+    path: '/legal-notice/',
     name: 'legal-notice',
     component: LegalNoticeView
   },
   {
-    path: '/privacy',
+    path: '/privacy/',
     name: 'privacy',
     component: PrivacyView
   },
   {
-    path: '/cookie-policy',
+    path: '/cookie-policy/',
     name: 'cookie-policy',
     component: CookiePolicyView
   },
