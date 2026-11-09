@@ -50,7 +50,7 @@ const note = computed(() => {
     if (review.status === 'trim_uncertain') return 'Exact trim uncertain. A clearer rear badge may help.'
     if (review.status === 'trim_supported') return review.rear ? 'Reviewed using both photos.' : 'Photo and web clues support this match.'
     if (review.evidence === null) return 'Google was unavailable. This match is based on the photo.'
-    if (review.usedClues === false && review.evidence?.labels) return 'The combined review could not finish. Showing the initial photo match.'
+    if (review.usedClues === false) return 'The combined review could not finish. Showing the initial photo match.'
     if (review.evidence && !review.evidence.labels?.length && !review.evidence.matching_page_titles?.length)
         return 'Google found no identifying clues. Try a rear badge photo.'
     return 'A rear badge photo can help verify the trim.'

@@ -6,7 +6,7 @@
             <h1 class="h-yellow" tabindex="-1" ref="heading">Review your photo</h1>
             <img class="lens-photo" :src="photo.preview" alt="Your selected car photo">
             <button class="lens-change" type="button" :disabled="loading" @click="resetPhoto">Choose a different photo</button>
-            <p class="lens-note">Identify this car sends your photo to OpenAI and Google Cloud Vision to check the match.</p>
+            <p class="lens-note">When you identify a car, we check your photo with OpenAI and Google Cloud Vision.</p>
             <button class="lens-action" type="button" :disabled="loading" @click="identify">
                 <LensActionLabel :busy="loading" label="Identify this car" busy-label="Identifying car…" />
             </button>
