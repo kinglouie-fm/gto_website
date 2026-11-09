@@ -1,99 +1,54 @@
 <template>
-    <main>
-        <HeroSection :desktopSrc="imageSrc" :mobileSrc="imageSrc" alt="Captured snapshot"
-            customClass="portfolio-hero" />
-
-        <section v-if="details.make" class="content container-pb">
-            <h1 class="text-center h-yellow h-first">CAR DETAILS</h1>
-
-            <h4 v-if="details.model" class="text-center h-white-small">{{ details.make + " " + details.model }}</h4>
-
-            <ul class="details-list mx-auto">
-                <li v-for="(value, key) in flatDetails" :key="key">
-                    <span class="detail-key">{{ key }}</span>
-                    <span class="detail-value">{{ value }}</span>
-                </li>
-            </ul>
-
-            <!-- scan again -->
-            <div class="text-center mt-4">
-                <ButtonFilled @click="scanAgain">Scan Again</ButtonFilled>
+    <main class="lens-page lens-results">
+        <RouterLink class="lens-back" to="/lens/camera/">‹ Photo options</RouterLink>
+        <section v-if="details?.make" class="lens-result">
+            <img v-if="result.photo" class="lens-photo" :src="result.photo" alt="Your car photo">
+            <div>
+                <p class="lens-note lens-match">Likely match</p>
+                <h1 class="h-yellow">{{ details.make }} {{ details.model }}</h1>
+                <dl class="lens-specs">
+                    <div v-for="(value, key) in flatDetails" :key="key" :class="{ 'lens-fact': key === 'Fun Fact' }">
+                        <dt>{{ key }}</dt>
+                        <dd>{{ value }}</dd>
+                    </div>
+                </dl>
+                <RouterLink class="lens-action" to="/lens/camera/">Scan Again</RouterLink>
+                <p class="lens-note">AI can make mistakes. Check important info.</p>
             </div>
-
-            <p class="text-center terms-text mt-2">
-                AI can make mistakes. Check important info.
-            </p>
+        </section>
+        <section v-else-if="ready">
+            <h1 class="h-yellow">Identify a car</h1>
+            <p>Choose a car photo to see its details.</p>
+            <RouterLink class="lens-action" to="/lens/camera/">Add a car photo</RouterLink>
         </section>
     </main>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
-import { useRouter } from 'vue-router'
-import HeroSection from '@/components/HeroSection.vue'
-import ButtonFilled from '@/components/ButtonFilled.vue'
+import { computed, ref, onMounted } from 'vue'
+import { getLensResult } from '@/utils/lens'
+import '@/assets/css/lens.css'
 
-const imageSrc = ref('')
-const details = ref({})
-const router = useRouter()
-
+const result = ref(null)
+const ready = ref(false)
 onMounted(() => {
-    imageSrc.value = sessionStorage.getItem('capturedImage') || ''
-    details.value = JSON.parse(sessionStorage.getItem('capturedDetails') || '{}')
+    result.value = getLensResult()
+    ready.value = true
 })
 
-// onBeforeUnmount(() => {
-//     // clear everything
-//     sessionStorage.removeItem('capturedImage')
-//     sessionStorage.removeItem('capturedDetails')
-// })
-
-function scanAgain() {
-    router.push('/lens/camera/')
-}
-
-// Flatten nested JSON into simple key/value pairs for display
+const details = computed(() => result.value?.details)
 const flatDetails = computed(() => {
-    if (!details.value) return {}
+    const car = details.value
+    if (!car) return {}
     return {
-        'Year': details.value.year,
-        'Engine Type': details.value.engine.type,
-        'Power (HP)': details.value.engine.power_hp,
-        'Torque (Nm)': details.value.engine.torque_nm,
-        'Exact Engine': details.value.engine["exact engine"],
-        'Top Speed (km/h)': details.value.performance.top_speed_kmh,
-        '0–100 km/h (sec)': details.value.performance.acceleration_0_100_kmh_sec,
-        'Fun Fact': details.value.fun_fact
+        'Year': car.year,
+        'Engine Type': car.engine?.type,
+        'Power (HP)': car.engine?.power_hp,
+        'Torque (Nm)': car.engine?.torque_nm,
+        'Exact Engine': car.engine?.['exact engine'],
+        'Top Speed (km/h)': car.performance?.top_speed_kmh,
+        '0–100 km/h (sec)': car.performance?.acceleration_0_100_kmh_sec,
+        'Fun Fact': car.fun_fact
     }
 })
 </script>
-
-<style scoped>
-.details-list {
-    list-style: none;
-    padding: 0;
-    max-width: 300px;
-    /* or whatever width you need */
-    width: 100%;
-}
-
-.details-list li {
-    display: flex;
-    justify-content: space-between;
-    margin: 0.5rem 0;
-    color: white;
-    font-size: 1rem;
-}
-
-.detail-key {
-    font-weight: 600;
-}
-
-.detail-value {
-    text-align: right;
-}
-
-.terms-text {
-    font-size: 0.7rem;
-}
-</style>

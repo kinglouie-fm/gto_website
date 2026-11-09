@@ -1,204 +1,131 @@
 <template>
-    <main>
-        <section class="camera-view">
-            <!-- live camera feed -->
-            <video ref="video" autoplay playsinline class="camera-feed"></video>
-
-            <div class="camera-button-container">
-                <button class="camera-btn" @click="capture">
-                    <img src="/icons/camera.svg" alt="Camera Icon" width="20" height="20" />
-                </button>
-            </div>
-
-            <div v-if="loading" class="loading-overlay">
-                <div class="spinner"></div>
-                <p class="loading-text">Loading</p>
-            </div>
-            <div v-if="errorMsg" class="error-banner">{{ errorMsg }}</div>
+    <main class="lens-page">
+        <LensWebcam v-if="webcam" :preparing="preparing" @cancel="resetPhoto" @capture="selectImage" />
+        <section v-else-if="photo">
+            <button class="lens-back" type="button" :disabled="loading" @click="resetPhoto">‹ Back</button>
+            <h1 class="h-yellow" tabindex="-1" ref="heading">Review your photo</h1>
+            <img class="lens-photo" :src="photo.preview" alt="Your selected car photo">
+            <button class="lens-change" type="button" :disabled="loading" @click="resetPhoto">Choose a different photo</button>
+            <p class="lens-note">When you identify a car, GTO Lens sends the photo to OpenAI for analysis.</p>
+            <button class="lens-action" type="button" :disabled="loading" @click="identify">
+                {{ loading ? 'Identifying car…' : 'Identify this car' }}
+            </button>
         </section>
+        <section v-else>
+            <RouterLink class="lens-back" to="/lens/">‹ GTO Lens</RouterLink>
+            <h1 class="h-yellow" tabindex="-1" ref="heading">Add a car photo</h1>
+            <p>Choose a photo you already have or take one where you are.</p>
+            <figure>
+                <div class="lens-guide">
+                    <img src="/images/portfolio/thumbs/Audi_R8.webp" alt="An entire Audi R8 seen from the front and side, with space around the car.">
+                    <span aria-hidden="true"></span>
+                </div>
+                <figcaption class="lens-note">Step back until the whole car fits, with a little space around it.</figcaption>
+            </figure>
+            <label class="lens-action lens-picker">
+                <font-awesome-icon :icon="faImages" />Choose from library
+                <input type="file" accept="image/*" aria-label="Choose from library" @change="selectFile">
+            </label>
+            <button class="lens-action lens-outline" type="button" @click="openCamera">
+                <font-awesome-icon :icon="faCamera" />Take a photo
+            </button>
+            <input ref="cameraInput" type="file" accept="image/*" capture="environment" hidden @change="selectFile">
+        </section>
+        <p v-if="preparing" role="status" class="lens-note">Preparing photo…</p>
+        <p v-if="error" role="alert" class="lens-error">{{ error }}</p>
     </main>
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
+import { nextTick, onBeforeUnmount, ref, shallowRef } from 'vue'
+import { onBeforeRouteLeave, useRouter } from 'vue-router'
+import { faCamera, faImages } from '@fortawesome/free-solid-svg-icons'
+import LensWebcam from '@/components/LensWebcam.vue'
+import { analyzeLensPhoto, prepareLensPhoto, saveLensResult } from '@/utils/lens'
+import '@/assets/css/lens.css'
 
-const video = ref(null)
-const loading = ref(false)
-const errorMsg = ref('')
 const router = useRouter()
-let stream = null
+const cameraInput = ref(null)
+const heading = ref(null)
+const webcam = ref(false)
+const photo = shallowRef(null)
+const preparing = ref(false)
+const loading = ref(false)
+const error = ref('')
+let selection = 0
 
-onMounted(async () => {
-    try {
-        stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: 'environment' }
-        })
-        video.value.srcObject = stream
-    } catch (err) {
-        console.error('Camera access denied:', err)
-        alert('Please allow camera access to use this feature. Navigate to the Lens page to try again.')
-    }
-})
-
-function dataURLtoBlob(dataURL) {
-    const [header, base64] = dataURL.split(',')
-    const mime = header.match(/:(.*?);/)[1]
-    const bin = atob(base64)
-    const arr = new Uint8Array(bin.length)
-    for (let i = 0; i < bin.length; i++) {
-        arr[i] = bin.charCodeAt(i)
-    }
-    return new Blob([arr], { type: mime })
+function focusHeading() {
+    nextTick(() => heading.value?.focus())
 }
 
-async function capture() {
-    errorMsg.value = ''
-    loading.value = true
+function resetPhoto() {
+    selection++
+    webcam.value = false
+    photo.value = null
+    error.value = ''
+    preparing.value = false
+    focusHeading()
+}
 
-    const vid = video.value
-    const fullCanvas = document.createElement('canvas')
-    fullCanvas.width = vid.videoWidth
-    fullCanvas.height = vid.videoHeight
-    fullCanvas.getContext('2d').drawImage(vid, 0, 0)
-    const fullDataUrl = fullCanvas.toDataURL('image/jpeg', 1.0)
+function openCamera() {
+    resetPhoto()
+    if (window.matchMedia('(pointer: coarse)').matches) cameraInput.value.click()
+    else webcam.value = true
+}
 
-    // downscale & compress:
-    const scale = 0.5
-    const thumb = document.createElement('canvas')
-    thumb.width = vid.videoWidth * scale; thumb.height = vid.videoHeight * scale
-    thumb.getContext('2d').drawImage(vid, 0, 0, thumb.width, thumb.height)
-    const blob = dataURLtoBlob(thumb.toDataURL('image/jpeg', 0.8))
-
-    const form = new FormData()
-    form.append('image', blob, 'snapshot.jpg')
-
-    const controller = new AbortController()
-    setTimeout(() => controller.abort(), 30000)
-
+async function selectImage(imageOrFile) {
+    const attempt = ++selection
+    preparing.value = true
+    error.value = ''
     try {
-        // Send to backend
-        const response = await fetch('/api/analyze', {
-            method: 'POST',
-            body: form,
-            signal: controller.signal
-        })
-
-        if (!response.ok) {
-            const err = await response.json().catch(() => ({}))
-            switch (err.code) {
-                case 'NO_CAR_DETECTED':
-                    throw new Error('No car detected. Please take a full shot of the vehicle.')
-            }
-
-            if (response.status === 400) {
-                throw new Error('Please upload a valid image.')
-            }
-
-            if (response.status === 413) {
-                throw new Error('Image too large (max 5 MB).')
-            }
-
-            throw new Error(err.error || 'Server error.')
+        let image = imageOrFile
+        if (imageOrFile instanceof File) {
+            const source = await new Promise((resolve, reject) => {
+                const reader = new FileReader()
+                reader.onload = () => resolve(reader.result)
+                reader.onerror = () => reject(reader.error)
+                reader.readAsDataURL(imageOrFile)
+            })
+            image = new Image()
+            image.src = source
+            await image.decode()
         }
+        if (attempt !== selection) return
+        const prepared = await prepareLensPhoto(image)
+        if (attempt !== selection) return
+        photo.value = prepared
+        webcam.value = false
+        focusHeading()
+    } catch {
+        if (attempt === selection) error.value = 'This photo could not be opened. Try a JPEG or PNG.'
+    } finally {
+        if (attempt === selection) preparing.value = false
+    }
+}
 
-        const details = await response.json()
-        sessionStorage.setItem('capturedImage', fullDataUrl)
-        sessionStorage.setItem('capturedDetails', JSON.stringify(details))
-        router.push('/lens/details/')
+function selectFile(event) {
+    const file = event.target.files[0]
+    event.target.value = ''
+    if (file) selectImage(file)
+}
+
+async function identify() {
+    if (loading.value || !photo.value) return
+    const attempt = selection
+    loading.value = true
+    error.value = ''
+    try {
+        const details = await analyzeLensPhoto(photo.value.blob)
+        if (attempt !== selection) return
+        saveLensResult(photo.value.preview, details)
+        await router.push('/lens/details/')
     } catch (e) {
-        errorMsg.value = e.name === 'AbortError'
-            ? 'Request timed out, please try again.'
-            : e.message
+        if (attempt === selection) error.value = e.name === 'AbortError' ? 'Request timed out, please try again.' : e.message
     } finally {
         loading.value = false
     }
 }
 
-onBeforeUnmount(() => {
-    if (stream) stream.getTracks().forEach((t) => t.stop())
-})
+onBeforeRouteLeave(() => { selection++ })
+onBeforeUnmount(() => { selection++ })
 </script>
-
-<style scoped>
-.camera-view {
-    position: fixed;
-    top: var(--navbar-height);
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: black;
-    overflow: hidden;
-}
-
-.camera-feed {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.camera-button-container {
-    position: absolute;
-    bottom: 3rem;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.camera-btn {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-    border: none;
-}
-
-.loading-overlay {
-    position: absolute;
-    inset: 0;
-    /* shorthand for top/right/bottom/left: 0 */
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-}
-
-/* CSS spinner */
-.spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.loading-text {
-    margin-top: 1rem;
-    color: white;
-    font-size: 1rem;
-}
-
-.error-banner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: rgba(200, 0, 0, 0.8);
-    color: #fff;
-    padding: .5rem;
-    text-align: center;
-    z-index: 20;
-}
-</style>
