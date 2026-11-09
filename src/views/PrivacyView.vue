@@ -2,7 +2,7 @@
     <main>
         <section class="container content container-pb">
             <h1 class="text-center h-yellow h-first">Privacy Policy</h1>
-            <p class="text-center content-text mb-4">Last Updated: November 5, 2026</p>
+            <p class="text-center content-text mb-4">Last Updated: November 9, 2026</p>
 
             <div class="container">
                 <h4 class="h-white-small">1. Introduction</h4>
@@ -47,15 +47,11 @@
 
                 <h4 class="h-white-small">5. AI Processing</h4>
                 <p class="content-text">
-                    To generate detailed vehicle information, we securely transmit your uploaded image data to the
-                    OpenAI
-                    API.
-                    Images are encoded and sent over HTTPS. OpenAI processes the data temporarily and returns a
-                    response.
-                    We do not store your image or the detailed response beyond the duration necessary to display results
-                    in
-                    your browser session.
-                    <!-- No personal data is retained on third-party servers after processing. -->
+                    GTO Lens sends your car photo to OpenAI to suggest a match. If you add a rear photo for
+                    review, OpenAI receives both images. Choosing “Check with Google” sends the original photo to
+                    Google Cloud Vision for web matching. OpenAI can use the returned labels and page titles
+                    together with your photos to revise the identification. Your browser keeps the current scan
+                    in the tab’s session. The server keeps a monthly count of Google checks.
                 </p>
 
                 <h4 class="h-white-small">5. Data Storage & Security</h4>

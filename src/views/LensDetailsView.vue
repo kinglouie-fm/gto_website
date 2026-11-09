@@ -4,14 +4,19 @@
         <section v-if="details?.make" class="lens-result">
             <img v-if="result.photo" class="lens-photo" :src="result.photo" alt="Your car photo">
             <div>
-                <p class="lens-note lens-match">Likely match</p>
-                <h1 class="h-yellow">{{ details.make }} {{ details.model }}</h1>
-                <dl class="lens-specs">
-                    <div v-for="(value, key) in flatDetails" :key="key" :class="{ 'lens-fact': key === 'Fun Fact' }">
-                        <dt>{{ key }}</dt>
-                        <dd>{{ value }}</dd>
-                    </div>
-                </dl>
+                <p v-if="!inconclusive" class="lens-note lens-match">Likely match</p>
+                <h1 class="h-yellow" aria-live="polite">{{ inconclusive ? 'Model uncertain' : [details.make, details.model].join(' ') }}</h1>
+                <p v-if="note" class="lens-note" role="status">{{ note }}</p>
+                <details class="lens-disclosure">
+                    <summary>Vehicle specifications</summary>
+                    <dl class="lens-specs">
+                        <div v-for="(value, key) in flatDetails" :key="key" :class="{ 'lens-fact': key === 'Fun Fact' }">
+                            <dt>{{ key }}</dt>
+                            <dd>{{ inconclusive ? 'Unconfirmed' : value }}</dd>
+                        </div>
+                    </dl>
+                </details>
+                <LensRefineMatch v-if="result.photo" :result="result" @update="updateResult" />
                 <RouterLink class="lens-action" to="/lens/camera/">Scan Again</RouterLink>
                 <p class="lens-note">AI can make mistakes. Check important info.</p>
             </div>
@@ -26,7 +31,8 @@
 
 <script setup>
 import { computed, ref, onMounted } from 'vue'
-import { getLensResult } from '@/utils/lens'
+import LensRefineMatch from '@/components/LensRefineMatch.vue'
+import { getLensResult, saveLensResult } from '@/utils/lens'
 import '@/assets/css/lens.css'
 
 const result = ref(null)
@@ -37,6 +43,21 @@ onMounted(() => {
 })
 
 const details = computed(() => result.value?.details)
+const inconclusive = computed(() => result.value?.review?.status === 'inconclusive')
+const note = computed(() => {
+    const review = result.value?.review || {}
+    if (inconclusive.value) return 'The available clues are inconclusive. Try a clearer rear badge photo.'
+    if (review.status === 'trim_uncertain') return 'Exact trim uncertain. A clearer rear badge may help.'
+    if (review.status === 'trim_supported') return review.rear ? 'Reviewed using both photos.' : 'Photo and web clues support this match.'
+    if (review.evidence && !review.evidence.labels?.length && !review.evidence.matching_page_titles?.length)
+        return 'Google found no identifying clues. Try a rear badge photo.'
+    return 'A rear badge photo can help verify the trim.'
+})
+function updateResult(details, review) {
+    const photo = result.value.photo
+    saveLensResult(photo, details, review)
+    result.value = { photo, details, review }
+}
 const flatDetails = computed(() => {
     const car = details.value
     if (!car) return {}

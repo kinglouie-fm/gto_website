@@ -1,3 +1,16 @@
+export async function readLensFile(file) {
+    const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader()
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = () => reject(reader.error)
+        reader.readAsDataURL(file)
+    })
+    const image = new Image()
+    image.src = dataUrl
+    await image.decode()
+    return image
+}
+
 // Keep the same half-resolution JPEG input for both capture and library photos.
 function drawPhoto(image, width, height) {
     const canvas = document.createElement('canvas')
@@ -7,14 +20,20 @@ function drawPhoto(image, width, height) {
     return canvas
 }
 
+export function lensPreview(image) {
+    const width = image.naturalWidth || image.videoWidth
+    const height = image.naturalHeight || image.videoHeight
+    const scale = Math.min(1, 1200 / Math.max(width, height))
+    return drawPhoto(image, width * scale, height * scale).toDataURL('image/jpeg', 0.86)
+}
+
 export async function prepareLensPhoto(image) {
     const width = image.naturalWidth || image.videoWidth
     const height = image.naturalHeight || image.videoHeight
     if (!width || !height) throw new Error('The photo is not ready yet.')
     const thumbnail = drawPhoto(image, width * 0.5, height * 0.5)
     // Draw both canvases before yielding so a webcam produces the same frame in each.
-    const scale = Math.min(1, 1200 / Math.max(width, height))
-    const preview = drawPhoto(image, width * scale, height * scale).toDataURL('image/jpeg', 0.86)
+    const preview = lensPreview(image)
     const blob = await new Promise(resolve => thumbnail.toBlob(resolve, 'image/jpeg', 0.8))
     if (!blob) throw new Error('Could not read this photo. Please choose another.')
     return { blob, preview }
@@ -60,8 +79,8 @@ export async function analyzeLensPhoto(blob) {
 
 let latestResult = null
 
-export function saveLensResult(photo, details) {
-    latestResult = { photo, details }
+export function saveLensResult(photo, details, review = {}) {
+    latestResult = { photo, details, review }
     try {
         // Release older photos before saving the new scan against the tab's storage quota.
         sessionStorage.removeItem('capturedImage')

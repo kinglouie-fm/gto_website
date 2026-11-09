@@ -41,7 +41,7 @@ import { onBeforeRouteLeave, useRouter } from 'vue-router'
 import { faCamera, faImages } from '@fortawesome/free-solid-svg-icons'
 import LensWebcam from '@/components/LensWebcam.vue'
 import LensActionLabel from '@/components/LensActionLabel.vue'
-import { analyzeLensPhoto, prepareLensPhoto, saveLensResult } from '@/utils/lens'
+import { analyzeLensPhoto, prepareLensPhoto, readLensFile, saveLensResult } from '@/utils/lens'
 import '@/assets/css/lens.css'
 
 const router = useRouter()
@@ -78,18 +78,7 @@ async function selectImage(imageOrFile, source) {
     preparingSource.value = source
     error.value = ''
     try {
-        let image = imageOrFile
-        if (imageOrFile instanceof File) {
-            const dataUrl = await new Promise((resolve, reject) => {
-                const reader = new FileReader()
-                reader.onload = () => resolve(reader.result)
-                reader.onerror = () => reject(reader.error)
-                reader.readAsDataURL(imageOrFile)
-            })
-            image = new Image()
-            image.src = dataUrl
-            await image.decode()
-        }
+        const image = imageOrFile instanceof File ? await readLensFile(imageOrFile) : imageOrFile
         if (attempt !== selection) return
         const prepared = await prepareLensPhoto(image)
         if (attempt !== selection) return
