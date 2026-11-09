@@ -1,6 +1,6 @@
 <template>
     <main class="lens-page">
-        <LensWebcam v-if="webcam" :preparing="preparing" @cancel="resetPhoto" @capture="selectImage" />
+        <LensWebcam v-if="webcam" :preparing="preparingSource === 'camera'" @cancel="resetPhoto" @capture="selectImage($event, 'camera')" />
         <section v-else-if="photo">
             <button class="lens-back" type="button" :disabled="loading" @click="resetPhoto">‹ Back</button>
             <h1 class="h-yellow" tabindex="-1" ref="heading">Review your photo</h1>
@@ -8,7 +8,7 @@
             <button class="lens-change" type="button" :disabled="loading" @click="resetPhoto">Choose a different photo</button>
             <p class="lens-note">When you identify a car, GTO Lens sends the photo to OpenAI for analysis.</p>
             <button class="lens-action" type="button" :disabled="loading" @click="identify">
-                {{ loading ? 'Identifying car…' : 'Identify this car' }}
+                <LensActionLabel :busy="loading" label="Identify this car" busy-label="Identifying car…" />
             </button>
         </section>
         <section v-else>
@@ -23,15 +23,14 @@
                 <figcaption class="lens-note">Step back until the whole car fits, with a little space around it.</figcaption>
             </figure>
             <label class="lens-action lens-picker">
-                <font-awesome-icon :icon="faImages" />Choose from library
-                <input type="file" accept="image/*" aria-label="Choose from library" @change="selectFile">
+                <LensActionLabel :busy="preparingSource === 'library'" :icon="faImages" label="Choose from library" busy-label="Preparing photo…" />
+                <input type="file" accept="image/*" :disabled="!!preparingSource" @change="selectFile($event, 'library')">
             </label>
-            <button class="lens-action lens-outline" type="button" @click="openCamera">
-                <font-awesome-icon :icon="faCamera" />Take a photo
+            <button class="lens-action lens-outline" type="button" :disabled="!!preparingSource" @click="openCamera">
+                <LensActionLabel :busy="preparingSource === 'camera'" :icon="faCamera" label="Take a photo" busy-label="Preparing photo…" />
             </button>
-            <input ref="cameraInput" type="file" accept="image/*" capture="environment" hidden @change="selectFile">
+            <input ref="cameraInput" type="file" accept="image/*" capture="environment" hidden @change="selectFile($event, 'camera')">
         </section>
-        <p v-if="preparing" role="status" class="lens-note">Preparing photo…</p>
         <p v-if="error" role="alert" class="lens-error">{{ error }}</p>
     </main>
 </template>
@@ -41,6 +40,7 @@ import { nextTick, onBeforeUnmount, ref, shallowRef } from 'vue'
 import { onBeforeRouteLeave, useRouter } from 'vue-router'
 import { faCamera, faImages } from '@fortawesome/free-solid-svg-icons'
 import LensWebcam from '@/components/LensWebcam.vue'
+import LensActionLabel from '@/components/LensActionLabel.vue'
 import { analyzeLensPhoto, prepareLensPhoto, saveLensResult } from '@/utils/lens'
 import '@/assets/css/lens.css'
 
@@ -49,7 +49,7 @@ const cameraInput = ref(null)
 const heading = ref(null)
 const webcam = ref(false)
 const photo = shallowRef(null)
-const preparing = ref(false)
+const preparingSource = ref(null)
 const loading = ref(false)
 const error = ref('')
 let selection = 0
@@ -63,7 +63,7 @@ function resetPhoto() {
     webcam.value = false
     photo.value = null
     error.value = ''
-    preparing.value = false
+    preparingSource.value = null
     focusHeading()
 }
 
@@ -73,21 +73,21 @@ function openCamera() {
     else webcam.value = true
 }
 
-async function selectImage(imageOrFile) {
+async function selectImage(imageOrFile, source) {
     const attempt = ++selection
-    preparing.value = true
+    preparingSource.value = source
     error.value = ''
     try {
         let image = imageOrFile
         if (imageOrFile instanceof File) {
-            const source = await new Promise((resolve, reject) => {
+            const dataUrl = await new Promise((resolve, reject) => {
                 const reader = new FileReader()
                 reader.onload = () => resolve(reader.result)
                 reader.onerror = () => reject(reader.error)
                 reader.readAsDataURL(imageOrFile)
             })
             image = new Image()
-            image.src = source
+            image.src = dataUrl
             await image.decode()
         }
         if (attempt !== selection) return
@@ -99,14 +99,14 @@ async function selectImage(imageOrFile) {
     } catch {
         if (attempt === selection) error.value = 'This photo could not be opened. Try a JPEG or PNG.'
     } finally {
-        if (attempt === selection) preparing.value = false
+        if (attempt === selection) preparingSource.value = null
     }
 }
 
-function selectFile(event) {
+function selectFile(event, source) {
     const file = event.target.files[0]
     event.target.value = ''
-    if (file) selectImage(file)
+    if (file) selectImage(file, source)
 }
 
 async function identify() {

@@ -5,12 +5,15 @@
         <video ref="video" class="lens-photo" autoplay playsinline muted @loadeddata="ready = true"></video>
         <p v-if="error" role="alert">{{ error }}</p>
         <button v-if="error" class="lens-action" @click="$emit('cancel')">Back to photo options</button>
-        <button v-else class="lens-action" :disabled="!ready || preparing" @click="$emit('capture', video)">Take photo</button>
+        <button v-else class="lens-action" :disabled="!ready || preparing" @click="$emit('capture', video)">
+            <LensActionLabel :busy="preparing" label="Take photo" busy-label="Preparing photo…" />
+        </button>
     </section>
 </template>
 
 <script setup>
 import { onMounted, onBeforeUnmount, ref } from 'vue'
+import LensActionLabel from '@/components/LensActionLabel.vue'
 
 defineEmits(['cancel', 'capture'])
 defineProps({ preparing: Boolean })

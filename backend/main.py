@@ -104,7 +104,7 @@ async def analyze(image: UploadFile = File(...)):
     data_uri = f"data:{image.content_type};base64,{b64}"
     try:
         resp = client.chat.completions.create(
-            model="gpt-5-mini",
+            model="gpt-6-luna",
             messages=[
                 {"role":"system","content":DETAILS_PROMPT},
                 {"role":"user","content":[
