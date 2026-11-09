@@ -6,7 +6,7 @@
             <h1 class="h-yellow" tabindex="-1" ref="heading">Review your photo</h1>
             <img class="lens-photo" :src="photo.preview" alt="Your selected car photo">
             <button class="lens-change" type="button" :disabled="loading" @click="resetPhoto">Choose a different photo</button>
-            <p class="lens-note">When you identify a car, GTO Lens sends the photo to OpenAI for analysis.</p>
+            <p class="lens-note">Identify this car sends your photo to OpenAI and Google Cloud Vision to check the match.</p>
             <button class="lens-action" type="button" :disabled="loading" @click="identify">
                 <LensActionLabel :busy="loading" label="Identify this car" busy-label="Identifying car…" />
             </button>
@@ -42,6 +42,7 @@ import { faCamera, faImages } from '@fortawesome/free-solid-svg-icons'
 import LensWebcam from '@/components/LensWebcam.vue'
 import LensActionLabel from '@/components/LensActionLabel.vue'
 import { analyzeLensPhoto, prepareLensPhoto, readLensFile, saveLensResult } from '@/utils/lens'
+import { googleCheck, hasWebClues, reviewMatch } from '@/utils/lensReview'
 import '@/assets/css/lens.css'
 
 const router = useRouter()
@@ -53,6 +54,8 @@ const preparingSource = ref(null)
 const loading = ref(false)
 const error = ref('')
 let selection = 0
+let webLookup
+const lifetime = new AbortController()
 
 function focusHeading() {
     nextTick(() => heading.value?.focus())
@@ -60,6 +63,7 @@ function focusHeading() {
 
 function resetPhoto() {
     selection++
+    webLookup = null
     webcam.value = false
     photo.value = null
     error.value = ''
@@ -104,9 +108,25 @@ async function identify() {
     loading.value = true
     error.value = ''
     try {
-        const details = await analyzeLensPhoto(photo.value.blob)
+        const { preview, blob } = photo.value
+        // Retrying the same photo after an AI error reuses its Google lookup.
+        webLookup ??= googleCheck(preview, lifetime.signal).catch(() => null)
+        const [firstMatch, evidence] = await Promise.all([analyzeLensPhoto(blob), webLookup])
         if (attempt !== selection) return
-        saveLensResult(photo.value.preview, details)
+        const review = { originalCandidate: [firstMatch.make, firstMatch.model].join(' ').trim(), evidence }
+        let details = firstMatch
+        if (hasWebClues(evidence)) {
+            try {
+                const match = await reviewMatch(preview, null, review.originalCandidate, evidence, lifetime.signal)
+                review.status = match.status === 'different_vehicle' ? 'inconclusive' : match.status
+                review.usedClues = true
+                details = match.details || firstMatch
+            } catch {
+                review.usedClues = false
+            }
+        }
+        if (attempt !== selection) return
+        saveLensResult(preview, details, review)
         await router.push('/lens/details/')
     } catch (e) {
         if (attempt === selection) error.value = e.name === 'AbortError' ? 'Request timed out, please try again.' : e.message
@@ -116,5 +136,5 @@ async function identify() {
 }
 
 onBeforeRouteLeave(() => { selection++ })
-onBeforeUnmount(() => { selection++ })
+onBeforeUnmount(() => { selection++; lifetime.abort() })
 </script>

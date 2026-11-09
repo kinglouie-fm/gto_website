@@ -14,34 +14,28 @@
             <span>Rear photo</span>
             <button v-if="draftRear" type="button" class="lens-change" :disabled="!!busy" @click="draftRear = ''; error = ''">Discard</button>
         </div>
-        <p v-if="rear || googleAvailable || hasClues" class="lens-note">
-            {{ googleAvailable && !review.evidence ? 'Check with Google sends the original photo to Google. OpenAI reviews available clues and photos.' : 'OpenAI reviews the photos and any available clues together.' }}
-        </p>
-        <button v-if="draftRear || (hasClues && !review.usedClues)" class="lens-action" type="button" :disabled="!!busy" @click="run(false)">
-            <LensActionLabel :busy="busy === 'review'" :label="rear ? 'Review both photos' : 'Review Google clues'" busy-label="Reviewing…" />
-        </button>
-        <button v-if="googleAvailable && !review.evidence" type="button" class="lens-action lens-outline" :disabled="!!busy" @click="run(true)">
-            <LensActionLabel :busy="busy === 'google'" label="Check with Google" busy-label="Checking…" />
+        <p v-if="rear || pendingClues" class="lens-note">OpenAI reviews your photos and any available Google clues together.</p>
+        <button v-if="draftRear || pendingClues" class="lens-action" type="button" :disabled="!!busy" @click="runReview">
+            <LensActionLabel :busy="busy === 'review'" :label="rear ? 'Review both photos' : 'Retry match review'" busy-label="Reviewing…" />
         </button>
         <p v-if="error" role="alert" class="lens-error">{{ error }}</p>
     </details>
 </template>
 
 <script setup>
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, ref } from 'vue'
 import LensActionLabel from './LensActionLabel.vue'
 import { lensPreview, readLensFile } from '@/utils/lens'
-import { googleCheck, reviewMatch } from '@/utils/lensReview'
+import { hasWebClues, reviewMatch } from '@/utils/lensReview'
 
 const props = defineProps({ result: { type: Object, required: true } })
 const emit = defineEmits(['update'])
 const review = computed(() => props.result.review || {})
 const draftRear = ref('')
 const rear = computed(() => draftRear.value || review.value.rear)
-const hasClues = computed(() => useful(review.value.evidence))
+const pendingClues = computed(() => hasWebClues(review.value.evidence) && !review.value.usedClues)
 const busy = ref('')
 const error = ref('')
-const googleAvailable = ref(false)
 const panel = ref(null)
 const lifetime = new AbortController()
 const photoOptions = [
@@ -49,16 +43,6 @@ const photoOptions = [
     { source: 'library', label: 'Choose from library' }
 ]
 
-function useful(evidence) {
-    return !!(evidence?.labels?.length || evidence?.matching_page_titles?.length)
-}
-
-onMounted(async () => {
-    try {
-        const response = await fetch('/api/lens/options', { signal: lifetime.signal })
-        if (response.ok) googleAvailable.value = (await response.json()).googleAvailable === true
-    } catch { /* Rear-photo review works independently of Google. */ }
-})
 onBeforeUnmount(() => lifetime.abort())
 
 async function pickRear(event, source) {
@@ -76,24 +60,15 @@ async function pickRear(event, source) {
     }
 }
 
-async function run(withGoogle) {
+async function runReview() {
     if (busy.value) return
-    busy.value = withGoogle ? 'google' : 'review'
+    busy.value = 'review'
     error.value = ''
     const current = props.result
     const state = { ...review.value }
     const second = rear.value
     state.originalCandidate ||= [current.details.make, current.details.model].join(' ').trim()
     try {
-        if (withGoogle && !state.evidence) {
-            state.evidence = await googleCheck(current.photo, lifetime.signal)
-            // Keep the lookup on a failed AI review so retrying won't spend a second Google unit.
-            emit('update', current.details, { ...state })
-        }
-        if (!second && !useful(state.evidence)) {
-            panel.value.open = false
-            return
-        }
         const updated = await reviewMatch(current.photo, second, state.originalCandidate, state.evidence, lifetime.signal)
         if (updated.status === 'different_vehicle') {
             error.value = 'These photos appear to show different cars. Choose another rear photo.'
@@ -101,7 +76,7 @@ async function run(withGoogle) {
         }
         state.status = updated.status
         state.rear = second
-        state.usedClues = useful(state.evidence)
+        state.usedClues = hasWebClues(state.evidence)
         emit('update', updated.details || current.details, state)
         draftRear.value = ''
         panel.value.open = false

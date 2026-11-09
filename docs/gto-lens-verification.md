@@ -1,6 +1,6 @@
 # Enable Google checking for GTO Lens on Lightsail
 
-The first scan uses the existing OpenAI configuration. Visitors can already add a rear photo after the new site and backend are deployed. Enabling Google adds **Check with Google** under **Refine this match**.
+Selecting **Identify this car** starts the OpenAI identification and Google web check together. If Google is unavailable, visitors can still get the initial photo match and add a rear photo.
 
 ## 1. Create the Google key
 
@@ -34,7 +34,7 @@ sudo systemctl restart gto-backend
 curl --fail http://127.0.0.1:8000/api/lens/options
 ```
 
-Expect `{"googleAvailable":true}`. This checks that the key is configured. The first visitor-initiated Google check tests billing, key restrictions and the writable counter. To turn Google off, remove its key from the backend environment and restart the service.
+Expect `{"googleAvailable":true}`. This checks that the key is configured. The first scan tests billing, key restrictions and the writable counter. To turn Google off, remove its key from the backend environment and restart the service.
 
 ## 3. Check Nginx
 
@@ -62,6 +62,6 @@ It should return the same JSON as the local check. HTML or a 404 here while the 
 
 ## 4. Try a real scan
 
-Identify a car, open **Refine this match**, and select **Check with Google**. To use both photos in a single review, select a rear photo before pressing **Check with Google**. Selecting **Review both photos** works independently of Google. Each AI review uses the existing OpenAI account. Lens reuses Google clues within that scan when the visitor adds another angle or retries an AI review.
+Select **Identify this car**. Lens displays the vehicle specifications directly. When Google returns identifying clues, Lens requests a second OpenAI review to combine them with the photo before displaying the result. Open **Refine this match** to add a rear photo and review both photos with the saved clues. Reloading the results or reviewing a rear photo does not start another Google lookup.
 
 The server reserves at most 500 Google Web Detection attempts per UTC calendar month on this Lightsail instance. The counter is stored in `/var/lib/gto-lens/google-usage.sqlite3`. Keep that file across restarts and releases. If the counter cannot be written, Lens stops Google lookups. Google currently lists the first 1,000 monthly Web Detection units as free. The application limit covers this instance’s requests only. Other projects, callers or services sharing billing can affect the invoice. [Cloud Vision pricing](https://cloud.google.com/vision/pricing)

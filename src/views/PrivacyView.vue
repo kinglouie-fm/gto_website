@@ -47,9 +47,9 @@
 
                 <h4 class="h-white-small">5. AI Processing</h4>
                 <p class="content-text">
-                    GTO Lens sends your car photo to OpenAI to suggest a match. If you add a rear photo for
-                    review, OpenAI receives both images. Choosing “Check with Google” sends the original photo to
-                    Google Cloud Vision for web matching. OpenAI can use the returned labels and page titles
+                    When you select “Identify this car”, GTO Lens sends your photo to OpenAI for identification and
+                    checks it with Google Cloud Vision for web matches when available. If you add a rear photo for
+                    review, OpenAI receives both images. OpenAI can use the returned labels and page titles
                     together with your photos to revise the identification. Your browser keeps the current scan
                     in the tab’s session. The server keeps a monthly count of Google checks.
                 </p>

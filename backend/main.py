@@ -7,6 +7,7 @@ from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.templating import Jinja2Templates
 from pydantic import ValidationError
 from openai import OpenAI, OpenAIError, APITimeoutError
+from starlette.concurrency import run_in_threadpool
 from prompts import DETAILS_PROMPT
 from lens_models import AnalyzeResp, sanitize_json
 from lens_review import review_router
@@ -61,7 +62,8 @@ async def analyze(image: UploadFile = File(...)):
     b64 = base64.b64encode(data).decode()
     data_uri = f"data:{image.content_type};base64,{b64}"
     try:
-        resp = client.chat.completions.create(
+        resp = await run_in_threadpool(
+            client.chat.completions.create,
             model="gpt-6-luna",
             messages=[
                 {"role":"system","content":DETAILS_PROMPT},

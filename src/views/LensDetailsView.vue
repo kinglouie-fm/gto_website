@@ -7,15 +7,15 @@
                 <p v-if="!inconclusive" class="lens-note lens-match">Likely match</p>
                 <h1 class="h-yellow" aria-live="polite">{{ inconclusive ? 'Model uncertain' : [details.make, details.model].join(' ') }}</h1>
                 <p v-if="note" class="lens-note" role="status">{{ note }}</p>
-                <details class="lens-disclosure">
-                    <summary>Vehicle specifications</summary>
+                <section aria-labelledby="lens-specifications">
+                    <h2 id="lens-specifications" class="h-white-small">Vehicle specifications</h2>
                     <dl class="lens-specs">
                         <div v-for="(value, key) in flatDetails" :key="key" :class="{ 'lens-fact': key === 'Fun Fact' }">
                             <dt>{{ key }}</dt>
                             <dd>{{ inconclusive ? 'Unconfirmed' : value }}</dd>
                         </div>
                     </dl>
-                </details>
+                </section>
                 <LensRefineMatch v-if="result.photo" :result="result" @update="updateResult" />
                 <RouterLink class="lens-action" to="/lens/camera/">Scan Again</RouterLink>
                 <p class="lens-note">AI can make mistakes. Check important info.</p>
@@ -49,6 +49,8 @@ const note = computed(() => {
     if (inconclusive.value) return 'The available clues are inconclusive. Try a clearer rear badge photo.'
     if (review.status === 'trim_uncertain') return 'Exact trim uncertain. A clearer rear badge may help.'
     if (review.status === 'trim_supported') return review.rear ? 'Reviewed using both photos.' : 'Photo and web clues support this match.'
+    if (review.evidence === null) return 'Google was unavailable. This match is based on the photo.'
+    if (review.usedClues === false && review.evidence?.labels) return 'The combined review could not finish. Showing the initial photo match.'
     if (review.evidence && !review.evidence.labels?.length && !review.evidence.matching_page_titles?.length)
         return 'Google found no identifying clues. Try a rear badge photo.'
     return 'A rear badge photo can help verify the trim.'

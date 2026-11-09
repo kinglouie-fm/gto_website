@@ -1,3 +1,7 @@
+export function hasWebClues(evidence) {
+    return Boolean(evidence?.labels?.length || evidence?.matching_page_titles?.length)
+}
+
 function appendPhoto(form, name, preview) {
     const [header, encoded] = preview.split(',')
     if (header !== 'data:image/jpeg;base64' || !encoded) {
